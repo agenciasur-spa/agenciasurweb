@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactoFooter from '../components/ContactoFooter.astro';
+
+const procesoSteps = [
+  {
+    step: '01',
+    title: 'Levantamiento de Procesos',
+    description: 'Entrevistamos a los stakeholders clave, mapeamos los flujos actuales e identificamos cuellos de botella. Entregamos un diagnóstico con recomendaciones priorizadas.',
+    detail: 'No programamos una sola línea hasta entender tu operación.',
+  },
+  {
+    step: '02',
+    title: 'Diseño de Solución',
+    description: 'Definimos la arquitectura técnica, los flujos de usuario y los criterios de aceptación. Prototipamos las pantallas críticas para validación antes de desarrollar.',
+    detail: 'Wireframes, arquitectura de datos y plan de integración.',
+  },
+  {
+    step: '03',
+    title: 'Desarrollo Iterativo',
+    description: 'Construimos en ciclos cortos con demostraciones frecuentes. Cada sprint entrega funcionalidad usable, no acumulamos deuda técnica.',
+    detail: 'Sprints de 2 semanas con review del cliente.',
+  },
+  {
+    step: '04',
+    title: 'Testing & QA',
+    description: 'Pruebas automatizadas y manuales. Validación con usuarios reales del cliente. Performance, seguridad y accesibilidad verificadas.',
+    detail: 'Nada se entrega sin pasar QA.',
+  },
+  {
+    step: '05',
+    title: 'Deploy & Soporte',
+    description: 'Puesta en producción con plan de rollback. Capacitación al equipo interno. Soporte post-entrega según SLA acordado.',
+    detail: 'Acompañamiento continuo, no desaparecemos después del deploy.',
+  },
+];
+
+const tecnologias = [
+  { name: 'Astro / Next.js', category: 'Frontend' },
+  { name: 'React / Vue', category: 'Frontend' },
+  { name: 'Node.js / Python', category: 'Backend' },
+  { name: 'PostgreSQL / MongoDB', category: 'Base de Datos' },
+  { name: 'AWS / Vercel', category: 'Infraestructura' },
+  { name: 'Docker / Kubernetes', category: 'DevOps' },
+];
+---
+
+<Layout title="Servicios | Agencia Sur">
+  <Navbar />
+
+  <!-- Hero de página -->
+  <section class="py-20 px-6 bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4 uppercase tracking-widest">
+        Nuestro Método
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        Cómo trabajamos
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        No vendemos horas. Entregamos soluciones que resuelven problemas reales.
+        Nuestro proceso existe para garantizar que cada proyecto tenga impacto medible.
+      </p>
+    </div>
+  </section>
+
+  <!-- Proceso paso a paso -->
+  <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="space-y-16">
+        {procesoSteps.map((item, index) => (
+          <div class="flex gap-8">
+            <div class="flex-shrink-0">
+              <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-bold text-lg">
+                {item.step}
+              </div>
+              {index < procesoSteps.length - 1 && (
+                <div class="w-0.5 h-full bg-slate-200 mx-auto mt-4"></div>
+              )}
+            </div>
+            <div class="pb-8">
+              <h3 class="text-2xl font-bold mb-3">{item.title}</h3>
+              <p class="text-slate-600 text-lg leading-relaxed mb-2">{item.description}</p>
+              <p class="text-sm text-blue-600 font-medium">{item.detail}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Stack tecnológico -->
+  <section class="py-24 px-6 bg-white border-y border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 text-center">Stack Tecnológico</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        {tecnologias.map((tech) => (
+          <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200">
+            <p class="text-sm text-slate-500 uppercase tracking-wider mb-1">{tech.category}</p>
+            <p class="text-lg font-semibold">{tech.name}</p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-slate-500 mt-8">
+        Adaptamos el stack a tu infraestructura existente. No forzamos una tecnología si no encaja.
+      </p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">¿Listo para levantar tu proceso?</h2>
+      <p class="text-slate-600 mb-8 text-lg">
+        El primer paso es una reunión de diagnóstico. Sin compromiso, sin letra chica.
+      </p>
+      <a
+        href="/contacto"
+        class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition"
+      >
+        Agendar Diagnóstico
+      </a>
+    </div>
+  </section>
+
+  <ContactoFooter />
+</Layout>

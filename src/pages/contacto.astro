@@ -1,0 +1,173 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout title="Contacto | Agencia Sur">
+  <Navbar />
+
+  <!-- Hero -->
+  <section class="py-20 px-6 bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4 uppercase tracking-widest">
+        Hablemos
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        ¿Tienes un proyecto en mente?
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        Cuéntanos sobre tu proceso actual y te diremos cómo podemos ayudarte.
+        Sin compromiso, sin letra chica.
+      </p>
+    </div>
+  </section>
+
+  <!-- Formulario + Info -->
+  <section class="py-24 px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16">
+      <!-- Formulario grande -->
+      <div>
+        <h2 class="text-2xl font-bold mb-8">Envíanos un mensaje</h2>
+        <form class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Nombre *</label>
+              <input
+                type="text"
+                name="nombre"
+                required
+                placeholder="Tu nombre"
+                class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Empresa</label>
+              <input
+                type="text"
+                name="empresa"
+                placeholder="Nombre de tu empresa"
+                class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+              />
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Email *</label>
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="tu@empresa.com"
+                class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-700 mb-2">Teléfono</label>
+              <input
+                type="tel"
+                name="telefono"
+                placeholder="+56 9 1234 5678"
+                class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-2">¿Qué necesitas? *</label>
+            <select
+              name="tipo_proyecto"
+              required
+              class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+            >
+              <option value="" disabled selected>Selecciona una opción</option>
+              <option value="levantamiento">Levantamiento de procesos</option>
+              <option value="desarrollo">Desarrollo web/mobile</option>
+              <option value="sistema">Implementación de sistema propio</option>
+              <option value="integracion">Integración de sistemas</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-slate-700 mb-2">Mensaje *</label>
+            <textarea
+              name="mensaje"
+              required
+              rows="6"
+              placeholder="Cuéntanos sobre tu proceso actual, los desafíos que enfrentas y qué resultado esperas..."
+              class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition text-lg"
+          >
+            Enviar Mensaje
+          </button>
+
+          <p class="text-sm text-slate-500 text-center">
+            Respondemos en menos de 24 horas hábiles.
+          </p>
+        </form>
+      </div>
+
+      <!-- Información de contacto -->
+      <div class="space-y-12">
+        <div>
+          <h2 class="text-2xl font-bold mb-8">Información de contacto</h2>
+          <div class="space-y-6">
+            <div>
+              <p class="text-sm text-slate-500 uppercase tracking-wider mb-1">Dirección</p>
+              <p class="font-semibold">Las Bellotas 199, of 62</p>
+              <p class="text-slate-600">Providencia, Santiago, Chile</p>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500 uppercase tracking-wider mb-1">Teléfono</p>
+              <a href="tel:+56978640400" class="font-semibold text-blue-600 hover:underline">
+                +56 9 7864 0400
+              </a>
+            </div>
+            <div>
+              <p class="text-sm text-slate-500 uppercase tracking-wider mb-1">Email</p>
+              <a href="mailto:contacto@agenciasur.cl" class="font-semibold text-blue-600 hover:underline">
+                contacto@agenciasur.cl
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-4">¿Qué pasa después?</h3>
+          <ol class="space-y-4 text-slate-600">
+            <li class="flex gap-3">
+              <span class="text-blue-600 font-bold">1.</span>
+              <span>Revisamos tu mensaje y te contactamos en 24h.</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-blue-600 font-bold">2.</span>
+              <span>Agendamos una reunión de diagnóstico (30 min, sin compromiso).</span>
+            </li>
+            <li class="flex gap-3">
+              <span class="text-blue-600 font-bold">3.</span>
+              <span>Te enviamos una propuesta con alcance, tiempos y presupuesto.</span>
+            </li>
+          </ol>
+        </div>
+
+        <!-- Mapa placeholder -->
+        <div class="bg-slate-100 rounded-2xl h-64 flex items-center justify-center border border-slate-200">
+          <p class="text-slate-400">Mapa — Providencia, Santiago</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer simple -->
+  <footer class="bg-slate-100 py-8 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 text-center text-sm text-slate-500">
+      © {new Date().getFullYear()} Agencia Sur. Todos los derechos reservados.
+    </div>
+  </footer>
+</Layout>

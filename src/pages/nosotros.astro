@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import StatsBar from '../components/StatsBar.astro';
+import ContactoFooter from '../components/ContactoFooter.astro';
+
+const timeline = [
+  { year: '2008', event: 'Inicio de trayectoria técnica en desarrollo de software empresarial.' },
+  { year: '2012', event: 'Primeros proyectos de automatización de procesos para el sector financiero.' },
+  { year: '2016', event: 'Fundación de Agencia Sur. Enfoque en transformación digital.' },
+  { year: '2019', event: 'Lanzamiento del Sistema de Compras. Primer producto propio.' },
+  { year: '2021', event: 'Expansión a gestión de personal transitorio y mesa de ayuda.' },
+  { year: '2024', event: '50+ proyectos entregados. Clientes como BancoEstado y ServiEstado.' },
+];
+
+const valores = [
+  {
+    title: 'Antes de programar, entendemos',
+    description: 'No escribimos código sin un diagnóstico previo. Cada proyecto parte de un levantamiento real de procesos.',
+  },
+  {
+    title: 'Código con propósito',
+    description: 'Cada línea responde a un objetivo de negocio. No hay features por vanity ni deuda técnica innecesaria.',
+  },
+  {
+    title: 'Acompañamiento continuo',
+    description: 'No desaparecemos después del deploy. Nuestro éxito se mide en la operación del cliente, no en la entrega.',
+  },
+  {
+    title: 'Transparencia total',
+    description: 'Sprints con demostraciones, estimaciones honestas y comunicación directa. Sin humo.',
+  },
+];
+---
+
+<Layout title="Nosotros | Agencia Sur">
+  <Navbar />
+
+  <!-- Hero -->
+  <section class="py-20 px-6 bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4 uppercase tracking-widest">
+        Quiénes Somos
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        18 años convirtiendo complejidad en simplicidad
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        Somos un equipo técnico con trayectoria real en operaciones empresariales.
+        No somos una agencia creativa que hace sitios bonitos — somos ingenieros
+        que resuelven problemas de negocio con software.
+      </p>
+    </div>
+  </section>
+
+  <!-- Misión -->
+  <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <blockquote class="text-3xl font-medium leading-relaxed italic text-slate-800 border-l-4 border-blue-600 pl-8">
+        "Diseñamos la infraestructura digital que permite a las empresas escalar
+        sin fricciones, asegurando que cada línea de código responda a un objetivo
+        de negocio real."
+      </blockquote>
+    </div>
+  </section>
+
+  <StatsBar />
+
+  <!-- Timeline -->
+  <section class="py-24 px-6 bg-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-16 text-center">Nuestra Trayectoria</h2>
+      <div class="space-y-8">
+        {timeline.map((item) => (
+          <div class="flex gap-6 items-start">
+            <span class="text-2xl font-bold text-blue-600 flex-shrink-0 w-16">{item.year}</span>
+            <p class="text-slate-600 text-lg pt-1">{item.event}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores -->
+  <section class="py-24 px-6 bg-slate-900 text-white">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-bold mb-16 text-center">Cómo Trabajamos</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        {valores.map((valor) => (
+          <div class="p-8 border border-slate-700 rounded-2xl">
+            <h3 class="text-xl font-bold mb-3 text-blue-400">{valor.title}</h3>
+            <p class="text-slate-400 leading-relaxed">{valor.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Clientes -->
+  <section class="py-16 px-6 border-y border-slate-200">
+    <div class="max-w-4xl mx-auto text-center">
+      <p class="text-sm text-slate-500 uppercase tracking-widest mb-8">Confían en nosotros</p>
+      <div class="flex justify-center items-center space-x-12 grayscale opacity-50">
+        <span class="font-bold text-2xl uppercase">BancoEstado</span>
+        <span class="font-bold text-2xl uppercase">ServiEstado</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">¿Quieres conocer nuestro enfoque?</h2>
+      <p class="text-slate-600 mb-8 text-lg">
+        Agenda una reunión sin compromiso. Te explicamos cómo podríamos ayudarte.
+      </p>
+      <a
+        href="/contacto"
+        class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition"
+      >
+        Hablemos
+      </a>
+    </div>
+  </section>
+
+  <ContactoFooter />
+</Layout>
