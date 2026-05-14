@@ -1,0 +1,61 @@
+---
+const sistemas = [
+  {
+    title: 'Sistema de Compras',
+    tagline: 'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento.',
+    slug: 'sistema-de-compras',
+    features: [
+      'Control de cumplimiento SLA',
+      'Reducción 100% papel',
+      'Tracking en tiempo real',
+    ],
+    featured: true,
+  },
+  {
+    title: 'Gestión de Personal Transitorio',
+    tagline: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.',
+    slug: 'gestion-personal-transitorio',
+    featured: false,
+  },
+  {
+    title: 'Mesa de Ayuda',
+    tagline: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.',
+    slug: 'mesa-de-ayuda',
+    featured: false,
+  },
+];
+---
+
+<section id="productos" class="py-24 bg-slate-900 text-white px-6">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-4xl font-bold mb-16">Sistemas Core de Gestión</h2>
+
+    <div class="grid md:grid-cols-3 gap-12">
+      {sistemas.map((sistema) => (
+        <div class="space-y-6">
+          <a
+            href={`/soluciones/${sistema.slug}`}
+            class={`text-2xl font-bold text-blue-400 ${sistema.featured ? 'underline decoration-2 underline-offset-8' : 'opacity-80 hover:opacity-100'} transition`}
+          >
+            {sistema.title}
+          </a>
+          {sistema.featured ? (
+            <p class="text-slate-400 italic">"{sistema.tagline}"</p>
+          ) : (
+            <p class="text-slate-400">{sistema.tagline}</p>
+          )}
+          {sistema.features && (
+            <ul class="space-y-3">
+              {sistema.features.map((feature) => (
+                <li class="flex items-center space-x-2">
+                  <span class="text-blue-500">✓</span>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

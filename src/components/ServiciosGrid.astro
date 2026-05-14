@@ -1,0 +1,48 @@
+---
+const servicios = [
+  {
+    number: '01',
+    color: 'blue',
+    title: 'Levantamiento de Procesos',
+    description:
+      'No programamos sin entender. Analizamos y definimos la metodología óptima antes de digitalizar.',
+    span: false,
+  },
+  {
+    number: '02',
+    color: 'green',
+    title: 'Desarrollo Web & Mobile High-End',
+    description:
+      'Construimos sistemas robustos sobre arquitecturas modernas (Astro/Next.js) o evolucionamos tu infraestructura actual en WordPress/Prestashop hacia el alto rendimiento.',
+    span: true,
+  },
+  {
+    number: '03',
+    color: 'purple',
+    title: 'Integración & Soporte Continuo',
+    description:
+      'Conectamos tus sistemas existentes con APIs y middleware. Soporte post-entrega para asegurar la operación sin interrupciones.',
+    span: false,
+  },
+];
+---
+
+<section id="servicios" class="py-24 px-6 max-w-7xl mx-auto">
+  <h2 class="text-3xl font-bold mb-16 text-center">Soluciones para la era digital</h2>
+
+  <div class="grid md:grid-cols-3 gap-6">
+    {servicios.map((s) => (
+      <div
+        class={`p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition ${s.span ? 'md:col-span-2' : ''}`}
+      >
+        <div
+          class={`w-12 h-12 bg-${s.color}-50 rounded-xl flex items-center justify-center mb-6 text-${s.color}-600 font-bold text-2xl`}
+        >
+          {s.number}
+        </div>
+        <h3 class="text-xl font-bold mb-4">{s.title}</h3>
+        <p class="text-slate-600">{s.description}</p>
+      </div>
+    ))}
+  </div>
+</section>

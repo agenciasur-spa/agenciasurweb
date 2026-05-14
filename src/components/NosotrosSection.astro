@@ -1,0 +1,25 @@
+---
+const clientes = ['BancoEstado', 'ServiEstado', 'PROCESOS DIGITALIZADOS'];
+---
+
+<section id="nosotros" class="py-24 px-6 bg-white">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-blue-600 font-bold mb-4 uppercase tracking-widest">
+      Sobre Agencia Sur
+    </h2>
+
+    <p class="text-3xl font-medium leading-relaxed italic text-slate-800">
+      "Desde 2016, combinamos 18 años de trayectoria técnica para transformar
+      la complejidad operativa en flujos de trabajo simples. No solo entregamos
+      software; diseñamos la infraestructura digital que permite a las empresas
+      escalar sin fricciones, asegurando que cada línea de código responda a un
+      objetivo de negocio real."
+    </p>
+
+    <div class="mt-12 flex justify-center items-center space-x-8 grayscale opacity-60">
+      {clientes.map((cliente) => (
+        <span class="font-bold text-xl uppercase italic">{cliente}</span>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+---
+---
+
+<footer id="contacto" class="bg-slate-100 py-12 border-t border-slate-200">
+  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+    <!-- Info de contacto -->
+    <div>
+      <h2 class="text-3xl font-bold mb-6">¿Tienes un proyecto?</h2>
+      <p class="text-slate-600 mb-8">
+        Hablemos sobre cómo optimizar tus procesos actuales.
+      </p>
+
+      <div class="space-y-2">
+        <p class="font-bold">Las Bellotas 199, of 62, Providencia</p>
+        <p class="text-blue-600">+56 9 7864 0400</p>
+        <p class="text-blue-600 font-medium tracking-tight">
+          contacto@agenciasur.cl
+        </p>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <form class="space-y-4">
+      <input
+        type="text"
+        name="nombre"
+        placeholder="Nombre"
+        required
+        class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="Email"
+        required
+        class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+      />
+      <textarea
+        name="mensaje"
+        placeholder="Cuéntanos de tu proceso actual"
+        required
+        class="w-full p-4 rounded-xl border border-slate-300 h-32 focus:ring-2 focus:ring-blue-500 outline-none"
+      ></textarea>
+      <button
+        type="submit"
+        class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition"
+      >
+        Enviar Mensaje
+      </button>
+    </form>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-200 text-center text-sm text-slate-500">
+    © {new Date().getFullYear()} Agencia Sur. Todos los derechos reservados.
+  </div>
+</footer>
