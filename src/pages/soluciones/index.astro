@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactoFooter from '../../components/ContactoFooter.astro';
+import { sanityClient } from '../../lib/sanity';
+import type { Solucion } from '../../types/sanity';
+
+let soluciones: Solucion[] = [];
+if (sanityClient) {
+  try {
+    soluciones = await sanityClient.fetch(
+    `*[_type == "solucion"] | order(order asc) {
+      _id,
+      title,
+      "slug": slug.current,
+      tagline,
+      features,
+      icon
+    }`);
+  } catch {
+    // Sanity query failed
+  }
+}
+---
+
+<Layout title="Soluciones | Agencia Sur">
+  <Navbar />
+
+  <section class="py-20 px-6 bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4 uppercase tracking-widest">
+        Nuestros Sistemas
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        Soluciones que resuelven problemas reales
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        Sistemas cerrados, probados en producción, diseñados para procesos
+        empresariales críticos. No vendemos software genérico — entregamos
+        herramientas que encajan en tu operación.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      {soluciones.length > 0 ? (
+        <div class="grid md:grid-cols-3 gap-8">
+          {soluciones.map((solucion) => (
+            <a
+              href={`/soluciones/${solucion.slug}`}
+              class="group p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-blue-200 transition"
+            >
+              {solucion.icon && (
+                <span class="text-4xl mb-4 block">{solucion.icon}</span>
+              )}
+              <h3 class="text-xl font-bold mb-3 group-hover:text-blue-600 transition">
+                {solucion.title}
+              </h3>
+              <p class="text-slate-600 mb-4">{solucion.tagline}</p>
+              {solucion.features && solucion.features.length > 0 && (
+                <ul class="space-y-2">
+                  {solucion.features.slice(0, 3).map((feature) => (
+                    <li class="flex items-center space-x-2 text-sm text-slate-500">
+                      <span class="text-blue-500">✓</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <p class="mt-6 text-blue-600 font-medium text-sm group-hover:underline">
+                Ver detalle →
+              </p>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-16">
+          <p class="text-slate-500 text-lg">
+            Próximamente. Las soluciones se cargan desde Sanity CMS.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <ContactoFooter />
+</Layout>

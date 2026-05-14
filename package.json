@@ -13,6 +13,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
+    "@portabletext/react": "^6.2.0",
+    "@sanity/client": "^7.22.0",
+    "@sanity/image-url": "^2.1.1",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.3",
     "tailwindcss": "^4.3.0",

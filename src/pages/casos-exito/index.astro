@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactoFooter from '../../components/ContactoFooter.astro';
+import { sanityClient } from '../../lib/sanity';
+import type { CasoExito } from '../../types/sanity';
+
+let casos: CasoExito[] = [];
+if (sanityClient) {
+  try {
+    casos = await sanityClient.fetch(
+    `*[_type == "casoExito"] {
+      _id,
+      title,
+      "slug": slug.current,
+      client,
+      industry,
+      results
+    }`);
+  } catch {
+    // Sanity query failed
+  }
+}
+---
+
+<Layout title="Casos de Éxito | Agencia Sur">
+  <Navbar />
+
+  <section class="py-20 px-6 bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4 uppercase tracking-widest">
+        Resultados Reales
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        Casos de Éxito
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        No hablamos en abstracto. Estos son problemas reales que resolvimos
+        con resultados medibles.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-24 px-6">
+    <div class="max-w-7xl mx-auto">
+      {casos.length > 0 ? (
+        <div class="space-y-8">
+          {casos.map((caso) => (
+            <a
+              href={`/casos-exito/${caso.slug}`}
+              class="group block p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-blue-200 transition"
+            >
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div>
+                  <span class="text-sm text-blue-600 font-bold uppercase tracking-wider">
+                    {caso.client}
+                  </span>
+                  <h3 class="text-2xl font-bold mt-1 group-hover:text-blue-600 transition">
+                    {caso.title}
+                  </h3>
+                </div>
+                {caso.results && caso.results.length > 0 && (
+                  <div class="flex gap-4 flex-wrap">
+                    {caso.results.slice(0, 2).map((result) => (
+                      <span class="px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
+                        {result}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <p class="mt-4 text-blue-600 font-medium text-sm group-hover:underline">
+                Leer caso completo →
+              </p>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-16">
+          <p class="text-slate-500 text-lg">
+            Próximamente. Los casos se cargan desde Sanity CMS.
+          </p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <ContactoFooter />
+</Layout>

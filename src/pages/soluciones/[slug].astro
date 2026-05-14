@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactoFooter from '../../components/ContactoFooter.astro';
+import { sanityClient } from '../../lib/sanity';
+import { PortableText } from '@portabletext/react';
+import type { Solucion } from '../../types/sanity';
+
+export async function getStaticPaths() {
+  if (!sanityClient) return [];
+  try {
+    const soluciones: Solucion[] = await sanityClient.fetch(
+      `*[_type == "solucion"] { "slug": slug.current }`
+    );
+    return soluciones.map((solucion) => ({
+      params: { slug: solucion.slug },
+    }));
+  } catch {
+    return [];
+  }
+}
+
+const { slug } = Astro.params;
+
+let solucion: Solucion | null = null;
+if (sanityClient) {
+  try {
+    solucion = await sanityClient.fetch(
+    `*[_type == "solucion" && slug.current == $slug][0] {
+      _id,
+      title,
+      "slug": slug.current,
+      tagline,
+      description,
+      features,
+      icon,
+      image
+    }`,
+    { slug }
+  );
+  } catch {
+    // Sanity query failed
+  }
+}
+
+if (!solucion) {
+  return Astro.redirect('/soluciones');
+}
+---
+
+<Layout title={`${solucion.title} | Agencia Sur`}>
+  <Navbar />
+
+  <!-- Hero de la solución -->
+  <section class="py-20 px-6 bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <a href="/soluciones" class="text-blue-600 text-sm font-medium hover:underline mb-6 inline-block">
+        ← Volver a Soluciones
+      </a>
+      {solucion.icon && <span class="text-5xl block mb-4">{solucion.icon}</span>}
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        {solucion.title}
+      </h1>
+      <p class="text-xl text-slate-600 leading-relaxed">
+        {solucion.tagline}
+      </p>
+    </div>
+  </section>
+
+  <!-- Contenido -->
+  <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-12">
+      <!-- Descripción (2/3) -->
+      <div class="md:col-span-2">
+        {solucion.description && (
+          <div class="prose prose-lg prose-slate max-w-none">
+            <PortableText value={solucion.description} />
+          </div>
+        )}
+      </div>
+
+      <!-- Features sidebar (1/3) -->
+      <div>
+        {solucion.features && solucion.features.length > 0 && (
+          <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200">
+            <h3 class="font-bold text-lg mb-6">Características</h3>
+            <ul class="space-y-4">
+              {solucion.features.map((feature) => (
+                <li class="flex items-start space-x-3">
+                  <span class="text-blue-500 mt-1">✓</span>
+                  <span class="text-slate-600">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-6 bg-slate-900 text-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">¿Te interesa este sistema?</h2>
+      <p class="text-slate-400 mb-8 text-lg">
+        Agenda una demo personalizada y veamos cómo se adapta a tu operación.
+      </p>
+      <a
+        href="/contacto"
+        class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition"
+      >
+        Solicitar Demo
+      </a>
+    </div>
+  </section>
+
+  <ContactoFooter />
+</Layout>

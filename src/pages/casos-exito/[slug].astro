@@ -1,0 +1,136 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import ContactoFooter from '../../components/ContactoFooter.astro';
+import { sanityClient } from '../../lib/sanity';
+import { PortableText } from '@portabletext/react';
+import type { CasoExito } from '../../types/sanity';
+
+export async function getStaticPaths() {
+  if (!sanityClient) return [];
+  try {
+    const casos: CasoExito[] = await sanityClient.fetch(
+      `*[_type == "casoExito"] { "slug": slug.current }`
+    );
+    return casos.map((caso) => ({
+      params: { slug: caso.slug },
+    }));
+  } catch {
+    return [];
+  }
+}
+
+const { slug } = Astro.params;
+
+let caso: CasoExito | null = null;
+if (sanityClient) {
+  try {
+    caso = await sanityClient.fetch(
+    `*[_type == "casoExito" && slug.current == $slug][0] {
+      _id,
+      title,
+      "slug": slug.current,
+      client,
+      industry,
+      challenge,
+      solution,
+      results,
+      testimonial,
+      testimonialAuthor,
+      image
+    }`,
+    { slug }
+  );
+  } catch {
+    // Sanity query failed
+  }
+}
+
+if (!caso) {
+  return Astro.redirect('/casos-exito');
+}
+---
+
+<Layout title={`${caso.title} | Agencia Sur`}>
+  <Navbar />
+
+  <section class="py-20 px-6 bg-white border-b border-slate-200">
+    <div class="max-w-4xl mx-auto">
+      <a href="/casos-exito" class="text-blue-600 text-sm font-medium hover:underline mb-6 inline-block">
+        ← Volver a Casos de Éxito
+      </a>
+      <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4 uppercase tracking-widest">
+        {caso.client}
+      </span>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        {caso.title}
+      </h1>
+    </div>
+  </section>
+
+  <section class="py-24 px-6">
+    <div class="max-w-4xl mx-auto space-y-16">
+      <!-- Desafío -->
+      {caso.challenge && (
+        <div>
+          <h2 class="text-2xl font-bold mb-4">El Desafío</h2>
+          <div class="prose prose-lg prose-slate max-w-none">
+            <PortableText value={caso.challenge} />
+          </div>
+        </div>
+      )}
+
+      <!-- Solución -->
+      {caso.solution && (
+        <div>
+          <h2 class="text-2xl font-bold mb-4">La Solución</h2>
+          <div class="prose prose-lg prose-slate max-w-none">
+            <PortableText value={caso.solution} />
+          </div>
+        </div>
+      )}
+
+      <!-- Resultados -->
+      {caso.results && caso.results.length > 0 && (
+        <div>
+          <h2 class="text-2xl font-bold mb-6">Resultados</h2>
+          <div class="grid md:grid-cols-2 gap-4">
+            {caso.results.map((result) => (
+              <div class="p-6 bg-blue-50 rounded-2xl border border-blue-100">
+                <p class="text-lg font-semibold text-blue-900">{result}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <!-- Testimonio -->
+      {caso.testimonial && (
+        <blockquote class="border-l-4 border-blue-600 pl-8 py-4">
+          <p class="text-2xl font-medium italic text-slate-800 mb-4">"{caso.testimonial}"</p>
+          {caso.testimonialAuthor && (
+            <cite class="text-slate-500 not-italic">— {caso.testimonialAuthor}</cite>
+          )}
+        </blockquote>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-6 bg-slate-900 text-white">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-6">¿Tu empresa tiene un desafío similar?</h2>
+      <p class="text-slate-400 mb-8 text-lg">
+        Hablemos sobre cómo podemos ayudarte a lograr resultados como estos.
+      </p>
+      <a
+        href="/contacto"
+        class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition"
+      >
+        Contactar
+      </a>
+    </div>
+  </section>
+
+  <ContactoFooter />
+</Layout>
