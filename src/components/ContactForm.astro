@@ -1,0 +1,154 @@
+---
+// ContactForm.astro — Formulario de contacto con envío via API
+interface Props {
+  variant?: 'compact' | 'full';
+}
+
+const { variant = 'compact' } = Astro.props;
+---
+
+<form id="contact-form" class="space-y-4" data-variant={variant}>
+  {variant === 'full' && (
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-2">Nombre *</label>
+        <input
+          type="text"
+          name="nombre"
+          required
+          placeholder="Tu nombre"
+          class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-2">Empresa</label>
+        <input
+          type="text"
+          name="empresa"
+          placeholder="Nombre de tu empresa"
+          class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+      </div>
+    </div>
+  )}
+
+  {variant === 'full' ? (
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-2">Email *</label>
+        <input
+          type="email"
+          name="email"
+          required
+          placeholder="tu@empresa.com"
+          class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-slate-700 mb-2">Teléfono</label>
+        <input
+          type="tel"
+          name="telefono"
+          placeholder="+56 9 1234 5678"
+          class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+        />
+      </div>
+    </div>
+  ) : (
+    <div class="grid md:grid-cols-2 gap-4">
+      <input
+        type="text"
+        name="nombre"
+        required
+        placeholder="Nombre"
+        class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+      />
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="Email"
+        class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+      />
+    </div>
+  )}
+
+  {variant === 'full' && (
+    <div>
+      <label class="block text-sm font-medium text-slate-700 mb-2">¿Qué necesitas? *</label>
+      <select
+        name="tipo_proyecto"
+        required
+        class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+      >
+        <option value="" disabled selected>Selecciona una opción</option>
+        <option value="levantamiento">Levantamiento de procesos</option>
+        <option value="desarrollo">Desarrollo web/mobile</option>
+        <option value="sistema">Implementación de sistema propio</option>
+        <option value="integracion">Integración de sistemas</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+  )}
+
+  <div>
+    {variant === 'full' && <label class="block text-sm font-medium text-slate-700 mb-2">Mensaje *</label>}
+    <textarea
+      name="mensaje"
+      required
+      rows={variant === 'full' ? 6 : 4}
+      placeholder={variant === 'full' ? 'Cuéntanos sobre tu proceso actual, los desafíos que enfrentas y qué resultado esperas...' : 'Cuéntanos de tu proceso actual'}
+      class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    id="submit-btn"
+    class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+  >
+    Enviar Mensaje
+  </button>
+
+  <div id="form-status" class="hidden text-center p-4 rounded-xl"></div>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const statusDiv = document.getElementById('form-status') as HTMLDivElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    statusDiv.classList.add('hidden');
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch('/api/contacto', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        statusDiv.className = 'text-center p-4 rounded-xl bg-green-50 text-green-700 border border-green-200';
+        statusDiv.textContent = data.message || '¡Mensaje enviado! Te contactaremos pronto.';
+        form.reset();
+      } else {
+        statusDiv.className = 'text-center p-4 rounded-xl bg-red-50 text-red-700 border border-red-200';
+        statusDiv.textContent = data.error || 'Error al enviar. Intenta nuevamente.';
+      }
+    } catch {
+      statusDiv.className = 'text-center p-4 rounded-xl bg-red-50 text-red-700 border border-red-200';
+      statusDiv.textContent = 'Error de conexión. Verifica tu internet e intenta nuevamente.';
+    } finally {
+      statusDiv.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar Mensaje';
+    }
+  });
+</script>
