@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia Sur | Transformación Digital</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <nav class="sticky top-0 z-50 glass border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold tracking-tight text-blue-600">AGENCIASUR</div>
+            <div class="hidden md:flex space-x-8 font-medium text-slate-600">
+                <a href="#servicios" class="hover:text-blue-600 transition">Servicios</a>
+                <a href="#productos" class="hover:text-blue-600 transition">Productos</a>
+                <a href="#nosotros" class="hover:text-blue-600 transition">Nosotros</a>
+            </div>
+            <a href="#contacto" class="bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition">Contacto</a>
+        </div>
+    </nav>
+
+    <section class="relative py-24 px-6 overflow-hidden">
+        <div class="max-w-7xl mx-auto text-center relative z-10">
+            <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-6 uppercase tracking-widest">Digitalización 2.0</span>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-slate-900">
+                De la ineficiencia a la <span class="text-blue-600">agilidad operativa.</span>
+            </h1>
+            <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+                Automatizamos los procesos críticos de tu empresa con soluciones a medida que reducen costos y eliminan el caos administrativo.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <button class="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold hover:shadow-lg transition">Iniciar Levantamiento</button>
+                <button class="bg-white border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition">Ver Casos de Éxito</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 border-y border-slate-200 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div><p class="text-4xl font-bold text-blue-600">7+</p><p class="text-sm text-slate-500 uppercase tracking-tighter">Años de Experiencia</p></div>
+                <div><p class="text-4xl font-bold text-blue-600">200+</p><p class="text-sm text-slate-500 uppercase tracking-tighter">Procesos Analizados</p></div>
+                <div><p class="text-4xl font-bold text-blue-600">50+</p><p class="text-sm text-slate-500 uppercase tracking-tighter">Proyectos Éxito</p></div>
+                <div><p class="text-4xl font-bold text-blue-600">14+</p><p class="text-sm text-slate-500 uppercase tracking-tighter">Trayectoria Tech</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios" class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-3xl font-bold mb-16 text-center">Soluciones para la era digital</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition">
+                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-6 text-blue-600 font-bold text-2xl">01</div>
+                <h3 class="text-xl font-bold mb-4">Levantamiento de Procesos</h3>
+                <p class="text-slate-600">No programamos sin entender. Analizamos y definimos la metodología óptima antes de digitalizar.</p>
+            </div>
+            <div class="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition md:col-span-2">
+                <div class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-6 text-green-600 font-bold text-2xl">02</div>
+                <h3 class="text-xl font-bold mb-4">Desarrollo Web & Mobile High-End</h3>
+                <p class="text-slate-600">Construimos sistemas robustos sobre arquitecturas modernas (Astro/Next.js) o evolucionamos tu infraestructura actual en WordPress/Prestashop hacia el alto rendimiento.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="productos" class="py-24 bg-slate-900 text-white px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-bold mb-16">Sistemas Core de Gestión</h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-blue-400 underline decoration-2 underline-offset-8">Sistema de Compras</h3>
+                    <p class="text-slate-400 italic">"Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento."</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center space-x-2"><span class="text-blue-500">✓</span> <span>Control de cumplimiento SLA</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-blue-500">✓</span> <span>Reducción 100% papel</span></li>
+                        <li class="flex items-center space-x-2"><span class="text-blue-500">✓</span> <span>Tracking en tiempo real</span></li>
+                    </ul>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-blue-400 opacity-80">Personal Transitorio</h3>
+                    <p class="text-slate-400">Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.</p>
+                </div>
+                <div class="space-y-6">
+                    <h3 class="text-2xl font-bold text-blue-400 opacity-80">Mesa de Ayuda</h3>
+                    <p class="text-slate-400">Omnicanalidad y base de conocimientos para una autoatención inteligente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="nosotros" class="py-24 px-6 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-blue-600 font-bold mb-4 uppercase tracking-widest">Sobre Agencia Sur</h2>
+            <p class="text-3xl font-medium leading-relaxed italic text-slate-800">
+                "Desde 2016, combinamos 18 años de trayectoria técnica para transformar la complejidad operativa en flujos de trabajo simples. No solo entregamos software; diseñamos la infraestructura digital que permite a las empresas escalar sin fricciones, asegurando que cada línea de código responda a un objetivo de negocio real."
+            </p>
+            <div class="mt-12 flex justify-center items-center space-x-8 grayscale opacity-60">
+                <span class="font-bold text-xl uppercase italic">BancoEstado</span>
+                <span class="font-bold text-xl uppercase italic">ServiEstado</span>
+                <span class="font-bold text-xl">PROCESOS DIGITALIZADOS</span>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto" class="bg-slate-100 py-12 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-3xl font-bold mb-6">¿Tienes un proyecto?</h2>
+                <p class="text-slate-600 mb-8">Hablemos sobre cómo optimizar tus resultados actuales.</p>
+                <p class="font-bold">Las Bellotas 199, of 62, Providencia</p>
+                <p class="text-blue-600">+56 9 7864 0400</p>
+                <p class="text-blue-600 font-medium tracking-tight">contacto@agenciasur.cl</p>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Nombre" class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none">
+                <textarea placeholder="Cuéntanos de tu proceso actual" class="w-full p-4 rounded-xl border border-slate-300 h-32 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+                <button class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl">Enviar Mensaje</button>
+            </form>
+        </div>
+    </footer>
+
+</body>
+</html>
