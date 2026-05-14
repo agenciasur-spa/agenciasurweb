@@ -1,10 +1,11 @@
 ---
-// ContactForm.astro — Formulario de contacto con envío via API
+// ContactForm.astro — Formulario de contacto con Turnstile anti-spam
 interface Props {
   variant?: 'compact' | 'full';
 }
 
 const { variant = 'compact' } = Astro.props;
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 
 <form id="contact-form" class="space-y-4" data-variant={variant}>
@@ -102,6 +103,16 @@ const { variant = 'compact' } = Astro.props;
     ></textarea>
   </div>
 
+  <!-- Turnstile widget -->
+  {turnstileSiteKey && (
+    <div
+      class="cf-turnstile"
+      data-sitekey={turnstileSiteKey}
+      data-theme="light"
+      data-size="normal"
+    ></div>
+  )}
+
   <button
     type="submit"
     id="submit-btn"
@@ -113,6 +124,11 @@ const { variant = 'compact' } = Astro.props;
   <div id="form-status" class="hidden text-center p-4 rounded-xl"></div>
 </form>
 
+<!-- Turnstile script -->
+{turnstileSiteKey && (
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
+)}
+
 <script>
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
@@ -121,12 +137,24 @@ const { variant = 'compact' } = Astro.props;
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Get Turnstile token if widget is present
+    const turnstileInput = form.querySelector('input[name="cf-turnstile-response"]') as HTMLInputElement | null;
+    const turnstileToken = turnstileInput?.value;
+
+    if (!turnstileToken && form.querySelector('.cf-turnstile')) {
+      statusDiv.className = 'text-center p-4 rounded-xl bg-yellow-50 text-yellow-700 border border-yellow-200';
+      statusDiv.textContent = 'Por favor completa la verificación anti-spam.';
+      statusDiv.classList.remove('hidden');
+      return;
+    }
+
     submitBtn.disabled = true;
     submitBtn.textContent = 'Enviando...';
     statusDiv.classList.add('hidden');
 
     try {
       const formData = new FormData(form);
+
       const response = await fetch('/api/contacto', {
         method: 'POST',
         body: formData,
@@ -138,6 +166,11 @@ const { variant = 'compact' } = Astro.props;
         statusDiv.className = 'text-center p-4 rounded-xl bg-green-50 text-green-700 border border-green-200';
         statusDiv.textContent = data.message || '¡Mensaje enviado! Te contactaremos pronto.';
         form.reset();
+        // Reset Turnstile widget after successful submit
+        if (window.turnstile) {
+          const widget = form.querySelector('.cf-turnstile');
+          if (widget) window.turnstile.reset(widget);
+        }
       } else {
         statusDiv.className = 'text-center p-4 rounded-xl bg-red-50 text-red-700 border border-red-200';
         statusDiv.textContent = data.error || 'Error al enviar. Intenta nuevamente.';

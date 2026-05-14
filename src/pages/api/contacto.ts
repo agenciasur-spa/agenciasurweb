@@ -2,10 +2,41 @@ import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 
 const resendApiKey = import.meta.env.RESEND_API_KEY;
+const turnstileSecretKey = import.meta.env.TURNSTILE_SECRET_KEY;
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+async function verifyTurnstileToken(token: string, ip: string | null): Promise<boolean> {
+  if (!turnstileSecretKey) {
+    console.warn('TURNSTILE_SECRET_KEY not configured — skipping verification.');
+    return true; // Skip verification if not configured (dev mode)
+  }
+
+  if (!token) return false;
+
+  try {
+    const response = await fetch(
+      'https://challenges.cloudflare.com/turnstile/v0/siteverify',
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          secret: turnstileSecretKey,
+          response: token,
+          ...(ip ? { remoteip: ip } : {}),
+        }),
+      }
+    );
+
+    const data = await response.json();
+    return data.success === true;
+  } catch (error) {
+    console.error('Turnstile verification error:', error);
+    return false;
+  }
+}
+
+export const POST: APIRoute = async ({ request, clientAddress }) => {
   try {
     const body = await request.formData();
 
@@ -15,6 +46,7 @@ export const POST: APIRoute = async ({ request }) => {
     const telefono = body.get('telefono') as string;
     const tipoProyecto = body.get('tipo_proyecto') as string;
     const mensaje = body.get('mensaje') as string;
+    const turnstileToken = body.get('cf-turnstile-response') as string;
 
     // Validación server-side
     if (!nombre || !email || !mensaje) {
@@ -30,6 +62,15 @@ export const POST: APIRoute = async ({ request }) => {
       return new Response(
         JSON.stringify({ error: 'Email inválido.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Verify Turnstile token
+    const isValidToken = await verifyTurnstileToken(turnstileToken, clientAddress ?? null);
+    if (!isValidToken) {
+      return new Response(
+        JSON.stringify({ error: 'Verificación anti-spam fallida. Intenta nuevamente.' }),
+        { status: 403, headers: { 'Content-Type': 'application/json' } }
       );
     }
 
