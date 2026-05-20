@@ -2,29 +2,142 @@
 import ContactForm from './ContactForm.astro';
 ---
 
-<footer id="contacto" class="bg-slate-100 py-12 border-t border-slate-200">
-  <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12">
-    <!-- Info de contacto -->
-    <div>
-      <h2 class="text-3xl font-bold mb-6">¿Tienes un proyecto?</h2>
-      <p class="text-slate-600 mb-8">
-        Hablemos sobre cómo optimizar tus procesos actuales.
-      </p>
+<!-- CTA Section -->
+<section
+  class="bg-background-4 py-16 dark:bg-background-6 md:py-20 lg:py-28"
+  aria-label="Contacto"
+>
+  <div class="main-container">
+    <div class="flex flex-col items-center justify-between lg:flex-row">
+      <div class="w-full space-y-5 text-center lg:max-w-[476px] lg:text-left xl:max-w-[650px]">
+        <span data-ns-animate data-delay="0.2" class="badge badge-primary">
+          Contacto
+        </span>
 
-      <div class="space-y-2">
-        <p class="font-bold">Las Bellotas 199, of 62, Providencia</p>
-        <p class="text-blue-600">+56 9 7864 0400</p>
-        <p class="text-blue-600 font-medium tracking-tight">
-          contacto@agenciasur.cl
-        </p>
+        <div class="space-y-3">
+          <h2
+            data-ns-animate
+            data-delay="0.3"
+            class="text-secondary dark:text-accent text-heading-5 sm:text-heading-4 lg:text-heading-2"
+          >
+            ¿Tienes un proyecto?
+          </h2>
+          <p data-ns-animate data-delay="0.4" class="text-accent/60">
+            Hablemos sobre cómo optimizar tus procesos actuales.
+          </p>
+        </div>
+
+        <div
+          data-ns-animate
+          data-delay="0.5"
+          class="space-y-2 pt-4"
+        >
+          <p class="text-secondary dark:text-accent text-tagline-1 font-bold">
+            Las Bellotas 199, of 62, Providencia
+          </p>
+          <a
+            href="tel:+56978640400"
+            class="text-accent/60 text-tagline-1 block transition-colors hover:text-primary-500"
+          >
+            +56 9 7864 0400
+          </a>
+          <a
+            href="mailto:contacto@agenciasur.cl"
+            class="text-accent/60 text-tagline-1 block font-medium tracking-tight transition-colors hover:text-primary-500"
+          >
+            contacto@agenciasur.cl
+          </a>
+        </div>
+      </div>
+
+      <div
+        data-ns-animate
+        data-delay="0.5"
+        class="w-full pt-[40px] md:w-[95%] lg:basis-[466px] lg:pt-[67px] xl:ml-[100px]"
+      >
+        <ContactForm variant="compact" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer
+  class="bg-secondary dark:bg-background-8 relative overflow-hidden"
+>
+  <div class="main-container px-5">
+    <div
+      class="grid grid-cols-12 justify-between gap-x-0 gap-y-16 pb-12 pt-16 xl:pt-[90px]"
+    >
+      <!-- Brand -->
+      <div class="col-span-12 xl:col-span-4">
+        <div data-ns-animate data-delay="0.3" class="max-w-[306px]">
+          <span class="text-accent text-lg font-bold tracking-tight">
+            AGENCIA<span class="text-primary-500">SUR</span>
+          </span>
+          <p class="text-accent/60 text-tagline-1 mb-7 mt-4 font-normal">
+            Transformación digital para empresas. Automatizamos procesos críticos con
+            soluciones a medida.
+          </p>
+        </div>
+      </div>
+
+      <!-- Links Column 1 -->
+      <div class="col-span-12 grid grid-cols-12 gap-x-0 gap-y-8 xl:col-span-8">
+        <div class="col-span-12 md:col-span-4">
+          <div data-ns-animate data-delay="0.4" class="space-y-8">
+            <p class="text-accent text-tagline-1 font-normal sm:text-heading-6">
+              Servicios
+            </p>
+            <ul class="space-y-3 sm:space-y-5">
+              <li><a href="/servicios" class="footer-link">Consultoría TI</a></li>
+              <li><a href="/servicios" class="footer-link">Automatización</a></li>
+              <li><a href="/servicios" class="footer-link">Desarrollo Web</a></li>
+              <li><a href="/servicios" class="footer-link">Infraestructura</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-span-12 md:col-span-4">
+          <div data-ns-animate data-delay="0.5" class="space-y-8">
+            <p class="text-accent text-tagline-1 font-normal sm:text-heading-6">
+              Empresa
+            </p>
+            <ul class="space-y-3 sm:space-y-5">
+              <li><a href="/nosotros" class="footer-link">Nosotros</a></li>
+              <li><a href="/casos-exito" class="footer-link">Casos de Éxito</a></li>
+              <li><a href="/contacto" class="footer-link">Contacto</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-span-12 md:col-span-4">
+          <div data-ns-animate data-delay="0.6" class="space-y-8">
+            <p class="text-accent text-tagline-1 font-normal sm:text-heading-6">
+              Soluciones
+            </p>
+            <ul class="space-y-3 sm:space-y-5">
+              <li><a href="/soluciones/sistema-de-compras" class="footer-link">Sistema de Compras</a></li>
+              <li><a href="/soluciones/gestion-personal-transitorio" class="footer-link">Personal Transitorio</a></li>
+              <li><a href="/soluciones/mesa-de-ayuda" class="footer-link">Mesa de Ayuda</a></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Formulario -->
-    <ContactForm variant="compact" />
-  </div>
-
-  <div class="max-w-7xl mx-auto px-6 mt-12 pt-8 border-t border-slate-200 text-center text-sm text-slate-500">
-    © {new Date().getFullYear()} Agencia Sur. Todos los derechos reservados.
+    <!-- Bottom bar -->
+    <div class="relative pt-[26px] pb-[100px] text-center">
+      <div
+        class="footer-divider bg-accent/10 dark:bg-stroke-4/10 absolute top-0 right-0 left-0 mx-auto h-px w-0 origin-center"
+      ></div>
+      <p
+        data-ns-animate
+        data-delay="0.7"
+        data-offset="10"
+        data-start="top 105%"
+        class="text-accent/60 text-tagline-1 font-normal"
+      >
+        &copy;{new Date().getFullYear()} Agencia Sur. Todos los derechos reservados.
+      </p>
+    </div>
   </div>
 </footer>

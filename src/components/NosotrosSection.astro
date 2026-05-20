@@ -1,25 +1,42 @@
 ---
-const clientes = ['BancoEstado', 'ServiEstado', 'PROCESOS DIGITALIZADOS'];
+const clientes = ['BancoEstado', 'ServiEstado', 'Procesos Digitalizados'];
 ---
 
-<section id="nosotros" class="py-24 px-6 bg-white">
-  <div class="max-w-4xl mx-auto text-center">
-    <h2 class="text-blue-600 font-bold mb-4 uppercase tracking-widest">
-      Sobre Agencia Sur
-    </h2>
+<section
+  id="nosotros"
+  class="bg-background-2 py-20 dark:bg-background-5 lg:py-[100px] xl:py-[140px]"
+>
+  <div class="main-container">
+    <div class="flex flex-col items-center text-center">
+      <div class="max-w-[800px] space-y-5">
+        <span data-ns-animate data-delay="0.1" class="badge badge-primary">
+          Sobre Agencia Sur
+        </span>
 
-    <p class="text-3xl font-medium leading-relaxed italic text-slate-800">
-      "Desde 2016, combinamos 18 años de trayectoria técnica para transformar
-      la complejidad operativa en flujos de trabajo simples. No solo entregamos
-      software; diseñamos la infraestructura digital que permite a las empresas
-      escalar sin fricciones, asegurando que cada línea de código responda a un
-      objetivo de negocio real."
-    </p>
+        <blockquote data-ns-animate data-delay="0.2">
+          <p class="text-heading-5 text-secondary dark:text-accent font-normal leading-relaxed md:text-heading-4 lg:text-heading-3">
+            "Desde 2016, combinamos 18 años de trayectoria técnica para transformar
+            la complejidad operativa en flujos de trabajo simples. No solo entregamos
+            software; diseñamos la infraestructura digital que permite a las empresas
+            escalar sin fricciones, asegurando que cada línea de código responda a un
+            objetivo de negocio real."
+          </p>
+        </blockquote>
+      </div>
 
-    <div class="mt-12 flex justify-center items-center space-x-8 grayscale opacity-60">
-      {clientes.map((cliente) => (
-        <span class="font-bold text-xl uppercase italic">{cliente}</span>
-      ))}
+      <div
+        data-ns-animate
+        data-delay="0.4"
+        class="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
+      >
+        {clientes.map((cliente) => (
+          <span
+            class="text-secondary dark:text-accent text-tagline-1 font-bold uppercase tracking-widest opacity-50"
+          >
+            {cliente}
+          </span>
+        ))}
+      </div>
     </div>
   </div>
 </section>

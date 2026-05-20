@@ -1,9 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/Navbar.astro';
 import ContactoFooter from '../../components/ContactoFooter.astro';
 import { sanityClient } from '../../lib/sanity';
-import { PortableText } from '@portabletext/react';
+import PortableText from '../../components/PortableText';
 import type { CasoExito } from '../../types/sanity';
 
 export async function getStaticPaths() {
@@ -52,7 +51,6 @@ if (!caso) {
 ---
 
 <Layout title={`${caso.title} | Agencia Sur`}>
-  <Navbar />
 
   <section class="py-20 px-6 bg-white border-b border-slate-200">
     <div class="max-w-4xl mx-auto">
@@ -75,7 +73,7 @@ if (!caso) {
         <div>
           <h2 class="text-2xl font-bold mb-4">El Desafío</h2>
           <div class="prose prose-lg prose-slate max-w-none">
-            <PortableText value={caso.challenge} />
+            <PortableText client:load value={caso.challenge} />
           </div>
         </div>
       )}
@@ -85,7 +83,7 @@ if (!caso) {
         <div>
           <h2 class="text-2xl font-bold mb-4">La Solución</h2>
           <div class="prose prose-lg prose-slate max-w-none">
-            <PortableText value={caso.solution} />
+            <PortableText client:load value={caso.solution} />
           </div>
         </div>
       )}

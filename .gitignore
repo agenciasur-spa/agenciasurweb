@@ -8,3 +8,4 @@ dist/
 # Build output
 .vercel/
 dist/
+.vercel

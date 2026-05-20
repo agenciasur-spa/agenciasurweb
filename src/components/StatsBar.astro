@@ -7,13 +7,31 @@ const stats = [
 ];
 ---
 
-<section class="py-12 border-y border-slate-200 bg-white">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-      {stats.map((stat) => (
-        <div>
-          <p class="text-4xl font-bold text-blue-600">{stat.value}</p>
-          <p class="text-sm text-slate-500 uppercase tracking-tight">{stat.label}</p>
+<section
+  class="bg-background-2 py-12 dark:bg-background-5"
+  aria-label="Indicadores"
+>
+  <div class="main-container">
+    <div
+      data-ns-animate
+      data-delay="0.3"
+      class="bg-accent dark:bg-background-6 flex flex-col items-center justify-center gap-y-4 rounded-[12px] py-6 md:flex-row md:gap-y-0"
+    >
+      {stats.map((stat, i) => (
+        <div
+          class="flex flex-1/4 items-center justify-center py-[22px]"
+        >
+          <div class="text-center">
+            <p class="text-secondary dark:text-accent text-heading-4 md:text-heading-3 font-bold">
+              {stat.value}
+            </p>
+            <p class="text-secondary/70 dark:text-accent/70 text-tagline-1 font-normal">
+              {stat.label}
+            </p>
+          </div>
+          {i < stats.length - 1 && (
+            <div class="mx-4 hidden h-12 w-px bg-stroke-1/30 dark:bg-stroke-7/30 md:block"></div>
+          )}
         </div>
       ))}
     </div>

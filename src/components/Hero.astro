@@ -1,34 +1,146 @@
 ---
+// ── Hero Section ─────────────────────────────────────────────────
+// Nexsas Time-Tracking adapted for Agencia Sur
+// Video → gradient background (azul oscuro → slate)
+// Badge + heading + description + feature list + 2 CTAs
 ---
 
-<section class="relative py-24 px-6 overflow-hidden">
-  <div class="max-w-7xl mx-auto text-center relative z-10">
-    <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-6 uppercase tracking-widest">
-      Transformación Digital
-    </span>
+<section class="relative overflow-hidden">
+  <div
+    class="mx-auto max-w-[1860px] pb-[80px] pt-[170px] sm:pb-[100px] sm:pt-[190px] md:pb-[140px] md:pt-[210px] lg:pb-[200px] lg:pt-[220px]"
+  >
+    <!-- Background gradient -->
+    <div
+      class="pointer-events-none absolute inset-0 -z-10"
+      aria-hidden="true"
+    >
+      <div class="absolute inset-0 bg-gradient-to-b from-primary-500/10 via-background-5 to-background-5 dark:from-primary-500/10 dark:via-background-6 dark:to-background-6"></div>
+      <div class="absolute top-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-primary-500/5 blur-[120px]"></div>
+    </div>
 
-    <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-slate-900">
-      De la ineficiencia a la <span class="text-blue-600">agilidad operativa.</span>
-    </h1>
+    <div class="main-container">
+      <div class="space-y-3 text-center md:text-left md:space-y-5">
+        <!-- Badge -->
+        <span
+          data-ns-animate
+          data-delay="0.1"
+          class="bg-accent/10 text-accent/60 inline-block rounded-full px-5 py-1.5 text-tagline-2 font-medium backdrop-blur-[18px]"
+        >
+          Transformación digital
+        </span>
 
-    <p class="text-xl text-slate-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-      Automatizamos los procesos críticos de tu empresa con soluciones a medida
-      que reducen costos y eliminan el caos administrativo.
-    </p>
+        <!-- Heading -->
+        <div class="space-y-2.5 md:space-y-4">
+          <h1
+            data-ns-animate
+            data-delay="0.2"
+            class="max-w-[720px] leading-[1.2]"
+          >
+            <span class="hero-text-gradient hero-text-color-1 block">
+              Automatizamos tus procesos críticos.
+            </span>
+          </h1>
+          <p
+            data-ns-animate
+            data-delay="0.3"
+            class="text-accent/60 max-w-[580px]"
+          >
+            Transformamos la manera en que tu empresa opera. Desde la
+            consultoría tecnológica hasta el desarrollo de soluciones web a
+            medida, te ayudamos a optimizar cada aspecto de tu negocio.
+          </p>
 
-    <div class="flex justify-center space-x-4">
-      <a
-        href="/contacto"
-        class="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold hover:shadow-lg transition"
+          <!-- Feature list -->
+          <ul
+            class="flex flex-col flex-wrap items-start gap-y-3 gap-x-9 pt-3 sm:flex-row sm:items-center md:pt-6"
+          >
+            <li data-ns-animate data-delay="0.4" class="flex items-center gap-2">
+              <span
+                class="inline-flex size-[18px] items-center justify-center rounded-full bg-primary-500/20"
+              >
+                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" class="shrink-0">
+                  <path
+                    d="M4.81661 7.25605L10.2491 1.92144C10.5836 1.5959 10.5836 1.0697 10.2491 0.744158C9.91446 0.418614 9.37363 0.418614 9.03904 0.744158L4.2116 5.49012L1.96096 3.28807C1.62636 2.96253 1.08554 2.96253 0.750945 3.28807C0.416352 3.61362 0.416352 4.13982 0.750945 4.46536L3.6066 7.25605C3.77347 7.41841 3.99253 7.5 4.2116 7.5C4.43067 7.5 4.64974 7.41841 4.81661 7.25605Z"
+                    fill="currentColor"
+                    class="text-primary-500"
+                  />
+                </svg>
+              </span>
+              <span class="text-accent/60 text-tagline-2">
+                Consultoría TI estratégica
+              </span>
+            </li>
+            <li data-ns-animate data-delay="0.5" class="flex items-center gap-2">
+              <span
+                class="inline-flex size-[18px] items-center justify-center rounded-full bg-primary-500/20"
+              >
+                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" class="shrink-0">
+                  <path
+                    d="M4.81661 7.25605L10.2491 1.92144C10.5836 1.5959 10.5836 1.0697 10.2491 0.744158C9.91446 0.418614 9.37363 0.418614 9.03904 0.744158L4.2116 5.49012L1.96096 3.28807C1.62636 2.96253 1.08554 2.96253 0.750945 3.28807C0.416352 3.61362 0.416352 4.13982 0.750945 4.46536L3.6066 7.25605C3.77347 7.41841 3.99253 7.5 4.2116 7.5C4.43067 7.5 4.64974 7.41841 4.81661 7.25605Z"
+                    fill="currentColor"
+                    class="text-primary-500"
+                  />
+                </svg>
+              </span>
+              <span class="text-accent/60 text-tagline-2">
+                Automatización inteligente
+              </span>
+            </li>
+            <li data-ns-animate data-delay="0.6" class="flex items-center gap-2">
+              <span
+                class="inline-flex size-[18px] items-center justify-center rounded-full bg-primary-500/20"
+              >
+                <svg width="11" height="8" viewBox="0 0 11 8" fill="none" class="shrink-0">
+                  <path
+                    d="M4.81661 7.25605L10.2491 1.92144C10.5836 1.5959 10.5836 1.0697 10.2491 0.744158C9.91446 0.418614 9.37363 0.418614 9.03904 0.744158L4.2116 5.49012L1.96096 3.28807C1.62636 2.96253 1.08554 2.96253 0.750945 3.28807C0.416352 3.61362 0.416352 4.13982 0.750945 4.46536L3.6066 7.25605C3.77347 7.41841 3.99253 7.5 4.2116 7.5C4.43067 7.5 4.64974 7.41841 4.81661 7.25605Z"
+                    fill="currentColor"
+                    class="text-primary-500"
+                  />
+                </svg>
+              </span>
+              <span class="text-accent/60 text-tagline-2">
+                Desarrollo web a medida
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- CTAs -->
+      <ul
+        class="mt-12 flex flex-col items-center gap-y-4 md:flex-row md:items-start md:gap-x-4 md:justify-start lg:mb-[100px]"
       >
-        Iniciar Levantamiento
-      </a>
-      <a
-        href="/casos-exito"
-        class="bg-white border border-slate-200 px-8 py-4 rounded-xl font-bold hover:bg-slate-50 transition"
-      >
-        Ver Casos de Éxito
-      </a>
+        <li
+          data-ns-animate
+          data-delay="0.7"
+          data-direction="left"
+          data-offset="50"
+          class="w-full sm:w-auto"
+        >
+          <a
+            href="/contacto"
+            class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto block w-[90%] border-0 sm:mx-0 sm:w-auto md:inline-block"
+          >
+            <span>Empecemos</span>
+          </a>
+        </li>
+        <li
+          data-ns-animate
+          data-delay="0.9"
+          data-direction="left"
+          data-offset="50"
+          class="w-full sm:w-auto"
+        >
+          <a
+            href="/servicios"
+            class="btn btn-lg md:btn-xl dark:btn-transparent dark:border btn-dark bg-accent/20 mx-auto block w-[90%] sm:mx-0 sm:w-auto md:inline-block hover:btn-accent"
+          >
+            <span>Ver servicios</span>
+          </a>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
+
+

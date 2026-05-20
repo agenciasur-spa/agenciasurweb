@@ -2,11 +2,10 @@
 const servicios = [
   {
     number: '01',
-    color: 'blue',
+    color: 'primary',
     title: 'Levantamiento de Procesos',
     description:
       'No programamos sin entender. Analizamos y definimos la metodología óptima antes de digitalizar.',
-    span: false,
   },
   {
     number: '02',
@@ -22,27 +21,46 @@ const servicios = [
     title: 'Integración & Soporte Continuo',
     description:
       'Conectamos tus sistemas existentes con APIs y middleware. Soporte post-entrega para asegurar la operación sin interrupciones.',
-    span: false,
   },
 ];
 ---
 
-<section id="servicios" class="py-24 px-6 max-w-7xl mx-auto">
-  <h2 class="text-3xl font-bold mb-16 text-center">Soluciones para la era digital</h2>
+<section
+  id="servicios"
+  class="bg-background-3 py-20 dark:bg-background-6 lg:py-[100px] xl:py-[200px]"
+>
+  <div class="main-container">
+    <div class="mb-10 space-y-5 text-center md:mb-[72px] lg:mx-auto lg:max-w-[570px]">
+      <span data-ns-animate data-delay="0.1" class="badge badge-primary">Servicios</span>
+      <h2 data-ns-animate data-delay="0.2">
+        Soluciones para la era digital
+      </h2>
+    </div>
 
-  <div class="grid md:grid-cols-3 gap-6">
-    {servicios.map((s) => (
-      <div
-        class={`p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition ${s.span ? 'md:col-span-2' : ''}`}
-      >
-        <div
-          class={`w-12 h-12 bg-${s.color}-50 rounded-xl flex items-center justify-center mb-6 text-${s.color}-600 font-bold text-2xl`}
+    <div class="grid gap-y-14 md:grid-cols-12 md:gap-x-8">
+      {servicios.map((s, i) => (
+        <article
+          data-ns-animate
+          data-delay={0.3 + i * 0.1}
+          class={`col-span-12 space-y-3 md:col-span-6 ${s.span ? 'lg:col-span-12' : 'lg:col-span-4'}`}
         >
-          {s.number}
-        </div>
-        <h3 class="text-xl font-bold mb-4">{s.title}</h3>
-        <p class="text-slate-600">{s.description}</p>
-      </div>
-    ))}
+          <div
+            class="bg-background-4 dark:bg-background-7 rounded-[12px] p-8 transition-all duration-300"
+          >
+            <span
+              class="bg-accent/10 text-accent mb-4 inline-flex size-12 items-center justify-center rounded-xl text-2xl font-bold"
+            >
+              {s.number}
+            </span>
+            <h3 class="text-heading-6 md:text-heading-5">
+              {s.title}
+            </h3>
+            <p class="text-accent/60">
+              {s.description}
+            </p>
+          </div>
+        </article>
+      ))}
+    </div>
   </div>
 </section>

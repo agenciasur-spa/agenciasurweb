@@ -1,9 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import Navbar from '../../components/Navbar.astro';
 import ContactoFooter from '../../components/ContactoFooter.astro';
 import { sanityClient } from '../../lib/sanity';
-import { PortableText } from '@portabletext/react';
+import PortableText from '../../components/PortableText';
 import type { Solucion } from '../../types/sanity';
 
 export async function getStaticPaths() {
@@ -49,7 +48,6 @@ if (!solucion) {
 ---
 
 <Layout title={`${solucion.title} | Agencia Sur`}>
-  <Navbar />
 
   <!-- Hero de la solución -->
   <section class="py-20 px-6 bg-white border-b border-slate-200">
@@ -74,7 +72,7 @@ if (!solucion) {
       <div class="md:col-span-2">
         {solucion.description && (
           <div class="prose prose-lg prose-slate max-w-none">
-            <PortableText value={solucion.description} />
+            <PortableText client:load value={solucion.description} />
           </div>
         )}
       </div>

@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
 
 interface Props {
   title: string;
@@ -10,26 +11,43 @@ const { title, description = 'Transformación digital para empresas. Automatizam
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
+
+    <!-- Dark mode init — default: dark -->
+    <script is:inline>
+      (function() {
+        const saved = localStorage.getItem('theme');
+        const html = document.documentElement;
+        if (saved === 'light') {
+          html.classList.remove('dark');
+          html.classList.add('light');
+        }
+      })();
+    </script>
   </head>
-  <body class="bg-slate-50 text-slate-900 font-sans">
-    <slot />
+  <body>
+    <Navbar />
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Animations bundle -->
+    <script>
+      import { initNexsasAnimations } from '../lib/animations';
+      initNexsasAnimations();
+    </script>
   </body>
 </html>
-
-<style is:global>
-  body {
-    font-family: 'Inter', sans-serif;
-  }
-  .glass {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-  }
-</style>

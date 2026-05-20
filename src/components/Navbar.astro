@@ -1,30 +1,656 @@
 ---
-const navLinks = [
-  { href: '/servicios', label: 'Servicios' },
-  { href: '/soluciones', label: 'Soluciones' },
-  { href: '/nosotros', label: 'Nosotros' },
-];
+// ── Navbar tipo Nexsas Time-Tracking ──────────────────────────
+// Minimal, pill, backdrop-blur, dropdown menu
 ---
 
-<nav class="sticky top-0 z-50 glass border-b border-slate-200">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-    <a href="/" class="text-2xl font-bold tracking-tight text-blue-600">
-      AGENCIASUR
-    </a>
-
-    <div class="hidden md:flex space-x-8 font-medium text-slate-600">
-      {navLinks.map((link) => (
-        <a href={link.href} class="hover:text-blue-600 transition">
-          {link.label}
-        </a>
-      ))}
+<header class="hidden-">
+  <div
+    data-ns-animate
+    data-direction="up"
+    data-offset="20"
+    class="header-two dark:bg-background-7 bg-background-7 fixed top-14 left-1/2 z-50 mx-auto flex w-full max-w-[350px] -translate-x-1/2 items-center justify-between rounded-full px-2.5 py-2.5 backdrop-blur-[25px] max-md:!top-8 min-[425px]:max-w-[380px] min-[500px]:max-w-[450px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] xl:py-0"
+  >
+    <!-- Logo -->
+    <div>
+      <a href="/">
+        <span class="sr-only">Agencia Sur</span>
+        <span class="hidden lg:block text-lg font-bold tracking-tight text-accent">
+          AGENCIA<span class="text-primary-500">SUR</span>
+        </span>
+        <span class="block lg:hidden text-lg font-bold tracking-tight text-accent">
+          AS
+        </span>
+      </a>
     </div>
 
-    <a
-      href="/contacto"
-      class="bg-blue-600 text-white px-5 py-2 rounded-full font-semibold hover:bg-blue-700 transition"
-    >
-      Contacto
-    </a>
+    <!-- Desktop Nav -->
+    <nav class="hidden items-center xl:flex">
+      <ul class="flex items-center">
+        <!-- Servicios Dropdown -->
+        <li class="nav-item relative cursor-pointer py-2.5" data-menu="servicios-dropdown">
+          <a
+            href="#"
+            class="hover:text-accent hover:border-accent dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
+          >
+            <span>Servicios</span>
+            <span class="nav-arrow block origin-center translate-y-px transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-accent/60 group-hover:stroke-accent size-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </span>
+          </a>
+          <div class="dropdown-menu-bridge pointer-events-none fixed top-full left-1/2 z-40 h-3 w-full -translate-x-1/2 bg-transparent opacity-0 lg:w-[400px]"></div>
+          <ul id="servicios-dropdown"
+            class="dropdown-menu dark:bg-background-6 border-stroke-1 pointer-events-none fixed top-full left-1/2 z-50 mt-2 w-full -translate-x-1/2 rounded-[20px] border bg-white p-2 opacity-0 transition-all duration-300 shadow-2 lg:w-[400px] dark:border-white/10">
+            <li>
+              <a href="/servicios" class="group relative flex items-start gap-2 rounded-xl p-2.5 transition-all duration-300">
+                <div class="group-hover:bg-background-4 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"></div>
+                <div class="border-stroke-2 dark:border-white/10 bg-white dark:bg-background-6 relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path d="M10.0003 1.66669L12.5753 6.88335L18.3337 7.72502L14.167 11.7834L15.1503 17.5167L10.0003 14.8084L4.85033 17.5167L5.83366 11.7834L1.66699 7.72502L7.42533 6.88335L10.0003 1.66669Z" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="relative z-10">
+                  <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Consultoría TI</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/servicios" class="group relative flex items-start gap-2 rounded-xl p-2.5 transition-all duration-300">
+                <div class="group-hover:bg-background-4 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"></div>
+                <div class="border-stroke-2 dark:border-white/10 bg-white dark:bg-background-6 relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path d="M8.33301 10.8333C8.69088 11.3118 9.14747 11.7077 9.6718 11.9941C10.1961 12.2806 10.7759 12.4509 11.3719 12.4936C11.9678 12.5363 12.566 12.4503 13.1258 12.2415C13.6856 12.0327 14.1939 11.7059 14.6163 11.2833L17.1163 8.78335C17.8753 7.9975 18.2953 6.94499 18.2858 5.85251C18.2763 4.76002 17.8381 3.71497 17.0656 2.94243C16.2931 2.1699 15.248 1.7317 14.1555 1.7222C13.063 1.71271 12.0105 2.13269 11.2247 2.89168L9.79134 4.31668" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M11.6668 9.16665C11.309 8.68821 10.8524 8.29233 10.328 8.00587C9.80371 7.7194 9.22391 7.54905 8.62796 7.50637C8.03201 7.46369 7.43384 7.54968 6.87405 7.7585C6.31425 7.96732 5.8059 8.29409 5.3835 8.71665L2.8835 11.2167C2.12451 12.0025 1.70453 13.055 1.71402 14.1475C1.72352 15.24 2.16172 16.285 2.93426 17.0576C3.70679 17.8301 4.75184 18.2683 5.84433 18.2778C6.93681 18.2873 7.98932 17.8673 8.77517 17.1083L10.2002 15.6833" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="relative z-10">
+                  <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Automatización</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/servicios" class="group relative flex items-start gap-2 rounded-xl p-2.5 transition-all duration-300">
+                <div class="group-hover:bg-background-4 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"></div>
+                <div class="border-stroke-2 dark:border-white/10 bg-white dark:bg-background-6 relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path d="M4.99978 16.875C4.9177 16.875 4.83643 16.8589 4.7606 16.8274C4.68477 16.796 4.61587 16.75 4.55784 16.692C4.4998 16.6339 4.45376 16.565 4.42235 16.4892C4.39095 16.4134 4.37478 16.3321 4.37478 16.25L4.37482 12.9145C4.0414 13.0724 3.67346 13.1434 3.30522 13.121C2.93698 13.0985 2.58041 12.9832 2.26867 12.786C1.95693 12.5887 1.70015 12.3157 1.52222 11.9926C1.34428 11.6694 1.25098 11.3064 1.25098 10.9375C1.25098 10.5686 1.34428 10.2057 1.52222 9.88248C1.70015 9.5593 1.95693 9.28637 2.26867 9.08908C2.58041 8.8918 2.93698 8.77656 3.30522 8.75408C3.67346 8.73161 4.0414 8.80263 4.37482 8.96055L4.37478 5.62503C4.37478 5.54295 4.39095 5.46167 4.42236 5.38584C4.45377 5.31001 4.4998 5.24111 4.55784 5.18308C4.61588 5.12504 4.68478 5.079 4.76061 5.04759C4.83644 5.01618 4.91771 5.00002 4.99979 5.00002L8.6478 5.00006C8.48989 4.66664 8.41886 4.2987 8.44134 3.93046C8.46381 3.56222 8.57905 3.20565 8.77634 2.89391C8.97363 2.58217 9.24656 2.32539 9.56974 2.14746C9.89292 1.96953 10.2558 1.87622 10.6248 1.87622C10.9937 1.87622 11.3566 1.96953 11.6798 2.14746C12.003 2.32539 12.2759 2.58217 12.4732 2.89391C12.6705 3.20565 12.7857 3.56222 12.8082 3.93046C12.8307 4.2987 12.7597 4.66664 12.6017 5.00006L16.2497 5.00002C16.4155 5.00002 16.5745 5.06586 16.6917 5.18307C16.8089 5.30028 16.8747 5.45925 16.8748 5.62501L16.8748 8.96055C16.5414 8.80263 16.1734 8.73161 15.8052 8.75408C15.437 8.77655 15.0804 8.8918 14.7686 9.08908C14.4569 9.28637 14.2001 9.5593 14.0222 9.88248C13.8443 10.2057 13.7509 10.5686 13.7509 10.9375C13.7509 11.3064 13.8443 11.6694 14.0222 11.9926C14.2001 12.3157 14.4569 12.5887 14.7686 12.786C15.0804 12.9832 15.437 13.0985 15.8052 13.121C16.1734 13.1434 16.5414 13.0724 16.8748 12.9145L16.8748 16.25C16.8747 16.4158 16.8089 16.5748 16.6917 16.692C16.5745 16.8092 16.4155 16.875 16.2498 16.875L4.99978 16.875Z" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="relative z-10">
+                  <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Desarrollo Web</p>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a href="/servicios" class="group relative flex items-start gap-2 rounded-xl p-2.5 transition-all duration-300">
+                <div class="group-hover:bg-background-4 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"></div>
+                <div class="border-stroke-2 dark:border-white/10 bg-white dark:bg-background-6 relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path d="M5 16.6667V11.6667" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 16.6666V8.33331" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 16.6666V3.33331" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M5 6.66669H15V16.6667H5V6.66669Z" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="relative z-10">
+                  <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Infraestructura</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Soluciones Dropdown -->
+        <li class="nav-item relative cursor-pointer py-2.5" data-menu="soluciones-dropdown">
+          <a
+            href="#"
+            class="hover:text-accent hover:border-accent dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
+          >
+            <span>Soluciones</span>
+            <span class="nav-arrow block origin-center translate-y-px transition-all duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="stroke-accent/60 group-hover:stroke-accent size-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+              </svg>
+            </span>
+          </a>
+          <div class="dropdown-menu-bridge pointer-events-none fixed top-full left-1/2 z-40 h-3 w-full -translate-x-1/2 bg-transparent opacity-0 lg:w-[550px]"></div>
+          <div id="soluciones-dropdown"
+            class="dropdown-menu dark:bg-background-6 border-stroke-1 pointer-events-none fixed top-full left-1/2 z-50 mt-2 w-full -translate-x-1/2 rounded-[20px] border bg-white p-4 opacity-0 transition-all duration-300 shadow-2 md:w-[550px] dark:border-white/10">
+            <div class="space-y-2">
+              <a href="/soluciones/sistema-01" class="group relative flex items-start gap-2 rounded-xl p-2.5 transition-all duration-300">
+                <div class="group-hover:bg-background-4 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"></div>
+                <div class="border-stroke-2 dark:border-white/10 bg-white dark:bg-background-6 relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="relative z-10">
+                  <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Sistema 01</p>
+                  <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">Plataforma integral de gestión</p>
+                </div>
+              </a>
+              <a href="#" class="group relative flex items-start gap-2 rounded-xl p-2.5 transition-all duration-300">
+                <div class="group-hover:bg-background-4 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"></div>
+                <div class="border-stroke-2 dark:border-white/10 bg-white dark:bg-background-6 relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-all duration-300">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 2L12.5 8L19 8.5L14 13L15 19.5L10 16L5 19.5L6 13L1 8.5L7.5 8L10 2Z" class="stroke-secondary dark:stroke-accent/60 group-hover:stroke-accent" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="relative z-10">
+                  <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Próximamente</p>
+                  <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">Nuevas soluciones en desarrollo</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </li>
+
+        <!-- Links simples -->
+        <li class="nav-item relative cursor-pointer py-2.5">
+          <a href="/nosotros"
+            class="hover:text-accent hover:border-accent dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200">
+            <span>Nosotros</span>
+          </a>
+        </li>
+        <li class="nav-item relative cursor-pointer py-2.5">
+          <a href="/casos-exito"
+            class="hover:text-accent hover:border-accent dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200">
+            <span>Casos de Éxito</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Right side: Dark toggle + CTA + Hamburger -->
+    <div class="flex items-center gap-2">
+      <!-- Theme Toggle -->
+      <button id="theme-toggle"
+        class="relative flex size-9 items-center justify-center rounded-full border border-stroke-7 bg-background-6 transition-all duration-300 hover:bg-background-9"
+        aria-label="Cambiar modo oscuro">
+        <svg class="size-4 block dark:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+        <svg class="size-4 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>
+      </button>
+
+      <!-- CTA -->
+      <div class="hidden items-center justify-center xl:flex">
+        <a
+          href="/contacto"
+          class="btn btn-md hover:btn-white dark:hover:btn-white-dark btn-white-dark"
+        >
+          <span>Contacto</span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="block xl:hidden">
+        <button
+          class="nav-hamburger bg-background-6 border-stroke-7 flex size-10 cursor-pointer flex-col items-center justify-center gap-[5px] rounded-full border"
+        >
+          <span class="sr-only">Menú</span>
+          <span class="bg-accent/80 block h-0.5 w-5 rounded-full"></span>
+          <span class="bg-accent/80 block h-0.5 w-5 rounded-full"></span>
+          <span class="bg-accent/80 block h-0.5 w-5 rounded-full"></span>
+        </button>
+      </div>
+    </div>
   </div>
-</nav>
+</header>
+
+<!-- Mobile Sidebar -->
+<aside
+  class="sidebar dark:bg-background-8 scroll-bar fixed top-0 right-0 z-[9999] h-screen w-full translate-x-full rounded-l-3xl bg-white transition-all duration-300 sm:w-1/2 xl:hidden"
+>
+  <div class="space-y-4 p-5 sm:p-8 lg:p-9">
+    <div class="flex items-center justify-between">
+      <a href="/">
+        <span class="text-lg font-bold tracking-tight text-secondary dark:text-accent">
+          AGENCIA<span class="text-primary-500">SUR</span>
+        </span>
+      </a>
+      <button
+        class="nav-hamburger-close bg-background-4 dark:bg-background-9 relative flex size-10 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full"
+      >
+        <span class="sr-only">Cerrar menú</span>
+        <span class="bg-stroke-9/60 dark:bg-stroke-1 absolute block h-0.5 w-4 rotate-45"></span>
+        <span class="bg-stroke-9/60 dark:bg-stroke-1 absolute block h-0.5 w-4 -rotate-45"></span>
+      </button>
+    </div>
+    <div class="scroll-bar mt-6 h-[85vh] w-full overflow-x-hidden overflow-y-auto pb-10">
+      <p
+        class="text-secondary dark:text-accent text-tagline-1 before:bg-stroke-4 dark:before:bg-stroke-6 relative mb-2 block font-normal before:absolute before:top-1/2 before:-right-16 before:h-px before:w-full before:-translate-y-1/2 before:content-['']"
+      >
+        Menú
+      </p>
+      <ul class="space-y-2">
+        <li>
+          <a href="/" class="text-secondary/60 dark:text-accent/60 text-tagline-1 block py-2.5 font-normal transition-all duration-200">Inicio</a>
+        </li>
+        <li class="space-y-2">
+          <button class="mobile-menu-toggle flex w-full cursor-pointer items-center justify-between py-2.5" data-menu="servicios-mobile">
+            <span class="text-secondary/60 dark:text-accent/60 text-tagline-1 block font-normal">Servicios</span>
+            <span class="menu-arrow transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 12L14 8L10 4" class="stroke-secondary/60 dark:stroke-accent/60" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          <ul class="mobile-submenu hidden" data-submenu="servicios-mobile">
+            <li><a href="/servicios" class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal">Consultoría TI</a></li>
+            <li><a href="/servicios" class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal">Automatización</a></li>
+            <li><a href="/servicios" class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal">Desarrollo Web</a></li>
+            <li><a href="/servicios" class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal">Infraestructura</a></li>
+          </ul>
+        </li>
+        <li class="space-y-2">
+          <button class="mobile-menu-toggle flex w-full cursor-pointer items-center justify-between py-2.5" data-menu="soluciones-mobile">
+            <span class="text-secondary/60 dark:text-accent/60 text-tagline-1 block font-normal">Soluciones</span>
+            <span class="menu-arrow transition-transform duration-300">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M10 12L14 8L10 4" class="stroke-secondary/60 dark:stroke-accent/60" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </button>
+          <ul class="mobile-submenu hidden" data-submenu="soluciones-mobile">
+            <li><a href="/soluciones/sistema-01" class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal">Sistema 01</a></li>
+            <li><a href="#" class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal">Próximamente</a></li>
+          </ul>
+        </li>
+        <li><a href="/nosotros" class="text-secondary/60 dark:text-accent/60 text-tagline-1 block py-2.5 font-normal">Nosotros</a></li>
+        <li><a href="/casos-exito" class="text-secondary/60 dark:text-accent/60 text-tagline-1 block py-2.5 font-normal">Casos de Éxito</a></li>
+        <li><a href="/contacto" class="text-secondary/60 dark:text-accent/60 text-tagline-1 block py-2.5 font-normal">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<!-- Overlay para sidebar -->
+<div class="sidebar-overlay fixed inset-0 z-[9998] bg-black/50 hidden" aria-hidden="true"></div>
+
+
+
+
+
+
+
+
+
+
+
+<!-- =========================
+new Header 
+===========================-->
+<header>
+  <div
+    data-ns-animate
+    data-direction="up"
+    data-offset="20"
+    class="header-two lp:!max-w-[1290px] dark:bg-background-7 bg-background-7 {=$class} fixed top-14 left-1/2 z-50 mx-auto flex w-full max-w-[350px] -translate-x-1/2 items-center justify-between rounded-full px-2.5 py-2.5 backdrop-blur-[25px] max-md:!top-8 min-[425px]:max-w-[380px] min-[500px]:max-w-[450px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] xl:py-0"
+  >
+    <div>
+      <a href="./index.html">
+        <span class="sr-only">Home</span>
+        <figure class="hidden lg:block lg:max-w-[198px]">
+          <img src="./images/shared/dark-logo.svg" alt="Nexsas" />
+        </figure>
+        <figure class="block max-w-[44px] lg:hidden">
+          <img src="./images/shared/logo.svg" alt="Nexsas" class="block w-full dark:hidden" />
+          <img src="./images/shared/logo-dark.svg" alt="Nexsas" class="hidden w-full dark:block" />
+        </figure>
+      </a>
+    </div>
+    <nav class="hidden items-center xl:flex">
+      <ul class="flex items-center">
+        <li class="nav-item relative cursor-pointer py-2.5" data-menu="">
+          <a
+            href="#"
+            class="hover:text-accent hover:border-accent dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
+          >
+            <span>Servicios</span>
+            <span class="nav-arrow block origin-center translate-y-px transition-all duration-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="stroke-accent/60 group-hover:stroke-accent size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            </span>
+          </a>
+
+
+          <!--Component src="src/components/pages/time-tracking/company-menu.htm" /-->
+
+<div>
+  <div
+    class="dropdown-menu-bridge pointer-events-none fixed top-full left-1/2 z-40 h-3 w-full -translate-x-1/2 bg-transparent opacity-0 lg:w-[946px]"
+  ></div>
+  <div
+    id="company-mega-menu-v2"
+    class="dropdown-menu dark:bg-background-6 border-stroke-1 pointer-events-none fixed top-full left-1/2 z-50 mt-2 flex w-full -translate-x-1/2 items-start gap-y-6 rounded-[20px] border bg-white p-4 opacity-0 transition-all duration-300 md:gap-x-6 lg:w-[946px] dark:border-white/10"
+  >
+    <div class="flex-1 space-y-3">
+      <ul class="space-y-2">
+        <li>
+          <a href="./about.html" class="group relative flex items-start gap-2 p-3">
+            <!--Component src="src/components/shared/hover-bg-transform.htm" /-->
+            <div
+              class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+            >
+              <!--Component src="src/components/shared/menu-icon/about-icon.htm" /-->
+            </div>
+            <div class="relative z-10">
+              <p class="text-tagline-1 text-secondary dark:text-accent font-normal">About Us</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                See how others are using Nexsas
+              </p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="./team.html" class="group relative flex items-start gap-2 p-3">
+            <!--Component src="src/components/shared/hover-bg-transform.htm" /-->
+            <div
+              class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+            >
+              <!--Component src="src/components/shared/menu-icon/team-icon.htm" /-->
+            </div>
+            <div class="relative z-10">
+              <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Our Team</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                Dynamic content solutions
+              </p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="./career.html" class="group relative flex items-start gap-2 p-3">
+            <!--Component src="src/components/shared/hover-bg-transform.htm" /-->
+            <div
+              class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+            >
+              <!--Component src="src/components/shared/menu-icon/career-icon.htm" /-->
+            </div>
+            <div class="relative z-10">
+              <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Career</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                Join our team
+              </p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a
+            href="./why-choose-us.html"
+            class="group relative flex items-start gap-2 p-3"
+          >
+            <!-- <Component src="src/components/shared/hover-bg-transform.htm" /> -->
+            <div
+              class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+            >
+              <!-- <Component src="src/components/shared/menu-icon/why-icon.htm" /> -->
+            </div>
+            <div class="relative z-10">
+              <p class="text-tagline-1 text-secondary dark:text-accent font-normal">
+                Why Choose Us
+              </p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                Our unique selling points and competitive advantages
+              </p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-1 space-y-3">
+      <ul class="space-y-2">
+        <li>
+          <a
+            href="./our-manifesto.html"
+            class="group relative flex items-start gap-2 p-3"
+          >
+            <!-- <Component src="src/components/shared/hover-bg-transform.htm" /> -->
+            <div
+              class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+            >
+              <!-- <Component src="src/components/shared/menu-icon/manifesto-icon.htm" /> -->
+            </div>
+            <div class="relative z-10">
+              <p class="text-tagline-1 text-secondary dark:text-accent font-normal">
+                Our Manifesto
+              </p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                Our values and principles
+              </p>
+            </div>
+          </a>
+        </li>
+
+        <li>
+          <a href="./customer.html" class="group relative flex items-start gap-2 p-3">
+            <!-- <Component src="src/components/shared/hover-bg-transform.htm" /> -->
+            <div
+              class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+            >
+              <!-- <Component src="src/components/shared/menu-icon/customer-icon.htm" /> -->
+            </div>
+            <div class="relative z-10">
+              <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Customers</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                Success stories and testimonials
+              </p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a
+            href="./testimonial.html"
+            class="group relative flex items-start gap-2 p-3"
+          >
+            <!-- <Component src="src/components/shared/hover-bg-transform.htm" /> -->
+            <div
+              class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+            >
+              <!-- <Component src="src/components/shared/menu-icon/testimonial-icon.htm" /> -->
+            </div>
+            <div class="relative z-10">
+              <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Testimonials</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                What our customers say about us
+              </p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a
+            href="./case-study.html"
+            class="group relative flex items-start gap-2 p-3"
+          >
+            <!-- <Component src="src/components/shared/hover-bg-transform.htm" /> -->
+            <div
+              class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+            >
+              <!-- <Component src="src/components/shared/menu-icon/case-study-icon.htm" /> -->
+            </div>
+            <div class="relative z-10">
+              <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Case Studies</p>
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                Real-world examples of our solutions
+              </p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex-1">
+      <div class="space-y-3">
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="./services.html"
+              class="group relative flex items-start gap-2 p-3"
+            >
+              <!-- <Component src="src/components/shared/hover-bg-transform.htm" /> -->
+              <div
+                class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+              >
+                <!-- <Component src="src/components/shared/menu-icon/service-icon.htm" /> -->
+              </div>
+              <div class="relative z-10">
+                <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Services</p>
+                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                  Our services and offerings
+                </p>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a
+              href="./use-case.html"
+              class="group relative flex items-start gap-2 p-3"
+            >
+              <!-- <Component src="src/components/shared/hover-bg-transform.htm" /> -->
+              <div
+                class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+              >
+                <!-- <Component src="src/components/shared/menu-icon/use-case-icon.htm" /> -->
+              </div>
+              <div class="relative z-10">
+                <p class="text-tagline-1 text-secondary dark:text-accent font-normal">Use Cases</p>
+                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-normal">
+                  Real-world examples of our solutions
+                </p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 p-3 font-medium">What’s new</p>
+      <div>
+        <figure
+          class="group relative min-h-[166px] w-full max-w-full overflow-hidden rounded-[14px]"
+        >
+          <img
+            src="./images/ns-img-422.jpg"
+            alt="What’s new"
+            class="h-full w-full rounded-[14px] object-cover"
+          />
+
+          <div class="absolute top-3 bottom-3 left-3 w-full space-y-5 p-2">
+            <div>
+              <p class="text-tagline-1 text-secondary font-normal">Product updates</p>
+              <p class="text-tagline-2 text-secondary/60 w-full max-w-[169px] font-normal">
+                Stay ahead with the latest features and improvements.
+              </p>
+            </div>
+            <a
+              href="./documentation.html"
+              class="group-hover:bg-primary-500 group bg-secondary relative flex h-9.5 w-16 items-center justify-center space-y-5 overflow-hidden rounded-[40px] px-5 py-2 ring-[6px] ring-white transition-all duration-500 ease-in-out"
+            >
+              <figure class="relative size-6 items-center justify-center overflow-hidden">
+                <img
+                  src="./images/icons/new-arrow-white.svg"
+                  alt="new-arrow"
+                  class="absolute inset-0 size-full -translate-x-6 object-cover transition-transform duration-400 ease-in-out group-hover:translate-x-1"
+                />
+                <img
+                  src="./images/icons/new-arrow-white.svg"
+                  alt="new-arrow"
+                  class="size-full object-cover transition-transform duration-400 ease-in-out group-hover:translate-x-6"
+                />
+              </figure>
+            </a>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+        </li>
+        <li class="nav-item relative cursor-pointer py-2.5" data-menu="">
+          <a
+            href="#"
+            class="hover:text-accent hover:border-accent dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
+          >
+            <span>Soluciones</span>
+            <span class="nav-arrow block origin-center translate-y-px transition-all duration-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="stroke-accent/60 group-hover:stroke-accent size-4"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                />
+              </svg>
+            </span>
+          </a>
+          <!--Component src="src/components/pages/time-tracking/platform-menu.htm" /-->
+        </li>
+        
+        <li class="nav-item relative cursor-pointer py-2.5">
+          <a
+            href=""
+            class="hover:text-accent hover:border-accent dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
+          >
+            <span>Nosotros</span>
+          </a>
+        </li>
+
+        <li class="nav-item relative cursor-pointer py-2.5">
+          <a
+            href=""
+            class="hover:text-accent hover:border-accent dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
+          >
+            <span>Caso de Éxito</span>
+          </a>
+        </li>
+        
+
+
+
+      </ul>
+    </nav>
+    <div class="flex items-center gap-2">
+      <div class="hidden items-center justify-center xl:flex">
+        <a
+          href=""
+          class="btn btn-md hover:btn-white dark:hover:btn-white-dark btn-white-dark dark:btn-white"
+        >
+          <span>Contacto</span>
+        </a>
+      </div>
+      <div class="block xl:hidden">
+        <button
+          class="nav-hamburger bg-background-4 dark:bg-background-6 flex size-12 cursor-pointer flex-col items-center justify-center gap-[5px] rounded-full"
+        >
+          <span class="sr-only">Menu</span>
+          <span class="bg-stroke-9 dark:bg-stroke-1 block h-0.5 w-6"></span>
+          <span class="bg-stroke-9 dark:bg-stroke-1 block h-0.5 w-6"></span>
+          <span class="bg-stroke-9 dark:bg-stroke-1 block h-0.5 w-6"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <!--Component src="src/components/pages/time-tracking/mobile-menu.htm" /-->
+</header>
+
