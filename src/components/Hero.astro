@@ -5,17 +5,31 @@
 // Badge + heading + description + feature list + 2 CTAs
 ---
 
-<section class="relative overflow-hidden">
+
+
+
+<section class="relative overflow-hidden md:mt-4 lg:mt-6 xl:mt-[30px]">
   <div
-    class="mx-auto max-w-[1860px] pb-[80px] pt-[170px] sm:pb-[100px] sm:pt-[190px] md:pb-[140px] md:pt-[210px] lg:pb-[200px] lg:pt-[220px]"
+    class="max-w-[1860px] mx-auto pt-[170px] sm:pt-[190px] md:pt-[210px] lg:pt-[220px] pb-[80px] sm:pb-[100px] lg:pb-[200px] max-h-[940px] md:rounded-[30px] xl:rounded-[50px] relative overflow-hidden"
   >
-    <!-- Background gradient -->
+
+    
+
+    <!-- Background image -->
+    <img
+      src="/bg-hero.png"
+      alt=""
+      class="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover"
+      aria-hidden="true"
+      loading="eager"
+    />
+
+    <!-- Overlay para legibilidad -->
     <div
       class="pointer-events-none absolute inset-0 -z-10"
       aria-hidden="true"
     >
-      <div class="absolute inset-0 bg-gradient-to-b from-primary-500/10 via-background-5 to-background-5 dark:from-primary-500/10 dark:via-background-6 dark:to-background-6"></div>
-      <div class="absolute top-0 left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-primary-500/5 blur-[120px]"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-background-5/90 via-background-5/60 to-background-5"></div>
     </div>
 
     <div class="main-container">
@@ -107,6 +121,7 @@
       </div>
 
       <!-- CTAs -->
+
       <ul
         class="mt-12 flex flex-col items-center gap-y-4 md:flex-row md:items-start md:gap-x-4 md:justify-start lg:mb-[100px]"
       >
@@ -119,7 +134,8 @@
         >
           <a
             href="/contacto"
-            class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto block w-[90%] border-0 sm:mx-0 sm:w-auto md:inline-block"
+            
+              class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto sm:mx-0 block md:inline-block w-[90%] md:w-auto btn-lg md:btn-xl border-0"
           >
             <span>Empecemos</span>
           </a>
@@ -142,5 +158,4 @@
     </div>
   </div>
 </section>
-
 

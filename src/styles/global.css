@@ -381,6 +381,11 @@
   }
 }
 
+/* === Sidebar Mobile === */
+.sidebar.show-sidebar {
+  translate: 0;
+}
+
 /* =============================================
    BASE
    ============================================= */
@@ -393,7 +398,7 @@ html {
 }
 
 body {
-  @apply font-inter-tight antialiased bg-background-5 text-white/80 transition-colors duration-300;
+  @apply font-inter-tight antialiased  text-white/80 transition-colors duration-300;
 }
 
 /* === Tipografía === */

@@ -1,0 +1,214 @@
+---
+// Mobile sidebar — accordion submenus
+// JS: animations.ts → initSidebar() + MobileMenuAccordion
+---
+
+<!-- Overlay -->
+<div class="sidebar-overlay hidden fixed inset-0 z-[9998] bg-black/50 xl:hidden"></div>
+
+<aside
+  class="sidebar dark:bg-background-8 scroll-bar fixed top-0 right-0 z-[9999] h-screen w-full translate-x-full rounded-l-3xl bg-white transition-all duration-300 sm:w-1/2 xl:hidden"
+>
+  <div class="space-y-4 p-5 sm:p-8 lg:p-9">
+    <!-- Header: logo + close -->
+    <div class="flex items-center justify-between">
+      <a href="/">
+        <span class="text-tagline-1 text-secondary dark:text-accent font-semibold">AgenciaSur</span>
+      </a>
+      <button
+        class="nav-hamburger-close bg-background-4 dark:bg-background-9 relative flex size-10 cursor-pointer flex-col items-center justify-center gap-1.5 rounded-full"
+      >
+        <span class="sr-only">Cerrar menú</span>
+        <span class="bg-stroke-9/60 dark:bg-stroke-1 absolute block h-0.5 w-4 rotate-45"></span>
+        <span class="bg-stroke-9/60 dark:bg-stroke-1 absolute block h-0.5 w-4 -rotate-45"></span>
+      </button>
+    </div>
+
+    <!-- Menu accordion -->
+    <div class="scroll-bar mt-6 h-[85vh] w-full overflow-x-hidden overflow-y-auto pb-10">
+      <span
+        class="text-secondary dark:text-accent text-tagline-1 before:bg-stroke-4 dark:before:bg-stroke-6 relative mb-2 block font-normal before:absolute before:top-1/2 before:-right-16 before:h-px before:w-full before:-translate-y-1/2 before:content-['']"
+      >
+        Menu
+      </span>
+
+      <ul class="space-y-2">
+        <!-- Servicios -->
+        <li class="space-y-2">
+          <button
+            class="mobile-menu-toggle flex w-full cursor-pointer items-center justify-between py-2.5"
+            data-menu="servicios-mobile"
+          >
+            <span class="text-secondary/60 dark:text-accent/60 text-tagline-1 block font-normal"
+              >Servicios</span
+            >
+            <span class="menu-arrow rotate-90 transition-transform duration-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M10 12L14 8L10 4"
+                  class="stroke-secondary/60 dark:stroke-accent/60"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
+          <ul class="mobile-submenu block" data-submenu="servicios-mobile">
+            <li>
+              <a
+                href="/servicios"
+                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
+                >Consultoría Estratégica</a
+              >
+            </li>
+            <li>
+              <a
+                href="/servicios"
+                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
+                >Desarrollo de Software</a
+              >
+            </li>
+            <li>
+              <a
+                href="/servicios"
+                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
+                >Infraestructura Cloud</a
+              >
+            </li>
+            <li>
+              <a
+                href="/servicios"
+                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
+                >Soporte Técnico</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <!-- Soluciones -->
+        <li class="space-y-2">
+          <button
+            class="mobile-menu-toggle flex w-full cursor-pointer items-center justify-between py-2.5"
+            data-menu="soluciones-mobile"
+          >
+            <span class="text-secondary/60 dark:text-accent/60 text-tagline-1 block font-normal"
+              >Soluciones</span
+            >
+            <span class="menu-arrow transition-transform duration-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M10 12L14 8L10 4"
+                  class="stroke-secondary/60 dark:stroke-accent/60"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
+          <ul class="mobile-submenu hidden" data-submenu="soluciones-mobile">
+            <li>
+              <a
+                href="/soluciones/sistema-de-compras"
+                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
+                >Sistema de Compras</a
+              >
+            </li>
+            <li>
+              <a
+                href="/soluciones/personal-transitorio"
+                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
+                >Personal Transitorio</a
+              >
+            </li>
+            <li>
+              <a
+                href="/soluciones/mesa-de-ayuda"
+                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
+                >Mesa de Ayuda</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <!-- Casos de Éxito -->
+        <li class="space-y-2">
+          <button
+            class="mobile-menu-toggle flex w-full cursor-pointer items-center justify-between py-2.5"
+            data-menu="casos-exito-mobile"
+          >
+            <span class="text-secondary/60 dark:text-accent/60 text-tagline-1 block font-normal"
+              >Casos de Éxito</span
+            >
+            <span class="menu-arrow transition-transform duration-300">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M10 12L14 8L10 4"
+                  class="stroke-secondary/60 dark:stroke-accent/60"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+          </button>
+          <ul class="mobile-submenu hidden" data-submenu="casos-exito-mobile">
+            <li>
+              <a
+                href="/casos-exito/desarrollo-web-mobile"
+                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
+                >Desarrollo web / mobile</a
+              >
+            </li>
+            <li>
+              <a
+                href="/casos-exito"
+                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
+                >Ver todos</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <!-- Nosotros (link directo, sin accordion) -->
+        <li>
+          <a
+            href="/nosotros"
+            class="text-secondary/60 dark:text-accent/60 text-tagline-1 block py-2.5 font-normal"
+          >
+            Nosotros
+          </a>
+        </li>
+
+        <!-- Contacto (link directo, destacado) -->
+        <li>
+          <a
+            href="/contacto"
+            class="btn btn-md btn-white-dark dark:btn-white mt-4 inline-flex w-full items-center justify-center"
+          >
+            <span>Contacto</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</aside>

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 
 interface Props {
   title: string;
@@ -11,7 +12,7 @@ const { title, description = 'Transformación digital para empresas. Automatizam
 ---
 
 <!doctype html>
-<html lang="es" class="dark">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,13 +38,14 @@ const { title, description = 'Transformación digital para empresas. Automatizam
       })();
     </script>
   </head>
-  <body>
+  <body class="bg-background-2 dark:bg-background-6">
     <Navbar />
 
     <main>
       <slot />
     </main>
 
+    <ThemeToggle />
     <!-- Animations bundle -->
     <script>
       import { initNexsasAnimations } from '../lib/animations';

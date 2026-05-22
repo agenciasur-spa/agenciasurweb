@@ -1,0 +1,80 @@
+---
+interface Props {
+  Uii?: string;
+}
+const { Uii } = Astro.props;
+
+import { Briefcase, ArrowRight } from '@lucide/astro';
+
+const cases = [
+  {
+    title: 'Desarrollo web / mobile',
+    icon: Briefcase,
+    href: '/casos-exito/desarrollo-web-mobile',
+    description: 'Agencia Sur — Resultados medibles en transformación digital.',
+  },
+];
+---
+
+<style>
+  .menu-item-title {
+    color: #fff !important;
+  }
+  .menu-item-desc {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.75rem;
+  }
+</style>
+
+<div>
+  <!-- Bridge -->
+  <div
+    class="dropdown-menu-bridge pointer-events-none fixed top-full left-1/2 z-40 h-3 w-full -translate-x-1/2 bg-transparent opacity-0 lg:w-[400px]"
+  ></div>
+
+  <!-- Dropdown -->
+  <div
+    id={Uii}
+    class="dropdown-menu bg-background-6 border-stroke-1 pointer-events-none fixed top-full left-1/2 z-50 mt-2 w-full -translate-x-1/2 rounded-[20px] border p-2 opacity-0 transition-all duration-300 shadow-2 lg:w-[400px] dark:border-white/10"
+  >
+    <ul class="space-y-1">
+      {cases.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class="group relative flex items-start gap-2 rounded-xl p-2.5 transition-all duration-300"
+          >
+            <div
+              class="group-hover:bg-background-3 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"
+            ></div>
+            <div
+              class="border-stroke-1 dark:border-white/10 relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-all duration-300"
+            >
+              <item.icon />
+            </div>
+            <div class="relative z-10">
+              <span class="menu-item-title text-tagline-1 font-normal block">{item.title}</span>
+              <span class="menu-item-desc font-normal block">{item.description}</span>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <!-- Ver todos -->
+    <div class="border-t border-white/10 mt-2 pt-2">
+      <a
+        href="/casos-exito"
+        class="group relative flex items-center gap-2 rounded-xl p-2.5 transition-all duration-300"
+      >
+        <div
+          class="group-hover:bg-background-3 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"
+        ></div>
+        <div class="relative z-10 flex items-center gap-2">
+          <span class="menu-item-title text-tagline-2 font-normal block">Ver todos los casos</span>
+          <ArrowRight class="size-4 text-white/60 group-hover:text-white transition-colors" />
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

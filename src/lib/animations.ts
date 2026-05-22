@@ -335,43 +335,30 @@ class MobileMenuAccordion {
   }
 }
 
-// ── Theme Switcher (template: theme-switcher.js) ─────────────────
+// ── Theme Switcher ──────────────────────────────────────────────
+// Init lo hace el inline script de Layout.astro (antes del render)
+// key localStorage: "theme"
 
 const themeSwitcher = {
-  animationConfig: { duration: 0.6, delay: 0.2, ease: 'power2.out' } as gsap.TweenVars,
-
   init() {
     try {
-      this.setInitialTheme();
       this.bindEvents();
     } catch (e) {
       console.error('Theme switcher init failed:', e);
     }
   },
 
-  setInitialTheme() {
-    const stored = localStorage.getItem('color-theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = stored || (prefersDark ? 'dark' : 'light');
-    document.documentElement.classList.remove('dark', 'light');
-    document.documentElement.classList.add(theme);
-  },
-
   bindEvents() {
     const toggle = document.getElementById('theme-toggle');
-    toggle?.addEventListener('click', () => {
+    if (!toggle) return;
+
+    toggle.addEventListener('click', () => {
       const isDark = document.documentElement.classList.contains('dark');
       const next = isDark ? 'light' : 'dark';
 
       document.documentElement.classList.remove('dark', 'light');
       document.documentElement.classList.add(next);
-      localStorage.setItem('color-theme', next);
-
-      // Animate icon swap
-      const icon = toggle.querySelector('svg');
-      if (icon) {
-        gsap.fromTo(icon, { scale: 0.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3 });
-      }
+      localStorage.setItem('theme', next);
     });
   },
 };

@@ -1,0 +1,86 @@
+---
+interface Props {
+  Uii?: string;
+}
+const { Uii } = Astro.props;
+
+import { UserCog, Workflow, Code, Cloud } from '@lucide/astro';
+
+const menuItems = [
+  {
+    title: 'Consultoría',
+    icon: UserCog,
+    href: '/servicios',
+    description: 'Asesoría tecnológica estratégica para tu negocio.',
+  },
+  {
+    title: 'Automatización',
+    icon: Workflow,
+    href: '/servicios',
+    description: 'Optimizamos procesos críticos con tecnología inteligente.',
+  },
+  {
+    title: 'Desarrollo Web',
+    icon: Code,
+    href: '/servicios',
+    description: 'Sistemas robustos sobre arquitecturas modernas.',
+  },
+  {
+    title: 'Infraestructura y Cloud',
+    icon: Cloud,
+    href: '/servicios',
+    description: 'Infraestructura escalable y gestión en la nube.',
+  },
+];
+---
+
+<style>
+  .menu-item-title {
+    color: #fff !important;
+  }
+  .menu-item-desc {
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.75rem;
+  }
+</style>
+
+<div>
+  <!-- Bridge para hover dropdown -->
+  <div
+    class="dropdown-menu-bridge pointer-events-none fixed top-full left-1/2 z-40 h-3 w-full -translate-x-1/2 bg-transparent opacity-0 lg:w-[946px]"
+  ></div>
+
+  <!-- Dropdown -->
+  <div
+    id={Uii}
+    class="dropdown-menu bg-background-6 border-stroke-1 pointer-events-none fixed top-full left-1/2 z-50 mt-2 flex w-full -translate-x-1/2 items-start gap-y-6 rounded-[20px] border p-4 opacity-0 transition-all duration-300 md:gap-x-6 lg:w-[946px] dark:border-white/10"
+  >
+    {menuItems.map((item) => (
+      <div class="flex-1 space-y-3">
+        <ul class="space-y-2">
+          <li>
+            <a href={item.href} class="group relative flex items-start gap-2 p-3">
+              <!-- Hover overlay -->
+              <div
+                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-background-3 dark:bg-background-7 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
+              ></div>
+
+              <!-- Icono -->
+              <div
+                class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+              >
+                <item.icon />
+              </div>
+
+              <!-- Texto -->
+              <div class="relative z-10">
+                <span class="menu-item-title text-tagline-1 font-normal block">{item.title}</span>
+                <span class="menu-item-desc font-normal block">{item.description}</span>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    ))}
+  </div>
+</div>
