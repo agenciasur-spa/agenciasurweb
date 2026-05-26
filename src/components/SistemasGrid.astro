@@ -26,8 +26,10 @@ const sistemas = [
 ];
 ---
 
+
+
+<!-- Sistemas Core — Track Record Layout -->
 <section
-  id="sistemas"
   class="bg-secondary py-20 dark:bg-background-8 lg:py-[100px] xl:py-[140px]"
 >
   <div class="main-container">
@@ -41,47 +43,101 @@ const sistemas = [
       </p>
     </div>
 
-    <div class="grid gap-6 md:grid-cols-12 md:gap-x-8">
+    <div class="space-y-10 lg:space-y-8">
       {sistemas.map((s, i) => (
-        <article
-          data-ns-animate
-          data-delay={0.3 + i * 0.15}
-          class="bg-background-6 dark:bg-background-7 col-span-12 rounded-[12px] p-6 transition-all duration-300 md:col-span-6 lg:col-span-4"
-        >
-          <a href={`/soluciones/${s.slug}`} class="group block space-y-4">
-            <div class="flex items-center justify-between">
-              <h3 class="text-accent text-heading-6 md:text-heading-5 group-hover:text-primary-500 transition-colors">
-                {s.title}
-              </h3>
+        <div class="grid grid-cols-12 items-center justify-center gap-4 lg:grid-cols-10 lg:gap-2">
+
+          <!-- Fragment 1 — Imagen (mobile + desktop) -->
+          <div data-ns-animate data-delay={0.3 + i * 0.15} class="col-span-12 md:hidden lg:col-span-3 lg:block">
+            <figure class="h-[265px] overflow-hidden rounded-3xl">
+              <img
+                src="https://picsum.photos/seed/{s.slug}/400/300"
+                alt={s.title}
+                class="size-full object-cover"
+                loading="lazy"
+              />
+            </figure>
+          </div>
+
+          <!-- Fragment 2 — Imagen con texto overlay (tablet only) -->
+          <div
+            data-ns-animate
+            data-delay={0.3 + i * 0.15}
+            class="relative col-span-12 hidden md:col-span-6 md:block lg:col-span-3 lg:hidden"
+          >
+            <a href={`/soluciones/${s.slug}`}>
+              <figure class="h-[265px] overflow-hidden rounded-3xl">
+                <div class="bg-background-6/60 absolute top-0 left-0 size-full rounded-3xl"></div>
+                <div class="absolute bottom-0 left-0 z-10 space-y-1 p-6">
+                  <h3 class="text-heading-6 text-white/90">{s.title}</h3>
+                  <p class="text-tagline-3 font-normal text-white/60">{s.tagline}</p>
+                </div>
+                <img
+                  src="https://picsum.photos/seed/{s.slug}/400/300"
+                  alt={s.title}
+                  class="size-full object-cover"
+                  loading="lazy"
+                />
+              </figure>
+            </a>
+          </div>
+
+          <!-- Fragment 3 — Card texto (desktop only) -->
+          <div
+            data-ns-animate
+            data-delay={0.4 + i * 0.15}
+            class="col-span-12 md:hidden lg:col-span-4 lg:block"
+          >
+            <div
+              class="bg-background-1 dark:bg-background-6 flex h-[265px] flex-col items-start justify-between rounded-3xl p-8"
+            >
+              <div class="space-y-1">
+                <a href={`/soluciones/${s.slug}`}>
+                
+                  <h5 class="text-heading-5 xl:text-heading-4 font-normal text-secondary dark:text-accent card-desc">
+                    {s.title}
+                  </h5>
+                </a>
+                <p class="text-tagline-2 font-normal text-secondary/60 dark:text-accent/60">
+                  {s.tagline}
+                </p>
+              </div>
+
               {s.featured && (
-                <span class="badge badge-primary shrink-0">Destacado</span>
+                <span class="badge badge-primary">Destacado</span>
               )}
             </div>
-            <p class="text-accent/60">
-              {s.tagline}
-            </p>
-            {s.features && (
-              <ul class="space-y-2">
-                {s.features.map((f) => (
-                  <li class="flex items-center gap-2">
-                    <span
-                      class="inline-flex size-[18px] shrink-0 items-center justify-center rounded-full bg-primary-500/20"
-                    >
-                      <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
-                        <path
-                          d="M4.81661 7.25605L10.2491 1.92144C10.5836 1.5959 10.5836 1.0697 10.2491 0.744158C9.91446 0.418614 9.37363 0.418614 9.03904 0.744158L4.2116 5.49012L1.96096 3.28807C1.62636 2.96253 1.08554 2.96253 0.750945 3.28807C0.416352 3.61362 0.416352 4.13982 0.750945 4.46536L3.6066 7.25605C3.77347 7.41841 3.99253 7.5 4.2116 7.5C4.43067 7.5 4.64974 7.41841 4.81661 7.25605Z"
-                          fill="currentColor"
-                          class="text-primary-500"
-                        />
-                      </svg>
-                    </span>
-                    <span class="text-accent/60 text-tagline-2">{f}</span>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </a>
-        </article>
+          </div>
+
+          <!-- Fragment 4 — Features card (all breakpoints) -->
+          <div data-ns-animate data-delay={0.5 + i * 0.15} class="col-span-12 md:col-span-6 lg:col-span-3">
+            <a href={`/soluciones/${s.slug}`}>
+              <div
+                class="group flex h-[265px] flex-col justify-between rounded-3xl bg-background-1 dark:bg-background-7 p-8"
+              >
+                {s.features && (
+                  <ul class="space-y-3">
+                    {s.features.map((f) => (
+                      <li class="flex items-center gap-2">
+                        <span class="inline-flex size-[18px] shrink-0 items-center justify-center rounded-full bg-primary-500/20">
+                          <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
+                            <path
+                              d="M4.81661 7.25605L10.2491 1.92144C10.5836 1.5959 10.5836 1.0697 10.2491 0.744158C9.91446 0.418614 9.37363 0.418614 9.03904 0.744158L4.2116 5.49012L1.96096 3.28807C1.62636 2.96253 1.08554 2.96253 0.750945 3.28807C0.416352 3.61362 0.416352 4.13982 0.750945 4.46536L3.6066 7.25605C3.77347 7.41841 3.99253 7.5 4.2116 7.5C4.43067 7.5 4.64974 7.41841 4.81661 7.25605Z"
+                              fill="currentColor"
+                              class="text-primary-500"
+                            />
+                          </svg>
+                        </span>
+                        <span class="text-tagline-2 text-secondary/80 dark:text-accent/80">{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </a>
+          </div>
+
+        </div>
       ))}
     </div>
   </div>
