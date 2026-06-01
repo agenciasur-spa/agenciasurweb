@@ -398,7 +398,7 @@ html {
 }
 
 body {
-  @apply font-inter-tight antialiased  text-white/80 transition-colors duration-300;
+  @apply font-inter-tight antialiased transition-colors duration-300;
 }
 
 /* === Tipografía === */
@@ -423,7 +423,7 @@ h5 { @apply text-heading-5; }
 h6 { @apply text-heading-6; }
 
 p {
-  @apply text-tagline-2 sm:text-tagline-1 text-white/60 font-normal;
+  @apply text-tagline-2 sm:text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal;
 }
 
 /* === Animaciones scroll === */
@@ -472,7 +472,7 @@ p {
 
 /* === Footer links === */
 @utility footer-link {
-  @apply text-tagline-1 max-[426px]:text-tagline-2 text-white/70 relative inline-block overflow-hidden font-normal before:absolute before:bottom-0 before:left-0 before:h-px before:w-full before:origin-right before:scale-x-0 before:bg-white before:transition-transform before:duration-500 before:content-[''] hover:before:origin-left hover:before:scale-x-100;
+  @apply text-tagline-1 max-[426px]:text-tagline-2 text-accent/70 relative inline-block overflow-hidden font-normal before:absolute before:bottom-0 before:left-0 before:h-px before:w-full before:origin-right before:scale-x-0 before:bg-white before:transition-transform before:duration-500 before:content-[''] hover:before:origin-left hover:before:scale-x-100;
 }
 
 .footer-link-v2 {

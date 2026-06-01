@@ -4,64 +4,87 @@ const clientes = ['BancoEstado', 'ServiEstado', 'Procesos Digitalizados'];
 
 <section
   id="nosotros"
-  class="bg-background-2 py-20 dark:bg-background-5 lg:py-[100px] xl:py-[140px]"
+  class="pb-20 pt-14 md:pb-28 md:pt-16 lg:pb-44 lg:pt-[88px] xl:pb-[200px] xl:pt-[100px]"
 >
   <div class="main-container">
-    <div class="flex flex-col items-center text-center">
-      <div class="max-w-[800px] space-y-5">
-        <span data-ns-animate data-delay="0.1" class="badge badge-primary">
-          Sobre Agencia Sur
-        </span>
-
-        <blockquote data-ns-animate data-delay="0.2">
-          <p class="text-heading-5 text-secondary dark:text-accent font-normal leading-relaxed md:text-heading-4 lg:text-heading-3">
-            "Desde 2016, combinamos 18 años de trayectoria técnica para transformar
-            la complejidad operativa en flujos de trabajo simples. No solo entregamos
-            software; diseñamos la infraestructura digital que permite a las empresas
-            escalar sin fricciones, asegurando que cada línea de código responda a un
-            objetivo de negocio real."
+    <div class="grid grid-cols-12 gap-y-14 xl:gap-x-28 items-center">
+      <!-- Left: Texto -->
+      <div class="col-span-12 lg:col-span-6 mx-4 xl:mx-0">
+        <div class="space-y-3">
+          <span data-ns-animate data-delay="0.1" class="badge badge-primary mb-5">Sobre Agencia Sur</span>
+          <h2 data-ns-animate data-delay="0.2">
+            Transformamos complejidad operativa en flujos simples
+          </h2>
+          <p data-ns-animate data-delay="0.3">
+            Desde 2016, combinamos 18 años de trayectoria técnica para diseñar la infraestructura
+            digital que permite a las empresas escalar sin fricciones, asegurando que cada línea de
+            código responda a un objetivo de negocio real.
           </p>
-        </blockquote>
-      </div>
+        </div>
 
-      <div
-        data-ns-animate
-        data-delay="0.4"
-        class="mt-12 flex flex-wrap items-center justify-center gap-x-10 gap-y-4"
-      >
-        {clientes.map((cliente) => (
-          <span
-            class="text-secondary dark:text-accent text-tagline-1 font-bold uppercase tracking-widest opacity-50"
-          >
-            {cliente}
-          </span>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<section class="pb-[50px] md:pb-[80px] lg:pb-[100px]" aria-label="Team Introduction">
-  <div class="main-container">
-    <div class="space-y-7 md:space-y-14">
-      <h2 data-ns-animate data-delay="0.1" class="split-text-team-title text-center">
-        From intuitive dashboards to data-driven automation, Nexsas is built for modern businesses
-        that want to simplify workflows and scale effortlessly.
-      </h2>
-
-      <div data-ns-animate data-delay="0.3" class="text-center">
-        <a
-          href="./team.html"
-          rel="noopener noreferrer"
-          class="btn btn-primary btn-md hover:btn-secondary dark:hover:btn-accent w-[85%] md:w-auto"
-          aria-label="Meet Nexsas team"
+        <!-- Clientes -->
+        <div
+          data-ns-animate
+          data-delay="0.4"
+          class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4"
         >
-          <span>Meet Nexsas team</span>
-        </a>
+          {clientes.map((cliente) => (
+            <span class="text-secondary/40 dark:text-accent/40 text-tagline-1 font-bold uppercase tracking-widest">
+              {cliente}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Visual card -->
+      <div class="col-span-12 lg:col-span-6 relative mx-4 xl:mx-0">
+        <div
+          data-ns-animate
+          data-delay="0.5"
+          class="p-[26px] backdrop-blur-[20px] bg-white/60 dark:bg-background-8 shadow-2 min-h-[380px] rounded-[20px] h-full overflow-hidden relative z-10 flex items-center justify-center"
+        >
+          <!-- Gradient bg -->
+          <div
+            class="absolute select-none pointer-events-none bottom-[-54%] md:bottom-[-112%] lg:bottom-[-80%] right-[-33%] md:right-[-30%] xl:bottom-[-90%] xl:right-[-32%] max-w-[500px] md:max-w-[700px] w-full -z-10 rotate-180"
+          >
+            <img
+              src="/bg-hero.png"
+              alt=""
+              class="size-full object-cover opacity-30"
+              aria-hidden="true"
+            />
+          </div>
+
+          <div class="text-center -mt-20 space-y-4">
+            <!-- Stats -->
+            <div class="flex items-center justify-center gap-6">
+              <div class="text-center">
+                <p class="text-heading-3 font-bold text-secondary dark:text-accent">18+</p>
+                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Años</p>
+              </div>
+              <div class="h-12 w-px bg-secondary/10 dark:bg-accent/10"></div>
+              <div class="text-center">
+                <p class="text-heading-3 font-bold text-secondary dark:text-accent">200+</p>
+                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Procesos</p>
+              </div>
+              <div class="h-12 w-px bg-secondary/10 dark:bg-accent/10"></div>
+              <div class="text-center">
+                <p class="text-heading-3 font-bold text-secondary dark:text-accent">50+</p>
+                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Proyectos</p>
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <h6 class="text-secondary dark:text-accent text-xl font-normal">
+                Trayectoria comprobada
+              </h6>
+              <p class="text-secondary/60 dark:text-accent/60">
+                Desde consultoría TI hasta desarrollo a medida
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-

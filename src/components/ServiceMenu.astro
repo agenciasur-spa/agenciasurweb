@@ -34,16 +34,6 @@ const menuItems = [
 ];
 ---
 
-<style>
-  .menu-item-title {
-    color: #fff !important;
-  }
-  .menu-item-desc {
-    color: rgba(255, 255, 255, 0.6) !important;
-    font-size: 0.75rem;
-  }
-</style>
-
 <div>
   <!-- Bridge para hover dropdown -->
   <div
@@ -74,8 +64,8 @@ const menuItems = [
 
               <!-- Texto -->
               <div class="relative z-10">
-                <span class="menu-item-title text-tagline-1 font-normal block">{item.title}</span>
-                <span class="menu-item-desc font-normal block">{item.description}</span>
+                <span class="text-accent text-tagline-1 font-normal block">{item.title}</span>
+                <span class="text-accent/60 text-tagline-3 font-normal block">{item.description}</span>
               </div>
             </a>
           </li>

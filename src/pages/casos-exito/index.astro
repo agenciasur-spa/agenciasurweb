@@ -20,66 +20,72 @@ if (sanityClient) {
     // Sanity query failed
   }
 }
+
+const fallbackCasos = [
+  {
+    title: 'Automatización de procesos de compra',
+    slug: 'automatizacion-compras',
+    client: 'BancoEstado',
+    industry: 'Financiero',
+    results: ['60% reducción en tiempo de aprobación', '100% eliminación de papel'],
+  },
+  {
+    title: 'Gestión centralizada de personal externo',
+    slug: 'gestion-personal-externo',
+    client: 'ServiEstado',
+    industry: 'Servicios',
+    results: ['40% menos tiempo en onboarding', 'Control total de documentación'],
+  },
+];
+
+const displayCasos = casos.length > 0 ? casos : fallbackCasos;
 ---
 
 <Layout title="Casos de Éxito | Agencia Sur">
 
-  <section class="py-20 px-6 bg-white border-b border-slate-200">
-    <div class="max-w-4xl mx-auto">
-      <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4 uppercase tracking-widest">
-        Resultados Reales
-      </span>
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-        Casos de Éxito
-      </h1>
-      <p class="text-xl text-slate-600 leading-relaxed">
-        No hablamos en abstracto. Estos son problemas reales que resolvimos
-        con resultados medibles.
-      </p>
-    </div>
-  </section>
+  <!-- Hero -->
+  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+    <div class="main-container">
+      <div class="text-center space-y-5 mb-[70px]">
+        <span data-ns-animate data-delay="0.1" class="badge badge-green">Resultados Reales</span>
+        <div class="space-y-3">
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto">
+            Casos de Éxito
+          </h2>
+          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
+            No hablamos en abstracto. Estos son problemas reales que resolvimos con resultados medibles.
+          </p>
+        </div>
+      </div>
 
-  <section class="py-24 px-6">
-    <div class="max-w-7xl mx-auto">
-      {casos.length > 0 ? (
-        <div class="space-y-8">
-          {casos.map((caso) => (
-            <a
-              href={`/casos-exito/${caso.slug}`}
-              class="group block p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-lg hover:border-blue-200 transition"
-            >
-              <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div>
-                  <span class="text-sm text-blue-600 font-bold uppercase tracking-wider">
-                    {caso.client}
-                  </span>
-                  <h3 class="text-2xl font-bold mt-1 group-hover:text-blue-600 transition">
-                    {caso.title}
-                  </h3>
+      <!-- Grid -->
+      <div class="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">
+        {displayCasos.map((caso, i) => (
+          <div data-ns-animate data-delay={0.4 + i * 0.1} class="col-span-12 md:col-span-6">
+            <a href={`/casos-exito/${caso.slug}`} class="group block">
+              <div class="px-6 py-8 rounded-[20px] bg-background-3 dark:bg-background-7 space-y-5 hover:translate-y-[-10px] transition-transform duration-500 ease-in-out">
+                <div class="flex items-center justify-between">
+                  <span class="badge badge-primary">{caso.client}</span>
+                  {caso.industry && (
+                    <span class="text-tagline-2 text-secondary/60 dark:text-accent/60">{caso.industry}</span>
+                  )}
                 </div>
+                <h3 class="text-heading-5">{caso.title}</h3>
                 {caso.results && caso.results.length > 0 && (
-                  <div class="flex gap-4 flex-wrap">
+                  <div class="flex gap-3 flex-wrap">
                     {caso.results.slice(0, 2).map((result) => (
-                      <span class="px-4 py-2 bg-blue-50 text-blue-700 rounded-full text-sm font-medium">
-                        {result}
-                      </span>
+                      <span class="badge badge-green text-tagline-3">{result}</span>
                     ))}
                   </div>
                 )}
+                <p class="text-tagline-2 text-primary-500 font-medium group-hover:underline">
+                  Leer caso completo →
+                </p>
               </div>
-              <p class="mt-4 text-blue-600 font-medium text-sm group-hover:underline">
-                Leer caso completo →
-              </p>
             </a>
-          ))}
-        </div>
-      ) : (
-        <div class="text-center py-16">
-          <p class="text-slate-500 text-lg">
-            Próximamente. Los casos se cargan desde Sanity CMS.
-          </p>
-        </div>
-      )}
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 

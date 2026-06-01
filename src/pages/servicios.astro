@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactoFooter from '../components/ContactoFooter.astro';
+import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket } from '@lucide/astro';
 
 const procesoSteps = [
   {
@@ -8,30 +9,35 @@ const procesoSteps = [
     title: 'Levantamiento de Procesos',
     description: 'Entrevistamos a los stakeholders clave, mapeamos los flujos actuales e identificamos cuellos de botella. Entregamos un diagnóstico con recomendaciones priorizadas.',
     detail: 'No programamos una sola línea hasta entender tu operación.',
+    icon: UserCog,
   },
   {
     step: '02',
     title: 'Diseño de Solución',
     description: 'Definimos la arquitectura técnica, los flujos de usuario y los criterios de aceptación. Prototipamos las pantallas críticas para validación antes de desarrollar.',
     detail: 'Wireframes, arquitectura de datos y plan de integración.',
+    icon: Workflow,
   },
   {
     step: '03',
     title: 'Desarrollo Iterativo',
     description: 'Construimos en ciclos cortos con demostraciones frecuentes. Cada sprint entrega funcionalidad usable, no acumulamos deuda técnica.',
     detail: 'Sprints de 2 semanas con review del cliente.',
+    icon: Code,
   },
   {
     step: '04',
     title: 'Testing & QA',
     description: 'Pruebas automatizadas y manuales. Validación con usuarios reales del cliente. Performance, seguridad y accesibilidad verificadas.',
     detail: 'Nada se entrega sin pasar QA.',
+    icon: ShieldCheck,
   },
   {
     step: '05',
     title: 'Deploy & Soporte',
     description: 'Puesta en producción con plan de rollback. Capacitación al equipo interno. Soporte post-entrega según SLA acordado.',
     detail: 'Acompañamiento continuo, no desaparecemos después del deploy.',
+    icon: Rocket,
   },
 ];
 
@@ -47,40 +53,41 @@ const tecnologias = [
 
 <Layout title="Servicios | Agencia Sur">
 
-  <!-- Hero de página -->
-  <section class="py-20 px-6 bg-white border-b border-slate-200">
-    <div class="max-w-4xl mx-auto">
-      <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4 uppercase tracking-widest">
-        Nuestro Método
-      </span>
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-6">
-        Cómo trabajamos
-      </h1>
-      <p class="text-xl text-slate-600 leading-relaxed">
-        No vendemos horas. Entregamos soluciones que resuelven problemas reales.
-        Nuestro proceso existe para garantizar que cada proyecto tenga impacto medible.
-      </p>
-    </div>
-  </section>
+  <!-- Hero -->
+  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+    <div class="main-container">
+      <div class="text-center space-y-5 mb-[70px]">
+        <span data-ns-animate data-delay="0.1" class="badge badge-green">Nuestro Método</span>
+        <div class="space-y-3">
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto">
+            Cómo trabajamos
+          </h2>
+          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
+            No vendemos horas. Entregamos soluciones que resuelven problemas reales.
+            Nuestro proceso existe para garantizar que cada proyecto tenga impacto medible.
+          </p>
+        </div>
+      </div>
 
-  <!-- Proceso paso a paso -->
-  <section class="py-24 px-6">
-    <div class="max-w-4xl mx-auto">
-      <div class="space-y-16">
-        {procesoSteps.map((item, index) => (
-          <div class="flex gap-8">
-            <div class="flex-shrink-0">
-              <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-bold text-lg">
-                {item.step}
+      <!-- Process steps grid -->
+      <div class="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">
+        {procesoSteps.map((item, i) => (
+          <div data-ns-animate data-delay={0.4 + i * 0.1} class:list={[
+            'col-span-12 md:col-span-6',
+            i < 3 ? 'xl:col-span-4' : 'xl:col-span-6'
+          ]}>
+            <div class="px-6 py-8 rounded-[20px] bg-background-3 dark:bg-background-7 space-y-5 hover:translate-y-[-10px] transition-transform duration-500 ease-in-out">
+              <div class="flex items-center gap-4">
+                <div class="flex size-12 items-center justify-center rounded-2xl bg-primary-500/10 dark:bg-accent/10">
+                  <item.icon class="size-6 text-primary-500 dark:text-accent" />
+                </div>
+                <span class="text-tagline-2 text-primary-500 font-medium">{item.step}</span>
               </div>
-              {index < procesoSteps.length - 1 && (
-                <div class="w-0.5 h-full bg-slate-200 mx-auto mt-4"></div>
-              )}
-            </div>
-            <div class="pb-8">
-              <h3 class="text-2xl font-bold mb-3">{item.title}</h3>
-              <p class="text-slate-600 text-lg leading-relaxed mb-2">{item.description}</p>
-              <p class="text-sm text-blue-600 font-medium">{item.detail}</p>
+              <div class="space-y-2">
+                <h3 class="text-heading-5">{item.title}</h3>
+                <p>{item.description}</p>
+              </div>
+              <p class="text-tagline-2 text-primary-500 font-medium">{item.detail}</p>
             </div>
           </div>
         ))}
@@ -89,36 +96,45 @@ const tecnologias = [
   </section>
 
   <!-- Stack tecnológico -->
-  <section class="py-24 px-6 bg-white border-y border-slate-200">
-    <div class="max-w-4xl mx-auto">
-      <h2 class="text-3xl font-bold mb-12 text-center">Stack Tecnológico</h2>
-      <div class="grid md:grid-cols-3 gap-6">
-        {tecnologias.map((tech) => (
-          <div class="p-6 bg-slate-50 rounded-2xl border border-slate-200">
-            <p class="text-sm text-slate-500 uppercase tracking-wider mb-1">{tech.category}</p>
-            <p class="text-lg font-semibold">{tech.name}</p>
+  <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px] bg-background-2 dark:bg-background-5">
+    <div class="main-container">
+      <div class="text-center space-y-5 mb-[70px]">
+        <span data-ns-animate data-delay="0.1" class="badge badge-cyan">Stack</span>
+        <div class="space-y-3">
+          <h2 data-ns-animate data-delay="0.2">Stack Tecnológico</h2>
+          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
+            Adaptamos el stack a tu infraestructura existente. No forzamos una tecnología si no encaja.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">
+        {tecnologias.map((tech, i) => (
+          <div data-ns-animate data-delay={0.3 + i * 0.08} class="col-span-12 md:col-span-6 xl:col-span-4">
+            <div class="px-6 py-8 rounded-[20px] bg-background-1 dark:bg-background-7 space-y-2 text-center hover:translate-y-[-10px] transition-transform duration-500 ease-in-out">
+              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 uppercase tracking-wider font-medium">{tech.category}</p>
+              <h4 class="text-heading-5">{tech.name}</h4>
+            </div>
           </div>
         ))}
       </div>
-      <p class="text-center text-slate-500 mt-8">
-        Adaptamos el stack a tu infraestructura existente. No forzamos una tecnología si no encaja.
-      </p>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-20 px-6">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6">¿Listo para levantar tu proceso?</h2>
-      <p class="text-slate-600 mb-8 text-lg">
-        El primer paso es una reunión de diagnóstico. Sin compromiso, sin letra chica.
-      </p>
-      <a
-        href="/contacto"
-        class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition"
-      >
-        Agendar Diagnóstico
-      </a>
+  <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px]">
+    <div class="main-container text-center">
+      <div class="max-w-[600px] mx-auto space-y-5">
+        <h2 data-ns-animate data-delay="0.1">¿Listo para levantar tu proceso?</h2>
+        <p data-ns-animate data-delay="0.2">
+          El primer paso es una reunión de diagnóstico. Sin compromiso, sin letra chica.
+        </p>
+        <div data-ns-animate data-delay="0.3">
+          <a href="/contacto" class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent">
+            <span>Agendar Diagnóstico</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 

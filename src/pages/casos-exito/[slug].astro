@@ -5,44 +5,67 @@ import { sanityClient } from '../../lib/sanity';
 import PortableText from '../../components/PortableText';
 import type { CasoExito } from '../../types/sanity';
 
+// Fallback data for when Sanity is offline
+const fallbackData: Record<string, CasoExito> = {
+  'desarrollo-web-mobile': {
+    title: 'Automatización de procesos de compra',
+    slug: 'desarrollo-web-mobile',
+    client: 'BancoEstado',
+    industry: 'Financiero',
+    challenge: undefined,
+    solution: undefined,
+    results: ['60% reducción en tiempo de aprobación', '100% eliminación de papel'],
+    testimonial: undefined,
+    testimonialAuthor: undefined,
+  },
+};
+
 export async function getStaticPaths() {
-  if (!sanityClient) return [];
-  try {
-    const casos: CasoExito[] = await sanityClient.fetch(
-      `*[_type == "casoExito"] { "slug": slug.current }`
-    );
-    return casos.map((caso) => ({
-      params: { slug: caso.slug },
-    }));
-  } catch {
-    return [];
+  const fallbackData: Record<string, { slug: string }> = {
+    'desarrollo-web-mobile': { slug: 'desarrollo-web-mobile' },
+  };
+  const fallbackSlugs = Object.keys(fallbackData);
+  const paths = fallbackSlugs.map((slug) => ({ params: { slug } }));
+
+  if (sanityClient) {
+    try {
+      const casos: CasoExito[] = await sanityClient.fetch(
+        `*[_type == "casoExito"] { "slug": slug.current }`
+      );
+      for (const caso of casos) {
+        if (!fallbackSlugs.includes(caso.slug)) {
+          paths.push({ params: { slug: caso.slug } });
+        }
+      }
+    } catch {
+      // Sanity query failed — fallbacks still work
+    }
   }
+
+  return paths;
 }
 
 const { slug } = Astro.params;
 
+// Try Sanity first, fallback to static data
 let caso: CasoExito | null = null;
 if (sanityClient) {
   try {
     caso = await sanityClient.fetch(
-    `*[_type == "casoExito" && slug.current == $slug][0] {
-      _id,
-      title,
-      "slug": slug.current,
-      client,
-      industry,
-      challenge,
-      solution,
-      results,
-      testimonial,
-      testimonialAuthor,
-      image
-    }`,
-    { slug }
-  );
+      `*[_type == "casoExito" && slug.current == $slug][0] {
+        _id, title, "slug": slug.current, client, industry,
+        challenge, solution, results, testimonial, testimonialAuthor, image
+      }`,
+      { slug }
+    );
   } catch {
     // Sanity query failed
   }
+}
+
+// Use fallback if Sanity has no data
+if (!caso && slug && fallbackData[slug]) {
+  caso = fallbackData[slug];
 }
 
 if (!caso) {
@@ -52,81 +75,93 @@ if (!caso) {
 
 <Layout title={`${caso.title} | Agencia Sur`}>
 
-  <section class="py-20 px-6 bg-white border-b border-slate-200">
-    <div class="max-w-4xl mx-auto">
-      <a href="/casos-exito" class="text-blue-600 text-sm font-medium hover:underline mb-6 inline-block">
-        ← Volver a Casos de Éxito
-      </a>
-      <span class="inline-block py-1 px-3 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-4 uppercase tracking-widest">
-        {caso.client}
-      </span>
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-        {caso.title}
-      </h1>
+  <!-- Hero -->
+  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+    <div class="main-container">
+      <div class="space-y-5">
+        <a href="/casos-exito" class="text-tagline-1 text-primary-500 font-medium hover:underline inline-block mb-2">
+          ← Volver a Casos de Éxito
+        </a>
+        <span data-ns-animate data-delay="0.1" class="badge badge-green">{caso.client}</span>
+        <div class="space-y-3">
+          <h1 data-ns-animate data-delay="0.2">{caso.title}</h1>
+          {caso.industry && (
+            <p data-ns-animate data-delay="0.3" class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+              Sector: {caso.industry}
+            </p>
+          )}
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="py-24 px-6">
-    <div class="max-w-4xl mx-auto space-y-16">
-      <!-- Desafío -->
-      {caso.challenge && (
-        <div>
-          <h2 class="text-2xl font-bold mb-4">El Desafío</h2>
-          <div class="prose prose-lg prose-slate max-w-none">
-            <PortableText client:load value={caso.challenge} />
+  <!-- Contenido -->
+  <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px] bg-background-2 dark:bg-background-5">
+    <div class="main-container">
+      <div class="max-w-[950px] mx-auto space-y-16">
+        <!-- Desafío -->
+        {caso.challenge && (
+          <div>
+            <h2 class="text-heading-3 mb-4">El Desafío</h2>
+            <div class="details-body">
+              <PortableText client:load value={caso.challenge} />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <!-- Solución -->
-      {caso.solution && (
-        <div>
-          <h2 class="text-2xl font-bold mb-4">La Solución</h2>
-          <div class="prose prose-lg prose-slate max-w-none">
-            <PortableText client:load value={caso.solution} />
+        <!-- Solución -->
+        {caso.solution && (
+          <div>
+            <h2 class="text-heading-3 mb-4">La Solución</h2>
+            <div class="details-body">
+              <PortableText client:load value={caso.solution} />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <!-- Resultados -->
-      {caso.results && caso.results.length > 0 && (
-        <div>
-          <h2 class="text-2xl font-bold mb-6">Resultados</h2>
-          <div class="grid md:grid-cols-2 gap-4">
-            {caso.results.map((result) => (
-              <div class="p-6 bg-blue-50 rounded-2xl border border-blue-100">
-                <p class="text-lg font-semibold text-blue-900">{result}</p>
-              </div>
-            ))}
+        <!-- Resultados -->
+        {caso.results && caso.results.length > 0 && (
+          <div>
+            <h2 class="text-heading-3 mb-6">Resultados</h2>
+            <div class="grid grid-cols-12 gap-4">
+              {caso.results.map((result) => (
+                <div class="col-span-12 md:col-span-6">
+                  <div class="px-6 py-5 rounded-[20px] bg-background-1 dark:bg-background-7">
+                    <p class="text-tagline-1 font-medium">{result}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <!-- Testimonio -->
-      {caso.testimonial && (
-        <blockquote class="border-l-4 border-blue-600 pl-8 py-4">
-          <p class="text-2xl font-medium italic text-slate-800 mb-4">"{caso.testimonial}"</p>
-          {caso.testimonialAuthor && (
-            <cite class="text-slate-500 not-italic">— {caso.testimonialAuthor}</cite>
-          )}
-        </blockquote>
-      )}
+        <!-- Testimonio -->
+        {caso.testimonial && (
+          <blockquote class="border-l-4 border-primary-500 pl-8 py-4">
+            <p class="text-heading-5 font-normal italic mb-4">"{caso.testimonial}"</p>
+            {caso.testimonialAuthor && (
+              <cite class="text-tagline-1 text-secondary/60 dark:text-accent/60 not-italic">— {caso.testimonialAuthor}</cite>
+            )}
+          </blockquote>
+        )}
+      </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-20 px-6 bg-slate-900 text-white">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6">¿Tu empresa tiene un desafío similar?</h2>
-      <p class="text-slate-400 mb-8 text-lg">
-        Hablemos sobre cómo podemos ayudarte a lograr resultados como estos.
-      </p>
-      <a
-        href="/contacto"
-        class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition"
-      >
-        Contactar
-      </a>
+  <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px]">
+    <div class="main-container text-center">
+      <div class="max-w-[600px] mx-auto space-y-5">
+        <h2 data-ns-animate data-delay="0.1">¿Tu empresa tiene un desafío similar?</h2>
+        <p data-ns-animate data-delay="0.2">
+          Hablemos sobre cómo podemos ayudarte a lograr resultados como estos.
+        </p>
+        <div data-ns-animate data-delay="0.3">
+          <a href="/contacto" class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent">
+            <span>Contactar</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 

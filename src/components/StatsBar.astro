@@ -1,37 +1,43 @@
 ---
+import { Clock, CheckCircle, TrendingUp, Award } from '@lucide/astro';
+
 const stats = [
-  { value: '18+', label: 'Años de Trayectoria' },
-  { value: '200+', label: 'Procesos Analizados' },
-  { value: '50+', label: 'Proyectos de Éxito' },
-  { value: '3', label: 'Sistemas Propios' },
+  { value: '18+', label: 'Años de Trayectoria', icon: Clock },
+  { value: '200+', label: 'Procesos Analizados', icon: CheckCircle },
+  { value: '50+', label: 'Proyectos de Éxito', icon: TrendingUp },
+  { value: '3', label: 'Sistemas Propios', icon: Award },
 ];
 ---
 
 <section
-  class="bg-background-2 py-12 dark:bg-background-5"
+  class="pb-20 pt-16 md:pb-24 md:pt-20 lg:pb-[125px] lg:pt-[110px] xl:pb-[150px] xl:py-[140px] bg-background-2 dark:bg-background-5"
   aria-label="Indicadores"
 >
   <div class="main-container">
+    <!-- Header -->
+    <div class="max-w-[514px] max-lg:mx-auto mb-10 md:mb-[70px] space-y-3">
+      <h2 data-ns-animate data-delay="0.1">Resultados que hablan por sí solos</h2>
+      <p data-ns-animate data-delay="0.2">
+        Años de experiencia transformando procesos críticos en ventajas competitivas.
+      </p>
+    </div>
+
+    <!-- Stats bar -->
     <div
       data-ns-animate
       data-delay="0.3"
-      class="bg-accent dark:bg-background-6 flex flex-col items-center justify-center gap-y-4 rounded-[12px] py-6 md:flex-row md:gap-y-0"
+      class="bg-secondary dark:bg-background-6 py-6 rounded-[12px] flex flex-col md:flex-row gap-y-4 md:gap-y-0 items-center md:items-start justify-center"
     >
-      {stats.map((stat, i) => (
-        <div
-          class="flex flex-1/4 items-center justify-center py-[22px]"
-        >
-          <div class="text-center">
-            <p class="text-secondary dark:text-accent text-heading-4 md:text-heading-3 font-bold">
-              {stat.value}
-            </p>
-            <p class="text-secondary/70 dark:text-accent/70 text-tagline-1 font-normal">
-              {stat.label}
-            </p>
+      {stats.map((stat) => (
+        <div class="flex items-center justify-center flex-col gap-6 flex-1/4 py-[22px]">
+          <!-- Icon badge -->
+          <div class="px-7 py-3.5 bg-ns-green rounded-full w-fit">
+            <stat.icon class="size-6 text-secondary" />
           </div>
-          {i < stats.length - 1 && (
-            <div class="mx-4 hidden h-12 w-px bg-stroke-1/30 dark:bg-stroke-7/30 md:block"></div>
-          )}
+          <!-- Value + label -->
+          <h6 class="text-accent flex items-center justify-center gap-0.5 text-center">
+            <span>{stat.value}</span> {stat.label}
+          </h6>
         </div>
       ))}
     </div>

@@ -5,41 +5,76 @@ import { sanityClient } from '../../lib/sanity';
 import PortableText from '../../components/PortableText';
 import type { Solucion } from '../../types/sanity';
 
+// Fallback data for when Sanity is offline
+const fallbackData: Record<string, Solucion> = {
+  'sistema-de-compras': {
+    title: 'Sistema de Compras',
+    slug: 'sistema-de-compras',
+    tagline: 'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento.',
+    features: ['Control de cumplimiento SLA', 'Reducción 100% papel', 'Tracking en tiempo real', 'Aprobaciones multinivel', 'Integración con ERP'],
+  },
+  'gestion-personal-transitorio': {
+    title: 'Gestión de Personal Transitorio',
+    slug: 'gestion-personal-transitorio',
+    tagline: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.',
+    features: ['Solicitudes estandarizadas', 'Evaluación centralizada', 'Validación de documentación', 'Dashboard de seguimiento'],
+  },
+  'mesa-de-ayuda': {
+    title: 'Mesa de Ayuda',
+    slug: 'mesa-de-ayuda',
+    tagline: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.',
+    features: ['Canales unificados', 'Base de conocimiento IA', 'SLA automatizado', 'Reportes de satisfacción'],
+  },
+};
+
 export async function getStaticPaths() {
-  if (!sanityClient) return [];
-  try {
-    const soluciones: Solucion[] = await sanityClient.fetch(
-      `*[_type == "solucion"] { "slug": slug.current }`
-    );
-    return soluciones.map((solucion) => ({
-      params: { slug: solucion.slug },
-    }));
-  } catch {
-    return [];
+  const fallbackData: Record<string, { slug: string }> = {
+    'sistema-de-compras': { slug: 'sistema-de-compras' },
+    'gestion-personal-transitorio': { slug: 'gestion-personal-transitorio' },
+    'mesa-de-ayuda': { slug: 'mesa-de-ayuda' },
+  };
+  const fallbackSlugs = Object.keys(fallbackData);
+  const paths = fallbackSlugs.map((slug) => ({ params: { slug } }));
+
+  // Add Sanity slugs if available
+  if (sanityClient) {
+    try {
+      const soluciones: Solucion[] = await sanityClient.fetch(
+        `*[_type == "solucion"] { "slug": slug.current }`
+      );
+      for (const sol of soluciones) {
+        if (!fallbackSlugs.includes(sol.slug)) {
+          paths.push({ params: { slug: sol.slug } });
+        }
+      }
+    } catch {
+      // Sanity query failed — fallbacks still work
+    }
   }
+
+  return paths;
 }
 
 const { slug } = Astro.params;
 
+// Try Sanity first, fallback to static data
 let solucion: Solucion | null = null;
 if (sanityClient) {
   try {
     solucion = await sanityClient.fetch(
-    `*[_type == "solucion" && slug.current == $slug][0] {
-      _id,
-      title,
-      "slug": slug.current,
-      tagline,
-      description,
-      features,
-      icon,
-      image
-    }`,
-    { slug }
-  );
+      `*[_type == "solucion" && slug.current == $slug][0] {
+        _id, title, "slug": slug.current, tagline, description, features, icon, image
+      }`,
+      { slug }
+    );
   } catch {
     // Sanity query failed
   }
+}
+
+// Use fallback if Sanity has no data
+if (!solucion && slug && fallbackData[slug]) {
+  solucion = fallbackData[slug];
 }
 
 if (!solucion) {
@@ -49,66 +84,83 @@ if (!solucion) {
 
 <Layout title={`${solucion.title} | Agencia Sur`}>
 
-  <!-- Hero de la solución -->
-  <section class="py-20 px-6 bg-white border-b border-slate-200">
-    <div class="max-w-4xl mx-auto">
-      <a href="/soluciones" class="text-blue-600 text-sm font-medium hover:underline mb-6 inline-block">
-        ← Volver a Soluciones
-      </a>
-      {solucion.icon && <span class="text-5xl block mb-4">{solucion.icon}</span>}
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-        {solucion.title}
-      </h1>
-      <p class="text-xl text-slate-600 leading-relaxed">
-        {solucion.tagline}
-      </p>
+  <!-- Hero -->
+  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+    <div class="main-container">
+      <div class="space-y-5">
+        <a href="/soluciones" class="text-tagline-1 text-primary-500 font-medium hover:underline inline-block mb-2">
+          ← Volver a Soluciones
+        </a>
+        <span data-ns-animate data-delay="0.1" class="badge badge-primary">Solución</span>
+        <div class="space-y-3">
+          <h1 data-ns-animate data-delay="0.2" class="max-w-[878px]">
+            {solucion.title}
+          </h1>
+          <p data-ns-animate data-delay="0.3" class="max-w-[700px]">
+            {solucion.tagline}
+          </p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Contenido -->
-  <section class="py-24 px-6">
-    <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-12">
-      <!-- Descripción (2/3) -->
-      <div class="md:col-span-2">
-        {solucion.description && (
-          <div class="prose prose-lg prose-slate max-w-none">
-            <PortableText client:load value={solucion.description} />
-          </div>
-        )}
-      </div>
+  <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px] bg-background-2 dark:bg-background-5">
+    <div class="main-container">
+      <div class="grid grid-cols-12 gap-y-12 lg:gap-x-10 lg:gap-y-0 xl:gap-x-[100px]">
+        <!-- Descripción -->
+        <div class="col-span-12 lg:col-span-8">
+          {solucion.description ? (
+            <div class="details-body">
+              <PortableText client:load value={solucion.description} />
+            </div>
+          ) : (
+            <div class="space-y-6">
+              <h2 class="text-heading-3">Descripción</h2>
+              <p>Este sistema está diseñado para {solucion.tagline?.toLowerCase()}</p>
+              <p>Contáctanos para conocer más detalles sobre cómo este sistema puede adaptarse a tu operación.</p>
+            </div>
+          )}
+        </div>
 
-      <!-- Features sidebar (1/3) -->
-      <div>
-        {solucion.features && solucion.features.length > 0 && (
-          <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200">
-            <h3 class="font-bold text-lg mb-6">Características</h3>
-            <ul class="space-y-4">
-              {solucion.features.map((feature) => (
-                <li class="flex items-start space-x-3">
-                  <span class="text-blue-500 mt-1">✓</span>
-                  <span class="text-slate-600">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+        <!-- Features sidebar -->
+        <div class="col-span-12 lg:col-span-4">
+          {solucion.features && solucion.features.length > 0 && (
+            <div class="bg-background-1 dark:bg-background-7 rounded-[20px] p-8 space-y-4 sticky top-28">
+              <h3 class="text-heading-5">Características</h3>
+              <ul class="space-y-3">
+                {solucion.features.map((feature) => (
+                  <li class="flex items-start gap-2">
+                    <span class="inline-flex size-[18px] shrink-0 items-center justify-center rounded-full bg-primary-500/20 mt-0.5">
+                      <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
+                        <path d="M4.81661 7.25605L10.2491 1.92144C10.5836 1.5959 10.5836 1.0697 10.2491 0.744158C9.91446 0.418614 9.37363 0.418614 9.03904 0.744158L4.2116 5.49012L1.96096 3.28807C1.62636 2.96253 1.08554 2.96253 0.750945 3.28807C0.416352 3.61362 0.416352 4.13982 0.750945 4.46536L3.6066 7.25605C3.77347 7.41841 3.99253 7.5 4.2116 7.5C4.43067 7.5 4.64974 7.41841 4.81661 7.25605Z" fill="currentColor" class="text-primary-500" />
+                      </svg>
+                    </span>
+                    <span class="text-tagline-1">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   </section>
 
   <!-- CTA -->
-  <section class="py-20 px-6 bg-slate-900 text-white">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl font-bold mb-6">¿Te interesa este sistema?</h2>
-      <p class="text-slate-400 mb-8 text-lg">
-        Agenda una demo personalizada y veamos cómo se adapta a tu operación.
-      </p>
-      <a
-        href="/contacto"
-        class="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-blue-700 transition"
-      >
-        Solicitar Demo
-      </a>
+  <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px]">
+    <div class="main-container text-center">
+      <div class="max-w-[600px] mx-auto space-y-5">
+        <h2 data-ns-animate data-delay="0.1">¿Te interesa este sistema?</h2>
+        <p data-ns-animate data-delay="0.2">
+          Agenda una demo personalizada y veamos cómo se adapta a tu operación.
+        </p>
+        <div data-ns-animate data-delay="0.3">
+          <a href="/contacto" class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent">
+            <span>Solicitar Demo</span>
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
