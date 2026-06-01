@@ -5,6 +5,7 @@
    ======================================== */
 
 @import "tailwindcss";
+@import './nexsas-missing';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -85,6 +86,7 @@
   --color-gradient-6: linear-gradient(#83e7ee 0%, #c6f56f 100%);
   --color-gradient-7: linear-gradient(#fff 0%, #83e7ee 100%);
   --color-gradient-8: linear-gradient(156deg, #fff 32.92%, #60a5fa 91%);
+  --color-gradient-9: linear-gradient(156deg, #dfb0ff 32.92%, #fdbedc 91%);
   --color-gradient-10: linear-gradient(135deg, #83e7ee 0%, #c6f56f 100%);
   --color-gradient-11: linear-gradient(179deg, rgba(255,255,255,0) 0.68%, #fff 79.47%);
   --color-gradient-12: radial-gradient(73.01% 80.77% at 19.23% 47.79%, #83e7ee 0%, rgba(59,130,246,0) 100%);
