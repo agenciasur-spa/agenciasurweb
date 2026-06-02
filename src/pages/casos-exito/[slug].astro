@@ -76,74 +76,138 @@ if (!caso) {
 <Layout title={`${caso.title} | Agencia Sur`}>
 
   <!-- Hero -->
-  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+  <section class="overflow-hidden pt-32 pb-24 sm:pt-36 md:pt-42 md:pb-28 lg:pb-32 xl:pt-[180px] xl:pb-[200px]">
     <div class="main-container">
-      <div class="space-y-5">
-        <a href="/casos-exito" class="text-tagline-1 text-primary-500 font-medium hover:underline inline-block mb-2">
-          ← Volver a Casos de Éxito
-        </a>
-        <span data-ns-animate data-delay="0.1" class="badge badge-green">{caso.client}</span>
-        <div class="space-y-3">
-          <h1 data-ns-animate data-delay="0.2">{caso.title}</h1>
-          {caso.industry && (
-            <p data-ns-animate data-delay="0.3" class="text-tagline-1 text-secondary/60 dark:text-accent/60">
-              Sector: {caso.industry}
-            </p>
-          )}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contenido -->
-  <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px] bg-background-2 dark:bg-background-5">
-    <div class="main-container">
-      <div class="max-w-[950px] mx-auto space-y-16">
-        <!-- Desafío -->
-        {caso.challenge && (
-          <div>
-            <h2 class="text-heading-3 mb-4">El Desafío</h2>
-            <div class="details-body">
-              <PortableText client:load value={caso.challenge} />
-            </div>
-          </div>
-        )}
-
-        <!-- Solución -->
-        {caso.solution && (
-          <div>
-            <h2 class="text-heading-3 mb-4">La Solución</h2>
-            <div class="details-body">
-              <PortableText client:load value={caso.solution} />
-            </div>
-          </div>
-        )}
-
-        <!-- Resultados -->
-        {caso.results && caso.results.length > 0 && (
-          <div>
-            <h2 class="text-heading-3 mb-6">Resultados</h2>
-            <div class="grid grid-cols-12 gap-4">
-              {caso.results.map((result) => (
-                <div class="col-span-12 md:col-span-6">
-                  <div class="px-6 py-5 rounded-[20px] bg-background-1 dark:bg-background-7">
-                    <p class="text-tagline-1 font-medium">{result}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        <!-- Testimonio -->
-        {caso.testimonial && (
-          <blockquote class="border-l-4 border-primary-500 pl-8 py-4">
-            <p class="text-heading-5 font-normal italic mb-4">"{caso.testimonial}"</p>
-            {caso.testimonialAuthor && (
-              <cite class="text-tagline-1 text-secondary/60 dark:text-accent/60 not-italic">— {caso.testimonialAuthor}</cite>
+      <div class="space-y-[70px]">
+        <div class="space-y-5">
+          <a href="/casos-exito" class="text-tagline-1 text-primary-500 font-medium hover:underline inline-block mb-2">
+            ← Volver a Casos de Éxito
+          </a>
+          <span data-ns-animate data-delay="0.1" class="badge badge-green">{caso.client}</span>
+          <div class="space-y-3">
+            <h1 data-ns-animate data-delay="0.2" class="text-heading-3 max-w-[884px]">{caso.title}</h1>
+            {caso.industry && (
+              <p data-ns-animate data-delay="0.3" class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+                Sector: {caso.industry}
+              </p>
             )}
-          </blockquote>
-        )}
+          </div>
+        </div>
+
+        <figure data-ns-animate data-delay="0.3" class="max-w-[1290px] overflow-hidden rounded-4xl">
+          <img src={`https://picsum.photos/1290/520?random=${slug.length + 700}`} alt={`${caso.title} vista general`} class="size-full object-cover" loading="lazy" />
+        </figure>
+
+        <!-- Company info list -->
+        <div class="case-study-details mx-auto max-w-[950px] space-y-[72px]">
+          <ul aria-label="Información del Cliente" class="space-y-2" data-ns-animate data-delay="0.4">
+            <li class="text-accent/60 dark:!text-accent/60">
+              <strong class="text-secondary dark:!text-accent">Empresa: </strong>
+              {caso.client}
+            </li>
+            <li class="text-accent/60 dark:!text-accent/60">
+              <strong class="text-secondary dark:!text-accent">Sector: </strong>
+              {caso.industry || 'No especificado'}
+            </li>
+            <li class="text-accent/60 dark:!text-accent/60">
+              <strong class="text-secondary dark:!text-accent">Proyecto: </strong>
+              {caso.title}
+            </li>
+          </ul>
+
+          <!-- Desafío -->
+          {caso.challenge && (
+            <div>
+              <h3 data-ns-animate data-delay="0.2" class="text-heading-4" id="desafio">El desafío</h3>
+              <div class="details-body">
+                <PortableText client:load value={caso.challenge} />
+              </div>
+            </div>
+          )}
+
+          <!-- Solución -->
+          {caso.solution && (
+            <div>
+              <h3 data-ns-animate data-delay="0.2" class="text-heading-4" id="solucion">La solución</h3>
+              <div class="details-body">
+                <PortableText client:load value={caso.solution} />
+              </div>
+            </div>
+          )}
+
+          <!-- Resultados — tabla before/after -->
+          <div>
+            <h3 data-ns-animate data-delay="0.2" class="text-heading-4" id="resultados">Los resultados</h3>
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-3 mt-6">
+              <div data-ns-animate data-delay="0.3" class="[&>p]:border-b-stroke-4 dark:[&>p]:border-b-stroke-7 max-w-[306] [&>p]:border-b [&>p]:last:border-b-0">
+                <p class="text-secondary dark:text-accent py-4 font-medium">Aspecto</p>
+                <p class="py-4">Proceso manual</p>
+                <p class="py-4">Tiempo de aprobación</p>
+                <p class="py-4">Trazabilidad</p>
+                <p class="py-4">Escalabilidad</p>
+              </div>
+              <div data-ns-animate data-delay="0.4" class="dark:bg-background-6 [&>p]:border-b-stroke-4 dark:[&>p]:border-b-stroke-7 max-w-[306] rounded-[20px] bg-white px-6 text-center [&>p]:border-b [&>p]:last:border-b-0">
+                <p class="text-secondary dark:text-accent border-b py-4 font-medium">Antes</p>
+                <p class="border-b py-4">Spreadsheets y correos</p>
+                <p class="border-b py-4">Días o semanas</p>
+                <p class="border-b py-4">Fragmentada</p>
+                <p class="py-4">Limitada</p>
+              </div>
+              <div data-ns-animate data-delay="0.5" class="[&>p]:border-b-stroke-4 dark:[&>p]:border-b-stroke-7 dark:bg-background-6 max-w-[306] rounded-[20px] bg-white px-6 text-center [&>p]:border-b [&>p]:last:border-b-0">
+                <p class="text-secondary dark:text-accent py-4 font-medium">Después</p>
+                <p class="py-4">Plataforma unificada</p>
+                <p class="py-4">Horas</p>
+                <p class="py-4">En tiempo real</p>
+                <p class="py-4">Ilimitada</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Testimonio -->
+          {caso.testimonial && (
+            <div data-ns-animate data-delay="0.2" class="bg-secondary dark:bg-background-6 max-w-[950px] space-y-6 rounded-[20px] p-8">
+              <figure class="size-14 overflow-hidden rounded-full bg-(image:--color-gradient-7)">
+                <img class="size-full object-cover" src={`https://picsum.photos/56/56?random=${slug.length + 701}`} alt="avatar" />
+              </figure>
+              <blockquote>
+                <p class="dark:text-accent/60 text-white">"{caso.testimonial}"</p>
+              </blockquote>
+              {caso.testimonialAuthor && (
+                <div class="pb-4">
+                  <h4 class="text-lg leading-[150%] font-medium text-white">{caso.testimonialAuthor}</h4>
+                  <p class="text-tagline-2 text-accent/60">{caso.client}</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          <!-- Key features list -->
+          <div data-ns-animate data-delay="0.2" class="space-y-6">
+            <h5 data-ns-animate data-delay="0.2" class="text-heading-4" id="caracteristicas-clave">Características implementadas</h5>
+            <ul data-ns-animate data-delay="0.3" class="space-y-4">
+              <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
+                <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
+                Dashboards de analytics en tiempo real
+              </li>
+              <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
+                <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
+                Report builder personalizado
+              </li>
+              <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
+                <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
+                Automatización y scheduling de tareas
+              </li>
+              <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
+                <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
+                Integraciones multi-fuente
+              </li>
+              <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
+                <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
+                Permisos basados en roles
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>

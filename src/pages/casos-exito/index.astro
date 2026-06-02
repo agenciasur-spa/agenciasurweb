@@ -39,52 +39,213 @@ const fallbackCasos = [
 ];
 
 const displayCasos = casos.length > 0 ? casos : fallbackCasos;
+const featured = displayCasos[0];
+const rest = displayCasos.slice(1);
 ---
 
 <Layout title="Casos de Éxito | Agencia Sur">
 
   <!-- Hero -->
-  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+  <section class="overflow-hidden pt-32 pb-[20px] sm:pt-36 md:pt-42 lg:pb-[100px] xl:pt-[180px]">
     <div class="main-container">
-      <div class="text-center space-y-5 mb-[70px]">
-        <span data-ns-animate data-delay="0.1" class="badge badge-green">Resultados Reales</span>
-        <div class="space-y-3">
-          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto">
-            Casos de Éxito
-          </h2>
-          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
-            No hablamos en abstracto. Estos son problemas reales que resolvimos con resultados medibles.
+      <div class="space-y-[70px]">
+        <div class="max-w-[800px] space-y-3">
+          <h1 data-ns-animate data-delay="0.2" class="text-heading-3 md:text-heading-2 font-normal">
+            Problemas reales. Resultados medibles.
+          </h1>
+          <p data-ns-animate data-delay="0.3">
+            Desde startups en crecimiento hasta empresas consolidadas, organizaciones de todo tipo usan
+            nuestras soluciones para optimizar operaciones, aumentar visibilidad y acelerar su transformación digital.
           </p>
         </div>
-      </div>
 
-      <!-- Grid -->
-      <div class="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">
-        {displayCasos.map((caso, i) => (
-          <div data-ns-animate data-delay={0.4 + i * 0.1} class="col-span-12 md:col-span-6">
-            <a href={`/casos-exito/${caso.slug}`} class="group block">
-              <div class="px-6 py-8 rounded-[20px] bg-background-3 dark:bg-background-7 space-y-5 hover:translate-y-[-10px] transition-transform duration-500 ease-in-out">
-                <div class="flex items-center justify-between">
-                  <span class="badge badge-primary">{caso.client}</span>
-                  {caso.industry && (
-                    <span class="text-tagline-2 text-secondary/60 dark:text-accent/60">{caso.industry}</span>
-                  )}
-                </div>
-                <h3 class="text-heading-5">{caso.title}</h3>
-                {caso.results && caso.results.length > 0 && (
-                  <div class="flex gap-3 flex-wrap">
-                    {caso.results.slice(0, 2).map((result) => (
-                      <span class="badge badge-green text-tagline-3">{result}</span>
-                    ))}
+        <!-- Featured case study -->
+        {featured && (
+          <div class="space-y-4">
+            <h2 data-ns-animate data-delay="0.4" class="text-heading-4">Caso destacado</h2>
+            <ul class="max-w-[435px] space-y-2">
+              <li data-ns-animate data-delay="0.5" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
+                Cliente:
+                <span class="text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal">{featured.client}</span>
+              </li>
+              <li data-ns-animate data-delay="0.6" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
+                Sector:
+                <span class="text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal">{featured.industry}</span>
+              </li>
+              <li data-ns-animate data-delay="0.7" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
+                Resultados:
+                <span class="text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal">{featured.results?.slice(0, 2).join(' · ')}</span>
+              </li>
+            </ul>
+          </div>
+        )}
+
+        <figure data-ns-animate data-delay="0.8" data-instant data-start="top 97%" class="max-w-[1288px] overflow-hidden rounded-4xl">
+          <img src={`https://picsum.photos/1288/520?random=${featured?.slug?.length || 0 + 600}`} alt={`${featured?.client} caso de éxito`} class="size-full object-cover" loading="lazy" />
+        </figure>
+
+        {featured && (
+          <div class="space-y-1">
+            <h3 data-ns-animate data-delay="0.1" class="text-heading-4">El desafío</h3>
+            <p data-ns-animate data-delay="0.2" class="max-w-[705px]">
+              {featured.title}. {featured.client} necesitaba una solución que permitiera {featured.results?.[0]?.toLowerCase()} sin interrumpir la operación diaria.
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Más casos — estilo case-study/success.htm -->
+  <section class="py-[50px] lg:py-[100px]">
+    <div class="main-container">
+      <div class="space-y-[70px]">
+        <div class="space-y-3 text-center">
+          <h2 data-ns-animate data-delay="0.1" class="text-heading-3">Más casos de éxito</h2>
+          <p data-ns-animate data-delay="0.2" class="max-w-[738px] mx-auto">
+            Cada proyecto representa un problema real resuelto con software a medida. Estos son algunos de los resultados.
+          </p>
+        </div>
+
+        <div class="space-y-14">
+          <div class="grid grid-cols-12 items-start justify-center gap-8">
+            {displayCasos.map((caso, i) => (
+              <article data-ns-animate data-delay={0.2 + i * 0.1} class="group max-w-[409px] col-span-12 md:col-span-6 lg:col-span-4" itemscope itemtype="http://schema.org/Article">
+                <div class="bg-background-1 dark:bg-background-6 rounded-[20px] scale-100 hover:scale-[102%] transition-transform duration-500">
+                  <figure class="max-w-[409px] h-[260px] overflow-hidden rounded-t-[20px]">
+                    <img src={`https://picsum.photos/409/260?random=${caso.slug.length + 601 + i}`} alt={caso.title} class="size-full object-cover" itemprop="image" loading="lazy" />
+                  </figure>
+                  <div class="p-6 space-y-6">
+                    <div class="space-y-2">
+                      <div class="flex items-center justify-between">
+                        <span class="badge badge-primary text-tagline-3">{caso.client}</span>
+                        {caso.industry && (
+                          <span class="text-tagline-3 text-secondary/60 dark:text-accent/60">{caso.industry}</span>
+                        )}
+                      </div>
+                      <h3 class="text-heading-5" itemprop="headline">{caso.title}</h3>
+                      <div class="space-y-2">
+                        {caso.results && caso.results.length > 0 && (
+                          <p class="xl:line-clamp-1 2xl:line-clamp-none">
+                            <span class="text-secondary dark:text-accent font-medium">Resultados:</span>
+                            {caso.results.slice(0, 2).join(' · ')}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div>
+                      <a href={`/casos-exito/${caso.slug}`} class="btn btn-md btn-white dark:btn-transparent hover:btn-primary" itemprop="url">
+                        <span>Leer caso completo</span>
+                      </a>
+                    </div>
                   </div>
-                )}
-                <p class="text-tagline-2 text-primary-500 font-medium group-hover:underline">
-                  Leer caso completo →
-                </p>
-              </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature dark card — estilo case-study/feature.htm -->
+  <section class="pt-[80px] lg:pt-[100px] pb-24 md:pb-28 lg:pb-32 xl:pb-[200px]">
+    <div class="main-container">
+      <div data-ns-animate data-delay="0.1" class="relative z-10">
+        <div class="absolute top-0 left-0 right-0 bottom-0 -z-10 rounded-[20px] overflow-hidden">
+          <img src="https://picsum.photos/1290/500?random=699" alt="Fondo casos de éxito" class="w-full h-full object-cover opacity-60" />
+        </div>
+        <div class="py-14 px-6 md:px-11 grid max-sm:grid-cols-1 grid-cols-2 max-sm:gap-10 gap-5">
+          <div class="max-w-[500px]">
+            <h2 id="feature-heading" class="text-accent text-heading-5 mb-8">
+              Estos son algunos de los casos de uso que hemos resuelto con éxito.
+            </h2>
+            <a href="/contacto" class="btn btn-md dark:btn-dark dark:hover:btn-white hover:btn-primary border-0 btn-white">
+              <span>Hablemos de tu proyecto</span>
             </a>
           </div>
-        ))}
+          <div>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
+                  <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
+                  <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
+                </svg>
+                <span class="text-accent dark:text-accent/60">Automatización de procesos de compras y aprobaciones</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
+                  <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
+                  <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
+                </svg>
+                <span class="text-accent dark:text-accent/60">Gestión centralizada de personal transitorio y documentación</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
+                  <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
+                  <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
+                </svg>
+                <span class="text-accent dark:text-accent/60">Mesas de ayuda omnicanal con base de conocimientos IA</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
+                  <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
+                  <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
+                </svg>
+                <span class="text-accent dark:text-accent/60">Integración de sistemas legados con plataformas modernas</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
+                  <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
+                  <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
+                </svg>
+                <span class="text-accent dark:text-accent/60">Reportes de atribución y ROI para marketing y ventas</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA v1 — estilo shared/cta/cta-v1.htm -->
+  <section class="py-[50px] md:py-20 lg:py-28 bg-background-3 dark:bg-background-7" aria-label="CTA Casos de Éxito">
+    <div class="main-container">
+      <div class="flex items-center flex-col lg:flex-row justify-between">
+        <div class="xl:max-w-[650px] lg:max-w-[476px] max-[400px]:max-w-[300px] w-full space-y-5 text-center lg:text-left">
+          <span data-ns-animate data-delay="0.3" class="badge badge-green">Contacto</span>
+          <div class="space-y-3">
+            <h2 data-ns-animate data-delay="0.4" class="text-secondary dark:text-accent text-heading-5 sm:text-heading-4 lg:text-heading-2">
+              ¿Tu empresa tiene un <span class="text-primary-500">desafío similar?</span>
+            </h2>
+            <p data-ns-animate data-delay="0.5">Hablemos sobre cómo podemos ayudarte a lograr resultados como estos.</p>
+          </div>
+        </div>
+        <div class="lg:basis-[466px] space-y-6 md:ml-0 xl:ml-[100px] pt-[40px] lg:pt-[67px] w-full sm:w-[80%] md:w-[60%]">
+          <div data-ns-animate data-delay="0.6" class="flex items-center flex-col gap-5 sm:flex-row justify-start lg:gap-3">
+            <a href="/contacto" class="btn btn-md btn-primary h-12 w-full sm:w-[28%] lg:w-auto hover:btn-secondary dark:hover:btn-accent">
+              <span>Contactar</span>
+            </a>
+          </div>
+          <ul class="flex flex-row items-center justify-center gap-x-4 sm:gap-x-6 sm:gap-y-0 gap-y-5 lg:justify-start">
+            <li data-ns-animate data-delay="0.7" class="flex items-center justify-center gap-2">
+              <span class="size-[18px] bg-secondary dark:bg-accent rounded-full flex items-center justify-center shrink-0">
+                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" class="fill-white dark:fill-secondary">
+                  <path d="M4.31661 6.75605L9.74905 1.42144C10.0836 1.0959 10.0836 0.569702 9.74905 0.244158C9.41446 -0.081386 8.87363 -0.081386 8.53904 0.244158L3.7116 4.99012L1.46096 2.78807C1.12636 2.46253 0.585538 2.46253 0.250945 2.78807C-0.0836483 3.11362 -0.0836483 3.63982 0.250945 3.96536L3.1066 6.75605C3.27347 6.91841 3.49253 7 3.7116 7C3.93067 7 4.14974 6.91841 4.31661 6.75605Z"/>
+                </svg>
+              </span>
+              <p class="text-tagline-3 sm:text-tagline-2">Sin compromiso</p>
+            </li>
+            <li data-ns-animate data-delay="0.8" class="flex items-center justify-center gap-2">
+              <span class="size-[18px] bg-secondary dark:bg-accent rounded-full flex items-center justify-center shrink-0">
+                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" class="fill-white dark:fill-secondary">
+                  <path d="M4.31661 6.75605L9.74905 1.42144C10.0836 1.0959 10.0836 0.569702 9.74905 0.244158C9.41446 -0.081386 8.87363 -0.081386 8.53904 0.244158L3.7116 4.99012L1.46096 2.78807C1.12636 2.46253 0.585538 2.46253 0.250945 2.78807C-0.0836483 3.11362 -0.0836483 3.63982 0.250945 3.96536L3.1066 6.75605C3.27347 6.91841 3.49253 7 3.7116 7C3.93067 7 4.14974 6.91841 4.31661 6.75605Z"/>
+                </svg>
+              </span>
+              <p class="text-tagline-3 sm:text-tagline-2">Diagnóstico gratuito</p>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>

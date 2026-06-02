@@ -85,7 +85,7 @@ if (!solucion) {
 <Layout title={`${solucion.title} | Agencia Sur`}>
 
   <!-- Hero -->
-  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+  <section class="overflow-hidden pt-32 pb-24 sm:pt-36 md:pt-42 md:pb-36 lg:pb-44 xl:pt-[180px] xl:pb-[200px]">
     <div class="main-container">
       <div class="space-y-5">
         <a href="/soluciones" class="text-tagline-1 text-primary-500 font-medium hover:underline inline-block mb-2">
@@ -101,47 +101,132 @@ if (!solucion) {
           </p>
         </div>
       </div>
+
+      <!-- Hero image -->
+      <figure data-ns-animate data-delay="0.4" data-instant class="max-w-[1288px] overflow-hidden rounded-4xl mt-[70px]">
+        <img src={`https://picsum.photos/1288/520?random=${slug.length + 400}`} alt={solucion.title} class="size-full object-cover" loading="lazy" />
+      </figure>
     </div>
   </section>
 
-  <!-- Contenido -->
+  <!-- Contenido con sidebar TOC — estilo services-details/content.htm -->
   <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px] bg-background-2 dark:bg-background-5">
     <div class="main-container">
-      <div class="grid grid-cols-12 gap-y-12 lg:gap-x-10 lg:gap-y-0 xl:gap-x-[100px]">
-        <!-- Descripción -->
-        <div class="col-span-12 lg:col-span-8">
-          {solucion.description ? (
-            <div class="details-body">
-              <PortableText client:load value={solucion.description} />
+      <div class="flex items-start lg:gap-[72px]">
+        <div class="w-full max-w-full lg:max-w-[767px]">
+          <div class="services-details-content mb-[72px]">
+            {solucion.description ? (
+              <div class="details-body">
+                <PortableText client:load value={solucion.description} />
+              </div>
+            ) : (
+              <div class="space-y-6">
+                <h2 data-ns-animate data-delay="0.1" id="descripcion" class="text-heading-3">Descripción</h2>
+                <p data-ns-animate data-delay="0.2">Este sistema está diseñado para {solucion.tagline?.toLowerCase()}</p>
+                <p data-ns-animate data-delay="0.3">Contáctanos para conocer más detalles sobre cómo este sistema puede adaptarse a tu operación.</p>
+              </div>
+            )}
+
+            <figure data-ns-animate data-delay="0.3" class="max-w-[767px] overflow-hidden rounded-xl">
+              <img src={`https://picsum.photos/767/420?random=${slug.length + 401}`} alt={`${solucion.title} vista previa`} class="size-full object-cover" loading="lazy" />
+            </figure>
+
+            <h2 data-ns-animate data-delay="0.2" id="caracteristicas">Características principales</h2>
+            <p data-ns-animate data-delay="0.3">
+              Cada módulo está pensado para resolver un problema específico de operación, no para agregar complejidad innecesaria.
+            </p>
+
+            <ul data-ns-animate data-delay="0.4" class="space-y-3">
+              {solucion.features && solucion.features.map((feature, i) => (
+                <li class="flex items-start gap-3">
+                  <span class="bg-secondary dark:bg-accent size-2 rounded-full mt-2 shrink-0"></span>
+                  <span class="text-secondary/60 dark:text-accent/60">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <figure data-ns-animate data-delay="0.4" class="max-w-[767px] overflow-hidden rounded-xl">
+              <img src={`https://picsum.photos/767/420?random=${slug.length + 402}`} alt={`${solucion.title} funcionalidades`} class="size-full object-cover" loading="lazy" />
+            </figure>
+
+            <h2 data-ns-animate data-delay="0.2" id="beneficios">Beneficios medibles</h2>
+            <p data-ns-animate data-delay="0.3">
+              Nuestros clientes reportan reducciones de hasta 60% en tiempos operativos y eliminación total de procesos manuales en papel.
+            </p>
+          </div>
+
+          <!-- Testimonio inline — estilo services-details content.htm -->
+          <div class="mt-[70px] space-y-14" id="testimonios">
+            <div class="space-y-3">
+              <h4 data-ns-animate data-delay="0.1" class="text-heading-2">Lo que dicen nuestros usuarios</h4>
+              <p data-ns-animate data-delay="0.2" class="text-tagline-1">
+                "Agencia Sur entregó el sistema antes de lo prometido — ejecución impecable y verdadera partnership."
+              </p>
             </div>
-          ) : (
-            <div class="space-y-6">
-              <h2 class="text-heading-3">Descripción</h2>
-              <p>Este sistema está diseñado para {solucion.tagline?.toLowerCase()}</p>
-              <p>Contáctanos para conocer más detalles sobre cómo este sistema puede adaptarse a tu operación.</p>
+            <div data-ns-animate data-delay="0.1" class="bg-secondary space-y-6 rounded-[20px] p-8">
+              <figure class="size-16 overflow-hidden rounded-full bg-linear-[180deg,#ffffff_0%,#83e7ee_100%]">
+                <img class="size-full object-cover" src="https://picsum.photos/64/64?random=500" alt="avatar" />
+              </figure>
+              <blockquote>
+                <p data-ns-animate data-delay="0.3" class="text-white">
+                  "Este sistema eliminó horas de trabajo manual cada semana. Ahora nuestro equipo de operaciones puede enfocarse en iniciativas estratégicas en vez de tareas repetitivas."
+                </p>
+              </blockquote>
+              <div>
+                <p data-ns-animate data-delay="0.4" class="text-lg font-medium text-white">Juan Pérez</p>
+                <p data-ns-animate data-delay="0.5" class="text-tagline-2 text-accent/60 font-normal">Gerente de Operaciones</p>
+              </div>
             </div>
-          )}
+          </div>
         </div>
 
-        <!-- Features sidebar -->
-        <div class="col-span-12 lg:col-span-4">
-          {solucion.features && solucion.features.length > 0 && (
-            <div class="bg-background-1 dark:bg-background-7 rounded-[20px] p-8 space-y-4 sticky top-28">
-              <h3 class="text-heading-5">Características</h3>
-              <ul class="space-y-3">
-                {solucion.features.map((feature) => (
-                  <li class="flex items-start gap-2">
-                    <span class="inline-flex size-[18px] shrink-0 items-center justify-center rounded-full bg-primary-500/20 mt-0.5">
-                      <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
-                        <path d="M4.81661 7.25605L10.2491 1.92144C10.5836 1.5959 10.5836 1.0697 10.2491 0.744158C9.91446 0.418614 9.37363 0.418614 9.03904 0.744158L4.2116 5.49012L1.96096 3.28807C1.62636 2.96253 1.08554 2.96253 0.750945 3.28807C0.416352 3.61362 0.416352 4.13982 0.750945 4.46536L3.6066 7.25605C3.77347 7.41841 3.99253 7.5 4.2116 7.5C4.43067 7.5 4.64974 7.41841 4.81661 7.25605Z" fill="currentColor" class="text-primary-500" />
-                      </svg>
-                    </span>
-                    <span class="text-tagline-1">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+        <!-- Table of Contents sidebar -->
+        <div class="table-of-contents hidden w-full lg:sticky lg:top-20 lg:block lg:max-w-[449px]" data-ns-animate data-delay="0.3">
+          <div class="bg-background-1 dark:bg-background-6 w-full space-y-4 rounded-[20px] p-11">
+            <h3 class="text-heading-5">Secciones</h3>
+            <ul class="table-of-list w-full">
+              <li>
+                <a href="#descripcion" class="lenis-scroll-to border-b-stroke-4 dark:border-b-stroke-7 flex items-center justify-between border-b py-4">
+                  <span class="text-secondary dark:text-accent text-lg leading-[27px] font-medium">Descripción</span>
+                  <span>
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
+                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#caracteristicas" class="lenis-scroll-to border-b-stroke-4 dark:border-b-stroke-7 flex items-center justify-between border-b py-4">
+                  <span class="text-secondary/60 dark:text-accent/60 text-lg leading-[27px] font-normal">Características</span>
+                  <span class="invisible">
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
+                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#beneficios" class="lenis-scroll-to border-b-stroke-4 dark:border-b-stroke-7 flex items-center justify-between border-b py-4">
+                  <span class="text-secondary/60 dark:text-accent/60 text-lg leading-[27px] font-normal">Beneficios</span>
+                  <span class="invisible">
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
+                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="#testimonios" class="lenis-scroll-to flex items-center justify-between py-4">
+                  <span class="text-secondary/60 dark:text-accent/60 text-lg leading-[27px] font-normal">Testimonios</span>
+                  <span class="invisible">
+                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
+                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
