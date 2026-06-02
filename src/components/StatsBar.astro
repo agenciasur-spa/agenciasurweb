@@ -31,13 +31,13 @@ const stats = [
       {stats.map((stat) => (
         <div class="flex items-center justify-center flex-col gap-6 flex-1/4 py-[22px]">
           <!-- Icon badge -->
-          <div class="px-7 py-3.5 bg-ns-green rounded-full w-fit">
+          <div class="px-7 py-3.5 bg-background-3 dark:bg-background-5 rounded-full w-fit">
             <stat.icon class="size-6 text-secondary" />
           </div>
           <!-- Value + label -->
-          <h6 class="text-accent flex items-center justify-center gap-0.5 text-center">
+          <p class="text-white flex items-center justify-center gap-0.5 text-center">
             <span>{stat.value}</span> {stat.label}
-          </h6>
+          </p>
         </div>
       ))}
     </div>

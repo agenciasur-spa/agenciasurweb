@@ -35,13 +35,16 @@ const cases = [
             class="group relative flex items-start gap-2 rounded-xl p-2.5 transition-all duration-300"
           >
             <div
-              class="group-hover:bg-background-3 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"
+              class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-background-3 dark:bg-background-7 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
             ></div>
-            <div
-              class="border-stroke-1 dark:border-white/10 relative z-10 mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg border p-1.5 transition-all duration-300"
-            >
-              <item.icon />
-            </div>
+            
+
+        <div
+                  class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+                >
+                  <item.icon  color="#22ff88" size={48} stroke-width={1} />
+                </div>
+
             <div class="relative z-10">
               <span class="text-accent text-tagline-1 font-normal block">{item.title}</span>
               <span class="text-accent/60 text-tagline-3 font-normal block">{item.description}</span>
@@ -61,8 +64,8 @@ const cases = [
           class="group-hover:bg-background-3 dark:group-hover:bg-background-7 absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-400 z-0"
         ></div>
         <div class="relative z-10 flex items-center gap-2">
-          <span class="text-accent text-tagline-2 font-normal block">Ver todos los casos</span>
-          <ArrowRight class="size-4 text-accent/60 group-hover:text-accent transition-colors" />
+          <span class="text-accent text-tagline-2 font-normal block group-hover:text-black">Ver todos los casos</span>
+          <ArrowRight class="size-4 text-accent/60 group-hover:text-black transition-colors" />
         </div>
       </a>
     </div>

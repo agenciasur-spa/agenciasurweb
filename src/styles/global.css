@@ -516,3 +516,37 @@ p {
 .after {
   clip-path: inset(0 50% 0 0);
 }
+
+
+.bg-background-3{ background-color: var(--color-accent-700); }
+.border-stroke-7{ border-color: var(--color-stroke-7); }    
+.border-stroke-7:hover{ border-color: var(--color-accent-700); }    
+p.text-white , .demo-text{ color:#FFF!important; }
+
+dark:border-background-7{ background-color: var(--color-accent-400)!important; }
+border-background-7{ background-color: var(--color-accent-400)!important; }
+
+
+  .badge-hero.text-tagline-2 {
+    color:var(--color-accent-300);
+  }
+
+  .text-accent-300 {
+    color: var(--color-accent-300);
+  }
+
+.badge.badge-green-v2{
+    background-color: var(--color-accent-400);
+    color: black;
+} 
+
+
+
+.hero-text-gradient.hero-text-color-1{
+    font-weight: 300;
+}
+
+
+/*
+  class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto sm:mx-0 block md:inline-block w-[90%] md:w-auto btn-lg md:btn-xl border-0"
+  */

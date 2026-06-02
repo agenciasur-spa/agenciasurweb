@@ -46,7 +46,7 @@ const col2 = solutions.slice(2);
   <!-- Dropdown -->
   <div
     id={Uii}
-    class="dropdown-menu fixed left-1/2 -translate-x-1/2 top-full mt-2 pointer-events-none transition-all duration-300 opacity-0 md:w-[952px] w-full bg-background-6 z-50 rounded-[20px] p-4 border border-stroke-1 dark:border-background-7"
+    class="dropdown-menu fixed left-1/2 -translate-x-1/2 top-full mt-2 pointer-events-none transition-all duration-300 opacity-0 md:w-[952px] w-full bg-background-6 z-50 rounded-[20px] p-4 border border-stroke-1 dark:border-background-7 "
   >
     <div class="flex items-start md:gap-x-6 gap-y-6">
       <!-- Col 1 -->
@@ -64,7 +64,7 @@ const col2 = solutions.slice(2);
                 <div
                   class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
                 >
-                  <item.icon />
+                  <item.icon  color="#22ff88" size={48} stroke-width={1} />
                 </div>
               </div>
               <div class="relative z-10 space-y-0.5">
@@ -85,13 +85,13 @@ const col2 = solutions.slice(2);
               class="p-3 rounded-[10px] flex items-start gap-3 transition-all duration-300 relative group"
             >
               <div
-                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-background-3 dark:bg-background-7 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-background-3 dark:bg-background-7 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
               ></div>
               <div class="mt-1.5 relative z-10">
                 <div
-                  class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+                  class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border border-white/50 p-1 dark:border-white/10"
                 >
-                  <item.icon />
+                  <item.icon color="#22ff88" size={48} stroke-width={1} />
                 </div>
               </div>
               <div class="relative z-10 space-y-0.5">
@@ -112,16 +112,15 @@ const col2 = solutions.slice(2);
           >
             <video
               src="https://www.pexels.com/download/video/34279721/"
-              class="w-full h-full object-cover rounded-[14px] group-hover:scale-105 transition-all duration-500 ease-in-out"
+              class="w-full h-full object-cover rounded-[14px] "
               autoplay muted loop
             ></video>
-            <div
-              class="absolute group-hover:top-5 group-hover:left-5 top-4 left-4 size-full space-y-1 transition-all duration-500 ease-in-out"
-            >
-              <p class="text-white text-tagline-1 font-medium">Agenda una demo</p>
-              <p class="text-white/60 max-w-[212px] w-full text-tagline-3 font-normal">
-                Descubrí cómo nuestras soluciones se adaptan a tu operación.
-              </p>
+           <div class="absolute top-4 backdrop-blur-sm bg-background-3/5 rounded-[14px] p-3 m-4">
+                <span class="text-tagline-1 font-medium text-white/70">Agenda una demo</span>
+                <br/>
+                <span class="text-white/70 max-w-[212px] w-full text-tagline-3 font-normal">
+                    Descubre cómo nuestras soluciones se adaptan a tu operación.
+                </span>
             </div>
           </figure>
         </a>
