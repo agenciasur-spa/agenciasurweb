@@ -1,7 +1,13 @@
 ---
 // ContactoFooter — Nexsas contact layout + Mad-libs form
+interface Props {
+  hideCta?: boolean;
+}
+
+const { hideCta = false } = Astro.props;
 ---
 
+{!hideCta && (
 <!-- CTA / Contact Section -->
 <section class="pt-[100px] pb-[100px] md:pb-[200px]">
   <div class="main-container">
@@ -9,7 +15,7 @@
       <!-- Left: Info -->
       <div class="col-span-12 lg:col-span-6">
         <div class="mb-12 space-y-5 text-center lg:text-left">
-          <span data-ns-animate data-delay="0.1" class="badge badge-green">Contacto</span>
+          <span data-ns-animate data-delay="0.1" class="badge badge-green-v2 mb-5">Contacto</span>
           <div class="space-y-3">
             <h2 data-ns-animate data-delay="0.2">¿Tienes un proyecto?</h2>
             <p
@@ -164,8 +170,7 @@
     </div>
   </div>
 </section>
-
-<!-- Footer -->
+)}
 <footer class="bg-secondary dark:bg-background-8 relative overflow-hidden">
   <div class="main-container px-5">
     <div class="grid grid-cols-12 justify-between gap-x-0 gap-y-16 pb-12 pt-16 xl:pt-[90px]">

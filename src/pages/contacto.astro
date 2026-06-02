@@ -21,7 +21,7 @@ import ContactoFooter from '../components/ContactoFooter.astro';
         <div class="flex flex-col items-center justify-center gap-10 lg:flex-row lg:items-start lg:gap-8 xl:gap-[70px]">
           <!-- contact info cards -->
           <div data-ns-animate data-delay="0.4" class="flex flex-col gap-8 md:flex-row lg:flex-col">
-            <!-- contact info one -->
+            <!-- contact info one — Dirección -->
             <div class="bg-secondary dark:bg-background-6 relative w-full space-y-6 overflow-hidden rounded-[20px] p-11 text-center md:max-w-[371px]">
               <figure class="pointer-events-none absolute top-[-187px] left-[174px] size-[350px] -rotate-[78deg] overflow-hidden select-none">
                 <img src="https://picsum.photos/350/350?random=800" alt="" class="size-full object-cover opacity-40" aria-hidden="true" />
@@ -35,7 +35,7 @@ import ContactoFooter from '../components/ContactoFooter.astro';
               </div>
             </div>
 
-            <!-- contact info two -->
+            <!-- contact info two — Email -->
             <div class="bg-secondary dark:bg-background-6 relative w-full overflow-hidden rounded-[20px] p-11 text-center md:max-w-[371px]">
               <figure class="pointer-events-none absolute top-[-206px] left-[-36px] size-[350px] rotate-[62deg] overflow-hidden select-none">
                 <img src="https://picsum.photos/350/350?random=801" alt="" class="size-full object-cover opacity-40" aria-hidden="true" />
@@ -53,7 +53,7 @@ import ContactoFooter from '../components/ContactoFooter.astro';
               </div>
             </div>
 
-            <!-- contact info three -->
+            <!-- contact info three — Teléfono -->
             <div class="bg-secondary dark:bg-background-6 relative w-full overflow-hidden rounded-[20px] p-11 text-center md:max-w-[371px]">
               <figure class="pointer-events-none absolute top-[-264px] left-[-255px] size-[450px] select-none">
                 <img src="https://picsum.photos/450/450?random=802" alt="" class="opacity-40" aria-hidden="true" />
@@ -72,15 +72,118 @@ import ContactoFooter from '../components/ContactoFooter.astro';
             </div>
           </div>
 
-          <!-- Map placeholder -->
-          <div data-ns-animate data-delay="0.3" class="dark:bg-background-6 mx-auto w-full max-w-[847px] rounded-4xl bg-white p-6 md:p-8 lg:p-11 overflow-hidden">
-            <div class="w-full min-h-[300px] overflow-hidden rounded-2xl lg:min-h-[566px] bg-background-3 dark:bg-background-7 flex items-center justify-center">
-              <div class="text-center space-y-3">
-                <svg class="size-12 mx-auto text-secondary/30 dark:text-accent/30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <p class="text-tagline-2 text-secondary/40 dark:text-accent/40">Las Bellotas 199, Providencia</p>
-                <a href="https://maps.google.com/?q=Las+Bellotas+199+Providencia+Chile" target="_blank" rel="noopener noreferrer" class="btn btn-md btn-primary hover:btn-secondary">
-                  <span>Ver en Google Maps</span>
-                </a>
+          <!-- Mad-libs form — Nexsas themed container -->
+          <div
+            data-ns-animate
+            data-delay="0.3"
+            class="dark:bg-background-6 mx-auto w-full max-w-[847px] rounded-4xl bg-white p-6 md:p-8 lg:p-11"
+          >
+            <form id="mad-libs-form" class="mad-libs-form">
+              <div class="ml-text text-heading-5 md:text-heading-4 leading-[1.6] font-normal text-secondary dark:text-accent">
+                <p class="mb-4">
+                  Hola, me llamo
+                  <input class="ml-input" id="ml-nombre" name="nombre" placeholder="tu nombre" required />
+                  y mi correo es
+                  <input class="ml-input" id="ml-correo" name="correo" type="email" placeholder="tu@empresa.com" required />.
+                </p>
+
+                <p class="mb-4">
+                  Trabajo en una empresa del sector
+                  <span class="ml-select-wrap">
+                    <select class="ml-select" id="ml-sector" name="sector" required>
+                      <option value="">elige</option>
+                      <option>Financiero</option>
+                      <option>Retail y comercio</option>
+                      <option>Logística</option>
+                      <option>Salud</option>
+                      <option>Educación</option>
+                      <option>Manufactura</option>
+                      <option>Tecnología</option>
+                      <option>Otro</option>
+                    </select>
+                    <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                  </span>.
+                </p>
+
+                <p class="mb-4">
+                  Actualmente necesitamos
+                  <span class="ml-select-wrap">
+                    <select class="ml-select" id="ml-necesidad" name="necesidad" required>
+                      <option value="">elige</option>
+                      <option>digitalizar un proceso manual</option>
+                      <option>construir una plataforma web</option>
+                      <option>desarrollar una app móvil</option>
+                      <option>integrar sistemas existentes</option>
+                      <option>mejorar nuestra infraestructura actual</option>
+                      <option>automatizar flujos de trabajo</option>
+                    </select>
+                    <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                  </span>
+                  y queremos lograr
+                  <span class="ml-select-wrap">
+                    <select class="ml-select" id="ml-objetivo" name="objetivo" required>
+                      <option value="">elige</option>
+                      <option>escalar el negocio</option>
+                      <option>reducir errores y tiempo operativo</option>
+                      <option>mejorar la experiencia del cliente</option>
+                      <option>integrar nuestras APIs y datos</option>
+                      <option>aumentar la visibilidad digital</option>
+                      <option>tener control en tiempo real</option>
+                    </select>
+                    <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                  </span>.
+                </p>
+
+                <p class="mb-4">
+                  Nos gustaría empezar
+                  <span class="ml-select-wrap">
+                    <select class="ml-select" id="ml-plazo" name="plazo" required>
+                      <option value="">elige</option>
+                      <option>lo antes posible</option>
+                      <option>en los próximos 3 meses</option>
+                      <option>en los próximos 6 meses</option>
+                      <option>solo estamos cotizando por ahora</option>
+                    </select>
+                    <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                  </span>.
+                </p>
+
+                <p class="mb-6">
+                  Algo más que quiero añadir:
+                  <input class="ml-input ml-input-muted" id="ml-extra" name="extra" placeholder="(opcional)" />
+                </p>
+              </div>
+
+              <!-- Preview -->
+              <div id="ml-preview" class="ml-preview">
+                <p class="ml-preview-label">Así quedará tu mensaje</p>
+                <p id="ml-preview-text" class="text-tagline-1"></p>
+              </div>
+
+              <button
+                type="submit"
+                id="ml-submit-btn"
+                class="btn btn-md btn-secondary hover:btn-primary dark:btn-accent dark:hover:btn-white w-full mt-6 before:content-none"
+                disabled
+              >
+                <span>Enviar mensaje</span>
+              </button>
+            </form>
+
+            <!-- Success state -->
+            <div id="ml-success" class="ml-success hidden">
+              <div class="flex flex-col items-center gap-4 py-8">
+                <div class="flex size-16 items-center justify-center rounded-full bg-accent-500/20">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent-500">
+                    <path d="M20 6 9 17l-5-5"/>
+                  </svg>
+                </div>
+                <div class="text-center">
+                  <h5 id="ml-success-msg" class="mb-1"></h5>
+                  <p class="text-secondary/60 dark:text-accent/60 text-tagline-1">
+                    Te contactaremos en las próximas 24 horas hábiles.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -89,5 +192,211 @@ import ContactoFooter from '../components/ContactoFooter.astro';
     </div>
   </section>
 
-  <ContactoFooter />
+  <ContactoFooter hideCta />
 </Layout>
+
+<style>
+  .ml-input {
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid var(--color-primary-500);
+    background: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    color: var(--color-primary-500);
+    outline: none;
+    padding: 0 4px 2px;
+    min-width: 80px;
+    transition: border-color 0.2s;
+    vertical-align: baseline;
+  }
+  .ml-input::placeholder {
+    color: var(--color-primary-300);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .ml-input:focus {
+    border-color: var(--color-primary-700);
+  }
+  .ml-input-muted {
+    border-bottom-color: var(--color-stroke-3);
+    color: var(--color-secondary);
+    opacity: 0.6;
+  }
+  .ml-input-muted::placeholder {
+    color: var(--color-stroke-3);
+  }
+  :global(.dark) .ml-input-muted {
+    border-bottom-color: var(--color-stroke-7);
+    color: var(--color-accent);
+    opacity: 0.5;
+  }
+  :global(.dark) .ml-input {
+    border-bottom-color: var(--color-accent-400);
+    color: var(--color-accent-400);
+  }
+  :global(.dark) .ml-input::placeholder {
+    color: var(--color-accent-400);
+    opacity: 0.5;
+  }
+
+  .ml-select-wrap {
+    display: inline-block;
+    position: relative;
+    vertical-align: baseline;
+  }
+  .ml-select {
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid var(--color-accent-500);
+    background: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    color: var(--color-accent-500);
+    outline: none;
+    padding: 0 22px 2px 4px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.2s;
+    vertical-align: baseline;
+  }
+  .ml-select:focus {
+    border-color: var(--color-accent-700);
+  }
+  .ml-select-arrow {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-accent-500);
+  }
+  :global(.dark) .ml-select {
+    border-bottom-color: var(--color-accent-400);
+    color: var(--color-accent-400);
+  }
+  :global(.dark) .ml-select-arrow {
+    color: var(--color-accent-400);
+  }
+
+  .ml-preview {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-background-3);
+    border-radius: 12px;
+    border-left: 3px solid var(--color-primary-500);
+    font-size: 14px;
+    line-height: 1.8;
+    display: none;
+  }
+  .ml-preview.show {
+    display: block;
+  }
+  .ml-preview-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-secondary);
+    opacity: 0.5;
+    margin-bottom: 8px;
+  }
+  :global(.dark) .ml-preview {
+    background: var(--color-background-7);
+  }
+  :global(.dark) .ml-preview-label {
+    color: var(--color-accent);
+    opacity: 0.4;
+  }
+
+  .ml-success {
+    transition: opacity 0.3s;
+  }
+</style>
+
+<script>
+  function sizeInput(el: HTMLInputElement) {
+    const span = document.createElement('span');
+    span.style.cssText = 'visibility:hidden;position:absolute;font-size:inherit;font-family:inherit;white-space:pre;padding:0 4px';
+    span.textContent = el.value || el.placeholder;
+    document.body.appendChild(span);
+    el.style.width = (span.offsetWidth + 12) + 'px';
+    document.body.removeChild(span);
+  }
+
+  function initMadLibs() {
+    const form = document.getElementById('mad-libs-form') as HTMLFormElement;
+    if (!form) return;
+
+    const inputs = form.querySelectorAll('.ml-input') as NodeListOf<HTMLInputElement>;
+    const submitBtn = document.getElementById('ml-submit-btn') as HTMLButtonElement;
+    const preview = document.getElementById('ml-preview') as HTMLDivElement;
+    const previewText = document.getElementById('ml-preview-text') as HTMLParagraphElement;
+    const successDiv = document.getElementById('ml-success') as HTMLDivElement;
+    const successMsg = document.getElementById('ml-success-msg') as HTMLHeadingElement;
+
+    inputs.forEach(sizeInput);
+
+    function vals() {
+      return {
+        nombre: (document.getElementById('ml-nombre') as HTMLInputElement).value.trim(),
+        correo: (document.getElementById('ml-correo') as HTMLInputElement).value.trim(),
+        sector: (document.getElementById('ml-sector') as HTMLSelectElement).value,
+        necesidad: (document.getElementById('ml-necesidad') as HTMLSelectElement).value,
+        objetivo: (document.getElementById('ml-objetivo') as HTMLSelectElement).value,
+        plazo: (document.getElementById('ml-plazo') as HTMLSelectElement).value,
+        extra: (document.getElementById('ml-extra') as HTMLInputElement).value.trim(),
+      };
+    }
+
+    function isComplete(v: ReturnType<typeof vals>) {
+      return v.nombre && v.correo.includes('@') && v.sector && v.necesidad && v.objetivo && v.plazo;
+    }
+
+    function buildMsg(v: ReturnType<typeof vals>) {
+      let msg = `Hola, me llamo ${v.nombre} y mi correo es ${v.correo}. Trabajo en una empresa del sector ${v.sector}. Actualmente necesitamos ${v.necesidad} y queremos lograr ${v.objetivo}. Nos gustaría empezar ${v.plazo}.`;
+      if (v.extra) msg += ` ${v.extra}`;
+      return msg;
+    }
+
+    function updatePreview() {
+      const v = vals();
+      submitBtn.toggleAttribute('disabled', !isComplete(v));
+      if (isComplete(v)) {
+        previewText.textContent = buildMsg(v);
+        preview.classList.add('show');
+      } else {
+        preview.classList.remove('show');
+      }
+    }
+
+    inputs.forEach(el => {
+      el.addEventListener('input', () => {
+        sizeInput(el);
+        updatePreview();
+      });
+    });
+
+    form.querySelectorAll('.ml-select').forEach(sel => {
+      sel.addEventListener('change', updatePreview);
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = vals();
+      if (!isComplete(v)) return;
+
+      form.style.display = 'none';
+      successMsg.textContent = `¡Gracias, ${v.nombre}! Recibimos tu mensaje.`;
+      successDiv.classList.remove('hidden');
+
+      // TODO: integrate with /api/contacto
+    });
+
+    inputs.forEach(sizeInput);
+  }
+
+  document.addEventListener('DOMContentLoaded', initMadLibs);
+</script>
