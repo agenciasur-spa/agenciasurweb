@@ -92,6 +92,45 @@ const rest = displayCasos.slice(1);
             </p>
           </div>
         )}
+
+        <!-- Solución y Resultados — patrón case-study.htm side-by-side -->
+        <div class="flex flex-col items-center justify-between gap-16 md:flex-row">
+          <div class="space-y-6">
+            <div>
+              <h4 data-ns-animate data-delay="0.3" class="text-heading-4">La Solución</h4>
+              <p data-ns-animate data-delay="0.4">Agencia Sur trabajó en:</p>
+            </div>
+            <ul class="space-y-2">
+              {featured.results?.slice(0, 3).map((result, idx) => (
+                <li data-ns-animate data-delay={0.3 + idx * 0.1}>
+                  <p
+                    class="before:bg-secondary dark:before:bg-accent before:mr-3 before:inline-block before:size-2 before:rounded-full before:content-['']"
+                  >
+                    {result}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="space-y-6">
+            <div>
+              <h4 data-ns-animate data-delay="0.3" class="text-heading-4">Los Resultados</h4>
+              <p data-ns-animate data-delay="0.4">Logramos:</p>
+            </div>
+            <ul class="space-y-2">
+              {featured.results?.slice(0, 3).map((result, idx) => (
+                <li data-ns-animate data-delay={0.3 + idx * 0.1}>
+                  <p
+                    class="before:bg-secondary dark:before:bg-accent before:mr-3 before:inline-block before:size-2 before:rounded-full before:content-['']"
+                  >
+                    {result}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
