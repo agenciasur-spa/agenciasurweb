@@ -172,6 +172,12 @@ const { hideCta = false } = Astro.props;
 </section>
 )}
 <footer class="bg-secondary dark:bg-background-8 relative overflow-hidden">
+  <!-- right gradient (theme: ns-img-493.png) -->
+  <div class="footer-gradient-right pointer-events-none absolute top-[-17%] right-[-64%] size-[550px] rotate-[-30deg] select-none max-[376px]:right-[-83%] md:top-[-25%] md:right-[-30%] lg:right-[-19%] xl:top-[-32%] xl:right-[-9%]"></div>
+
+  <!-- left gradient (theme: ns-img-494.png) -->
+  <div class="footer-gradient-left pointer-events-none absolute bottom-[-33%] left-[-83%] size-[728px] select-none min-[2559px]:!left-[-16%] md:bottom-[-60%] md:left-[-52%] md:size-[870px] lg:left-[-38%] xl:bottom-[-77%] xl:left-[-30%] 2xl:left-[-22%]"></div>
+
   <div class="main-container px-5">
     <div class="grid grid-cols-12 justify-between gap-x-0 gap-y-16 pb-12 pt-16 xl:pt-[90px]">
       <!-- Brand -->
@@ -248,6 +254,14 @@ const { hideCta = false } = Astro.props;
 </footer>
 
 <style>
+  /* Decorative gradient orbs from Nexsas theme */
+  .footer-gradient-right {
+    background: radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  }
+  .footer-gradient-left {
+    background: radial-gradient(ellipse at 50% 100%, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+  }
+
   /* Mad-libs inline inputs */
   .ml-input {
     display: inline-block;
