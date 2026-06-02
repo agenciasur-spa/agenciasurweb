@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactoFooter from '../components/ContactoFooter.astro';
-import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket } from '@lucide/astro';
+import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket, CheckCircle } from '@lucide/astro';
 
 const procesoSteps = [
   {
@@ -49,48 +49,145 @@ const tecnologias = [
   { name: 'AWS / Vercel', category: 'Infraestructura' },
   { name: 'Docker / Kubernetes', category: 'DevOps' },
 ];
+
+const diferenciadores = [
+  'Clarity Over Clutter — simplificamos lo complejo sin perder funcionalidad.',
+  'People Before Features — el usuario opera, no el manual.',
+  'Security as a Standard — seguridad desde el diseño, no como afterthought.',
+];
 ---
 
 <Layout title="Servicios | Agencia Sur">
 
   <!-- Hero -->
-  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+  <section class="overflow-hidden pt-32 pb-[100px] sm:pt-36 md:pt-42 xl:pt-[180px]">
     <div class="main-container">
-      <div class="text-center space-y-5 mb-[70px]">
-        <span data-ns-animate data-delay="0.1" class="badge badge-green">Nuestro Método</span>
-        <div class="space-y-3">
-          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto">
-            Cómo trabajamos
-          </h2>
-          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
-            No vendemos horas. Entregamos soluciones que resuelven problemas reales.
-            Nuestro proceso existe para garantizar que cada proyecto tenga impacto medible.
-          </p>
-        </div>
+      <div class="mb-14 space-y-3 text-center">
+        <span data-ns-animate data-delay="0.1" class="badge badge-green mb-5">Nuestro Método</span>
+        <h2 data-ns-animate data-delay="0.2" class="mx-auto max-w-[742px]">
+          Cómo trabajamos
+        </h2>
+        <p data-ns-animate data-delay="0.3" class="mx-auto max-w-[700px]">
+          No vendemos horas. Entregamos soluciones que resuelven problemas reales.
+          Nuestro proceso existe para garantizar que cada proyecto tenga impacto medible.
+        </p>
       </div>
 
       <!-- Process steps grid -->
-      <div class="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">
+      <div class="grid grid-cols-12 max-md:gap-y-8 md:gap-8">
         {procesoSteps.map((item, i) => (
           <div data-ns-animate data-delay={0.4 + i * 0.1} class:list={[
-            'col-span-12 md:col-span-6',
-            i < 3 ? 'xl:col-span-4' : 'xl:col-span-6'
+            'bg-background-2 dark:bg-background-5 col-span-12 space-y-6 rounded-[20px] p-6',
+            i < 3 ? 'md:col-span-6 lg:col-span-4' : 'md:col-span-6'
           ]}>
-            <div class="px-6 py-8 rounded-[20px] bg-background-3 dark:bg-background-7 space-y-5 hover:translate-y-[-10px] transition-transform duration-500 ease-in-out">
-              <div class="flex items-center gap-4">
-                <div class="flex size-12 items-center justify-center rounded-2xl bg-primary-500/10 dark:bg-accent/10">
-                  <item.icon class="size-6 text-primary-500 dark:text-accent" />
-                </div>
+            <figure class="w-full max-w-[360px]">
+              <img src={`https://picsum.photos/360/240?random=${200 + i}`} alt={item.title} class="h-full w-full rounded-2xl object-cover" loading="lazy" />
+            </figure>
+            <div class="space-y-1">
+              <div class="flex items-center gap-3">
                 <span class="text-tagline-2 text-primary-500 font-medium">{item.step}</span>
-              </div>
-              <div class="space-y-2">
                 <h3 class="text-heading-5">{item.title}</h3>
-                <p>{item.description}</p>
               </div>
+              <p>{item.description}</p>
               <p class="text-tagline-2 text-primary-500 font-medium">{item.detail}</p>
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Diferenciadores — estilo features-v2.htm -->
+  <section class="pt-[100px] pb-28 md:pb-36 lg:pb-44 xl:pb-[200px]">
+    <div class="main-container flex flex-col-reverse lg:flex-row items-center gap-y-12 gap-x-24 overflow-hidden">
+      <div class="md:flex-1 relative flex justify-start w-full lg:w-auto">
+        <img data-ns-animate data-delay="0.2" src="https://picsum.photos/450/520?random=210" alt="Metodología Agencia Sur" class="w-full max-w-[450px] h-auto rounded-2xl" />
+        <div data-ns-animate data-delay="0.3" data-direction="right" data-offset="90"
+          class="absolute top-[49%] right-[15%] bg-ns-yellow p-4 rounded-2xl text-heading-4 max-w-[219px] max-h-[70px] flex items-center justify-center shadow-5">
+          <CheckCircle class="size-5 text-secondary mr-2" />
+          <span class="text-heading-6 font-medium text-secondary">100% a medida</span>
+        </div>
+        <figure data-ns-animate data-delay="0.5" data-direction="right" data-offset="100"
+          class="rounded-xl max-w-[186px] w-full overflow-hidden shadow-10 absolute bottom-[15%] right-[17%]">
+          <img src="https://picsum.photos/186/140?random=211" alt="Proceso validado" class="size-full object-cover" />
+        </figure>
+      </div>
+      <div class="md:flex-1 flex flex-col lg:items-start lg:text-left">
+        <h2 data-ns-animate data-delay="0.2" class="mb-3">Diseñado para entregar resultados tangibles</h2>
+        <p data-ns-animate data-delay="0.3" class="mb-6">
+          Cada proyecto comienza con un diagnóstico real y termina con una solución operativa.
+          No entregamos documentos — entregamos software que funciona.
+        </p>
+        <ul class="mb-10 md:mb-14 space-y-2 md:space-y-3.5">
+          {diferenciadores.map((d, i) => (
+            <li data-ns-animate data-delay={0.4 + i * 0.1} class="text-tagline-1 font-medium flex items-center gap-3 dark:text-accent">
+              <span class="bg-secondary dark:bg-accent/10 rounded-full size-[18px] flex items-center justify-center">
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none" class="shrink-0">
+                  <path d="M4.31661 7.00605L9.74905 1.67144C10.0836 1.3459 10.0836 0.819702 9.74905 0.494158C9.41446 0.168614 8.87363 0.168614 8.53904 0.494158L3.7116 5.24012L1.46096 3.03807C1.12636 2.71253 0.585538 2.71253 0.250945 3.03807C-0.0836483 3.36362 -0.0836483 3.88982 0.250945 4.21536L3.1066 7.00605C3.27347 7.16841 3.49253 7.25 3.7116 7.25C3.93067 7.25 4.14974 7.16841 4.31661 7.00605Z" fill="white"/>
+                </svg>
+              </span>
+              {d}
+            </li>
+          ))}
+        </ul>
+        <div data-ns-animate data-delay="0.7">
+          <a href="/contacto" class="btn btn-secondary hover:btn-white dark:btn-white-dark btn-xl block md:inline-block w-full md:w-auto mx-auto">
+            <span>Agendar Diagnóstico</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feature dark card — estilo our-services-03/feature.htm -->
+  <section class="pb-14 pt-14 md:pb-16 md:pt-16 lg:pb-[88px] lg:pt-[88px] xl:pb-[100px] xl:pt-[100px]">
+    <div class="main-container" data-ns-animate data-delay="0.2">
+      <div class="relative z-10">
+        <div class="absolute top-0 left-0 right-0 bottom-0 -z-10 rounded-[20px] overflow-hidden">
+          <img src="https://picsum.photos/1290/500?random=212" alt="Fondo servicios" class="w-full h-full object-cover opacity-60" />
+        </div>
+        <div class="py-14 lg:px-11 px-6 grid max-lg:grid-cols-1 grid-cols-2 max-sm:gap-10 gap-5">
+          <div class="max-w-[500px]">
+            <h2 class="text-accent mb-8 sm:text-heading-5 text-heading-6">
+              No forzamos una tecnología si no encaja. Adaptamos el stack a tu infraestructura existente.
+            </h2>
+            <a href="/contacto" class="btn btn-md dark:btn-dark dark:hover:btn-white hover:btn-primary border-0 btn-white">
+              <span>Ver Soluciones</span>
+            </a>
+          </div>
+          <div>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-2">
+                <svg class="size-5 shrink-0" viewBox="0 0 20 20" fill="none">
+                  <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
+                  <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
+                </svg>
+                <span class="text-accent">Consultoría TI y arquitectura de sistemas</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="size-5 shrink-0" viewBox="0 0 20 20" fill="none">
+                  <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
+                  <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
+                </svg>
+                <span class="text-accent">Automatización de procesos críticos</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="size-5 shrink-0" viewBox="0 0 20 20" fill="none">
+                  <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
+                  <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
+                </svg>
+                <span class="text-accent">Desarrollo web y mobile a medida</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg class="size-5 shrink-0" viewBox="0 0 20 20" fill="none">
+                  <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
+                  <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
+                </svg>
+                <span class="text-accent">Infraestructura cloud y DevOps</span>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -117,6 +214,85 @@ const tecnologias = [
             </div>
           </div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews / Testimonios inline — estilo web-hosting/reviews.htm -->
+  <section class="pb-[80px] lg:pb-[100px] overflow-hidden">
+    <div class="main-container">
+      <div class="mx-auto mb-10 max-w-[804px] space-y-5 text-center md:mb-8 lg:mb-14">
+        <span data-ns-animate data-delay="0.1" class="badge badge-green">Reviews</span>
+        <div class="space-y-3">
+          <h2 data-ns-animate data-delay="0.2">Lo que dicen nuestros clientes</h2>
+          <p data-ns-animate data-delay="0.3">
+            Trabajamos con empresas que necesitan resultados reales, no presentaciones. Esto es lo que nos cuentan.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div data-ns-animate data-delay="0.4" class="cards-marquee-container">
+      <div class="flex items-center gap-8">
+        <div class="bg-background-1/90 hover:shadow-1 ml-8 w-full max-w-[358px] min-w-[358px] shrink-0 rounded-[20px] p-8 transition-colors duration-300 ease-linear hover:bg-white dark:bg-background-6/90 dark:hover:bg-background-6">
+          <p class="line-clamp-4 text-wrap">
+            "Agencia Sur digitalizó nuestro proceso de compras en tiempo récord. El sistema funciona impecable y el equipo entendió nuestra operación desde el primer día."
+          </p>
+          <div class="bg-stroke-4 my-8 h-px w-full"></div>
+          <div class="flex items-center gap-3">
+            <figure class="size-12 overflow-hidden rounded-full">
+              <img src="https://picsum.photos/48/48?random=301" alt="avatar" class="h-full w-full bg-linear-[156deg,#83E7EE_2.92%,#C6F56F_91%]" />
+            </figure>
+            <div>
+              <h3 class="text-tagline-1 text-secondary font-medium dark:text-accent">Juan Pérez</h3>
+              <p class="text-tagline-2 text-secondary/60 font-normal dark:text-accent/60">Gerente de Operaciones, BancoEstado</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-background-1/90 hover:shadow-1 w-full max-w-[358px] min-w-[358px] shrink-0 rounded-[20px] p-8 transition-colors duration-300 ease-linear hover:bg-white dark:bg-background-6/90 dark:hover:bg-background-6">
+          <p class="line-clamp-4 text-wrap">
+            "La gestión de personal transitorio pasó de ser un dolor de cabeza a un proceso fluido. Todo centralizado, trazable y sin papel."
+          </p>
+          <div class="bg-stroke-4 my-8 h-px w-full"></div>
+          <div class="flex items-center gap-3">
+            <figure class="size-12 overflow-hidden rounded-full">
+              <img src="https://picsum.photos/48/48?random=302" alt="avatar" class="h-full w-full bg-linear-[156deg,#83E7EE_2.92%,#C6F56F_91%]" />
+            </figure>
+            <div>
+              <h3 class="text-tagline-1 text-secondary font-medium dark:text-accent">María González</h3>
+              <p class="text-tagline-2 text-secondary/60 font-normal dark:text-accent/60">Directora de RRHH, ServiEstado</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-background-1/90 hover:shadow-1 w-full max-w-[358px] min-w-[358px] shrink-0 rounded-[20px] p-8 transition-colors duration-300 ease-linear hover:bg-white dark:bg-background-6/90 dark:hover:bg-background-6">
+          <p class="line-clamp-4 text-wrap">
+            "Implementaron nuestra mesa de ayuda con IA en menos de 3 meses. La autoatención resuelve el 60% de los tickets sin intervención humana."
+          </p>
+          <div class="bg-stroke-4 my-8 h-px w-full"></div>
+          <div class="flex items-center gap-3">
+            <figure class="size-12 overflow-hidden rounded-full">
+              <img src="https://picsum.photos/48/48?random=303" alt="avatar" class="h-full w-full bg-linear-[156deg,#83E7EE_2.92%,#C6F56F_91%]" />
+            </figure>
+            <div>
+              <h3 class="text-tagline-1 text-secondary font-medium dark:text-accent">Carlos Ruiz</h3>
+              <p class="text-tagline-2 text-secondary/60 font-normal dark:text-accent/60">CTO, FinTech Regional</p>
+            </div>
+          </div>
+        </div>
+        <div class="bg-background-1/90 hover:shadow-1 w-full max-w-[358px] min-w-[358px] shrink-0 rounded-[20px] p-8 transition-colors duration-300 ease-linear hover:bg-white dark:bg-background-6/90 dark:hover:bg-background-6">
+          <p class="line-clamp-4 text-wrap">
+            "Su metodología de levantamiento de procesos nos permitió descubrir cuellos de botella que ni sabíamos que teníamos. El ROI fue inmediato."
+          </p>
+          <div class="bg-stroke-4 my-8 h-px w-full"></div>
+          <div class="flex items-center gap-3">
+            <figure class="size-12 overflow-hidden rounded-full">
+              <img src="https://picsum.photos/48/48?random=304" alt="avatar" class="h-full w-full bg-linear-[156deg,#83E7EE_2.92%,#C6F56F_91%]" />
+            </figure>
+            <div>
+              <h3 class="text-tagline-1 text-secondary font-medium dark:text-accent">Ana Silva</h3>
+              <p class="text-tagline-2 text-secondary/60 font-normal dark:text-accent/60">COO, RetailCorp</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
