@@ -34,7 +34,10 @@ const { hideCta = false } = Astro.props;
      >
     
         <div class="space-y-2">
-          <h6 class="max-sm:text-heading-6 mb-4">Cuentanos qué necesitás. Te ayudamos a definir el camino desde la idea hasta la implementación.</h6>
+            <h6 class="max-sm:text-heading-6 mb-4">Cuentanos qué necesitás. Te ayudamos a definir el camino desde la idea hasta la implementación.</h6>
+            
+            <!-- Anti-spam field (hidden) -->
+            <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
           
             <div class="ml-text text-heading-5 md:text-heading-4 leading-[1.6] font-normal text-primary dark:text-accent">
               <p class="mb-4">
@@ -319,7 +322,8 @@ const { hideCta = false } = Astro.props;
     }
 
     function isComplete(v: ReturnType<typeof vals>) {
-      return v.nombre && v.correo.includes('@') && v.sector && v.necesidad && v.objetivo && v.plazo;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return v.nombre && emailRegex.test(v.correo) && v.sector && v.necesidad && v.objetivo && v.plazo;
     }
 
     function buildMsg(v: ReturnType<typeof vals>) {
@@ -353,16 +357,67 @@ const { hideCta = false } = Astro.props;
     });
 
     // Submit
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const v = vals();
       if (!isComplete(v)) return;
 
-      form.style.display = 'none';
-      successMsg.textContent = `¡Gracias, ${v.nombre}! Recibimos tu mensaje.`;
-      successDiv.classList.remove('hidden');
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Enviando...</span>';
 
-      // TODO: integrate with /api/contacto
+      try {
+        const formData = new FormData();
+        formData.append('nombre', v.nombre);
+        formData.append('email', v.correo);
+        formData.append('sector', v.sector);
+        formData.append('necesidad', v.necesidad);
+        formData.append('objetivo', v.objetivo);
+        formData.append('plazo', v.plazo);
+        if (v.extra) formData.append('extra', v.extra);
+
+        const response = await fetch('/api/contacto', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Error al enviar el mensaje');
+        }
+
+        // Success
+        form.style.display = 'none';
+        successMsg.textContent = `¡Gracias, ${v.nombre}! Te contactaremos en las próximas 24 horas.`;
+        successDiv.classList.remove('hidden');
+
+        // Reset form after showing success
+        setTimeout(() => {
+          form.reset();
+          form.style.display = 'block';
+          successDiv.classList.add('hidden');
+          submitBtn.disabled = true;
+          updatePreview();
+          inputs.forEach(sizeInput);
+        }, 5000);
+
+      } catch (error) {
+        console.error('Form submission error:', error);
+        
+        // Show error state
+        successDiv.querySelector('.flex')?.classList.add('hidden');
+        const errorMsg = successMsg.nextElementSibling;
+        if (errorMsg) {
+          errorMsg.textContent = 'Error: ' + (error.message || 'No se pudo enviar el mensaje. Intenta nuevamente.');
+          errorMsg.className = 'text-secondary/60 dark:text-accent/60 text-tagline-1 text-red-600';
+        }
+        successDiv.classList.remove('hidden');
+        
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<span>Enviar mensaje</span>';
+      }
     });
 
     // Initial sizing
