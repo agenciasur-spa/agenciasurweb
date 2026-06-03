@@ -1,187 +1,373 @@
 ---
-// ContactForm.astro — Formulario de contacto con Turnstile anti-spam
+// ContactForm — Nexsas contact layout with Mad-libs form
 interface Props {
-  variant?: 'compact' | 'full';
+  hideCta?: boolean;
 }
 
-const { variant = 'compact' } = Astro.props;
-const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+const { hideCta = false } = Astro.props;
 ---
 
-<form id="contact-form" class="space-y-4" data-variant={variant}>
-  {variant === 'full' && (
-    <div class="grid md:grid-cols-2 gap-4">
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-2">Nombre *</label>
-        <input
-          type="text"
-          name="nombre"
-          required
-          placeholder="Tu nombre"
-          class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
-        />
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-2">Empresa</label>
-        <input
-          type="text"
-          name="empresa"
-          placeholder="Nombre de tu empresa"
-          class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
-        />
-      </div>
-    </div>
-  )}
+{!hideCta && (
 
-  {variant === 'full' ? (
-    <div class="grid md:grid-cols-2 gap-4">
+<section
+  class="pt-16 md:pt-20 lg:pt-[90px] xl:pt-[100px] pb-16 md:pb-20 lg:pb-[90px] xl:pb-[100px] bg-[url('/images/ns-img-169.png')] bg-no-repeat bg-cover bg-top"
+>
+  <div class="main-container">
+    <div class="text-center space-y-5 max-w-[1024px] mx-auto mb-14">
+      <span data-ns-animate data-delay="0.2" class="badge badge-green-v2 mb-5">Contacto</span>
       <div>
-        <label class="block text-sm font-medium text-slate-700 mb-2">Email *</label>
-        <input
-          type="email"
-          name="email"
-          required
-          placeholder="tu@empresa.com"
-          class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
-        />
-      </div>
-      <div>
-        <label class="block text-sm font-medium text-slate-700 mb-2">Teléfono</label>
-        <input
-          type="tel"
-          name="telefono"
-          placeholder="+56 9 1234 5678"
-          class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
-        />
+        <h2 data-ns-animate data-delay="0.3" class="mb-3 fw-300">
+          ¿Tienes un proyecto?
+        </h2>
+        
       </div>
     </div>
-  ) : (
-    <div class="grid md:grid-cols-2 gap-4">
-      <input
-        type="text"
-        name="nombre"
-        required
-        placeholder="Nombre"
-        class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
-      />
-      <input
-        type="email"
-        name="email"
-        required
-        placeholder="Email"
-        class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
-      />
-    </div>
-  )}
+    <!-- form -->
+   <form id="mad-libs-form" class="mad-libs-form"></form>  
+    <div
+      class="grid grid-cols-12 space-y-8 md:space-y-0 md:gap-8 mb-10 lg:mb-18 max-w-[1010px] mx-auto"
+    >
+      <div
+        data-ns-animate
+        data-delay="0.5"
+        class="col-span-12 md:col-span-12 lg:col-span-12 p-8 rounded-[20px] bg-white dark:bg-background-6 space-y-6 sm:min-h-[288px]"
+     >
+    
+        <div class="space-y-2">
+          <h6 class="max-sm:text-heading-6 mb-4">Cuentanos qué necesitás. Te ayudamos a definir el camino desde la idea hasta la implementación.</h6>
+          
+            <div class="ml-text text-heading-5 md:text-heading-4 leading-[1.6] font-normal text-primary dark:text-accent">
+              <p class="mb-4">
+                Hola, me llamo
+                <input class="ml-input" id="ml-nombre" name="nombre" placeholder="tu nombre" required />
+                y mi correo es
+                <input class="ml-input" id="ml-correo" name="correo" type="email" placeholder="tu@empresa.com" required />.
+              </p>
 
-  {variant === 'full' && (
-    <div>
-      <label class="block text-sm font-medium text-slate-700 mb-2">¿Qué necesitas? *</label>
-      <select
-        name="tipo_proyecto"
-        required
-        class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none bg-white"
-      >
-        <option value="" disabled selected>Selecciona una opción</option>
-        <option value="levantamiento">Levantamiento de procesos</option>
-        <option value="desarrollo">Desarrollo web/mobile</option>
-        <option value="sistema">Implementación de sistema propio</option>
-        <option value="integracion">Integración de sistemas</option>
-        <option value="otro">Otro</option>
-      </select>
-    </div>
-  )}
+              <p class="mb-4">
+                Trabajo en una empresa del sector
+                <span class="ml-select-wrap">
+                  <select class="ml-select" id="ml-sector" name="sector" required>
+                    <option value="">elige</option>
+                    <option>Financiero</option>
+                    <option>Retail y comercio</option>
+                    <option>Logística</option>
+                    <option>Salud</option>
+                    <option>Educación</option>
+                    <option>Manufactura</option>
+                    <option>Tecnología</option>
+                    <option>Otro</option>
+                  </select>
+                  <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </span>.
+              </p>
 
-  <div>
-    {variant === 'full' && <label class="block text-sm font-medium text-slate-700 mb-2">Mensaje *</label>}
-    <textarea
-      name="mensaje"
-      required
-      rows={variant === 'full' ? 6 : 4}
-      placeholder={variant === 'full' ? 'Cuéntanos sobre tu proceso actual, los desafíos que enfrentas y qué resultado esperas...' : 'Cuéntanos de tu proceso actual'}
-      class="w-full p-4 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
-    ></textarea>
+              <p class="mb-4">
+                Actualmente necesitamos
+                <span class="ml-select-wrap">
+                  <select class="ml-select" id="ml-necesidad" name="necesidad" required>
+                    <option value="">elige</option>
+                    <option>digitalizar un proceso manual</option>
+                    <option>construir una plataforma web</option>
+                    <option>desarrollar una app móvil</option>
+                    <option>integrar sistemas existentes</option>
+                    <option>mejorar nuestra infraestructura actual</option>
+                    <option>automatizar flujos de trabajo</option>
+                  </select>
+                  <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+                y queremos lograr
+                <span class="ml-select-wrap">
+                  <select class="ml-select" id="ml-objetivo" name="objetivo" required>
+                    <option value="">elige</option>
+                    <option>escalar el negocio</option>
+                    <option>reducir errores y tiempo operativo</option>
+                    <option>mejorar la experiencia del cliente</option>
+                    <option>integrar nuestras APIs y datos</option>
+                    <option>aumentar la visibilidad digital</option>
+                    <option>tener control en tiempo real</option>
+                  </select>
+                  <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </span>.
+              </p>
+
+              <p class="mb-4">
+                Nos gustaría empezar
+                <span class="ml-select-wrap">
+                  <select class="ml-select" id="ml-plazo" name="plazo" required>
+                    <option value="">elige</option>
+                    <option>lo antes posible</option>
+                    <option>en los próximos 3 meses</option>
+                    <option>en los próximos 6 meses</option>
+                    <option>solo estamos cotizando por ahora</option>
+                  </select>
+                  <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </span>.
+              </p>
+
+              <p class="mb-6">
+                Algo más que quiero añadir:
+                <input class="ml-input ml-input-muted" id="ml-extra" name="extra" placeholder="(opcional)" />
+              </p>
+            </div>
+
+            <!-- Preview -->
+            <div id="ml-preview" class="ml-preview">
+              <p class="ml-preview-label">Así quedará tu mensaje</p>
+              <p id="ml-preview-text" class="text-tagline-1"></p>
+            </div>
+          
+        </div>
+      </div>
+    
+    </div>
+    
+    <div data-ns-animate data-delay="0.7" class="flex items-center justify-center">
+      
+        <button type="submit" id="ml-submit-btn" class="btn btn-secondary hover:btn-green dark:btn-transparent dark:border-primary-50 btn-md w-[85%] md:w-auto mx-auto" disabled>
+                    <span>Enviar mensaje</span>
+        </button>
+
+    </div>  
+
+
+  <!-- Success state -->
+          <div id="ml-success" class="ml-success hidden">
+            <div class="flex flex-col items-center gap-4 py-8">
+              <div class="flex size-16 items-center justify-center rounded-full bg-accent-500/20">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent-500">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+              </div>
+              <div class="text-center">
+                <h5 id="ml-success-msg" class="mb-1"></h5>
+                <p class="text-secondary/60 dark:text-accent/60 text-tagline-1">
+                  Te contactaremos en las próximas 24 horas hábiles.
+                </p>
+              </div>
+            </div>
+          </div>
+
   </div>
 
-  <!-- Turnstile widget -->
-  {turnstileSiteKey && (
-    <div
-      class="cf-turnstile"
-      data-sitekey={turnstileSiteKey}
-      data-theme="light"
-      data-size="normal"
-    ></div>
-  )}
 
-  <button
-    type="submit"
-    id="submit-btn"
-    class="w-full bg-blue-600 text-white font-bold py-4 rounded-xl hover:bg-blue-700 transition text-lg disabled:opacity-50 disabled:cursor-not-allowed"
-  >
-    Enviar Mensaje
-  </button>
 
-  <div id="form-status" class="hidden text-center p-4 rounded-xl"></div>
-</form>
+</form>  
+</section>
 
-<!-- Turnstile script -->
-{turnstileSiteKey && (
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
 )}
 
+
+<style>
+  /* Mad-libs inline inputs */
+  .ml-input {
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid var(--color-primary-500);
+    background: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    color: var(--color-primary-500);
+    outline: none;
+    padding: 0 4px 2px;
+    min-width: 80px;
+    transition: border-color 0.2s;
+    vertical-align: baseline;
+  }
+  .ml-input::placeholder {
+    color: var(--color-primary-300);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .ml-input:focus {
+    border-color: var(--color-primary-700);
+  }
+  .ml-input-muted {
+    border-bottom-color: var(--color-stroke-3);
+    color: var(--color-secondary);
+    opacity: 0.6;
+  }
+  .ml-input-muted::placeholder {
+    color: var(--color-stroke-3);
+  }
+  :global(.dark) .ml-input-muted {
+    border-bottom-color: var(--color-stroke-7);
+    color: var(--color-accent);
+    opacity: 0.5;
+  }
+  :global(.dark) .ml-input {
+    border-bottom-color: var(--color-accent-400);
+    color: var(--color-accent-400);
+  }
+  :global(.dark) .ml-input::placeholder {
+    color: var(--color-accent-400);
+    opacity: 0.5;
+  }
+
+  /* Inline selects */
+  .ml-select-wrap {
+    display: inline-block;
+    position: relative;
+    vertical-align: baseline;
+  }
+  .ml-select {
+    display: inline-block;
+    border: none;
+    border-bottom: 2px solid var(--color-accent-500);
+    background: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    color: var(--color-accent-500);
+    outline: none;
+    padding: 0 22px 2px 4px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.2s;
+    vertical-align: baseline;
+  }
+  .ml-select:focus {
+    border-color: var(--color-accent-700);
+  }
+  .ml-select-arrow {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-accent-500);
+  }
+  :global(.dark) .ml-select {
+    border-bottom-color: var(--color-accent-400);
+    color: var(--color-accent-400);
+  }
+  :global(.dark) .ml-select-arrow {
+    color: var(--color-accent-400);
+  }
+
+  /* Preview */
+  .ml-preview {
+    margin-top: 1.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-background-3);
+    border-radius: 12px;
+    border-left: 3px solid var(--color-primary-500);
+    font-size: 14px;
+    line-height: 1.8;
+    display: none;
+  }
+  .ml-preview.show {
+    display: block;
+  }
+  .ml-preview-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-secondary);
+    opacity: 0.5;
+    margin-bottom: 8px;
+  }
+  :global(.dark) .ml-preview {
+    background: var(--color-background-7);
+  }
+  :global(.dark) .ml-preview-label {
+    color: var(--color-accent);
+    opacity: 0.4;
+  }
+
+  /* Success */
+  .ml-success {
+    transition: opacity 0.3s;
+  }
+</style>
+
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-  const statusDiv = document.getElementById('form-status') as HTMLDivElement;
+  function sizeInput(el: HTMLInputElement) {
+    const span = document.createElement('span');
+    span.style.cssText = 'visibility:hidden;position:absolute;font-size:inherit;font-family:inherit;white-space:pre;padding:0 4px';
+    span.textContent = el.value || el.placeholder;
+    document.body.appendChild(span);
+    el.style.width = (span.offsetWidth + 12) + 'px';
+    document.body.removeChild(span);
+  }
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
+  function initMadLibs() {
+    const form = document.getElementById('mad-libs-form') as HTMLFormElement;
+    if (!form) return;
 
-    // Get Turnstile token if widget is present
-    const turnstileInput = form.querySelector('input[name="cf-turnstile-response"]') as HTMLInputElement | null;
-    const turnstileToken = turnstileInput?.value;
+    const inputs = form.querySelectorAll('.ml-input') as NodeListOf<HTMLInputElement>;
+    const submitBtn = document.getElementById('ml-submit-btn') as HTMLButtonElement;
+    const preview = document.getElementById('ml-preview') as HTMLDivElement;
+    const previewText = document.getElementById('ml-preview-text') as HTMLParagraphElement;
+    const successDiv = document.getElementById('ml-success') as HTMLDivElement;
+    const successMsg = document.getElementById('ml-success-msg') as HTMLHeadingElement;
 
-    if (!turnstileToken && form.querySelector('.cf-turnstile')) {
-      statusDiv.className = 'text-center p-4 rounded-xl bg-yellow-50 text-yellow-700 border border-yellow-200';
-      statusDiv.textContent = 'Por favor completa la verificación anti-spam.';
-      statusDiv.classList.remove('hidden');
-      return;
+    inputs.forEach(sizeInput);
+
+    function vals() {
+      return {
+        nombre: (document.getElementById('ml-nombre') as HTMLInputElement).value.trim(),
+        correo: (document.getElementById('ml-correo') as HTMLInputElement).value.trim(),
+        sector: (document.getElementById('ml-sector') as HTMLSelectElement).value,
+        necesidad: (document.getElementById('ml-necesidad') as HTMLSelectElement).value,
+        objetivo: (document.getElementById('ml-objetivo') as HTMLSelectElement).value,
+        plazo: (document.getElementById('ml-plazo') as HTMLSelectElement).value,
+        extra: (document.getElementById('ml-extra') as HTMLInputElement).value.trim(),
+      };
     }
 
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Enviando...';
-    statusDiv.classList.add('hidden');
+    function isComplete(v: ReturnType<typeof vals>) {
+      return v.nombre && v.correo.includes('@') && v.sector && v.necesidad && v.objetivo && v.plazo;
+    }
 
-    try {
-      const formData = new FormData(form);
+    function buildMsg(v: ReturnType<typeof vals>) {
+      let msg = `Hola, me llamo ${v.nombre} y mi correo es ${v.correo}. Trabajo en una empresa del sector ${v.sector}. Actualmente necesitamos ${v.necesidad} y queremos lograr ${v.objetivo}. Nos gustaría empezar ${v.plazo}.`;
+      if (v.extra) msg += ` ${v.extra}`;
+      return msg;
+    }
 
-      const response = await fetch('/api/contacto', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        statusDiv.className = 'text-center p-4 rounded-xl bg-green-50 text-green-700 border border-green-200';
-        statusDiv.textContent = data.message || '¡Mensaje enviado! Te contactaremos pronto.';
-        form.reset();
-        // Reset Turnstile widget after successful submit
-        if (window.turnstile) {
-          const widget = form.querySelector('.cf-turnstile');
-          if (widget) window.turnstile.reset(widget);
-        }
+    function updatePreview() {
+      const v = vals();
+      submitBtn.toggleAttribute('disabled', !isComplete(v));
+      if (isComplete(v)) {
+        previewText.textContent = buildMsg(v);
+        preview.classList.add('show');
       } else {
-        statusDiv.className = 'text-center p-4 rounded-xl bg-red-50 text-red-700 border border-red-200';
-        statusDiv.textContent = data.error || 'Error al enviar. Intenta nuevamente.';
+        preview.classList.remove('show');
       }
-    } catch {
-      statusDiv.className = 'text-center p-4 rounded-xl bg-red-50 text-red-700 border border-red-200';
-      statusDiv.textContent = 'Error de conexión. Verifica tu internet e intenta nuevamente.';
-    } finally {
-      statusDiv.classList.remove('hidden');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Enviar Mensaje';
     }
-  });
+
+    // Live resize on input
+    inputs.forEach(el => {
+      el.addEventListener('input', () => {
+        sizeInput(el);
+        updatePreview();
+      });
+    });
+
+    // Update on select change
+    form.querySelectorAll('.ml-select').forEach(sel => {
+      sel.addEventListener('change', updatePreview);
+    });
+
+    // Submit
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const v = vals();
+      if (!isComplete(v)) return;
+
+      form.style.display = 'none';
+      successMsg.textContent = `¡Gracias, ${v.nombre}! Recibimos tu mensaje.`;
+      successDiv.classList.remove('hidden');
+
+      // TODO: integrate with /api/contacto
+    });
+
+    // Initial sizing
+    inputs.forEach(sizeInput);
+  }
+
+  document.addEventListener('DOMContentLoaded', initMadLibs);
 </script>
