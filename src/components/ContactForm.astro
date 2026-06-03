@@ -174,9 +174,71 @@ const { hideCta = false } = Astro.props;
 
 
 <style>
-  /* Mad-libs inline inputs */
+  /* Mad-libs mobile-first: stack each field on its own row */
+  .ml-text > p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  /* On mobile: inputs and selects become block-level with full width */
+  @media (max-width: 639px) {
+    .ml-input {
+      display: block !important;
+      width: 100% !important;
+      min-width: 0 !important;
+      margin: 4px 0 8px 0;
+      padding: 6px 8px !important;
+      border-bottom: 2px solid var(--color-primary-500);
+    }
+    .ml-select-wrap {
+      display: block !important;
+      width: 100%;
+      margin: 4px 0 8px 0;
+    }
+    .ml-select {
+      display: block !important;
+      width: 100%;
+      padding: 8px 28px 8px 8px;
+      border-bottom: 2px solid var(--color-accent-500);
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, 0.03);
+    }
+    .ml-select-arrow {
+      right: 10px;
+    }
+    .ml-error-msg {
+      display: block;
+      margin-left: 0;
+      margin-bottom: 4px;
+    }
+    .ml-text {
+      font-size: 1rem !important;
+    }
+    .ml-text > p {
+      line-height: 1.6;
+    }
+  }
+
+  /* Desktop: inline layout */
+  @media (min-width: 640px) {
+    .ml-input {
+      display: inline-block;
+      min-width: 80px;
+      vertical-align: baseline;
+    }
+    .ml-select-wrap {
+      display: inline-block;
+      position: relative;
+      vertical-align: baseline;
+    }
+    .ml-select {
+      display: inline-block;
+      vertical-align: baseline;
+    }
+  }
+
+  /* Mad-libs base input styles */
   .ml-input {
-    display: inline-block;
     border: none;
     border-bottom: 2px solid var(--color-primary-500);
     background: transparent;
@@ -186,9 +248,7 @@ const { hideCta = false } = Astro.props;
     color: var(--color-primary-500);
     outline: none;
     padding: 0 4px 2px;
-    min-width: 80px;
     transition: border-color 0.2s, background-color 0.2s;
-    vertical-align: baseline;
   }
   .ml-input::placeholder {
     color: var(--color-primary-300);
@@ -198,6 +258,7 @@ const { hideCta = false } = Astro.props;
   .ml-input:focus {
     border-color: var(--color-primary-700);
   }
+
   /* Validation states */
   .ml-input.ml-invalid {
     border-bottom-color: #ef4444 !important;
@@ -213,7 +274,6 @@ const { hideCta = false } = Astro.props;
     border-bottom-color: #22c55e;
   }
   .ml-error-msg {
-    display: inline;
     font-size: 12px;
     color: #ef4444;
     font-weight: 500;
@@ -225,6 +285,7 @@ const { hideCta = false } = Astro.props;
   .ml-error-msg.ml-visible {
     opacity: 1;
   }
+
   /* Validation hint */
   .ml-hint {
     display: flex;
@@ -261,6 +322,7 @@ const { hideCta = false } = Astro.props;
   :global(.dark) .ml-error-msg {
     color: #f87171;
   }
+
   .ml-input-muted {
     border-bottom-color: var(--color-stroke-3);
     color: var(--color-secondary);
@@ -283,14 +345,8 @@ const { hideCta = false } = Astro.props;
     opacity: 0.5;
   }
 
-  /* Inline selects */
-  .ml-select-wrap {
-    display: inline-block;
-    position: relative;
-    vertical-align: baseline;
-  }
+  /* Inline selects desktop base */
   .ml-select {
-    display: inline-block;
     border: none;
     border-bottom: 2px solid var(--color-accent-500);
     background: transparent;
@@ -304,7 +360,6 @@ const { hideCta = false } = Astro.props;
     appearance: none;
     -webkit-appearance: none;
     transition: border-color 0.2s;
-    vertical-align: baseline;
   }
   .ml-select:focus {
     border-color: var(--color-accent-700);
@@ -323,6 +378,13 @@ const { hideCta = false } = Astro.props;
   }
   :global(.dark) .ml-select-arrow {
     color: var(--color-accent-400);
+  }
+
+  /* Shake animation for validation hint */
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
   }
 
   /* Preview */
@@ -363,6 +425,11 @@ const { hideCta = false } = Astro.props;
 
 <script>
   function sizeInput(el: HTMLInputElement) {
+    // On mobile (<640px), don't set width — CSS handles 100% block
+    if (window.innerWidth < 640) {
+      el.style.width = '';
+      return;
+    }
     const span = document.createElement('span');
     span.style.cssText = 'visibility:hidden;position:absolute;font-size:inherit;font-family:inherit;white-space:pre;padding:0 4px';
     span.textContent = el.value || el.placeholder;
