@@ -1,10 +1,11 @@
 ---
 const clientes = ['BancoEstado', 'ServiEstado', 'Procesos Digitalizados'];
+import StatsBar from '../components/StatsBar.astro';
 ---
 
 <section
   id="nosotros"
-  class="pb-20 pt-14 md:pb-28 md:pt-16 lg:pb-44 lg:pt-[88px] xl:pb-[200px] xl:pt-[100px]"
+  class="pb-20 pt-14 md:pb-28 md:pt-16 lg:pb-44 lg:pt-[88px] xl:pb-[200px] xl:pt-[100px] dark:bg-background-8"
 >
   <div class="main-container">
     <div class="grid grid-cols-12 gap-y-14 xl:gap-x-28 items-center">
@@ -12,8 +13,8 @@ const clientes = ['BancoEstado', 'ServiEstado', 'Procesos Digitalizados'];
       <div class="col-span-12 lg:col-span-6 mx-4 xl:mx-0">
         <div class="space-y-3">
           <span data-ns-animate data-delay="0.1" class="badge badge-green-v2 mb-5">Sobre Agencia Sur</span>
-          <h2 data-ns-animate data-delay="0.2">
-            Transformamos complejidad operativa en flujos simples
+          <h2 data-ns-animate data-delay="0.2" class="text-heading-2 fw-300">
+            Transformamos complejidad operativa en <span class="hero-text-gradient hero-text-color-1 block fw-300">flujos simples</span>.
           </h2>
           <p data-ns-animate data-delay="0.3">
             Desde 2016, combinamos 18 años de trayectoria técnica para diseñar la infraestructura
@@ -29,7 +30,7 @@ const clientes = ['BancoEstado', 'ServiEstado', 'Procesos Digitalizados'];
           class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4"
         >
           {clientes.map((cliente) => (
-            <span class="text-secondary/40 dark:text-accent/40 text-tagline-1 font-bold uppercase tracking-widest">
+            <span class="text-black/40 dark:text-accent/40 text-tagline-1 font-bold uppercase tracking-widest">
               {cliente}
             </span>
           ))}
@@ -41,7 +42,7 @@ const clientes = ['BancoEstado', 'ServiEstado', 'Procesos Digitalizados'];
         <div
           data-ns-animate
           data-delay="0.5"
-          class="p-[26px] backdrop-blur-[20px] bg-white/60 dark:bg-background-8 shadow-2 min-h-[380px] rounded-[20px] h-full overflow-hidden relative z-10 flex items-center justify-center"
+          class="p-[26px] shadow-2 min-h-[380px] rounded-[20px] h-full overflow-hidden relative z-10 flex"
         >
           <!-- Gradient bg -->
           <div
@@ -55,25 +56,11 @@ const clientes = ['BancoEstado', 'ServiEstado', 'Procesos Digitalizados'];
             />
           </div>
 
-          <div class="text-center -mt-20 space-y-4">
-            <!-- Stats -->
-            <div class="flex items-center justify-center gap-6">
-              <div class="text-center">
-                <p class="text-heading-3 font-bold text-secondary dark:text-accent">18+</p>
-                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Años</p>
-              </div>
-              <div class="h-12 w-px bg-secondary/10 dark:bg-accent/10"></div>
-              <div class="text-center">
-                <p class="text-heading-3 font-bold text-secondary dark:text-accent">200+</p>
-                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Procesos</p>
-              </div>
-              <div class="h-12 w-px bg-secondary/10 dark:bg-accent/10"></div>
-              <div class="text-center">
-                <p class="text-heading-3 font-bold text-secondary dark:text-accent">50+</p>
-                <p class="text-tagline-2 text-secondary/60 dark:text-accent/60">Proyectos</p>
-              </div>
-            </div>
 
+
+
+          <div class="text-center mt-4 flex flex-col justify-center items-center gap-2">
+            
             <div class="space-y-1">
               <h6 class="text-secondary dark:text-accent text-xl font-normal">
                 Trayectoria comprobada
@@ -82,7 +69,11 @@ const clientes = ['BancoEstado', 'ServiEstado', 'Procesos Digitalizados'];
                 Desde consultoría TI hasta desarrollo a medida
               </p>
             </div>
+        
+              <StatsBar />
           </div>
+
+          
         </div>
       </div>
     </div>

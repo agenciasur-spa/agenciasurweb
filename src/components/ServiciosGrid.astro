@@ -4,72 +4,153 @@ import { UserCog, Workflow, Code, Cloud } from '@lucide/astro';
 const servicios = [
   {
     icon: UserCog,
-    color: 'primary',
     title: 'Levantamiento de Procesos',
     description:
       'No programamos sin entender. Analizamos y definimos la metodología óptima antes de digitalizar.',
   },
   {
     icon: Code,
-    color: 'green',
+    gradient: 'gradient-2',
     title: 'Desarrollo Web & Mobile High-End',
     description:
       'Construimos sistemas robustos sobre arquitecturas modernas o evolucionamos tu infraestructura actual en WordPress/Prestashop hacia el alto rendimiento.',
-    span: true,
   },
   {
     icon: Workflow,
-    color: 'purple',
+    gradient: 'gradient-violet',
     title: 'Integración & Soporte Continuo',
     description:
       'Conectamos tus sistemas existentes con APIs y middleware. Soporte post-entrega para asegurar la operación sin interrupciones.',
+  },
+  {
+    icon: Cloud,
+    gradient: 'gradient-amber',
+    title: 'Infraestructura Cloud',
+    description:
+      'Despliegue, monitoreo y escalabilidad en la nube. Tu operación, siempre disponible.',
   },
 ];
 ---
 
 <section
-  class="pt-14 pb-[220px] sm:pb-14 md:pt-16 md:pb-16 lg:pt-[88px] lg:pb-[88px] xl:pt-[100px] xl:pb-[100px]"
+  class="pt-16 md:pt-20 lg:pt-[90px] xl:pt-[100px] pb-16 md:pb-20 lg:pb-[90px] xl:pb-[100px]"
 >
   <div class="main-container">
     <div
       class="flex flex-col items-start justify-center max-md:gap-y-18 md:flex-row md:justify-between md:gap-x-[120px]"
     >
-    
-      <div class="lg:sticky lg:top-28">
-        
-
-
-        
+      <!-- Left: Sticky heading -->
+      <div class="lg:sticky lg:top-28 w-full md:max-w-[460px]">
         <span data-ns-animate data-delay="0.1" class="badge badge-green-v2">Servicios</span>
-
         <div class="mb-14 space-y-2 md:max-w-[595px]">
-          <h2 data-ns-animate data-delay="0.2" class="font-light">Soluciones para la era digital</h2>
+          <h2 data-ns-animate data-delay="0.2" class="fw-300">
+            <span class="hero-text-gradient hero-text-color-1 block">Soluciones</span> para la era digital
+          </h2>
           <p data-ns-animate data-delay="0.3" class="max-w-[512px]">
-            lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec suscipit auctor dui, at convallis nisl. Sed a nunc eget nunc efficitur efficitur. Donec in felis sed enim efficitur commodo. Donec suscipit auctor dui, at convallis nisl. Sed a nunc eget nunc efficitur efficitur. Donec in felis sed enim efficitur commodo.
+            Transformamos procesos complejos en soluciones simples, eficientes y escalables.
           </p>
         </div>
-                
       </div>
-      <!-- Right: Features List -->
+
+      <!-- Right: Stack cards -->
       <div class="stack-cards js-stack-cards w-full max-w-xl">
         {servicios.map(({ icon: Icon, title, description }) => (
-        <div
-           class="stack-cards__item js-stack-cards__item border-stroke-4/50 dark:border-stroke-5 bg-background-1 dark:bg-background-8 z-0 min-h-[250px] space-y-4 rounded-[20px] border p-8"
-        >
-        <div class="bg-black flex size-17 items-center justify-center rounded-3xl p-4">
-            <Icon color="#22ff88" size={48} stroke-width={1} />
+          <div class="stack-cards__item js-stack-cards__item max-sm:min-h-[433px]">
+            <div class={`border border-stroke-1 border-black/10 dark:border-white/10 rounded-[20px] relative z-10 overflow-hidden`}>
+              <!-- Card content -->
+              <div class="relative p-8 bg-white dark:bg-background-5 rounded-xl space-y-6 z-10">
+                <div class="bg-black flex size-17 items-center justify-center rounded-2xl p-4 shadow-lg border border-stroke-1 dark:border-white/25 dark:bg-background-5">                
+                  <Icon color="#22ff88" size={48} stroke-width={1}  />
+                </div>
+                <div class="space-y-2">
+                  <h3 class="text-heading-5 fw-300">{title}</h3>
+                  <p class="text-secondary/70 dark:text-accent/70">{description}</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 class="text-heading-5">{title}</h3>
-            <p class="">{description}</p>
-          </div>
-        </div>
-   ))}
-
-
-       
-
+        ))}
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  /* === Gradient definitions === */
+  .gradient-blue { --card-from: #3b82f6; --card-via: #a855f7; --card-to: #ec4899; }
+  .gradient-emerald { --card-from: #10b981; --card-via: #2dd4bf; --card-to: #06b6d4; }
+  .gradient-violet { --card-from: #8b5cf6; --card-via: #a855f7; --card-to: #d946ef; }
+  .gradient-amber { --card-from: #f59e0b; --card-via: #f97316; --card-to: #ef4444; }
+
+  /* === Card wrapper with gradient border === */
+  .card-wrapper {
+    background: linear-gradient(135deg, var(--card-from), var(--card-via), var(--card-to));
+    animation: glow-pulse 4s ease-in-out infinite alternate;
+  }
+
+  /* === Icon gradient background === */
+  .icon-gradient {
+    background: linear-gradient(135deg, var(--card-from), var(--card-via), var(--card-to));
+  }
+
+  .gradient-1 {
+  background-image: linear-gradient(45deg, #60a5fa, #22ff88);
+}
+
+
+  /* === Glow animation === */
+  @keyframes glow-pulse {
+    0% {
+      filter: brightness(1) saturate(1);
+      box-shadow: 0 0 20px 0 color-mix(in srgb, var(--card-from) 30%, transparent);
+    }
+    100% {
+      filter: brightness(1.1) saturate(1.2);
+      box-shadow: 0 0 40px 0 color-mix(in srgb, var(--card-from) 45%, transparent);
+    }
+  }
+
+  /* === Stacked card blur === */
+  .stack-cards__item {
+    transition: filter 0.15s ease-out, opacity 0.15s ease-out;
+  }
+</style>
+
+<script>
+  function initStackBlur() {
+    const container = document.querySelector('.js-stack-cards');
+    if (!container) return;
+
+    const items = Array.from(container.querySelectorAll('.js-stack-cards__item'));
+
+    function updateBlur() {
+      items.forEach((item, i) => {
+        // Read the scale computed by stack-card.min.js from the transform
+        const transform = item.style.transform || '';
+        const scaleMatch = transform.match(/scale\(([^)]+)\)/);
+        const scale = scaleMatch ? parseFloat(scaleMatch[1]) : 1;
+
+        if (scale < 1) {
+          // Cards behind the top one: blur proportional to how much they're scaled down
+          const blurAmount = Math.min((1 - scale) * 35, 50); // max 4px
+          const opacityVal = Math.min(Math.max(scale + 0.1, 0.6), 1); // clamp 0.6–1
+          item.style.filter = `blur(${blurAmount}px)`;
+          item.style.opacity = String(opacityVal);
+        } else {
+          item.style.filter = 'blur(0px)';
+          item.style.opacity = '1';
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateBlur, { passive: true });
+    updateBlur();
+  }
+
+  // Run after stack-card.min.js initializes
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(initStackBlur, 100));
+  } else {
+    setTimeout(initStackBlur, 100);
+  }
+</script>

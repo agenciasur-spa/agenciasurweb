@@ -2,95 +2,96 @@
 // ── Sistemas Core Section (features pattern) ─────────────────────────────────
 // Nexsas Time-Tracking adapted for Agencia Sur
 // Grid de 3 cards: imagen (light/dark) + heading + tagline
+
+
+import { ShoppingBag, UsersRound, Headset } from '@lucide/astro';
+
+const sistemas = [
+  {
+    icon: ShoppingBag,
+    title: 'Sistema de Compras',
+    description:
+      'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento. Control total desde la solicitud hasta la entrega.',
+    link: '#'
+  },
+  {
+    icon: UsersRound,
+    title: 'Gestión de Personal Transitorio',
+    description:
+      'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma centralizada.',
+    link: '#'
+  },
+  {
+    icon: Headset,
+    title: 'Mesa de Ayuda',
+    description:
+      'Omnicanalidad y base de conocimientos para una autoatención inteligente con SLA automatizado.',
+    link: '#'
+  },
+  
+];
+
 ---
-
-<section class="py-20 lg:py-[100px] xl:py-[200px] bg-background-1 dark:bg-background-6">
-  <div class="main-container">
-    <!-- Header -->
-    <div class="space-y-5 mb-10 md:mb-[72px] text-center lg:max-w-[570px] lg:mx-auto">
-      <span data-ns-animate data-delay="0.1" class="badge badge-green-v2">Sistemas Core</span>
-      <h2 data-ns-animate data-delay="0.2">Plataformas modulares diseñadas para optimizar la gestión empresarial</h2>
+<section
+  class="pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px]"
+>
+  <div
+    data-ns-animate
+    data-delay="0.1"
+    class="2xl:max-w-[1440px] max-w-[1290px] mx-5 text-center xl:mx-auto rounded-4xl py-4 lg:py-8 -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
+  >
+    <!-- background image  -->
+    <div
+      data-ns-animate
+      data-delay="0.3"
+      data-duration="2"
+      data-spring
+      data-direction="right"
+      data-offset="50"
+      class="absolute max-[400px]:-right-[32%] max-[400px]:-top-[20%] -top-[31%] -right-[40%] sm:-right-[20%] md:-right-[28%] lg:-right-[20%] xl:-right-[12%] max-w-[530px] rotate-90 md:rotate-[108deg] select-none pointer-events-none"
+    >
+      <img
+        src="./images/ns-img-508.png"
+        alt="how-to-work"
+        class="w-full h-full object-cover"
+      />
     </div>
+    
 
-    <!-- Grid de 3 cards -->
-    <div class="grid grid-cols-12 md:gap-x-8 gap-y-14">
-      <!-- Sistema 1: Sistema de Compras -->
-      <article
-        data-ns-animate
-        data-delay="0.3"
-        class="space-y-3 col-span-12 md:col-span-6 lg:col-span-4"
-      >
-        <figure class="rounded-[12px] overflow-hidden max-w-full lg:max-w-[408px]">
-          <img
-            src="https://picsum.photos/408/300?random=1"
-            class="w-full h-full object-cover block dark:hidden"
-            alt="Sistema de Compras"
-          />
-          <img
-            src="https://picsum.photos/408/300?random=11"
-            class="w-full h-full object-cover hidden dark:block"
-            alt="Sistema de Compras (dark)"
-          />
-        </figure>
-        <div class="max-md:space-y-0.5">
-          <h3 class="text-heading-6 md:text-heading-5">Sistema de Compras</h3>
-          <p>
-            Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento. Control total desde la solicitud hasta la entrega.
-          </p>
-        </div>
-      </article>
+<span data-ns-animate data-delay="0.4" class="badge badge-green-v2">Sistemas Core</span>
 
-      <!-- Sistema 2: Gestión de Personal Transitorio -->
-      <article
-        data-ns-animate
-        data-delay="0.4"
-        class="space-y-3 col-span-12 md:col-span-6 lg:col-span-4"
-      >
-        <figure class="rounded-[12px] overflow-hidden max-w-full lg:max-w-[408px]">
-          <img
-            src="https://picsum.photos/408/300?random=2"
-            class="w-full h-full object-cover block dark:hidden"
-            alt="Gestión de Personal Transitorio"
-          />
-          <img
-            src="https://picsum.photos/408/300?random=12"
-            class="w-full h-full object-cover hidden dark:block"
-            alt="Gestión de Personal Transitorio (dark)"
-          />
-        </figure>
-        <div class="max-md:space-y-0.5">
-          <h3 class="text-heading-6 md:text-heading-5">Gestión de Personal Transitorio</h3>
-          <p>
-            Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma centralizada.
-          </p>
-        </div>
-      </article>
 
-      <!-- Sistema 3: Mesa de Ayuda -->
-      <article
-        data-ns-animate
-        data-delay="0.5"
-        class="space-y-3 col-span-12 md:col-span-6 lg:col-span-4"
-      >
-        <figure class="rounded-[12px] overflow-hidden max-w-full lg:max-w-[408px]">
-          <img
-            src="https://picsum.photos/408/300?random=3"
-            class="w-full h-full object-cover block dark:hidden"
-            alt="Mesa de Ayuda"
-          />
-          <img
-            src="https://picsum.photos/408/300?random=13"
-            class="w-full h-full object-cover hidden dark:block"
-            alt="Mesa de Ayuda (dark)"
-          />
-        </figure>
-        <div class="max-md:space-y-0.5">
-          <h3 class="text-heading-6 md:text-heading-5">Mesa de Ayuda</h3>
-          <p>
-            Omnicanalidad y base de conocimientos para una autoatención inteligente con SLA automatizado.
-          </p>
-        </div>
-      </article>
-    </div>
-  </div>
+<h4 data-ns-animate data-delay="0.4" class="mt-4 px-10 fw-300 text-white">Plataformas modulares diseñadas para <span class="hero-text-gradient hero-text-color-1 block">optimizar</span> la gestión empresarial</h4>
+
+    
+    <!-- Content -->
+    <div
+      class="flex mx-auto max-md:flex-wrap max-md:items-center max-md:justify-center items-start md:items-center justify-start md:justify-center gap-y-10 gap-x-8 max-xl:px-8 max-[400px]:px-6 mt-10"
+    >
+    
+    {sistemas.map(({ icon: Icon, title, description, link }) => (
+    <div class="text-left" data-ns-animate data-duration="0.5" data-delay="0.5">
+        <span class="ns-shape-3 text-[52px] text-white"></span>
+        <Icon color="#22ff88" size={32} stroke-width={1}  />
+
+        <h5 class="md:text-heading-5 fw-300 mt-4 mb-2 text-white">
+          {title}
+        </h5>
+        <p class="text-tagline-2 max-w-[375px]">
+          {description}
+        </p>
+        <div class="flex items-center justify-start mt-5">
+              <a
+                href={link}
+                class="btn btn-md btn-accent block md:inline-block dark:btn-white-dark w-full md:w-auto dark:hover:btn-accent hover:btn-secondary"
+              >
+                <span>ver más</span>
+              </a>
+            </div>
+      </div>
+))}
+
+  
+
+</div>
 </section>

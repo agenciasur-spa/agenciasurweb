@@ -1,6 +1,5 @@
 ---
-// ContactoFooter — Composed Footer + ContactForm components
-import Footer from './Footer.astro';
+
 import ContactForm from './ContactForm.astro';
 
 interface Props {
@@ -12,7 +11,7 @@ const { hideCta = false } = Astro.props;
 
 {!hideCta && <ContactForm />}
 
-<Footer />
+
 
 
 
@@ -34,12 +33,12 @@ const { hideCta = false } = Astro.props;
   .ml-input {
     display: inline-block;
     border: none;
-    border-bottom: 2px solid var(--color-primary-500);
+    border-bottom: 2px solid var(--color-accent-400);
     background: transparent;
     font-size: inherit;
     font-family: inherit;
     font-weight: 500;
-    color: var(--color-primary-500);
+    color: var(--color-accent-400);
     outline: none;
     padding: 0 4px 2px;
     min-width: 80px;
@@ -47,7 +46,7 @@ const { hideCta = false } = Astro.props;
     vertical-align: baseline;
   }
   .ml-input::placeholder {
-    color: var(--color-primary-300);
+    color: var(--color-accent-100);
     font-style: italic;
     font-weight: 400;
   }

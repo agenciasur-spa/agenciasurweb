@@ -455,6 +455,36 @@ function initCounterAnimation() {
   observers.push(observer);
 }
 
+// ── Step Line Animation (Process Steps) ──────────────────────────────
+
+function initStepLineAnimation() {
+  const stepLines = document.querySelectorAll<HTMLElement>('.step-line');
+  if (!stepLines.length) return;
+
+  stepLines.forEach((line, index) => {
+    // Each step-line sits inside a container with h-[320px] lg:h-[380px]
+    // Animate to fill the full parent height
+    const parent = line.parentElement;
+    if (!parent) return;
+    const targetHeight = parent.getBoundingClientRect().height;
+
+    gsap.set(line, { height: '0px' });
+
+    gsap.to(line, {
+      height: targetHeight,
+      duration: 1.5,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: line,
+        start: 'top 75%',
+        end: 'top 15%',
+        toggleActions: 'play none none reverse',
+      },
+      delay: index * 0.15,
+    });
+  });
+}
+
 // ── Parallax Effect ──────────────────────────────────────────────────
 
 function initParallax() {
@@ -585,6 +615,7 @@ export function initNexsasAnimations() {
     initSidebar();
     initProgressAnimation();
     initCounterAnimation();
+    initStepLineAnimation();
     initParallax();
     initPriceSwitcher();
     initDividerExpand();

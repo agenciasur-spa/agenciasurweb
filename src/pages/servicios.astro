@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactoFooter from '../components/ContactoFooter.astro';
-import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket, CheckCircle } from '@lucide/astro';
+import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket, CheckCircle, Smartphone, Accessibility, Monitor, Server, Database, Container, Globe, GitBranch, Zap, Webhook } from '@lucide/astro';
 
 const procesoSteps = [
   {
@@ -63,9 +63,10 @@ const diferenciadores = [
   <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
     <div class="main-container">
       <div class="text-center space-y-5 mb-[70px]">
-        <span data-ns-animate data-delay="0.1" class="badge badge-yellow-v2">Nuestro Método</span>
+    
+        <span data-ns-animate data-delay="0.1" class="badge badge-green-v2">Nuestro Método</span>
         <div class="space-y-3">
-          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto">
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto fw-300">
             Cómo trabajamos
           </h2>
           <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
@@ -75,31 +76,94 @@ const diferenciadores = [
         </div>
       </div>
 
-      <!-- Process steps grid — Nexsas services.htm 12-col grid -->
-      <div class="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">
-        {procesoSteps.map((item, i) => (
-          <div data-ns-animate data-delay={0.4 + i * 0.1} class:list={[
-            'col-span-12 md:col-span-6 xl:col-span-4',
-          ]}>
-            <div class="px-6 py-8 rounded-[20px] bg-background-3 dark:bg-background-7 space-y-6 text-center grid items-center justify-center hover:translate-y-[-10px] transition-transform duration-500 ease-in-out">
-              <div class="flex items-center justify-center">
-                <span class="text-heading-4 text-secondary dark:text-accent font-medium">{item.step}</span>
+    
+  <div data-ns-animate data-delay="0.4" class="process-steps">
+      <div class="max-w-[870px] mx-auto mb-[100px]">
+        {procesoSteps.map((item, i) => {
+          const isLast = i === procesoSteps.length - 1;
+          const isLeft = i % 2 === 0;
+          return (
+            <div class="relative">
+              <div>
+                <!-- Step circle -->
+                <div
+                  class="size-[34px] flex items-center justify-center mx-auto rounded-full bg-black drop-shadow-2xl dark:bg-black "
+                >
+                  <span class="text-black text-accent-300">{item.step}</span>
+                </div>
+                {/* Gradient line — only if NOT the last step */}
+                {!isLast && (
+                  <div class="h-[150px] lg:h-[200px] w-1 mx-auto bg-stroke-2 dark:bg-stroke-6 overflow-hidden">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="step-line w-full"
+                      style="height: 0px;"
+                      viewBox="0 0 2 222"
+                      preserveAspectRatio="none"
+                      fill="none"
+                    >
+                      <path
+                        d="M1 1L0.99999 221"
+                        stroke={`url(#step-gradient-${i})`}
+                        stroke-width="2"
+                        stroke-linecap="round"
+                      />
+                      <defs>
+                        <linearGradient
+                          id={`step-gradient-${i}`}
+                          x1="0.5"
+                          y1="1"
+                          x2="0.49999"
+                          y2="221"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop offset="0" stop-color="#66ffb2" />
+                          <stop offset="0.25" stop-color="#00e676" />
+                          <stop offset="0.5" stop-color="#00e676" />
+                          <stop offset="1" stop-color="#66ffb2" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
+                )}
               </div>
-              <div class="space-y-2">
-                <h3 class="text-heading-5">{item.title}</h3>
-                <p class="max-w-[361px] mx-auto">
-                  {item.description}
-                </p>
+              <!-- Step card — alternating left/right on desktop -->
+              <div
+                data-ns-animate
+                data-delay={0.3 + i * 0.1}
+                class:list={[
+                  'card-item absolute max-w-[370px] w-full space-y-3',
+                  isLeft
+                    ? 'lg:left-0 lg:top-0 left-1/2 lg:translate-x-0 -translate-x-1/2 top-1/2 lg:translate-y-0 -translate-y-1/2'
+                    : 'lg:right-0 lg:top-0 right-1/2 lg:translate-x-0 translate-x-1/2 top-1/2 -translate-y-1/2',
+                  isLast && 'top-16',
+                  'lg:bg-none dark:bg-background-6 lg:dark:bg-transparent lg:p-0 lg:rounded-none p-6 rounded-[20px] max-sm:bg-background-4',
+                ]}
+              >
+                <p class="text-accent-600">PASO {item.step}</p>
+                <div class="space-y-2">
+                  <h5 class="text-heading-6 lg:text-heading-5 dark:text-accent-400">{item.title}</h5>
+                  <small class="dark:text-white/50">{item.description}</small>
+                </div>
               </div>
-              <p class="text-tagline-2 text-secondary/60 dark:text-accent/60 font-medium">
-                {item.detail}
-              </p>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
+
+    </div>
   </section>
+
+
+
+
+
+
+
+
+
+
 
   <!-- Diferenciadores — Nexsas feature.htm two-column pattern -->
   <section class="relative pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px] overflow-hidden">
@@ -316,84 +380,70 @@ const diferenciadores = [
     </div>
   </section>
 
-  <!-- Reviews / Testimonios — Nexsas reviews pattern -->
-  <section class="pb-[80px] lg:pb-[100px] overflow-hidden">
-    <div class="main-container">
-      <div class="mx-auto mb-10 max-w-[804px] space-y-5 text-center md:mb-8 lg:mb-14">
-        <span data-ns-animate data-delay="0.1" class="badge badge-green">Reviews</span>
-        <div class="space-y-3">
-          <h2 data-ns-animate data-delay="0.2">Lo que dicen nuestros clientes</h2>
-          <p data-ns-animate data-delay="0.3">
-            Trabajamos con empresas que necesitan resultados reales, no presentaciones. Esto es lo que nos cuentan.
-          </p>
+
+<!-- =========================
+Tech Stack Marquee
+===========================-->
+<section
+  class="py-24 lg:py-[120px] bg-background-1 dark:bg-background-6 overflow-hidden"
+  aria-label="Stack Tecnológico"
+>
+  <div class="max-w-[1028px] text-center w-full mx-auto mb-14">
+    <span data-ns-animate data-delay="0.1" class="badge badge-green-v2 mb-5">Stack</span>
+    <h2 data-ns-animate data-delay="0.2" class="mb-3">Stack Tecnológico</h2>
+    <p data-ns-animate data-delay="0.3" class="max-w-[582px] mx-auto w-full">
+      Adaptamos el stack a tu infraestructura existente. No forzamos una tecnología si no encaja.
+    </p>
+  </div>
+
+  <div class="space-y-6">
+    <!-- Row 1: left marquee -->
+    <div data-ns-animate data-delay="0.4" class="relative">
+      <div class="absolute left-0 top-0 h-full w-[100px] bg-gradient-to-r from-background-1 to-transparent dark:from-background-6 z-40"></div>
+      <div class="absolute right-0 top-0 h-full w-[100px] bg-gradient-to-l from-background-1 to-transparent dark:from-background-6 z-40"></div>
+      <div class="logos-marquee-container">
+        <div class="marquee-track">
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Code size={18} stroke-width={1.5} /> Astro</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Smartphone size={18} stroke-width={1.5} /> React</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Accessibility size={18} stroke-width={1.5} /> Next.js</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Monitor size={18} stroke-width={1.5} /> Vue</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Server size={18} stroke-width={1.5} /> Node.js</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Database size={18} stroke-width={1.5} /> PostgreSQL</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Cloud size={18} stroke-width={1.5} /> AWS</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Container size={18} stroke-width={1.5} /> Docker</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Globe size={18} stroke-width={1.5} /> TypeScript</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><GitBranch size={18} stroke-width={1.5} /> Git</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Code size={18} stroke-width={1.5} /> Python</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Database size={18} stroke-width={1.5} /> MongoDB</span>
         </div>
       </div>
     </div>
-    <div data-ns-animate data-delay="0.4" class="cards-marquee-container">
-      <div class="flex items-center gap-8">
-        <div class="bg-background-1/90 hover:shadow-1 ml-8 w-full max-w-[358px] min-w-[358px] shrink-0 rounded-[20px] p-8 transition-colors duration-300 ease-linear hover:bg-white dark:bg-background-6/90 dark:hover:bg-background-6">
-          <p class="line-clamp-4 text-wrap">
-            "Agencia Sur digitalizó nuestro proceso de compras en tiempo récord. El sistema funciona impecable y el equipo entendió nuestra operación desde el primer día."
-          </p>
-          <div class="bg-stroke-4 my-8 h-px w-full"></div>
-          <div class="flex items-center gap-3">
-            <figure class="size-12 overflow-hidden rounded-full">
-              <img src="https://picsum.photos/48/48?random=301" alt="avatar" class="h-full w-full bg-linear-[156deg,#83E7EE_2.92%,#C6F56F_91%]" />
-            </figure>
-            <div>
-              <h3 class="text-tagline-1 text-secondary font-medium dark:text-accent">Juan Pérez</h3>
-              <p class="text-tagline-2 text-secondary/60 font-normal dark:text-accent/60">Gerente de Operaciones, BancoEstado</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-background-1/90 hover:shadow-1 w-full max-w-[358px] min-w-[358px] shrink-0 rounded-[20px] p-8 transition-colors duration-300 ease-linear hover:bg-white dark:bg-background-6/90 dark:hover:bg-background-6">
-          <p class="line-clamp-4 text-wrap">
-            "La gestión de personal transitorio pasó de ser un dolor de cabeza a un proceso fluido. Todo centralizado, trazable y sin papel."
-          </p>
-          <div class="bg-stroke-4 my-8 h-px w-full"></div>
-          <div class="flex items-center gap-3">
-            <figure class="size-12 overflow-hidden rounded-full">
-              <img src="https://picsum.photos/48/48?random=302" alt="avatar" class="h-full w-full bg-linear-[156deg,#83E7EE_2.92%,#C6F56F_91%]" />
-            </figure>
-            <div>
-              <h3 class="text-tagline-1 text-secondary font-medium dark:text-accent">María González</h3>
-              <p class="text-tagline-2 text-secondary/60 font-normal dark:text-accent/60">Directora de RRHH, ServiEstado</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-background-1/90 hover:shadow-1 w-full max-w-[358px] min-w-[358px] shrink-0 rounded-[20px] p-8 transition-colors duration-300 ease-linear hover:bg-white dark:bg-background-6/90 dark:hover:bg-background-6">
-          <p class="line-clamp-4 text-wrap">
-            "Implementaron nuestra mesa de ayuda con IA en menos de 3 meses. La autoatención resuelve el 60% de los tickets sin intervención humana."
-          </p>
-          <div class="bg-stroke-4 my-8 h-px w-full"></div>
-          <div class="flex items-center gap-3">
-            <figure class="size-12 overflow-hidden rounded-full">
-              <img src="https://picsum.photos/48/48?random=303" alt="avatar" class="h-full w-full bg-linear-[156deg,#83E7EE_2.92%,#C6F56F_91%]" />
-            </figure>
-            <div>
-              <h3 class="text-tagline-1 text-secondary font-medium dark:text-accent">Carlos Ruiz</h3>
-              <p class="text-tagline-2 text-secondary/60 font-normal dark:text-accent/60">CTO, FinTech Regional</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-background-1/90 hover:shadow-1 w-full max-w-[358px] min-w-[358px] shrink-0 rounded-[20px] p-8 transition-colors duration-300 ease-linear hover:bg-white dark:bg-background-6/90 dark:hover:bg-background-6">
-          <p class="line-clamp-4 text-wrap">
-            "Su metodología de levantamiento de procesos nos permitió descubrir cuellos de botella que ni sabíamos que teníamos. El ROI fue inmediato."
-          </p>
-          <div class="bg-stroke-4 my-8 h-px w-full"></div>
-          <div class="flex items-center gap-3">
-            <figure class="size-12 overflow-hidden rounded-full">
-              <img src="https://picsum.photos/48/48?random=304" alt="avatar" class="h-full w-full bg-linear-[156deg,#83E7EE_2.92%,#C6F56F_91%]" />
-            </figure>
-            <div>
-              <h3 class="text-tagline-1 text-secondary font-medium dark:text-accent">Ana Silva</h3>
-              <p class="text-tagline-2 text-secondary/60 font-normal dark:text-accent/60">COO, RetailCorp</p>
-            </div>
-          </div>
+
+    <!-- Row 2: right marquee -->
+    <div data-ns-animate data-delay="0.5" class="relative">
+      <div class="absolute left-0 top-0 h-full w-[100px] bg-gradient-to-r from-background-1 to-transparent dark:from-background-6 z-40"></div>
+      <div class="absolute right-0 top-0 h-full w-[100px] bg-gradient-to-l from-background-1 to-transparent dark:from-background-6 z-40"></div>
+      <div class="logos-right-marquee-container">
+        <div class="marquee-track">
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Cloud size={18} stroke-width={1.5} /> Vercel</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Container size={18} stroke-width={1.5} /> Kubernetes</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><ShieldCheck size={18} stroke-width={1.5} /> Auth0</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Zap size={18} stroke-width={1.5} /> Redis</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Webhook size={18} stroke-width={1.5} /> REST APIs</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Globe size={18} stroke-width={1.5} /> GraphQL</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Server size={18} stroke-width={1.5} /> Express</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Layout size={18} stroke-width={1.5} /> TailwindCSS</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><GitBranch size={18} stroke-width={1.5} /> CI/CD</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Monitor size={18} stroke-width={1.5} /> WordPress</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Smartphone size={18} stroke-width={1.5} /> React Native</span>
+          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Database size={18} stroke-width={1.5} /> Supabase</span>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+
 
   <!-- CTA — Nexsas pricing.htm centered pattern -->
   <section class="relative xl:py-[200px] py-24 overflow-hidden">
@@ -415,5 +465,106 @@ const diferenciadores = [
     </div>
   </section>
 
-  <ContactoFooter />
+  
+
+
+
+
+
+
+<style>
+  /* Marquee animations */
+  .logos-marquee-container,
+  .logos-right-marquee-container,
+  .cards-marquee-container,
+  .cards-right-marquee-container {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .logos-marquee-container .marquee-track,
+  .cards-marquee-container .marquee-track {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: max-content;
+    gap: 1rem;
+    animation: marquee-left 35s linear infinite;
+  }
+
+  .logos-right-marquee-container .marquee-track,
+  .cards-right-marquee-container .marquee-track {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: max-content;
+    gap: 1rem;
+    animation: marquee-right 35s linear infinite;
+  }
+
+  .logos-marquee-container:hover .marquee-track,
+  .logos-right-marquee-container:hover .marquee-track,
+  .cards-marquee-container:hover .marquee-track,
+  .cards-right-marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+:global(.tech-pill) {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.625rem 1.25rem !important;
+    border-radius: 9999px !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+    transition: transform 0.2s, box-shadow 0.2s !important;
+  }
+
+  :global(.dark) .tech-pill {
+    background: #161b26 !important;
+    border-color: #1e293b !important;
+  }
+
+  :global(.tech-pill:hover) {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  :global(.dark) .tech-pill {
+    background: #161b26;
+    color: #e2e8f0;
+    border-color: #1e293b;
+  }
+
+  :global(.tech-pill:hover) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  @keyframes marquee-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes marquee-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+</style>
+<script>
+  function initMarquees() {
+    document.querySelectorAll('.marquee-track').forEach(track => {
+      if (track.parentElement.querySelectorAll('.marquee-track').length < 2) {
+        const clone = track.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.parentElement.appendChild(clone);
+      }
+    });
+  }
+  initMarquees();
+  document.addEventListener('astro:after-swap', initMarquees);
+</script>
 </Layout>
