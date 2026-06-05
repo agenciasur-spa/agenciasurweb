@@ -27,6 +27,7 @@
     "resend": "^6.12.3",
     "scrolltrigger": "^1.0.1",
     "tailwindcss": "^4.3.0",
+    "tech-stack-icons": "^3.7.1",
     "typescript": "^6.0.3",
     "vercel": "^54.0.0"
   }
