@@ -1,6 +1,28 @@
 ---
 // Mobile sidebar — accordion submenus
 // JS: animations.ts → initSidebar() + MobileMenuAccordion
+import { sanityClient } from '../lib/sanity';
+
+const fallbackSolutions = [
+  { title: 'Sistema de Compras', slug: 'sistema-de-compras' },
+  { title: 'Personal Transitorio', slug: 'gestion-personal-transitorio' },
+  { title: 'Mesa de Ayuda', slug: 'mesa-de-ayuda' },
+];
+
+let mobileSolutions: { title: string; slug: string }[] = fallbackSolutions;
+
+if (sanityClient) {
+  try {
+    const sanitySolutions = await sanityClient.fetch(
+      `*[_type == "solucion"] | order(order asc) { title, "slug": slug.current }`
+    );
+    if (sanitySolutions && sanitySolutions.length > 0) {
+      mobileSolutions = sanitySolutions;
+    }
+  } catch {
+    // Sanity failed — use fallbacks
+  }
+}
 ---
 
 <!-- Overlay -->
@@ -120,27 +142,14 @@
             </span>
           </button>
           <ul class="mobile-submenu hidden" data-submenu="soluciones-mobile">
+            {mobileSolutions.map((sol) => (
             <li>
               <a
-                href="/soluciones/sistema-de-compras"
+                href={`/soluciones/${sol.slug}`}
                 class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
-                >Sistema de Compras</a
-              >
+              >{sol.title}</a>
             </li>
-            <li>
-              <a
-                href="/soluciones/personal-transitorio"
-                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
-                >Personal Transitorio</a
-              >
-            </li>
-            <li>
-              <a
-                href="/soluciones/mesa-de-ayuda"
-                class="text-tagline-1 text-secondary dark:text-accent ml-4 block py-2.5 text-left font-normal transition-all duration-200"
-                >Mesa de Ayuda</a
-              >
-            </li>
+            ))}
           </ul>
         </li>
 

@@ -1,13 +1,29 @@
 import type { PortableTextBlock } from '@portabletext/types';
 import type { ImageAsset } from 'sanity';
 
+export interface Benefit {
+  metric: string;
+  label: string;
+  description?: string;
+}
+
+export interface GalleryImage {
+  image: ImageAsset;
+  alt?: string;
+}
+
 export interface Solucion {
   _id: string;
   title: string;
   slug: string;
   tagline: string;
-  description: PortableTextBlock[];
+  bajada?: string;
+  description?: PortableTextBlock[];
   features: string[];
+  featuresDescription?: string;
+  mainImage?: ImageAsset;
+  benefits?: Benefit[];
+  galleryImages?: GalleryImage[];
   icon?: string;
   image?: ImageAsset;
   order?: number;

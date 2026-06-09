@@ -1,0 +1,227 @@
+---
+interface Props {
+  solucionTitle?: string;
+  modalTitle?: string;
+  modalDescription?: string;
+  ctaLabel?: string;
+  successTitle?: string;
+  successMessage?: string;
+}
+const {
+  solucionTitle = '',
+  modalTitle = 'Agendar Demo',
+  modalDescription = '',
+  ctaLabel = 'Solicitar Demo',
+  successTitle = '¡Solicitud enviada!',
+  successMessage = 'Te contactaremos en las próximas 24 horas hábiles.',
+} = Astro.props;
+
+const subtitle = modalDescription || `Completa tus datos y te contactamos para agendar una demo personalizada de <strong class="text-secondary dark:text-accent">${solucionTitle}</strong>.`;
+---
+
+<!-- Demo Modal Overlay -->
+<div id="demo-modal-overlay" class="fixed inset-0 z-[10000] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+  <!-- Modal Content -->
+  <div id="demo-modal" class="relative w-full max-w-lg bg-background-6 dark:bg-background-8 rounded-[20px] p-8 md:p-10 shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+    <!-- Close button -->
+    <button id="demo-modal-close" class="absolute top-4 right-4 size-8 flex items-center justify-center rounded-full hover:bg-background-3 dark:hover:bg-background-7 transition-colors" aria-label="Cerrar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary/60 dark:text-accent/60">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Header -->
+    <div class="mb-6">
+      <h3 id="demo-modal-title" class="text-heading-3 mb-2">{modalTitle}</h3>
+      <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+        {subtitle && <Fragment set:html={subtitle} />}
+      </p>
+    </div>
+
+    <!-- Form -->
+    <form id="demo-form" class="space-y-5">
+      <input type="hidden" name="solucion" value={solucionTitle} />
+
+      <div class="space-y-1.5">
+        <label for="demo-nombre" class="text-sm font-medium text-secondary dark:text-accent">Nombre *</label>
+        <input
+          type="text"
+          id="demo-nombre"
+          name="nombre"
+          required
+          placeholder="Tu nombre"
+          class="w-full rounded-xl border border-stroke-4 dark:border-stroke-7 bg-transparent px-4 py-3 text-secondary dark:text-accent placeholder:text-secondary/40 dark:placeholder:text-accent/40 focus:border-green focus:outline-none transition-colors"
+        />
+      </div>
+
+      <div class="space-y-1.5">
+        <label for="demo-email" class="text-sm font-medium text-secondary dark:text-accent">Email *</label>
+        <input
+          type="email"
+          id="demo-email"
+          name="email"
+          required
+          placeholder="tu@empresa.com"
+          class="w-full rounded-xl border border-stroke-4 dark:border-stroke-7 bg-transparent px-4 py-3 text-secondary dark:text-accent placeholder:text-secondary/40 dark:placeholder:text-accent/40 focus:border-green focus:outline-none transition-colors"
+        />
+      </div>
+
+      <div class="space-y-1.5">
+        <label for="demo-empresa" class="text-sm font-medium text-secondary dark:text-accent">Empresa</label>
+        <input
+          type="text"
+          id="demo-empresa"
+          name="empresa"
+          placeholder="Nombre de tu empresa"
+          class="w-full rounded-xl border border-stroke-4 dark:border-stroke-7 bg-transparent px-4 py-3 text-secondary dark:text-accent placeholder:text-secondary/40 dark:placeholder:text-accent/40 focus:border-green focus:outline-none transition-colors"
+        />
+      </div>
+
+      <div class="space-y-1.5">
+        <label for="demo-mensaje" class="text-sm font-medium text-secondary dark:text-accent">Mensaje <span class="text-secondary/40 dark:text-accent/40">(opcional)</span></label>
+        <textarea
+          id="demo-mensaje"
+          name="mensaje"
+          rows="3"
+          placeholder="Contanos brevemente qué te interesa del sistema..."
+          class="w-full rounded-xl border border-stroke-4 dark:border-stroke-7 bg-transparent px-4 py-3 text-secondary dark:text-accent placeholder:text-secondary/40 dark:placeholder:text-accent/40 focus:border-green focus:outline-none transition-colors resize-none"
+        ></textarea>
+      </div>
+
+      <!-- Error message -->
+      <div id="demo-error" class="hidden text-sm text-red-500 font-medium"></div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        id="demo-submit"
+        class="btn btn-primary btn-md w-full"
+      >
+        <span>{ctaLabel}</span>
+      </button>
+    </form>
+
+    <!-- Success state -->
+    <div id="demo-success" class="hidden">
+      <div class="flex flex-col items-center gap-4 py-6 text-center">
+        <div class="flex size-14 items-center justify-center rounded-full bg-green/20">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-green">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+        </div>
+        <div>
+          <h4 class="mb-1">{successTitle}</h4>
+          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+            {successMessage}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function initDemoModal() {
+    const overlay = document.getElementById('demo-modal-overlay') as HTMLDivElement;
+    const modal = document.getElementById('demo-modal') as HTMLDivElement;
+    const closeBtn = document.getElementById('demo-modal-close') as HTMLButtonElement;
+    const form = document.getElementById('demo-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('demo-submit') as HTMLButtonElement;
+    const errorDiv = document.getElementById('demo-error') as HTMLDivElement;
+    const successDiv = document.getElementById('demo-success') as HTMLDivElement;
+
+    if (!overlay || !modal) return;
+
+    function openModal() {
+      overlay.classList.remove('hidden');
+      overlay.classList.add('flex');
+      requestAnimationFrame(() => {
+        modal.classList.remove('scale-95', 'opacity-0');
+        modal.classList.add('scale-100', 'opacity-100');
+      });
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('scale-100', 'opacity-100');
+      modal.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        overlay.classList.remove('flex');
+        overlay.classList.add('hidden');
+        document.body.style.overflow = '';
+        // Reset form state
+        form.reset();
+        form.classList.remove('hidden');
+        successDiv.classList.add('hidden');
+        errorDiv.classList.add('hidden');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span>${ctaLabel}</span>`;
+      }, 300);
+    }
+
+    // Open via custom event (from CTA buttons)
+    document.addEventListener('open-demo-modal', openModal);
+
+    closeBtn.addEventListener('click', closeModal);
+
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !overlay.classList.contains('hidden')) closeModal();
+    });
+
+    // Form submit
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nombre = (document.getElementById('demo-nombre') as HTMLInputElement).value.trim();
+      const email = (document.getElementById('demo-email') as HTMLInputElement).value.trim();
+
+      if (!nombre || !email) {
+        errorDiv.textContent = 'Nombre y email son obligatorios.';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        errorDiv.textContent = 'Ingresá un email válido.';
+        errorDiv.classList.remove('hidden');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Enviando...</span>';
+      errorDiv.classList.add('hidden');
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch('/api/demo', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Error al enviar');
+        }
+
+        form.classList.add('hidden');
+        successDiv.classList.remove('hidden');
+
+        setTimeout(() => closeModal(), 4000);
+      } catch (error: any) {
+        errorDiv.textContent = error.message || 'Error al enviar. Intenta nuevamente.';
+        errorDiv.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = `<span>${ctaLabel}</span>`;
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initDemoModal);
+</script>

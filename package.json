@@ -29,6 +29,7 @@
     "tailwindcss": "^4.3.0",
     "tech-stack-icons": "^3.7.1",
     "typescript": "^6.0.3",
+    "vanilla-infinite-marquee": "^1.0.15",
     "vercel": "^54.0.0"
   }
 }

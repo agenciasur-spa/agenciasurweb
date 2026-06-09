@@ -116,7 +116,7 @@
   --shadow-1: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
   --shadow-2: 0px 10px 20px -5px rgba(28, 34, 43, 0.05), 0px 20px 65px -5px rgba(28, 34, 43, 0.05);
   --shadow-3: 0px 25px 80px -12px rgba(28, 34, 43, 0.1);
-  --shadow-4: 0px 10px 20px -5px rgba(28, 34, 43, 0.05), 0px 20px 65px -5px rgba(28, 34, 43, 0.05);
+  --shadow-4: 0px 10px 20px -5px rgba(28, 34,  43, 0.05), 0px 20px 65px -5px rgba(28, 34, 43, 0.05);
   --shadow-5: 0px 25px 80px -12px rgba(28, 34, 43, 0.1);
   --shadow-6: 0px 44px 64px 0px rgba(29, 32, 35, 0.16);
   --shadow-7: 0px 4px 6px -1px rgba(28, 34, 43, 0.1), 0px 2px 4px -1px rgba(28, 34, 43, 0.05);
@@ -245,13 +245,63 @@
   &:hover::before { @apply size-3 -translate-x-4 opacity-100; }
 }
 
+/* =============================================
+   COMPOSED BUTTONS — Semantic shortcuts
+   ============================================= */
+
+/* === CTA Verde — Acción principal de cada página === */
+@utility btn-cta {
+  @apply btn btn-green btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent;
+}
+
+/* === CTA Azul — Acción importante secundaria (modales, forms) === */
+@utility btn-action {
+  @apply btn btn-primary btn-md hover:btn-secondary dark:hover:btn-accent;
+}
+
+/* === Card — Botones dentro de cards y listados === */
+@utility btn-card {
+  @apply btn btn-white dark:btn-transparent btn-md hover:btn-primary;
+}
+
+/* === Ghost — Bajo énfasis (navbar, filtros) === */
+@utility btn-ghost {
+  @apply btn btn-white-dark dark:btn-white dark:text-black text-sm hover:btn-green dark:hover:btn-green dark:hover:text-black;
+  padding: 0.375rem 1.25rem;
+  &::before {
+    content: '' !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%231a1a1c' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    @apply absolute top-1/2 right-0 w-0 h-0 -translate-y-1/2 opacity-0 transition-all duration-300;
+  }
+  &:hover::before {
+    @apply size-2.5 -translate-x-3.5 opacity-100;
+  }
+}
+
+/* =============================================
+   COMPOSED BADGES — Semantic shortcuts
+   ============================================= */
+
+/* === Section label — Etiqueta de sección (verde suave, el más usado) === */
+@utility badge-section {
+  @apply badge badge-green dark:text-accent-400 dark:bg-accent/10;
+}
+
+
+/* === Tag — Tag de categoría/cliente === */
+@utility badge-tag {
+  @apply badge badge-primary;
+}
+
 /* === Badges === */
 @utility badge {
-  @apply text-tagline-2 text-secondary backdrop-blur-ns-badge-blur inline-block rounded-full px-5 py-1.5 font-normal text-nowrap lowercase first-letter:uppercase;
+  @apply text-tagline-2 backdrop-blur-ns-badge-blur inline-block rounded-full px-5 py-1.5 font-normal text-nowrap lowercase first-letter:uppercase;
 }
 
 @utility badge-green {
-  @apply bg-accent-400/20 text-accent-500;
+  @apply bg-accent-400 text-black;
 }
 
 @utility badge-cyan {
@@ -404,29 +454,33 @@ body {
 }
 
 /* === Tipografía === */
-h1, h2, h3, h4, h5, h6 {
-  @apply font-inter-tight text-secondary dark:text-accent;
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-inter-tight text-secondary dark:text-accent;
+  }
+
+  h1 {
+    @apply text-heading-4 sm:text-heading-3 md:text-heading-2 xl:text-heading-1 font-medium;
+  }
+
+  h2 {
+    @apply text-heading-5 sm:text-heading-4 md:text-heading-3 xl:text-heading-2 font-medium;
+  }
+
+  h3 {
+    @apply text-heading-5 md:text-heading-4 xl:text-heading-3;
+  }
+
+  h4 { @apply text-heading-4; }
+  h5 { @apply text-heading-5; }
+  h6 { @apply text-heading-6; }
+
+  p {
+    @apply text-tagline-2 sm:text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal;
+  }
 }
 
-h1 {
-  @apply text-heading-4 sm:text-heading-3 md:text-heading-2 xl:text-heading-1 font-medium;
-}
 
-h2 {
-  @apply text-heading-5 sm:text-heading-4 md:text-heading-3 xl:text-heading-2 font-medium;
-}
-
-h3 {
-  @apply text-heading-5 md:text-heading-4 xl:text-heading-3;
-}
-
-h4 { @apply text-heading-4; }
-h5 { @apply text-heading-5; }
-h6 { @apply text-heading-6; }
-
-p {
-  @apply text-tagline-2 sm:text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal;
-}
 
 /* === Animaciones scroll === */
 [data-ns-animate] {
@@ -517,79 +571,21 @@ p {
   clip-path: inset(0 50% 0 0);
 }
 
+/* === Accent color utilities === */
+.text-accent-300 { color: var(--color-accent-300); }
+.text-accent-400 { color: var(--color-accent-400); }
+.text-accent-500 { color: var(--color-accent-500); }
+.text-accent-600 { color: var(--color-accent-600); }
+.text-accent-700 { color: var(--color-accent-700); }
 
-.bg-background-3{ background-color: var(--color-accent-700); }
-.border-stroke-7{ border-color: var(--color-stroke-7); }    
-.border-stroke-7:hover{ border-color: var(--color-accent-700); }    
-p.text-white , .demo-text{ color:#FFF!important; }
+.text-green { color: var(--color-accent-500); }
 
-dark:border-background-7{ background-color: var(--color-accent-400)!important; }
-border-background-7{ background-color: var(--color-accent-400)!important; }
-
-
-  .badge-hero.text-tagline-2 {
-    color:var(--color-accent-300);
-  }
-
-  .text-accent-300 {
-    color: var(--color-accent-300);
-  }
-  .text-accent-400 {
-    color: var(--color-accent-400);
-  }
-  .text-accent-500 {
-    color: var(--color-accent-500);
-  }
-  .text-accent-600 {
-    color: var(--color-accent-600);
-  }
-  .text-accent-700 {
-    color: var(--color-accent-700);
-  }
-
-.badge.badge-green-v2{
-    background-color: var(--color-accent-400);
-    color: black;
-} 
-
-
-
- .fw-300{
-    font-weight: 300!important;
-}
-
-
-
-a:hover {
- color:var(--color-accent-400);
-}   
-/*
-  class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto sm:mx-0 block md:inline-block w-[90%] md:w-auto btn-lg md:btn-xl border-0"
-  */
-
-  .gradient-1 {
+/* === Gradients === */
+.gradient-1 {
   background-image: linear-gradient(45deg, #60a5fa, #22ff88, #60a5fa);
 }
-
 .gradient-2 {
   background-image: linear-gradient(45deg, #83e7ee, #f9eb57, #83e7ee);
-}
-
-
-.text-white {
-  color: var(--color-accent) !important;
-}
-
-.text-tagline-1 {
-color: var(--color-accent) !important;
-  font-size: var(--text-tagline-1);
-  line-height: var(--text-tagline-1--line-height);
-}
-
-.text-tagline-2 {
-  color: #9a9a9a!important;
-  
-  
 }
 
 /* =========================
@@ -666,4 +662,8 @@ color: var(--color-accent) !important;
 @keyframes marquee-right {
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0); }
+}
+
+.as-green {
+  color: var(--color-ns-green);
 }

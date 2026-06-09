@@ -14,17 +14,16 @@ const { hideCta = false } = Astro.props;
 >
   <div class="main-container">
     <div class="text-center space-y-5 max-w-[1024px] mx-auto mb-14">
-      <span data-ns-animate data-delay="0.2" class="badge badge-green-v2 mb-5">Contacto</span>
+      <span data-ns-animate data-delay="0.2" class="badge badge-section mb-5">Contacto</span>
       <div>
-        <h2 data-ns-animate data-delay="0.3" class="mb-3 fw-300">
+        <h2 data-ns-animate data-delay="0.3" class="mb-3 font-light">
           ¿Tienes un proyecto?
         </h2>
-        
       </div>
     </div>
     <!-- form -->
-   <form id="mad-libs-form" class="mad-libs-form"></form>  
-    <div
+    <form id="mad-libs-form" class="mad-libs-form">
+     <div
       class="grid grid-cols-12 space-y-8 md:space-y-0 md:gap-8 mb-10 lg:mb-18 max-w-[1010px] mx-auto"
     >
       <div
@@ -32,27 +31,39 @@ const { hideCta = false } = Astro.props;
         data-delay="0.5"
         class="col-span-12 md:col-span-12 lg:col-span-12 p-8 rounded-[20px] bg-white dark:bg-background-6 space-y-6 sm:min-h-[288px]"
      >
-    
-        <div class="space-y-2">
-            <h6 class="max-sm:text-heading-6 mb-4">Cuentanos qué necesitás. Te ayudamos a definir el camino desde la idea hasta la implementación.</h6>
+     
+        <div class="space-y-2  p-6 ">
+            <h6 class="font-light text-xl mb-4">Cuentanos qué necesitás. Te ayudamos a definir el camino desde la idea hasta la implementación.</h6>
             
             <!-- Anti-spam field (hidden) -->
             <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
           
-            <div class="ml-text text-heading-5 md:text-heading-4 leading-[1.6] font-normal text-primary dark:text-accent">
-              <p class="mb-4">
-                Hola, me llamo
+            <div class="">
+
+              <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
+                <span> Hola, me llamo</span>  
+                <span class="ml-input-wrap flex-1">
                 <input class="ml-input" id="ml-nombre" name="nombre" placeholder="tu nombre" required aria-label="Tu nombre" />
                 <span class="ml-error-msg" id="err-nombre"></span>
-                y mi correo es
+                </span>  
+                <span>  y mi correo es</span>  
+                <span class="ml-input-wrap flex-1">
                 <input class="ml-input" id="ml-correo" name="correo" type="email" placeholder="tu@empresa.com" required aria-label="Tu correo electrónico" />
                 <span class="ml-error-msg" id="err-correo"></span>.
-              </p>
+              </div>
 
-              <p class="mb-4">
+              </div>
+
+<div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
+
+
+          <div class="mb-4 font-light text-xl ">
                 Trabajo en una empresa del sector
-                <span class="ml-select-wrap">
-                  <select class="ml-select" id="ml-sector" name="sector" required aria-label="Sector de tu empresa">
+           </div>     
+
+           <div class="mb-4 font-light text-xl flex-1">
+                <span class="ml-select-wrap w-full">
+                  <select class="ml-select flex-1 w-full" id="ml-sector" name="sector" required aria-label="Sector de tu empresa">
                     <option value="">elige</option>
                     <option>Financiero</option>
                     <option>Retail y comercio</option>
@@ -64,45 +75,67 @@ const { hideCta = false } = Astro.props;
                     <option>Otro</option>
                   </select>
                   <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                
                 </span>
-                <span class="ml-error-msg" id="err-sector"></span>.
-              </p>
+               
+                <span class="ml-error-msg" id="err-sector"></span>
+            </div>
 
-              <p class="mb-4">
+    
+</div>
+
+    
+              <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
+                
+                <span>
                 Actualmente necesitamos
-                <span class="ml-select-wrap">
-                  <select class="ml-select" id="ml-necesidad" name="necesidad" required aria-label="Qué necesitás">
-                    <option value="">elige</option>
-                    <option>digitalizar un proceso manual</option>
-                    <option>construir una plataforma web</option>
-                    <option>desarrollar una app móvil</option>
-                    <option>integrar sistemas existentes</option>
-                    <option>mejorar nuestra infraestructura actual</option>
-                    <option>automatizar flujos de trabajo</option>
-                  </select>
-                  <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
                 </span>
-                <span class="ml-error-msg" id="err-necesidad"></span>
-                y queremos lograr
-                <span class="ml-select-wrap">
-                  <select class="ml-select" id="ml-objetivo" name="objetivo" required aria-label="Tu objetivo">
-                    <option value="">elige</option>
-                    <option>escalar el negocio</option>
-                    <option>reducir errores y tiempo operativo</option>
-                    <option>mejorar la experiencia del cliente</option>
-                    <option>integrar nuestras APIs y datos</option>
-                    <option>aumentar la visibilidad digital</option>
-                    <option>tener control en tiempo real</option>
-                  </select>
-                  <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                
+                <span class="flex-1">
+                    <span class="ml-select-wrap w-full">
+                    <select class="ml-select w-full" id="ml-necesidad" name="necesidad" required aria-label="Qué necesitás">
+                        <option value="">elige</option>
+                        <option>digitalizar un proceso manual</option>
+                        <option>construir una plataforma web</option>
+                        <option>desarrollar una app móvil</option>
+                        <option>integrar sistemas existentes</option>
+                        <option>mejorar nuestra infraestructura actual</option>
+                        <option>automatizar flujos de trabajo</option>
+                    </select>
+                    <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                    </span>
+                    <span class="ml-error-msg" id="err-necesidad"></span>
                 </span>
-                <span class="ml-error-msg" id="err-objetivo"></span>.
-              </p>
+                </div>
 
-              <p class="mb-4">
+
+<div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
+                <span >
+                    y queremos lograr
+                </span>
+                <span class="flex-1">
+                    <span class="ml-select-wrap w-full">
+                    <select class="ml-select w-full" id="ml-objetivo" name="objetivo" required aria-label="Tu objetivo">
+                        <option value="">elige</option>
+                        <option>escalar el negocio</option>
+                        <option>reducir errores y tiempo operativo</option>
+                        <option>mejorar la experiencia del cliente</option>
+                        <option>integrar nuestras APIs y datos</option>
+                        <option>aumentar la visibilidad digital</option>
+                        <option>tener control en tiempo real</option>
+                    </select>
+                    <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                    </span>
+                    <span class="ml-error-msg" id="err-objetivo"></span>.
+                </span>       
+              
+            
+              </div>
+
+            <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
                 Nos gustaría empezar
-                <span class="ml-select-wrap">
-                  <select class="ml-select" id="ml-plazo" name="plazo" required aria-label="Plazo estimado">
+                <span class="ml-select-wrap flex-1">
+                  <select class="ml-select w-full" id="ml-plazo" name="plazo" required aria-label="Plazo estimado">
                     <option value="">elige</option>
                     <option>lo antes posible</option>
                     <option>en los próximos 3 meses</option>
@@ -112,13 +145,13 @@ const { hideCta = false } = Astro.props;
                   <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
                 </span>
                 <span class="ml-error-msg" id="err-plazo"></span>.
-              </p>
+              </div>
 
-              <p class="mb-6">
+              <div class="mb-6 font-light text-xl ">
                 Algo más que quiero añadir:
                 <input class="ml-input ml-input-muted" id="ml-extra" name="extra" placeholder="(opcional)" aria-label="Notas adicionales" />
-              </p>
-            </div>
+              </div>
+        </div>
 
             <!-- Validation hint -->
             <div id="ml-hint" class="ml-hint hidden">
@@ -138,13 +171,10 @@ const { hideCta = false } = Astro.props;
     </div>
     
     <div data-ns-animate data-delay="0.7" class="flex items-center justify-center">
-      
         <button type="submit" id="ml-submit-btn" class="btn btn-secondary hover:btn-green dark:btn-transparent dark:border-primary-50 btn-md w-[85%] md:w-auto mx-auto" disabled>
                     <span>Enviar mensaje</span>
         </button>
-
     </div>  
-
 
   <!-- Success state -->
           <div id="ml-success" class="ml-success hidden">
@@ -174,21 +204,21 @@ const { hideCta = false } = Astro.props;
 
 
 <style>
-  /* Mad-libs mobile-first: stack each field on its own row */
+  /* Mad-libs mobile-first */
   .ml-text > p {
     margin-bottom: 1rem;
     line-height: 1.8;
   }
 
-  /* On mobile: inputs and selects become block-level with full width */
+  /* Mobile: block layout */
   @media (max-width: 639px) {
     .ml-input {
       display: block !important;
       width: 100% !important;
       min-width: 0 !important;
       margin: 4px 0 8px 0;
-      padding: 6px 8px !important;
-      border-bottom: 2px solid var(--color-accent-400);
+      padding: 8px 10px !important;      
+      border-bottom: 1px dotted var(--color-secondary);
     }
     .ml-select-wrap {
       display: block !important;
@@ -199,7 +229,7 @@ const { hideCta = false } = Astro.props;
       display: block !important;
       width: 100%;
       padding: 8px 28px 8px 8px;
-      border-bottom: 2px solid var(--color-accent-500);
+      border-bottom: 1px dotted var(--color-secondary);
       border-radius: 4px;
       background-color: rgba(0, 0, 0, 0.03);
     }
@@ -212,7 +242,7 @@ const { hideCta = false } = Astro.props;
       margin-bottom: 4px;
     }
     .ml-text {
-      font-size: 1rem !important;
+      font-size: 1.125rem !important;
     }
     .ml-text > p {
       line-height: 1.6;
@@ -223,8 +253,9 @@ const { hideCta = false } = Astro.props;
   @media (min-width: 640px) {
     .ml-input {
       display: inline-block;
-      min-width: 80px;
       vertical-align: baseline;
+      min-width: 100%;
+      width: 100%;
     }
     .ml-select-wrap {
       display: inline-block;
@@ -235,31 +266,34 @@ const { hideCta = false } = Astro.props;
       display: inline-block;
       vertical-align: baseline;
     }
+     .ml-input-wrap {
+    display: inline-flex;
+    flex: 1;
+    width: 100%;
+  }
   }
 
-  /* Mad-libs base input styles */
+  /* ── Text inputs ── */
   .ml-input {
     border: none;
-    border-bottom: 2px solid var(--color-accent-400);
+    border-bottom: 1px dotted var(--color-secondary);
     background: transparent;
     font-size: inherit;
     font-family: inherit;
     font-weight: 500;
-    color: var(--color-accent-400);
+    color: var(--color-secondary);
     outline: none;
     padding: 0 4px 2px;
     transition: border-color 0.2s, background-color 0.2s;
   }
   .ml-input::placeholder {
-    color: var(--color-accent-400);
+    color: var(--color-secondary);
     font-style: italic;
     font-weight: 400;
   }
   .ml-input:focus {
-    border-color: var(--color-primary-700);
+    border-color: var(--color-accent-400);
   }
-
-  /* Validation states */
   .ml-input.ml-invalid {
     border-bottom-color: #ef4444 !important;
     background-color: rgba(239, 68, 68, 0.08);
@@ -267,12 +301,16 @@ const { hideCta = false } = Astro.props;
   .ml-input.ml-valid {
     border-bottom-color: #22c55e;
   }
-  .ml-select.ml-invalid {
-    border-bottom-color: #ef4444 !important;
+  .ml-input-muted {
+    border-bottom-color: var(--color-stroke-3);
+    color: var(--color-secondary);
+    opacity: 0.6;
   }
-  .ml-select.ml-valid {
-    border-bottom-color: #22c55e;
+  .ml-input-muted::placeholder {
+    color: var(--color-stroke-3);
   }
+
+  /* ── Error messages ── */
   .ml-error-msg {
     font-size: 12px;
     color: #ef4444;
@@ -284,6 +322,68 @@ const { hideCta = false } = Astro.props;
   }
   .ml-error-msg.ml-visible {
     opacity: 1;
+  }
+
+  /* ── Native selects ── */
+  .ml-select {
+    border: none;
+    border-bottom: 1px dotted var(--color-secondary);
+    background: transparent;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: 500;
+    color: var(--color-secondary);
+    outline: none;
+    padding: 0 22px 2px 4px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    transition: border-color 0.2s;
+  }
+  .ml-select:focus {
+    border-color: var(--color-accent-400);
+  }
+  .ml-select.ml-invalid {
+    border-bottom-color: #ef4444 !important;
+  }
+  .ml-select.ml-valid {
+    border-bottom-color: #22c55e;
+  }
+  .ml-select-arrow {
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-secondary);
+  }
+
+  /* Dark mode */
+  :global(.dark) .ml-input {
+    border-bottom-color: var(--color-primary-50);
+    color: var(--color-primary-50);
+  }
+  :global(.dark) .ml-input::placeholder {
+    color: var(--color-primary-50);
+    opacity: 0.5;
+  }
+  :global(.dark) .ml-input.ml-invalid {
+    background-color: rgba(239, 68, 68, 0.12);
+  }
+  :global(.dark) .ml-input-muted {
+    border-bottom-color: var(--color-stroke-7);
+    color: var(--color-accent);
+    opacity: 0.5;
+  }
+  :global(.dark) .ml-error-msg {
+    color: #f87171;
+  }
+  :global(.dark) .ml-select {
+    border-bottom-color: var(--color-primary-50);
+    color: var(--color-primary-50);
+  }
+  :global(.dark) .ml-select-arrow {
+    color: var(--color-primary-50);
   }
 
   /* Validation hint */
@@ -316,71 +416,7 @@ const { hideCta = false } = Astro.props;
   :global(.dark) .ml-hint-icon {
     color: #fbbf24;
   }
-  :global(.dark) .ml-input.ml-invalid {
-    background-color: rgba(239, 68, 68, 0.12);
-  }
-  :global(.dark) .ml-error-msg {
-    color: #f87171;
-  }
 
-  .ml-input-muted {
-    border-bottom-color: var(--color-stroke-3);
-    color: var(--color-secondary);
-    opacity: 0.6;
-  }
-  .ml-input-muted::placeholder {
-    color: var(--color-stroke-3);
-  }
-  :global(.dark) .ml-input-muted {
-    border-bottom-color: var(--color-stroke-7);
-    color: var(--color-accent);
-    opacity: 0.5;
-  }
-  :global(.dark) .ml-input {
-    border-bottom-color: var(--color-accent-400);
-    color: var(--color-accent-400);
-  }
-  :global(.dark) .ml-input::placeholder {
-    color: var(--color-accent-400);
-    opacity: 0.5;
-  }
-
-  /* Inline selects desktop base */
-  .ml-select {
-    border: none;
-    border-bottom: 2px solid var(--color-accent-500);
-    background: transparent;
-    font-size: inherit;
-    font-family: inherit;
-    font-weight: 500;
-    color: var(--color-accent-500);
-    outline: none;
-    padding: 0 22px 2px 4px;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    transition: border-color 0.2s;
-  }
-  .ml-select:focus {
-    border-color: var(--color-accent-700);
-  }
-  .ml-select-arrow {
-    position: absolute;
-    right: 4px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: var(--color-accent-500);
-  }
-  :global(.dark) .ml-select {
-    border-bottom-color: var(--color-accent-400);
-    color: var(--color-accent-400);
-  }
-  :global(.dark) .ml-select-arrow {
-    color: var(--color-accent-400);
-  }
-
-  /* Shake animation for validation hint */
   @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-6px); }
@@ -394,7 +430,7 @@ const { hideCta = false } = Astro.props;
     background: var(--color-background-3);
     border-radius: 12px;
     border-left: 3px solid var(--color-primary-500);
-    font-size: 14px;
+    font-size: 0.9375rem;
     line-height: 1.8;
     display: none;
   }
@@ -402,7 +438,7 @@ const { hideCta = false } = Astro.props;
     display: block;
   }
   .ml-preview-label {
-    font-size: 11px;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.07em;
     color: var(--color-secondary);
@@ -423,14 +459,13 @@ const { hideCta = false } = Astro.props;
   }
 </style>
 
-<script>
-  function sizeInput(el: HTMLInputElement) {
-    // On mobile (<640px), don't set width — CSS handles 100% block
+<script is:inline>
+  function sizeInput(el) {
     if (window.innerWidth < 640) {
       el.style.width = '';
       return;
     }
-    const span = document.createElement('span');
+    var span = document.createElement('span');
     span.style.cssText = 'visibility:hidden;position:absolute;font-size:inherit;font-family:inherit;white-space:pre;padding:0 4px';
     span.textContent = el.value || el.placeholder;
     document.body.appendChild(span);
@@ -439,23 +474,22 @@ const { hideCta = false } = Astro.props;
   }
 
   function initMadLibs() {
-    const form = document.getElementById('mad-libs-form') as HTMLFormElement;
+    var form = document.getElementById('mad-libs-form');
     if (!form) return;
 
-    const inputs = form.querySelectorAll('.ml-input') as NodeListOf<HTMLInputElement>;
-    const selects = form.querySelectorAll('.ml-select') as NodeListOf<HTMLSelectElement>;
-    const submitBtn = document.getElementById('ml-submit-btn') as HTMLButtonElement;
-    const preview = document.getElementById('ml-preview') as HTMLDivElement;
-    const previewText = document.getElementById('ml-preview-text') as HTMLParagraphElement;
-    const successDiv = document.getElementById('ml-success') as HTMLDivElement;
-    const successMsg = document.getElementById('ml-success-msg') as HTMLHeadingElement;
-    const hintDiv = document.getElementById('ml-hint') as HTMLDivElement;
-    const hintText = document.getElementById('ml-hint-text') as HTMLSpanElement;
+    var inputs = form.querySelectorAll('.ml-input');
+    var selects = form.querySelectorAll('.ml-select');
+    var submitBtn = document.getElementById('ml-submit-btn');
+    var preview = document.getElementById('ml-preview');
+    var previewText = document.getElementById('ml-preview-text');
+    var successDiv = document.getElementById('ml-success');
+    var successMsg = document.getElementById('ml-success-msg');
+    var hintDiv = document.getElementById('ml-hint');
+    var hintText = document.getElementById('ml-hint-text');
 
-    // Track which fields the user has interacted with
-    const touched: Record<string, boolean> = {};
+    var touched = {};
 
-    const fieldLabels: Record<string, string> = {
+    var fieldLabels = {
       nombre: 'tu nombre',
       correo: 'tu correo',
       sector: 'el sector',
@@ -464,40 +498,41 @@ const { hideCta = false } = Astro.props;
       plazo: 'el plazo',
     };
 
-    inputs.forEach(sizeInput);
+    inputs.forEach(function(el) { sizeInput(el); });
 
     function vals() {
       return {
-        nombre: (document.getElementById('ml-nombre') as HTMLInputElement).value.trim(),
-        correo: (document.getElementById('ml-correo') as HTMLInputElement).value.trim(),
-        sector: (document.getElementById('ml-sector') as HTMLSelectElement).value,
-        necesidad: (document.getElementById('ml-necesidad') as HTMLSelectElement).value,
-        objetivo: (document.getElementById('ml-objetivo') as HTMLSelectElement).value,
-        plazo: (document.getElementById('ml-plazo') as HTMLSelectElement).value,
-        extra: (document.getElementById('ml-extra') as HTMLInputElement).value.trim(),
+        nombre: document.getElementById('ml-nombre').value.trim(),
+        correo: document.getElementById('ml-correo').value.trim(),
+        sector: document.getElementById('ml-sector').value,
+        necesidad: document.getElementById('ml-necesidad').value,
+        objetivo: document.getElementById('ml-objetivo').value,
+        plazo: document.getElementById('ml-plazo').value,
+        extra: document.getElementById('ml-extra').value.trim(),
       };
     }
 
-    function isComplete(v: ReturnType<typeof vals>) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    function isComplete(v) {
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return v.nombre && emailRegex.test(v.correo) && v.sector && v.necesidad && v.objetivo && v.plazo;
     }
 
-    function buildMsg(v: ReturnType<typeof vals>) {
-      let msg = `Hola, me llamo ${v.nombre} y mi correo es ${v.correo}. Trabajo en una empresa del sector ${v.sector}. Actualmente necesitamos ${v.necesidad} y queremos lograr ${v.objetivo}. Nos gustaría empezar ${v.plazo}.`;
-      if (v.extra) msg += ` ${v.extra}`;
+    function buildMsg(v) {
+      var msg = 'Hola, me llamo ' + v.nombre + ' y mi correo es ' + v.correo + '. Trabajo en una empresa del sector ' + v.sector + '. Actualmente necesitamos ' + v.necesidad + ' y queremos lograr ' + v.objetivo + '. Nos gustaría empezar ' + v.plazo + '.';
+      if (v.extra) msg += ' ' + v.extra;
       return msg;
     }
 
-    function validateField(id: string, value: string, isEmail = false): boolean {
-      const el = document.getElementById(id) as HTMLInputElement | HTMLSelectElement;
-      const errEl = document.getElementById('err-' + id) as HTMLSpanElement | null;
+    function validateField(id, value, isEmail) {
+      var key = id.replace('ml-', '');
+      var el = document.getElementById(id);
+      var errEl = document.getElementById('err-' + key);
       if (!el) return true;
 
-      const isEmpty = !value.trim();
-      const isInvalidEmail = isEmail && value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
+      var isEmpty = !value.trim();
+      var isInvalidEmail = isEmail && value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
 
-      if (touched[id]) {
+      if (touched[key]) {
         if (isEmpty) {
           el.classList.add('ml-invalid');
           el.classList.remove('ml-valid');
@@ -515,15 +550,14 @@ const { hideCta = false } = Astro.props;
           return true;
         }
       }
-      // Untouched: no feedback
       el.classList.remove('ml-invalid', 'ml-valid');
       if (errEl) { errEl.textContent = ''; errEl.classList.remove('ml-visible'); }
       return !isEmpty && !isInvalidEmail;
     }
 
-    function validateAll(showAll = false) {
-      const v = vals();
-      const fields = [
+    function validateAll(showAll) {
+      var v = vals();
+      var fields = [
         { id: 'ml-nombre', key: 'nombre', value: v.nombre },
         { id: 'ml-correo', key: 'correo', value: v.correo, isEmail: true },
         { id: 'ml-sector', key: 'sector', value: v.sector },
@@ -533,16 +567,15 @@ const { hideCta = false } = Astro.props;
       ];
 
       if (showAll) {
-        fields.forEach(f => { touched[f.key] = true; });
+        fields.forEach(function(f) { touched[f.key] = true; });
       }
 
-      const results = fields.map(f => validateField(f.id, f.value, f.isEmail));
-      const allValid = results.every(Boolean);
-      const missing = fields.filter((f, i) => !results[i]).map(f => fieldLabels[f.key]);
+      var results = fields.map(function(f) { return validateField(f.id, f.value, f.isEmail); });
+      var allValid = results.every(Boolean);
+      var missing = fields.filter(function(_, i) { return !results[i]; }).map(function(f) { return fieldLabels[f.key]; });
 
-      // Update hint
       if (!allValid) {
-        hintText.textContent = `Falta completar: ${missing.join(', ')}`;
+        hintText.textContent = 'Falta completar: ' + missing.join(', ');
         hintDiv.classList.remove('hidden');
       } else {
         hintDiv.classList.add('hidden');
@@ -552,8 +585,8 @@ const { hideCta = false } = Astro.props;
     }
 
     function updatePreview() {
-      const v = vals();
-      const complete = isComplete(v);
+      var v = vals();
+      var complete = isComplete(v);
       submitBtn.toggleAttribute('disabled', !complete);
 
       if (complete) {
@@ -564,169 +597,155 @@ const { hideCta = false } = Astro.props;
         preview.classList.remove('show');
       }
 
-      // Validate touched fields silently (no new touches)
-      fields: {
-        const fields = [
-          { id: 'ml-nombre', key: 'nombre', value: v.nombre },
-          { id: 'ml-correo', key: 'correo', value: v.correo, isEmail: true },
-          { id: 'ml-sector', key: 'sector', value: v.sector },
-          { id: 'ml-necesidad', key: 'necesidad', value: v.necesidad },
-          { id: 'ml-objetivo', key: 'objetivo', value: v.objetivo },
-          { id: 'ml-plazo', key: 'plazo', value: v.plazo },
-        ];
-        fields.forEach(f => { if (touched[f.key]) validateField(f.id, f.value, f.isEmail); });
-        // Update hint with current state
-        if (!complete) {
-          const missing = fields.filter(f => {
-            if (f.isEmail) return !f.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim());
-            return !f.value.trim();
-          }).map(f => fieldLabels[f.key]);
-          hintText.textContent = `Falta completar: ${missing.join(', ')}`;
-          if (Object.keys(touched).length > 0) hintDiv.classList.remove('hidden');
-        } else {
-          hintDiv.classList.add('hidden');
-        }
+      var fields = [
+        { id: 'ml-nombre', key: 'nombre', value: v.nombre },
+        { id: 'ml-correo', key: 'correo', value: v.correo, isEmail: true },
+        { id: 'ml-sector', key: 'sector', value: v.sector },
+        { id: 'ml-necesidad', key: 'necesidad', value: v.necesidad },
+        { id: 'ml-objetivo', key: 'objetivo', value: v.objetivo },
+        { id: 'ml-plazo', key: 'plazo', value: v.plazo },
+      ];
+      fields.forEach(function(f) { if (touched[f.key]) validateField(f.id, f.value, f.isEmail); });
+
+      if (!complete) {
+        var missing = fields.filter(function(f) {
+          if (f.isEmail) return !f.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.value.trim());
+          return !f.value.trim();
+        }).map(function(f) { return fieldLabels[f.key]; });
+        hintText.textContent = 'Falta completar: ' + missing.join(', ');
+        if (Object.keys(touched).length > 0) hintDiv.classList.remove('hidden');
+      } else {
+        hintDiv.classList.add('hidden');
       }
     }
 
-    // Blur validation: mark as touched and validate
-    const fieldMap: Record<string, string> = {
+    // Blur validation for text inputs
+    var fieldMap = {
       'ml-nombre': 'nombre',
       'ml-correo': 'correo',
-      'ml-sector': 'sector',
-      'ml-necesidad': 'necesidad',
-      'ml-objetivo': 'objetivo',
-      'ml-plazo': 'plazo',
     };
 
-    Object.keys(fieldMap).forEach(elId => {
-      const el = document.getElementById(elId) as HTMLInputElement | HTMLSelectElement;
+    Object.keys(fieldMap).forEach(function(elId) {
+      var el = document.getElementById(elId);
       if (!el) return;
-      const key = fieldMap[elId];
-      const isEmail = key === 'correo';
+      var key = fieldMap[elId];
+      var isEmail = key === 'correo';
 
-      el.addEventListener('blur', () => {
+      el.addEventListener('blur', function() {
         touched[key] = true;
-        const v = vals();
-        validateField(elId, (v as any)[key], isEmail);
+        var v = vals();
+        validateField(elId, v[key], isEmail);
         updatePreview();
       });
     });
 
     // Live resize on input
-    inputs.forEach(el => {
-      el.addEventListener('input', () => {
+    inputs.forEach(function(el) {
+      el.addEventListener('input', function() {
         sizeInput(el);
-        const key = el.id.replace('ml-', '');
+        var key = el.id.replace('ml-', '');
         if (touched[key]) {
-          const v = vals();
-          validateField(el.id, (v as any)[key], key === 'correo');
+          var v = vals();
+          validateField(el.id, v[key], key === 'correo');
         }
         updatePreview();
       });
     });
 
     // Update on select change
-    selects.forEach(sel => {
-      sel.addEventListener('change', () => {
-        const key = sel.id.replace('ml-', '');
+    selects.forEach(function(sel) {
+      sel.addEventListener('change', function() {
+        var key = sel.id.replace('ml-', '');
         touched[key] = true;
-        const v = vals();
-        validateField(sel.id, (v as any)[key]);
+        var v = vals();
+        validateField(sel.id, v[key]);
         updatePreview();
       });
     });
 
     // Click on disabled button: show validation
-    submitBtn.addEventListener('click', (e) => {
+    submitBtn.addEventListener('click', function(e) {
       if (submitBtn.disabled) {
         e.preventDefault();
         validateAll(true);
-        // Shake the hint
         hintDiv.classList.remove('hidden');
         hintDiv.style.animation = 'none';
-        hintDiv.offsetHeight; // trigger reflow
+        hintDiv.offsetHeight;
         hintDiv.style.animation = 'shake 0.4s ease';
         return;
       }
     });
 
     // Submit
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const v = vals();
+      var v = vals();
       if (!isComplete(v)) return;
 
-      // Show loading state
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<span>Enviando...</span>';
 
-      try {
-        const formData = new FormData();
-        formData.append('nombre', v.nombre);
-        formData.append('email', v.correo);
-        formData.append('sector', v.sector);
-        formData.append('necesidad', v.necesidad);
-        formData.append('objetivo', v.objetivo);
-        formData.append('plazo', v.plazo);
-        if (v.extra) formData.append('extra', v.extra);
+      var formData = new FormData();
+      formData.append('nombre', v.nombre);
+      formData.append('email', v.correo);
+      formData.append('sector', v.sector);
+      formData.append('necesidad', v.necesidad);
+      formData.append('objetivo', v.objetivo);
+      formData.append('plazo', v.plazo);
+      if (v.extra) formData.append('extra', v.extra);
 
-        const response = await fetch('/api/contacto', {
-          method: 'POST',
-          body: formData,
+      fetch('/api/contacto', {
+        method: 'POST',
+        body: formData,
+      })
+      .then(function(response) {
+        return response.json().then(function(result) {
+          if (!response.ok) throw new Error(result.error || 'Error al enviar el mensaje');
+          return result;
         });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-          throw new Error(result.error || 'Error al enviar el mensaje');
-        }
-
-        // Success
+      })
+      .then(function() {
         form.style.display = 'none';
-        successMsg.textContent = `¡Gracias, ${v.nombre}! Te contactaremos en las próximas 24 horas.`;
+        successMsg.textContent = '¡Gracias, ' + v.nombre + '! Te contactaremos en las próximas 24 horas.';
         successDiv.classList.remove('hidden');
 
-        // Reset form after showing success
-        setTimeout(() => {
+        setTimeout(function() {
           form.reset();
           form.style.display = 'block';
           successDiv.classList.add('hidden');
           submitBtn.disabled = true;
           submitBtn.innerHTML = '<span>Enviar mensaje</span>';
-          Object.keys(touched).forEach(k => touched[k] = false);
-          document.querySelectorAll('.ml-invalid, .ml-valid').forEach(el => {
+          touched = {};
+          document.querySelectorAll('.ml-invalid, .ml-valid').forEach(function(el) {
             el.classList.remove('ml-invalid', 'ml-valid');
           });
-          document.querySelectorAll('.ml-error-msg.ml-visible').forEach(el => {
+          document.querySelectorAll('.ml-error-msg.ml-visible').forEach(function(el) {
             el.textContent = '';
             el.classList.remove('ml-visible');
           });
           updatePreview();
-          inputs.forEach(sizeInput);
+          inputs.forEach(function(el) { sizeInput(el); });
         }, 5000);
-
-      } catch (error) {
+      })
+      .catch(function(error) {
         console.error('Form submission error:', error);
-        
-        // Show error state
-        successDiv.querySelector('.flex')?.classList.add('hidden');
-        const errorMsg = successMsg.nextElementSibling;
+        successDiv.querySelector('.flex').classList.add('hidden');
+        var errorMsg = successMsg.nextElementSibling;
         if (errorMsg) {
           errorMsg.textContent = 'Error: ' + (error.message || 'No se pudo enviar el mensaje. Intenta nuevamente.');
           errorMsg.className = 'text-secondary/60 dark:text-accent/60 text-tagline-1 text-red-600';
         }
         successDiv.classList.remove('hidden');
-        
-        // Reset button
         submitBtn.disabled = false;
         submitBtn.innerHTML = '<span>Enviar mensaje</span>';
-      }
+      });
     });
 
     // Initial sizing
-    inputs.forEach(sizeInput);
+    inputs.forEach(function(el) { sizeInput(el); });
   }
 
-  document.addEventListener('DOMContentLoaded', initMadLibs);
+  // Ensure DOM is fully rendered before initializing
+  // Astro's is:inline scripts run synchronously during parse — use setTimeout to defer
+  setTimeout(initMadLibs, 0);
 </script>

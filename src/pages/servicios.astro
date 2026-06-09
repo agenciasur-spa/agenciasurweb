@@ -1,8 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactoFooter from '../components/ContactoFooter.astro';
+import DemoModal from '../components/DemoModal.astro';
 import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket, CheckCircle, Smartphone, Accessibility, Monitor, Server, Database, Container, Globe, GitBranch, Zap, Webhook } from '@lucide/astro';
 import StackIcon from 'tech-stack-icons';
+
+
 
 const procesoSteps = [
   {
@@ -42,13 +45,37 @@ const procesoSteps = [
   },
 ];
 
+
 const tecnologias = [
-  { name: 'Astro / Next.js', category: 'Frontend' },
-  { name: 'React / Vue', category: 'Frontend' },
-  { name: 'Node.js / Python', category: 'Backend' },
-  { name: 'PostgreSQL / MongoDB', category: 'Base de Datos' },
-  { name: 'AWS / Vercel', category: 'Infraestructura' },
-  { name: 'Docker / Kubernetes', category: 'DevOps' },
+  { name: 'symfony' },
+  { name: 'astro' },
+  { name: 'nextjs2' },
+  { name: 'nestjs' },
+  { name: 'react' },
+  { name: 'vuejs' },
+  { name: 'angular' },
+  { name: 'nodejs' },
+    { name: 'python' },
+    { name: 'django' },
+    { name: 'flask' },
+    { name: 'js' },
+    { name: 'redis' },
+    { name: 'php' },
+    { name: 'laravel' },
+    { name: 'mysql' },
+    { name: 'postgresql' },
+    { name: 'mongodb' },
+    { name: 'redis' },
+    { name: 'docker' },
+    { name: 'kubernetes' },
+    { name: 'aws' },
+    { name: 'azure' },
+    { name: 'supabase' },
+    { name: 'heroku' },
+    { name: 'digitalocean' },
+    { name: 'netlify' },
+    { name: 'vercel' },
+    
 ];
 
 const diferenciadores = [
@@ -67,9 +94,9 @@ const diferenciadores = [
     <div class="main-container">
       <div class="text-center space-y-5 mb-[70px]">
     
-        <span data-ns-animate data-delay="0.1" class="badge badge-green-v2">Nuestro Método</span>
+        <span data-ns-animate data-delay="0.1" class="badge badge-section">Nuestro Método</span>
         <div class="space-y-3">
-          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto fw-300">
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light">
             Cómo trabajamos
           </h2>
           <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
@@ -284,8 +311,8 @@ Tech Stack Marquee
   aria-label="Stack Tecnológico"
 >
   <div class="max-w-[1028px] text-center w-full mx-auto mb-14">
-    <span data-ns-animate data-delay="0.1" class="badge badge-green-v2 mb-5">Stack flexible</span>
-    <h2 data-ns-animate data-delay="0.2" class="mb-3">Stack Tecnológico</h2>
+    <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">Stack flexible</span>
+    <h2 data-ns-animate data-delay="0.2" class="mb-3 font-light">Stack Tecnológico</h2>
     <p data-ns-animate data-delay="0.3" class="max-w-[582px] mx-auto w-full">
       Adaptamos el stack a tu infraestructura existente. No forzamos una tecnología si no encaja.
     </p>
@@ -296,22 +323,35 @@ Tech Stack Marquee
     <div data-ns-animate data-delay="0.4" class="relative">
       <div class="absolute left-0 top-0 h-full w-[100px] bg-gradient-to-r from-background-1 to-transparent dark:from-background-6 z-40"></div>
       <div class="absolute right-0 top-0 h-full w-[100px] bg-gradient-to-l from-background-1 to-transparent dark:from-background-6 z-40"></div>
-      <div class="logos-marquee-container">
-        <div class="marquee-track">
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Code size={18} stroke-width={1.5} /> Astro</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Smartphone size={18} stroke-width={1.5} /> React</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Accessibility size={18} stroke-width={1.5} /> Next.js</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Monitor size={18} stroke-width={1.5} /> Vue</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Server size={18} stroke-width={1.5} /> Node.js</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Database size={18} stroke-width={1.5} /> PostgreSQL</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Cloud size={18} stroke-width={1.5} /> AWS</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Container size={18} stroke-width={1.5} /> Docker</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Globe size={18} stroke-width={1.5} /> TypeScript</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><GitBranch size={18} stroke-width={1.5} /> Git</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Code size={18} stroke-width={1.5} /> Python</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Database size={18} stroke-width={1.5} /> MongoDB</span>
-        </div>
+     
+
+
+
+      
+
+<div class="logos-marquee-container">
+        {tecnologias.map((tech, i) => (
+          <div data-ns-animate data-delay={0.3 + i * 0.08}>
+            <div class="flex items-center justify-center rounded-2xl p-4 border border-stroke-1 bg-white dark:bg-background-5 dark:border-white/25">
+              <StackIcon name={tech.name} variant="light" className="icon-dark h-10 w-10" />
+              <StackIcon name={tech.name} variant="dark" className="icon-light h-10 w-10" />
+            </div>
+          </div>
+        ))}
       </div>
+      <div class="logos-right-marquee-container mt-10">
+        {tecnologias.map((tech, i) => (
+          <div data-ns-animate data-delay={0.3 + i * 0.08}>
+            <div class="flex items-center justify-center rounded-2xl p-4 border border-stroke-1 bg-white dark:bg-background-5 dark:border-white/25">
+              <StackIcon name={tech.name} variant="light" className="icon-dark h-10 w-10" />
+              <StackIcon name={tech.name} variant="dark" className="icon-light h-10 w-10" />
+            </div>
+          </div>
+        ))}
+      </div>
+
+
+
     </div>
   </div>
 </section>
@@ -322,121 +362,108 @@ Tech Stack Marquee
   <section class="relative xl:py-[200px] py-24 overflow-hidden">
     <div class="main-container space-y-[70px]">
       <div class="flex flex-col items-center text-center">
-        <span data-ns-animate data-delay="0.1" class="badge badge-yellow-v2 mb-5">¿Listo para empezar?</span>
-        <h2 data-ns-animate data-delay="0.2" class="max-w-[650px] mx-auto mb-8">
+        <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">¿Listo para empezar?</span>
+        <h2 data-ns-animate data-delay="0.2" class="max-w-[650px] mx-auto mb-8 font-light">
           ¿Listo para levantar tu proceso?
         </h2>
         <p data-ns-animate data-delay="0.3" class="max-w-[500px] mx-auto mb-8">
           El primer paso es una reunión de diagnóstico. Sin compromiso, sin letra chica.
         </p>
         <div data-ns-animate data-delay="0.4">
-          <a href="/contacto" class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent">
+          <button
+            id="cta-diagnostico-btn"
+            class="btn btn-green btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent"
+          >
             <span>Agendar Diagnóstico</span>
-          </a>
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  
 
+<style is:inline>
+  /* StackIcon variant toggle — default is dark theme, .light class overrides */
+  /* !important needed because StackIcon sets inline display styles */
+  .icon-light { display: none !important; }
+  .icon-dark { display: inline-block !important; }
 
-
-
-
-
-<style>
-  /* Marquee animations */
-  .logos-marquee-container,
-  .logos-right-marquee-container,
-  .cards-marquee-container,
-  .cards-right-marquee-container {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .logos-marquee-container .marquee-track,
-  .cards-marquee-container .marquee-track {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: max-content;
-    gap: 1rem;
-    animation: marquee-left 35s linear infinite;
-  }
-
-  .logos-right-marquee-container .marquee-track,
-  .cards-right-marquee-container .marquee-track {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: max-content;
-    gap: 1rem;
-    animation: marquee-right 35s linear infinite;
-  }
-
-  .logos-marquee-container:hover .marquee-track,
-  .logos-right-marquee-container:hover .marquee-track,
-  .cards-marquee-container:hover .marquee-track,
-  .cards-right-marquee-container:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
-:global(.tech-pill) {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.5rem !important;
-    padding: 0.625rem 1.25rem !important;
-    border-radius: 9999px !important;
-    font-weight: 500 !important;
-    font-size: 0.875rem !important;
-    line-height: 1.25rem !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-    transition: transform 0.2s, box-shadow 0.2s !important;
-  }
-
-  :global(.dark) .tech-pill {
-    background: #161b26 !important;
-    color: #e2e8f0 !important;
-    border-color: #1e293b !important;
-  }
-
-  :global(.tech-pill:hover) {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-  }
-
-  @keyframes marquee-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  @keyframes marquee-right {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-  }
+  .light .icon-light { display: inline-block !important; }
+  .light .icon-dark { display: none !important; }
 </style>
 
 <script>
-  // Duplicate marquee track for seamless infinite loop
-  document.querySelectorAll('.marquee-track').forEach(track => {
-    if (track.parentElement.querySelectorAll('.marquee-track').length < 2) {
-      const clone = track.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      track.parentElement.appendChild(clone);
+import InfiniteMarquee from 'vanilla-infinite-marquee';
+import '/node_modules/vanilla-infinite-marquee/infinite-marquee.css';
+
+function initMarquees() {
+
+
+  if (typeof InfiniteMarquee === 'undefined') return;
+
+  const configs = [
+    {
+      selector: '.logos-marquee-container',
+      speed: 140000,
+      direction: 'left',
+      spaceBetween:"20px",
+      duplicateCount: 1,
+      smoothEdges: true,
+      mobileSettings: { direction: 'left', speed: 50000 },
+    },
+    {
+      selector: '.logos-right-marquee-container',
+      speed: 140000,
+      direction: 'right',
+      spaceBetween:"20px",
+      duplicateCount: 1,
+      smoothEdges: true,
+      mobileSettings: { direction: 'right', speed: 50000 },
     }
-  });
-  // Re-clone on Astro view transitions
-  document.addEventListener('astro:after-swap', () => {
-    document.querySelectorAll('.marquee-track').forEach(track => {
-      if (track.parentElement.querySelectorAll('.marquee-track').length < 2) {
-        const clone = track.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        track.parentElement.appendChild(clone);
-      }
+    
+  ];
+
+  configs.forEach(({ selector, ...options }) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+
+    // Evitar reinicializar si InfiniteMarquee ya procesó el elemento
+    if (el.dataset.marqueeInit === 'true') return;
+
+    new InfiniteMarquee({
+      element: selector,
+      on: { beforeInit: () => {}, afterInit: () => {} },
+      ...options,
     });
+
+    el.dataset.marqueeInit = 'true';
   });
+}
+
+
+document.addEventListener('DOMContentLoaded', initMarquees);
+
+
+document.addEventListener('astro:after-swap', () => {
+  initMarquees();
+});
+
 </script>
 
+<DemoModal
+  modalTitle="Agendar Diagnóstico"
+  modalDescription="Completá tus datos y te contactamos para una reunión de diagnóstico sin compromiso. Analizamos tu operación y te proponemos un plan de acción."
+  ctaLabel="Agendar Diagnóstico"
+  successTitle="¡Solicitud recibida!"
+  successMessage="Te contactaremos en las próximas 24 horas hábiles para agendar tu diagnóstico."
+  solucionTitle="Diagnóstico Gratuito"
+/>
+
+<script>
+  document.getElementById('cta-diagnostico-btn')?.addEventListener('click', () => {
+    document.dispatchEvent(new CustomEvent('open-demo-modal'));
+  });
+</script>
 </Layout>
+
+
