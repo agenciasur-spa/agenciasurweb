@@ -44,7 +44,7 @@ const servicios = [
         <span data-ns-animate data-delay="0.1" class="badge-section">Servicios</span>
         <div class="mb-14 space-y-2 md:max-w-[595px]">
           <h2 data-ns-animate data-delay="0.2" class="font-light">
-            <span class="hero-text-gradient hero-text-color-1 block">Soluciones</span> para la era digital
+            <span class="text-accent-400 block">Soluciones</span> para la era digital
           </h2>
           <p data-ns-animate data-delay="0.3" class="max-w-[512px]">
             Transformamos procesos complejos en soluciones simples, eficientes y escalables.
@@ -56,11 +56,11 @@ const servicios = [
       <div class="stack-cards js-stack-cards w-full max-w-xl">
         {servicios.map(({ icon: Icon, title, description }) => (
           <div class="stack-cards__item js-stack-cards__item max-sm:min-h-[433px]">
-            <div class={`border border-stroke-1 border-black/10 dark:border-white/10 rounded-[20px] relative z-10 overflow-hidden`}>
+            <div class={`border border-stroke-1 dark:border-stroke-7 rounded-[20px] relative z-10 overflow-hidden`}>
               <!-- Card content -->
               <div class="relative p-8 bg-white dark:bg-background-5 rounded-xl space-y-6 z-10">
-                <div class="bg-black flex size-17 items-center justify-center rounded-2xl p-4 shadow-lg border border-stroke-1 dark:border-white/25 dark:bg-background-5">                
-                  <Icon color="#22ff88" size={48} stroke-width={1}  />
+                <div class="bg-black flex size-17 items-center justify-center rounded-2xl p-4 shadow-lg border border-stroke-1 dark:border-stroke-6 dark:bg-background-5">                
+                  <Icon color="currentColor" size={48} stroke-width={1} class="text-accent-400" />
                 </div>
                 <div class="space-y-2">
                   <h3 class="text-heading-5 fw-300">{title}</h3>
@@ -76,37 +76,35 @@ const servicios = [
 </section>
 
 <style>
-  /* === Gradient definitions === */
-  .gradient-blue { --card-from: #3b82f6; --card-via: #a855f7; --card-to: #ec4899; }
-  .gradient-emerald { --card-from: #10b981; --card-via: #2dd4bf; --card-to: #06b6d4; }
-  .gradient-violet { --card-from: #8b5cf6; --card-via: #a855f7; --card-to: #d946ef; }
-  .gradient-amber { --card-from: #f59e0b; --card-via: #f97316; --card-to: #ef4444; }
+  /* === Gradient definitions — using design tokens === */
+  .gradient-blue { background: var(--color-gradient-card-blue); }
+  .gradient-emerald { background: var(--color-gradient-card-emerald); }
+  .gradient-violet { background: var(--color-gradient-card-violet); }
+  .gradient-amber { background: var(--color-gradient-card-amber); }
 
   /* === Card wrapper with gradient border === */
   .card-wrapper {
-    background: linear-gradient(135deg, var(--card-from), var(--card-via), var(--card-to));
     animation: glow-pulse 4s ease-in-out infinite alternate;
   }
 
   /* === Icon gradient background === */
   .icon-gradient {
-    background: linear-gradient(135deg, var(--card-from), var(--card-via), var(--card-to));
+    background: var(--color-gradient-card-blue);
   }
 
   .gradient-1 {
-  background-image: linear-gradient(45deg, #60a5fa, #22ff88);
-}
-
+    background: var(--color-gradient-1);
+  }
 
   /* === Glow animation === */
   @keyframes glow-pulse {
     0% {
       filter: brightness(1) saturate(1);
-      box-shadow: 0 0 20px 0 color-mix(in srgb, var(--card-from) 30%, transparent);
+      box-shadow: 0 0 20px 0 color-mix(in srgb, var(--card-from, #3b82f6) 30%, transparent);
     }
     100% {
       filter: brightness(1.1) saturate(1.2);
-      box-shadow: 0 0 40px 0 color-mix(in srgb, var(--card-from) 45%, transparent);
+      box-shadow: 0 0 40px 0 color-mix(in srgb, var(--card-from, #3b82f6) 45%, transparent);
     }
   }
 

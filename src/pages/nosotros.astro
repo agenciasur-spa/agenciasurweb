@@ -53,7 +53,7 @@ const principios = [
       <div class="space-y-3 text-center">
         <span data-ns-animate data-delay="0.1" class="badge badge-cyan mb-5">Quiénes Somos</span>
         <h2 data-ns-animate data-delay="0.2" class="mx-auto max-w-[980px]">
-          18 años convirtiendo complejidad en simplicidad
+          18 años convirtiendo complejidad en <span class="text-accent-400">simplicidad</span>
         </h2>
         <p data-ns-animate data-delay="0.3" class="mx-auto max-w-[700px]">
           Somos un equipo técnico con trayectoria real en operaciones empresariales.
@@ -98,7 +98,7 @@ const principios = [
             class="max-w-full min-w-full rounded-2xl bg-white p-6 md:max-w-[288px] md:min-w-[288px] dark:bg-black">
             <div class="text-left">
               <span class="text-tagline-2 text-secondary dark:text-accent font-normal">Experiencia</span>
-              <h3 class="mt-2 mb-[30px] flex items-center text-[40px] leading-[1.2] font-normal">
+              <h3 class="mt-2 mb-[30px] flex items-center text-heading-2 leading-[1.2] font-normal">
                 <span data-counter data-number="18" data-speed="1000" data-interval="180" data-rooms="2" data-height-space="2.2">18</span>+ años
               </h3>
             </div>
@@ -148,7 +148,7 @@ const principios = [
       <div class="max-w-[800px] mx-auto space-y-8">
         {timeline.map((item, i) => (
           <div data-ns-animate data-delay={0.3 + i * 0.08} class="flex gap-6 items-start">
-            <span class="text-heading-4 font-bold text-primary-500 flex-shrink-0 w-20">{item.year}</span>
+            <span class="text-heading-4 font-bold text-accent-400 flex-shrink-0 w-20">{item.year}</span>
             <p class="text-tagline-1 pt-1 text-secondary dark:text-accent">{item.event}</p>
           </div>
         ))}
@@ -169,7 +169,7 @@ const principios = [
               Antes de programar, entendemos. Cada línea de código responde a un objetivo de negocio real.
             </h2>
             <div>
-              <a href="/contacto" class="btn btn-md btn-white hover:btn-primary dark:btn-transparent">
+              <a href="/contacto" class="btn btn-md btn-white hover:btn-green dark:btn-transparent dark:hover:btn-green">
                 <span>Hablemos</span>
               </a>
             </div>
@@ -196,7 +196,7 @@ const principios = [
   <section class="bg-secondary dark:bg-background-8 py-20 lg:py-[100px] xl:py-[140px]">
     <div class="main-container">
       <div class="mb-10 max-w-[514px] space-y-3 md:mb-[70px]">
-        <span data-ns-animate data-delay="0.1" class="badge badge-primary">Valores</span>
+        <span data-ns-animate data-delay="0.1" class="badge badge-section">Valores</span>
         <h2 data-ns-animate data-delay="0.2" class="text-accent">Cómo Trabajamos</h2>
       </div>
 
@@ -204,8 +204,8 @@ const principios = [
         {valores.map((valor, i) => (
           <div data-ns-animate data-delay={0.3 + i * 0.1} class="col-span-12 md:col-span-6">
             <div class="bg-background-1 dark:bg-background-6 rounded-[20px] p-8 space-y-4 h-full">
-              <div class="flex size-12 items-center justify-center rounded-2xl bg-primary-500/10 dark:bg-accent/10">
-                <valor.icon class="size-6 text-primary-500 dark:text-accent" />
+              <div class="flex size-12 items-center justify-center rounded-2xl bg-accent-400/10">
+                <valor.icon class="size-6 text-accent-400" />
               </div>
               <h3 class="text-heading-5 text-secondary dark:text-accent">{valor.title}</h3>
               <p class="text-secondary/60 dark:text-accent/60">{valor.description}</p>
@@ -225,7 +225,7 @@ const principios = [
           Agenda una reunión sin compromiso. Te explicamos cómo podríamos ayudarte.
         </p>
         <div data-ns-animate data-delay="0.3">
-          <a href="/contacto" class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent">
+          <a href="/contacto" class="btn btn-green btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent">
             <span>Hablemos</span>
           </a>
         </div>

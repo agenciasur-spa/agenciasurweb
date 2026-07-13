@@ -3,42 +3,40 @@
 // Nexsas Time-Tracking adapted for Agencia Sur
 // Grid de 3 cards: imagen (light/dark) + heading + tagline
 
-
-import { ShoppingBag, UsersRound, Headset } from '@lucide/astro';
-
+import { ShoppingBag, UsersRound, Headset } from "@lucide/astro";
+import BadgeSection  from '../components/blocks/BadgeSection.astro';
 const sistemas = [
   {
     icon: ShoppingBag,
-    title: 'Sistema de Compras',
+    title: "Sistema de Compras",
     description:
-      'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento. Control total desde la solicitud hasta la entrega.',
-    link: '#'
+      "Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento. Control total desde la solicitud hasta la entrega.",
+    link: "#",
   },
   {
     icon: UsersRound,
-    title: 'Gestión de Personal Transitorio',
+    title: "Gestión de Personal Transitorio",
     description:
-      'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma centralizada.',
-    link: '#'
+      "Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma centralizada.",
+    link: "#",
   },
   {
     icon: Headset,
-    title: 'Mesa de Ayuda',
+    title: "Mesa de Ayuda",
     description:
-      'Omnicanalidad y base de conocimientos para una autoatención inteligente con SLA automatizado.',
-    link: '#'
+      "Omnicanalidad y base de conocimientos para una autoatención inteligente con SLA automatizado.",
+    link: "#",
   },
-  
 ];
-
 ---
+
 <section
   class="pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px]"
 >
   <div
     data-ns-animate
     data-delay="0.1"
-    class="2xl:max-w-[1440px] max-w-[1290px] mx-5 text-center xl:mx-auto rounded-4xl py-4 lg:py-8 -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
+    class="main-container-xl text-center rounded-4xl py-4 lg:py-8 -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
   >
     <!-- background image  -->
     <div
@@ -56,42 +54,48 @@ const sistemas = [
         class="w-full h-full object-cover"
       />
     </div>
+
+
+        <BadgeSection text="Sistemas Core" delay={0.4} />
     
 
-<span data-ns-animate data-delay="0.4" class="badge-section">Sistemas Core</span>
+    <h4
+      data-ns-animate
+      data-delay="0.4"
+      class="mt-4 px-10 font-light text-white"
+    >
+      Plataformas modulares diseñadas para <span
+        class="text-accent-400 block">optimizar</span
+      > la gestión empresarial
+    </h4>
 
-
-<h4 data-ns-animate data-delay="0.4" class="mt-4 px-10 font-light text-white">Plataformas modulares diseñadas para <span class="hero-text-gradient hero-text-color-1 block">optimizar</span> la gestión empresarial</h4>
-
-    
     <!-- Content -->
     <div
       class="flex mx-auto max-md:flex-wrap max-md:items-center max-md:justify-center items-start md:items-center justify-start md:justify-center gap-y-10 gap-x-8 max-xl:px-8 max-[400px]:px-6 mt-10"
     >
-    
-    {sistemas.map(({ icon: Icon, title, description, link }) => (
-    <div class="text-left" data-ns-animate data-duration="0.5" data-delay="0.5">
-        <span class="ns-shape-3 text-[52px] text-white"></span>
-        <Icon color="#22ff88" size={32} stroke-width={1}  />
+      {
+        sistemas.map(({ icon: Icon, title, description, link }) => (
+          <div
+            class="text-left"
+            data-ns-animate
+            data-duration="0.5"
+            data-delay="0.5"
+          >
+            <span class="ns-shape-3 text-[52px] text-white" />
+            <Icon color="currentColor" size={32} stroke-width={1} class="text-accent-400" />
 
-        <h5 class="md:text-heading-5 fw-300 mt-4 mb-2 text-white">
-          {title}
-        </h5>
-        <p class="text-white/70 max-w-[375px]">
-          {description}
-        </p>
-        <div class="flex items-center justify-start mt-5">
-              <a
-                href={link}
-                class="btn-ghost"
-              >
+            <h5 class="md:text-heading-5 fw-300 mt-4 mb-2 text-white">
+              {title}
+            </h5>
+            <p class="text-white/70 max-w-[375px]">{description}</p>
+            <div class="flex items-center justify-start mt-5">
+              <a href={link} class="btn-ghost">
                 <span>ver más</span>
               </a>
             </div>
-      </div>
-))}
-
-  
-
-</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
 </section>

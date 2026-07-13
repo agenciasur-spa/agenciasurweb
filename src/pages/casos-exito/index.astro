@@ -50,8 +50,8 @@ const rest = displayCasos.slice(1);
     <div class="main-container">
       <div class="space-y-[70px]">
         <div class="max-w-[800px] space-y-3">
-          <h1 data-ns-animate data-delay="0.2" class="text-heading-3 md:text-heading-2 font-normal">
-            Problemas reales. Resultados medibles.
+          <h1 data-ns-animate data-delay="0.2" class="text-heading-3 md:text-heading-2 font-light">
+            Problemas reales. Resultados <span class="text-accent-400">medibles</span>.
           </h1>
           <p data-ns-animate data-delay="0.3">
             Desde startups en crecimiento hasta empresas consolidadas, organizaciones de todo tipo usan
@@ -62,7 +62,7 @@ const rest = displayCasos.slice(1);
         <!-- Featured case study -->
         {featured && (
           <div class="space-y-4">
-            <h2 data-ns-animate data-delay="0.4" class="text-heading-4">Caso destacado</h2>
+            <span data-ns-animate data-delay="0.4" class="badge-section">Caso destacado</span>
             <ul class="max-w-[435px] space-y-2">
               <li data-ns-animate data-delay="0.5" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
                 Cliente:
@@ -118,17 +118,19 @@ const rest = displayCasos.slice(1);
               <h4 data-ns-animate data-delay="0.3" class="text-heading-4">Los Resultados</h4>
               <p data-ns-animate data-delay="0.4">Logramos:</p>
             </div>
-            <ul class="space-y-2">
-              {featured.results?.slice(0, 3).map((result, idx) => (
-                <li data-ns-animate data-delay={0.3 + idx * 0.1}>
-                  <p
-                    class="before:bg-secondary dark:before:bg-accent before:mr-3 before:inline-block before:size-2 before:rounded-full before:content-['']"
-                  >
-                    {result}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {featured.results?.slice(0, 4).map((result, idx) => {
+                const match = result.match(/^(\d+%|\d+x)/);
+                const metric = match ? match[0] : null;
+                const label = match ? result.replace(match[0], '').trim() : result;
+                return (
+                  <div data-ns-animate data-delay={0.3 + idx * 0.1} class="border-l-2 border-accent-400 bg-background-3 dark:bg-background-6 rounded-r-xl pl-4 pr-3 py-3">
+                    {metric && <p class="text-2xl font-bold text-accent-400">{metric}</p>}
+                    <p class="text-secondary/80 dark:text-accent/80 text-sm">{label}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -140,7 +142,7 @@ const rest = displayCasos.slice(1);
     <div class="main-container">
       <div class="space-y-[70px]">
         <div class="space-y-3 text-center">
-          <h2 data-ns-animate data-delay="0.1" class="text-heading-3">Más casos de éxito</h2>
+          <h2 data-ns-animate data-delay="0.1" class="text-heading-3 font-light">Más casos de éxito</h2>
           <p data-ns-animate data-delay="0.2" class="max-w-[738px] mx-auto">
             Cada proyecto representa un problema real resuelto con software a medida. Estos son algunos de los resultados.
           </p>

@@ -8,11 +8,12 @@ const { hideCta = false } = Astro.props;
 ---
 
 {!hideCta && (
-
+<pre>------------------...footer...------------------</pre>
 <section
   class="pt-16 md:pt-20 lg:pt-[90px] xl:pt-[100px] pb-16 md:pb-20 lg:pb-[90px] xl:pb-[100px] bg-[url('/images/ns-img-169.png')] bg-no-repeat bg-cover bg-top"
 >
   <div class="main-container">
+    
     <div class="text-center space-y-5 max-w-[1024px] mx-auto mb-14">
       <span data-ns-animate data-delay="0.2" class="badge badge-section mb-5">Contacto</span>
       <div>
@@ -21,47 +22,40 @@ const { hideCta = false } = Astro.props;
         </h2>
       </div>
     </div>
+
     <!-- form -->
     <form id="mad-libs-form" class="mad-libs-form">
-     <div
-      class="grid grid-cols-12 space-y-8 md:space-y-0 md:gap-8 mb-10 lg:mb-18 max-w-[1010px] mx-auto"
-    >
-      <div
-        data-ns-animate
-        data-delay="0.5"
-        class="col-span-12 md:col-span-12 lg:col-span-12 p-8 rounded-[20px] bg-white dark:bg-background-6 space-y-6 sm:min-h-[288px]"
-     >
-     
-        <div class="space-y-2  p-6 ">
-            <h6 class="font-light text-xl mb-4">Cuentanos qué necesitás. Te ayudamos a definir el camino desde la idea hasta la implementación.</h6>
+      <div class="grid grid-cols-12 space-y-8 md:space-y-0 md:gap-8 mb-10 lg:mb-18 max-w-[1010px] mx-auto">
+        
+        <div
+          data-ns-animate
+          data-delay="0.5"
+          class="col-span-12 md:col-span-12 lg:col-span-12 p-8 rounded-[20px] bg-white dark:bg-background-6 space-y-6 sm:min-h-[288px]"
+        >
+          <div class="space-y-2 p-6">
+            <h6 class="font-light text-xl mb-4">Cuéntanos qué necesitas. Te ayudamos a definir el camino desde la idea hasta la implementación.</h6>
             
             <!-- Anti-spam field (hidden) -->
             <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
           
-            <div class="">
-
-              <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
-                <span> Hola, me llamo</span>  
-                <span class="ml-input-wrap flex-1">
+            <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
+              <span>Hola, me llamo</span>  
+              <span class="ml-input-wrap flex-1">
                 <input class="ml-input" id="ml-nombre" name="nombre" placeholder="tu nombre" required aria-label="Tu nombre" />
                 <span class="ml-error-msg" id="err-nombre"></span>
-                </span>  
-                <span>  y mi correo es</span>  
-                <span class="ml-input-wrap flex-1">
+              </span>  
+              <span>y mi correo es</span>  
+              <span class="ml-input-wrap flex-1">
                 <input class="ml-input" id="ml-correo" name="correo" type="email" placeholder="tu@empresa.com" required aria-label="Tu correo electrónico" />
-                <span class="ml-error-msg" id="err-correo"></span>.
-              </div>
+                <span class="ml-error-msg" id="err-correo"></span>
+              </span>.
+            </div>
 
-              </div>
-
-<div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
-
-
-          <div class="mb-4 font-light text-xl ">
+            <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
+              <div class="mb-4 font-light text-xl">
                 Trabajo en una empresa del sector
-           </div>     
-
-           <div class="mb-4 font-light text-xl flex-1">
+              </div>     
+              <div class="mb-4 font-light text-xl flex-1">
                 <span class="ml-select-wrap w-full">
                   <select class="ml-select flex-1 w-full" id="ml-sector" name="sector" required aria-label="Sector de tu empresa">
                     <option value="">elige</option>
@@ -75,131 +69,116 @@ const { hideCta = false } = Astro.props;
                     <option>Otro</option>
                   </select>
                   <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                
                 </span>
-               
                 <span class="ml-error-msg" id="err-sector"></span>
-            </div>
-
-    
-</div>
-
-    
-              <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
-                
-                <span>
-                Actualmente necesitamos
-                </span>
-                
-                <span class="flex-1">
-                    <span class="ml-select-wrap w-full">
-                    <select class="ml-select w-full" id="ml-necesidad" name="necesidad" required aria-label="Qué necesitás">
-                        <option value="">elige</option>
-                        <option>digitalizar un proceso manual</option>
-                        <option>construir una plataforma web</option>
-                        <option>desarrollar una app móvil</option>
-                        <option>integrar sistemas existentes</option>
-                        <option>mejorar nuestra infraestructura actual</option>
-                        <option>automatizar flujos de trabajo</option>
-                    </select>
-                    <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                    </span>
-                    <span class="ml-error-msg" id="err-necesidad"></span>
-                </span>
-                </div>
-
-
-<div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
-                <span >
-                    y queremos lograr
-                </span>
-                <span class="flex-1">
-                    <span class="ml-select-wrap w-full">
-                    <select class="ml-select w-full" id="ml-objetivo" name="objetivo" required aria-label="Tu objetivo">
-                        <option value="">elige</option>
-                        <option>escalar el negocio</option>
-                        <option>reducir errores y tiempo operativo</option>
-                        <option>mejorar la experiencia del cliente</option>
-                        <option>integrar nuestras APIs y datos</option>
-                        <option>aumentar la visibilidad digital</option>
-                        <option>tener control en tiempo real</option>
-                    </select>
-                    <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                    </span>
-                    <span class="ml-error-msg" id="err-objetivo"></span>.
-                </span>       
-              
-            
               </div>
-
+            </div>
+    
             <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
-                Nos gustaría empezar
-                <span class="ml-select-wrap flex-1">
-                  <select class="ml-select w-full" id="ml-plazo" name="plazo" required aria-label="Plazo estimado">
+              <span>Actualmente necesitamos</span>
+              <span class="flex-1">
+                <span class="ml-select-wrap w-full">
+                  <select class="ml-select w-full" id="ml-necesidad" name="necesidad" required aria-label="Qué necesitas">
                     <option value="">elige</option>
-                    <option>lo antes posible</option>
-                    <option>en los próximos 3 meses</option>
-                    <option>en los próximos 6 meses</option>
-                    <option>solo estamos cotizando por ahora</option>
+                    <option>digitalizar un proceso manual</option>
+                    <option>construir una plataforma web</option>
+                    <option>desarrollar una app móvil</option>
+                    <option>integrar sistemas existentes</option>
+                    <option>mejorar nuestra infraestructura actual</option>
+                    <option>automatizar flujos de trabajo</option>
                   </select>
                   <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
                 </span>
-                <span class="ml-error-msg" id="err-plazo"></span>.
-              </div>
-
-              <div class="mb-6 font-light text-xl ">
-                Algo más que quiero añadir:
-                <input class="ml-input ml-input-muted" id="ml-extra" name="extra" placeholder="(opcional)" aria-label="Notas adicionales" />
-              </div>
-        </div>
-
-            <!-- Validation hint -->
-            <div id="ml-hint" class="ml-hint hidden">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-hint-icon"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              <span id="ml-hint-text">Completá los campos resaltados para enviar tu mensaje</span>
+                <span class="ml-error-msg" id="err-necesidad"></span>
+              </span>
             </div>
 
-            <!-- Preview -->
-            <div id="ml-preview" class="ml-preview">
-              <p class="ml-preview-label">Así quedará tu mensaje</p>
-              <p id="ml-preview-text" class="text-tagline-1"></p>
+            <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
+              <span>y queremos lograr</span>
+              <span class="flex-1">
+                <span class="ml-select-wrap w-full">
+                  <select class="ml-select w-full" id="ml-objetivo" name="objetivo" required aria-label="Tu objetivo">
+                    <option value="">elige</option>
+                    <option>escalar el negocio</option>
+                    <option>reducir errores y tiempo operativo</option>
+                    <option>mejorar la experiencia del cliente</option>
+                    <option>integrar nuestras APIs y datos</option>
+                    <option>aumentar la visibilidad digital</option>
+                    <option>tener control en tiempo real</option>
+                  </select>
+                  <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+                <span class="ml-error-msg" id="err-objetivo"></span>
+              </span>.
             </div>
-          
-        </div>
-      </div>
-    
-    </div>
-    
-    <div data-ns-animate data-delay="0.7" class="flex items-center justify-center">
-        <button type="submit" id="ml-submit-btn" class="btn btn-secondary hover:btn-green dark:btn-transparent dark:border-primary-50 btn-md w-[85%] md:w-auto mx-auto" disabled>
-                    <span>Enviar mensaje</span>
-        </button>
-    </div>  
 
-  <!-- Success state -->
-          <div id="ml-success" class="ml-success hidden">
-            <div class="flex flex-col items-center gap-4 py-8">
-              <div class="flex size-16 items-center justify-center rounded-full bg-accent-500/20">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent-500">
-                  <path d="M20 6 9 17l-5-5"/>
-                </svg>
-              </div>
-              <div class="text-center">
-                <h5 id="ml-success-msg" class="mb-1"></h5>
-                <p class="text-secondary/60 dark:text-accent/60 text-tagline-1">
-                  Te contactaremos en las próximas 24 horas hábiles.
-                </p>
-              </div>
+            <div class="mb-4 font-light text-xl flex flex-wrap items-center ml-text gap-x-2 gap-y-2">
+              <span>Nos gustaría empezar</span>
+              <span class="ml-select-wrap flex-1">
+                <select class="ml-select w-full" id="ml-plazo" name="plazo" required aria-label="Plazo estimado">
+                  <option value="">elige</option>
+                  <option>lo antes posible</option>
+                  <option>en los próximos 3 meses</option>
+                  <option>en los próximos 6 meses</option>
+                  <option>solo estamos cotizando por ahora</option>
+                </select>
+                <svg class="ml-select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+              </span>
+              <span class="ml-error-msg" id="err-plazo"></span>.
+            </div>
+
+            <div class="mb-6 font-light text-xl">
+              Algo más que quiero añadir:
+              <input class="ml-input ml-input-muted" id="ml-extra" name="extra" placeholder="(opcional)" aria-label="Notas adicionales" />
             </div>
           </div>
 
-  </div>
+          <!-- Validation hint -->
+          <div id="ml-hint" class="ml-hint hidden">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ml-hint-icon"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <span id="ml-hint-text">Completá los campos resaltados para enviar tu mensaje</span>
+          </div>
 
+          <!-- Preview -->
+          <div id="ml-preview" class="ml-preview">
+            <p class="ml-preview-label">Así quedará tu mensaje</p>
+            <p id="ml-preview-text" class="text-tagline-1"></p>
+          </div>
+          
+        </div>
+      </div>
 
+      <div data-ns-animate data-delay="0.7" class="flex items-center justify-center">
+        <button type="submit" id="ml-submit-btn" class="btn btn-secondary hover:btn-green dark:btn-transparent dark:border-primary-50 btn-md w-[85%] md:w-auto mx-auto" disabled>
+          <span>Enviar mensaje</span>
+        </button>
+      </div>  
 
-</form>  
+      <!-- Success state -->
+      <div id="ml-success" class="ml-success hidden">
+        <div class="flex flex-col items-center gap-4 py-8">
+          <div class="flex size-16 items-center justify-center rounded-full bg-accent-500/20">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent-500">
+              <path d="M20 6 9 17l-5-5"/>
+            </svg>
+          </div>
+          <div class="text-center">
+            <h5 id="ml-success-msg" class="mb-1"></h5>
+            <p class="text-secondary/60 dark:text-accent/60 text-tagline-1">
+              Te contactaremos en las próximas 24 horas hábiles.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SE ELIMINÓ EL </div> SOBRANTE QUE ESTABA AQUÍ -->
+      
+    </form> 
+    <!-- end form -->
+
+  </div> 
 </section>
-
+<pre>------------------...footer...------------------</pre>
 )}
 
 

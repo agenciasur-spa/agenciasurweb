@@ -1,0 +1,16 @@
+---
+interface Props {
+  text: string;
+  delay?: number;
+}
+import { CircleCheckBig } from '@lucide/astro';
+const { text, delay = 0.1 } = Astro.props;
+---
+
+
+  <li data-ns-animate data-delay={delay} class="feature-list-item">
+    <span class="feature-icon">
+      <CircleCheckBig size={24} stroke-width={1} />    
+    </span>
+    <span class="feature-text">{text}</span>
+  </li>

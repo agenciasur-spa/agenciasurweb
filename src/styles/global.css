@@ -15,6 +15,7 @@
 @theme {
   /* === Fuentes === */
   --font-inter-tight: "Inter Tight", sans-serif;
+  --font-mono:    ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 
   /* === Primario — Azul Agencia Sur === */
   --color-primary-50: #eff6ff;
@@ -134,6 +135,21 @@
 
   /* === Container === */
   --breakpoint-lp: 1440px;
+
+  /* === Layout containers === */
+  --container-main: 1290px;
+  --container-xl: 1440px;
+
+  /* === Section spacings === */
+  --spacing-section-sm: 88px;
+  --spacing-section-md: 100px;
+  --spacing-section-lg: 120px;
+
+  /* === Card gradients === */
+  --color-gradient-card-blue: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #ec4899 100%);
+  --color-gradient-card-emerald: linear-gradient(135deg, #10b981 0%, #2dd4bf 50%, #06b6d4 100%);
+  --color-gradient-card-violet: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #d946ef 100%);
+  --color-gradient-card-amber: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #ef4444 100%);
 }
 
 .dark {
@@ -149,6 +165,10 @@
 /* === Container === */
 @utility main-container {
   @apply mx-auto max-w-[1290px] px-5 lp:px-0;
+}
+
+@utility main-container-xl {
+  @apply 2xl:max-w-[1440px] max-w-[1290px] mx-5 xl:mx-auto;
 }
 
 /* === Botones — Sistema btn v1 === */
@@ -287,7 +307,29 @@
 /* === Section label — Etiqueta de sección (verde suave, el más usado) === */
 @utility badge-section {
   @apply badge badge-green dark:text-accent-400 dark:bg-accent/10;
+    font-family: var(--font-mono);
+    font-size: 12px;
 }
+
+@utility feature-list-item {
+  @apply flex items-center gap-4 py-2; 
+
+  .feature-icon {
+    @apply flex  items-center justify-center;
+    
+    svg {
+      stroke: var(--color-accent-600); /* Heredando variable del tema */
+    }
+  }
+
+  .feature-text {
+    font-family: var(--font-mono); /* Heredando la fuente del sitio */
+    font-size: 12px;
+    color: var(--color-accent-600); /* Heredando variable del tema */
+  }
+}
+
+
 
 
 /* === Tag — Tag de categoría/cliente === */
@@ -331,6 +373,39 @@
 @utility badge-metal {
   @apply bg-accent/10 text-accent/60;
 }
+
+
+@layer components {
+
+
+  @component feature-list-item {
+    @apply flex items-center gap-2;
+    background: red!important;
+  }
+
+  @component feature-icon {
+    @apply inline-flex size-[18px] items-center justify-center rounded-full bg-green-500/20;
+  }
+
+  @component feature-text {
+    @apply text-accent/60 text-tagline-2;
+  }
+
+  /* Para el contenedor de la lista */
+  @component case-item {
+    @apply text-black/60 dark:text-white/60;
+  }
+
+  /* Para el label/título */
+  @component case-label {
+    @apply text-secondary dark:!text-accent text-sm font-medium;
+  }
+
+
+  
+}
+
+
 
 /* === Hero text gradient animation === */
 .hero-text-gradient {
@@ -667,3 +742,8 @@ body {
 .as-green {
   color: var(--color-ns-green);
 }
+
+
+
+
+

@@ -46,6 +46,12 @@ const fallbackSoluciones = [
   },
 ];
 
+const iconMap: Record<string, typeof ShoppingCart> = {
+  'sistema-de-compras': ShoppingCart,
+  'gestion-personal-transitorio': Users,
+  'mesa-de-ayuda': LifeBuoy,
+};
+
 const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSoluciones;
 ---
 
@@ -55,10 +61,10 @@ const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSolucione
   <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
     <div class="main-container">
       <div class="text-center space-y-5 mb-[70px]">
-        <span data-ns-animate data-delay="0.1" class="badge badge-green-v2 mb-5">Nuestros Sistemas</span>
+        <span data-ns-animate data-delay="0.1" class="badge-section mb-5">Soluciones</span>
         <div class="space-y-3">
-          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto fw-300">
-            Soluciones que resuelven problemas reales
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light">
+            Soluciones que resuelven problemas <span class="text-accent-400">reales</span>
           </h2>
           <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
             Sistemas cerrados, probados en producción, diseñados para procesos empresariales críticos.
@@ -70,36 +76,32 @@ const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSolucione
       <!-- Grid -->
       <div class="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">
         {displaySoluciones.map((sol, i) => (
-          <div data-ns-animate data-delay={0.4 + i * 0.1} class="col-span-12 md:col-span-6 xl:col-span-4">
+          <div class="col-span-12 md:col-span-6 lg:col-span-4" data-ns-animate data-delay={0.4 + i * 0.1}>
             <a href={`/soluciones/${sol.slug}`} class="group block">
-              
-              <div class="px-6 py-8 rounded-[20px] bg-background-3 dark:bg-background-7 space-y-5 text-center hover:translate-y-[-10px] transition-transform duration-500 ease-in-out">
-                <div class="flex items-center justify-center">
-                  <div class="flex size-14 items-center justify-center rounded-2xl bg-primary-500/10 dark:bg-accent/10">
-                    {sol.icon && <span class="text-2xl">{sol.icon}</span>}
-                  </div>
+              <div class="bg-white dark:bg-background-8 flex min-h-[340px] flex-col justify-between space-y-4 rounded-[20px] p-7 md:p-10 transition-all duration-300 hover:translate-y-[-8px] hover:shadow-[0_0_40px_rgba(34,255,136,0.12)] border border-stroke-1 dark:border-stroke-7 group-hover:border-accent-400/30">
+
+                <div class="bg-gradient-to-br from-background-8 to-background-6 dark:from-accent/10 dark:to-accent/5 flex size-16 items-center justify-center rounded-2xl ring-1 ring-accent-400/20">
+                  {(() => {
+                    const Icon = iconMap[sol.slug];
+                    return Icon ? <Icon color="currentColor" size={36} stroke-width={1} class="text-accent-400" /> : <span class="text-2xl text-white">⚡</span>;
+                  })()}
                 </div>
-                <div class="space-y-2">
-                  <h3 class="text-heading-5">{sol.title}</h3>
-                  <p>{sol.tagline}</p>
+
+                <div class="space-y-3">
+                  <h3 class="text-xl font-light text-secondary dark:text-accent group-hover:text-green-500 dark:group-hover:text-accent transition-colors">
+                    {sol.title}
+                  </h3>
+                  <p class="text-secondary/60 dark:text-accent/50 text-sm leading-relaxed">
+                    {sol.tagline}
+                  </p>
                 </div>
-                {sol.features && sol.features.length > 0 && (
-                  <ul class="space-y-2 text-left w-full max-w-[280px] mx-auto">
-                    {sol.features.slice(0, 3).map((f) => (
-                      <li class="flex items-center gap-2">
-                        <span class="inline-flex size-[18px] shrink-0 items-center justify-center rounded-full bg-primary-500/20">
-                          <svg width="11" height="8" viewBox="0 0 11 8" fill="none">
-                            <path d="M4.81661 7.25605L10.2491 1.92144C10.5836 1.5959 10.5836 1.0697 10.2491 0.744158C9.91446 0.418614 9.37363 0.418614 9.03904 0.744158L4.2116 5.49012L1.96096 3.28807C1.62636 2.96253 1.08554 2.96253 0.750945 3.28807C0.416352 3.61362 0.416352 4.13982 0.750945 4.46536L3.6066 7.25605C3.77347 7.41841 3.99253 7.5 4.2116 7.5C4.43067 7.5 4.64974 7.41841 4.81661 7.25605Z" fill="currentColor" class="text-primary-500" />
-                          </svg>
-                        </span>
-                        <span class="text-tagline-2">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                )}
+
                 <div>
-                  <span class="btn btn-white dark:btn-transparent dark:hover:btn-accent hover:btn-secondary btn-md">
+                  <span class="inline-flex items-center gap-2 text-sm font-medium text-green-500 dark:text-accent group-hover:gap-3 transition-all">
                     <span>Ver detalle</span>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
                   </span>
                 </div>
               </div>
@@ -108,259 +110,8 @@ const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSolucione
         ))}
       </div>
 
-
-      
     </div>
   </section>
 
-
-<!-- =========================
-Services section
-===========================-->
-
-  <div class="main-container">
-    <div class="flex flex-wrap gap-4 space-y-[42px]">
-      <div
-        data-ns-animate
-        data-delay="0.4"
-        class="border-stroke-1 dark:border-stroke-7 bg-background-1 dark:bg-background-6 rounded-[20px] border p-7 lg:max-w-full lg:p-[42px]"
-      >
-        <div class="grid grid-cols-12 items-center gap-y-10 lg:gap-20 xl:gap-[100px]">
-          <div class="col-span-12 lg:col-span-6">
-            <div class="space-y-8">
-              <div class="space-y-2">
-                <h3>Big data consulting</h3>
-                <p class="w-full max-w-[410px]">
-                  Utilize comprehensive data security frameworks to effectively safeguard sensitive
-                  information from unauthorized access and breaches.
-                </p>
-              </div>
-              <div>
-                <a
-                  href="./service-details.html"
-                  class="btn hover:btn-primary btn-white dark:btn-transparent btn-md"
-                  ><span>Read more</span></a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 lg:col-span-6">
-            <div class="flex items-center gap-8">
-              <figure class="w-full max-w-[233px] overflow-hidden rounded-2xl">
-                <img src="./images/ns-img-100.png" alt="time increase" class="w-full" />
-              </figure>
-              <figure class="w-full max-w-[350px] overflow-hidden rounded-[20px]">
-                <img src="./images/ns-img-101.png" alt="control car" class="w-full" />
-              </figure>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        data-ns-animate
-        data-delay="0.5"
-        class="border-stroke-1 dark:border-stroke-7 bg-background-1 dark:bg-background-6 rounded-[20px] border p-7 lg:max-w-full lg:p-[42px]"
-      >
-        <div class="grid grid-cols-12 items-center gap-y-10 lg:gap-20 xl:gap-[100px]">
-          <div class="col-span-12 lg:col-span-6">
-            <div class="flex items-center gap-8">
-              <figure
-                class="h-full max-h-[317px] w-full max-w-[326px] overflow-hidden rounded-[20px]"
-              >
-                <img
-                  src="./images/ns-img-102.png"
-                  alt="revenue"
-                  class="h-full w-full object-cover dark:hidden"
-                />
-                <img
-                  src="./images/ns-img-dark-74.png"
-                  alt="revenue"
-                  class="hidden h-full w-full object-cover dark:block"
-                />
-              </figure>
-              <figure class="h-full max-h-[178px] w-full max-w-[255px] overflow-hidden rounded-2xl">
-                <img
-                  src="./images/ns-img-103.png"
-                  alt="balance"
-                  class="h-full w-full object-cover dark:hidden"
-                />
-                <img
-                  src="./images/ns-img-dark-75.png"
-                  alt="balance"
-                  class="hidden h-full w-full object-cover dark:block"
-                />
-              </figure>
-            </div>
-          </div>
-          <div class="col-span-12 lg:col-span-6">
-            <div class="space-y-8">
-              <div class="space-y-2">
-                <h3>Machine learning & AI</h3>
-                <p class="w-full max-w-[493px]">
-                  Utilize advanced predictive analytics to proactively identify potential threats
-                  before they escalate. by analyzing patterns and trends in data.
-                </p>
-              </div>
-              <div>
-                <a
-                  href="./service-details.html"
-                  class="btn hover:btn-primary dark:btn-transparent btn-white btn-md"
-                  ><span>View more</span></a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        data-ns-animate
-        data-delay="0.6"
-        class="border-stroke-1 dark:border-stroke-7 bg-background-1 dark:bg-background-6 rounded-[20px] border p-7 lg:max-w-full lg:p-[42px]"
-      >
-        <div class="grid grid-cols-12 items-center gap-y-10 lg:gap-20 xl:gap-[100px]">
-          <div class="col-span-12 lg:col-span-6">
-            <div class="space-y-8">
-              <div class="space-y-2">
-                <h3>Business analysis</h3>
-                <p class="w-full max-w-[380px]">
-                  Continuously monitor for vulnerabilities and implement proactive measures to
-                  prevent cyber attacks before they can occur.
-                </p>
-              </div>
-              <div>
-                <a
-                  href="./service-details.html"
-                  class="btn hover:btn-primary dark:btn-transparent btn-white btn-md"
-                  ><span>View more</span></a
-                >
-              </div>
-            </div>
-          </div>
-          <div class="col-span-12 lg:col-span-6">
-            <div class="flex items-start gap-8">
-              <figure
-                class="h-full max-h-[345px] w-full max-w-[350px] overflow-hidden rounded-[20px]"
-              >
-                <img
-                  src="./images/ns-img-104.png"
-                  alt="earning"
-                  class="h-full w-full object-cover dark:hidden"
-                />
-                <img
-                  src="./images/ns-img-dark-76.png"
-                  alt="earning"
-                  class="hidden h-full w-full object-cover dark:block"
-                />
-              </figure>
-              <div class="space-y-8">
-                <figure
-                  class="h-full max-h-[190px] w-full max-w-[286px] overflow-hidden rounded-2xl"
-                >
-                  <img
-                    src="./images/ns-img-105.png"
-                    alt="daily payment"
-                    class="h-full w-full object-cover dark:hidden"
-                  />
-                  <img
-                    src="./images/ns-img-dark-77.png"
-                    alt="daily payment"
-                    class="hidden h-full w-full object-cover dark:block"
-                  />
-                </figure>
-                <div>
-                  <div class="space-y-4">
-                    <div class="flex cursor-pointer -space-x-3.5">
-                      <img
-                        class="bg-ns-green inline-block size-11 rounded-full ring-4 ring-white"
-                        src="./images/ns-avatar-1.png"
-                        alt="Avatar 1"
-                      />
-                      <img
-                        class="bg-ns-green inline-block size-11 rounded-full ring-4 ring-white"
-                        src="./images/ns-avatar-2.png"
-                        alt="Avatar 2"
-                      />
-                      <img
-                        class="bg-ns-green relative z-0 inline-block size-11 rounded-full ring-4 ring-white"
-                        src="./images/ns-avatar-3.png"
-                        alt="Avatar 3"
-                      />
-                      <div
-                        class="bg-ns-green text-secondary/80 text-tagline-3 relative z-10 inline-flex size-11 items-center justify-center rounded-full font-medium ring-4 ring-white"
-                      >
-                        99+
-                      </div>
-                    </div>
-                    <div>
-                      <p class="text-secondary dark:text-accent font-medium">Trusted by 20k+</p>
-                      <p class="text-tagline-2 font-normal">Customers across the globe</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        data-ns-animate
-        data-delay="0.7"
-        class="border-stroke-1 dark:border-stroke-7 bg-background-1 dark:bg-background-6 rounded-[20px] border p-7 lg:max-w-full lg:p-[42px]"
-      >
-        <div class="grid grid-cols-12 items-center gap-y-10 lg:gap-20 xl:gap-[100px]">
-          <div class="col-span-12 lg:col-span-6">
-            <div class="flex items-start -space-x-20">
-              <figure class="w-full max-w-[408px] overflow-hidden rounded-[20px]">
-                <img
-                  src="./images/ns-img-393.svg"
-                  alt="revenue"
-                  class="h-full w-full object-cover dark:hidden"
-                />
-                <img
-                  src="./images/ns-img-dark-212.svg"
-                  alt="revenue"
-                  class="hidden h-full w-full object-cover dark:block"
-                />
-              </figure>
-              <figure class="mt-4 w-full max-w-[225px] overflow-hidden rounded-2xl">
-                <img
-                  src="./images/ns-img-395.svg"
-                  alt="balance"
-                  class="h-full w-full object-cover dark:hidden"
-                />
-                <img
-                  src="./images/ns-img-dark-214.svg"
-                  alt="balance"
-                  class="hidden h-full w-full object-cover dark:block"
-                />
-              </figure>
-            </div>
-          </div>
-          <div class="col-span-12 lg:col-span-6">
-            <div class="space-y-8">
-              <div class="space-y-2">
-                <h3>Machine learning & AI</h3>
-                <p class="w-full max-w-[493px]">
-                  Utilize advanced predictive analytics to proactively identify potential threats
-                  before they escalate. by analyzing patterns and trends in data.
-                </p>
-              </div>
-              <div>
-                <a
-                  href="./service-details.html"
-                  class="btn hover:btn-primary dark:btn-transparent btn-white btn-md"
-                  ><span>View more</span></a
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-
-  
   <ContactoFooter />
 </Layout>
