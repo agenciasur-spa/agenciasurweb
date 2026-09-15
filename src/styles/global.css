@@ -55,9 +55,12 @@
   --color-stroke-9: #070b10;
   --color-stroke-10: #dfd1c5;
 
-  /* === Neutros especiales === */
+  /* === Neutros especiales ===
+     (ns-red was the only genuinely unused one and was removed; the rest
+     are still referenced by badge-cyan/badge-yellow and unused-but-compiled
+     utilities in nexsas-missing.css, so Tailwind needs them defined even
+     though none of those badges are used on a live page yet.) */
   --color-ns-yellow: #f9eb57;
-  --color-ns-red: #ffb9a2;
   --color-ns-cyan: #83e7ee;
   --color-ns-green-light: #e8fbc6;
   --color-ns-cyan-light: #cdf5f8;
@@ -66,17 +69,10 @@
   --color-ns-linen: #beab9a;
 
   /* === Gradients === */
-  --color-gradient-2: linear-gradient(135deg, #f9eb57 0%, #f99988 100%);
-  --color-gradient-3: linear-gradient(135deg, #83e7ee 0%, #f9eb57 100%);
-  --color-gradient-5: linear-gradient(165deg, rgba(255, 255, 255, 0.5) 0.51%, rgba(255, 255, 255, 0) 64.43%);
-  --color-gradient-6: linear-gradient(#83e7ee 0%, #c6f56f 100%);
+  /* Only gradient-7 is actually used (casos-exito/[slug].astro); the rest
+     (yellow/cyan/pink off-brand gradients) were unused template leftovers
+     and were removed. */
   --color-gradient-7: linear-gradient(#fff 0%, #83e7ee 100%);
-  --color-gradient-8: linear-gradient(156deg, #fff 32.92%, #60a5fa 91%);
-  --color-gradient-9: linear-gradient(156deg, #dfb0ff 32.92%, #fdbedc 91%);
-  --color-gradient-10: linear-gradient(135deg, #83e7ee 0%, #c6f56f 100%);
-  --color-gradient-11: linear-gradient(179deg, rgba(255,255,255,0) 0.68%, #fff 79.47%);
-  --color-gradient-12: radial-gradient(73.01% 80.77% at 19.23% 47.79%, #83e7ee 0%, rgba(59,130,246,0) 100%);
-  --color-gradient-13: linear-gradient(156deg, #fff 32.92%, #ecc5a2 91%);
 
   /* === Tipografía === */
   --text-heading-1: 4.25rem;
@@ -130,11 +126,6 @@
   --spacing-section-md: 100px;
   --spacing-section-lg: 120px;
 
-  /* === Card gradients === */
-  --color-gradient-card-blue: linear-gradient(135deg, #3b82f6 0%, #a855f7 50%, #ec4899 100%);
-  --color-gradient-card-emerald: linear-gradient(135deg, #10b981 0%, #2dd4bf 50%, #06b6d4 100%);
-  --color-gradient-card-violet: linear-gradient(135deg, #8b5cf6 0%, #a855f7 50%, #d946ef 100%);
-  --color-gradient-card-amber: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #ef4444 100%);
 }
 
 .dark {
@@ -392,28 +383,6 @@
 
 
 
-/* === Hero text gradient animation === */
-.hero-text-gradient {
-  animation: textAnimate 5s linear infinite;
-  background-size: 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  display: inline-block;
-  background-repeat: no-repeat;
-}
-
-.hero-text-color-1 {
-  background-image: linear-gradient(45deg, #3e6b18, #b4e86b, #3e6b18);
-}
-
-@keyframes textAnimate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
 /* === Gradient lines animation === */
 @keyframes top-to-bottom {
   0% { top: -30%; }
@@ -635,11 +604,6 @@ body {
 .text-accent-700 { color: var(--color-accent-700); }
 
 .text-green { color: var(--color-accent-500); }
-
-/* === Gradients === */
-.gradient-2 {
-  background-image: linear-gradient(45deg, #83e7ee, #f9eb57, #83e7ee);
-}
 
 /* =========================
    Marquee Animations
