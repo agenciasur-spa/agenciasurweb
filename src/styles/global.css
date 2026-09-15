@@ -51,9 +51,8 @@
   --color-stroke-5: #1b232f;
   --color-stroke-6: #202731;
   --color-stroke-7: #2a333e;
-  --color-stroke-8: #303b49;
   --color-stroke-9: #070b10;
-  --color-stroke-10: #dfd1c5;
+  /* stroke-8 y stroke-10 se removieron: definidos pero nunca usados. */
 
   /* === Neutros especiales ===
      (ns-red was the only genuinely unused one and was removed; the rest
@@ -94,22 +93,13 @@
   --text-tagline-3: 0.75rem;
   --text-tagline-3--line-height: 150%;
 
-  /* === Sombras === */
+  /* === Sombras ===
+     Solo quedan las 3 que realmente se usan en el sitio (botones,
+     tarjetas de Nosotros/Casos de Éxito); las otras 12 eran valores
+     sin usar heredados del template. */
   --shadow-1: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
   --shadow-2: 0px 10px 20px -5px rgba(28, 34, 43, 0.05), 0px 20px 65px -5px rgba(28, 34, 43, 0.05);
-  --shadow-3: 0px 25px 80px -12px rgba(28, 34, 43, 0.1);
-  --shadow-4: 0px 10px 20px -5px rgba(28, 34,  43, 0.05), 0px 20px 65px -5px rgba(28, 34, 43, 0.05);
   --shadow-5: 0px 25px 80px -12px rgba(28, 34, 43, 0.1);
-  --shadow-6: 0px 44px 64px 0px rgba(29, 32, 35, 0.16);
-  --shadow-7: 0px 4px 6px -1px rgba(28, 34, 43, 0.1), 0px 2px 4px -1px rgba(28, 34, 43, 0.05);
-  --shadow-8: 0px 12.5px 40px -6px rgba(28, 34, 43, 0.1);
-  --shadow-9: 0px 1px 2px 0px rgba(28, 34, 43, 0.05);
-  --shadow-10: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  --shadow-11: 0px 12px 20px rgba(185, 166, 241, 0.16);
-  --shadow-12: 0px 1px 2px 0px rgba(16, 24, 40, 0.26);
-  --shadow-13: 0 7.818px 15.637px -3.909px rgba(28, 34, 43, 0.05), 0 15.637px 50.819px -3.909px rgba(28, 34, 43, 0.05);
-  --shadow-14: 0 1px 2px 0 rgba(16, 24, 40, 0.06);
-  --shadow-15: 40px 28px 80px 0 rgba(0, 0, 0, 0.08);
 
   /* === Blur === */
   --blur-ns-badge-blur: 17.228288650512695px;
