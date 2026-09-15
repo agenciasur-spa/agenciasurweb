@@ -14,14 +14,6 @@ const { hideCta = false } = Astro.props;
 
 
 <style>
-  /* Decorative gradient orbs from Nexsas theme */
-  .footer-gradient-right {
-    background: radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
-  }
-  .footer-gradient-left {
-    background: radial-gradient(ellipse at 50% 100%, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
-  }
-
   /* Mad-libs inline inputs */
   .ml-input {
     display: inline-block;
@@ -44,7 +36,7 @@ const { hideCta = false } = Astro.props;
     font-weight: 400;
   }
   .ml-input:focus {
-    border-color: var(--color-primary-700);
+    border-color: var(--color-accent-600);
   }
   .ml-input-muted {
     border-bottom-color: var(--color-stroke-3);
@@ -116,7 +108,7 @@ const { hideCta = false } = Astro.props;
     padding: 1rem 1.25rem;
     background: var(--color-background-3);
     border-radius: 12px;
-    border-left: 3px solid var(--color-primary-500);
+    border-left: 3px solid var(--color-accent-400);
     font-size: 14px;
     line-height: 1.8;
     display: none;
@@ -145,92 +137,3 @@ const { hideCta = false } = Astro.props;
     transition: opacity 0.3s;
   }
 </style>
-
-<script>
-  function sizeInput(el: HTMLInputElement) {
-    const span = document.createElement('span');
-    span.style.cssText = 'visibility:hidden;position:absolute;font-size:inherit;font-family:inherit;white-space:pre;padding:0 4px';
-    span.textContent = el.value || el.placeholder;
-    document.body.appendChild(span);
-    el.style.width = (span.offsetWidth + 12) + 'px';
-    document.body.removeChild(span);
-  }
-
-  function initMadLibs() {
-    const form = document.getElementById('mad-libs-form') as HTMLFormElement;
-    if (!form) return;
-
-    const inputs = form.querySelectorAll('.ml-input') as NodeListOf<HTMLInputElement>;
-    const submitBtn = document.getElementById('ml-submit-btn') as HTMLButtonElement;
-    const preview = document.getElementById('ml-preview') as HTMLDivElement;
-    const previewText = document.getElementById('ml-preview-text') as HTMLParagraphElement;
-    const successDiv = document.getElementById('ml-success') as HTMLDivElement;
-    const successMsg = document.getElementById('ml-success-msg') as HTMLHeadingElement;
-
-    inputs.forEach(sizeInput);
-
-    function vals() {
-      return {
-        nombre: (document.getElementById('ml-nombre') as HTMLInputElement).value.trim(),
-        correo: (document.getElementById('ml-correo') as HTMLInputElement).value.trim(),
-        sector: (document.getElementById('ml-sector') as HTMLSelectElement).value,
-        necesidad: (document.getElementById('ml-necesidad') as HTMLSelectElement).value,
-        objetivo: (document.getElementById('ml-objetivo') as HTMLSelectElement).value,
-        plazo: (document.getElementById('ml-plazo') as HTMLSelectElement).value,
-        extra: (document.getElementById('ml-extra') as HTMLInputElement).value.trim(),
-      };
-    }
-
-    function isComplete(v: ReturnType<typeof vals>) {
-      return v.nombre && v.correo.includes('@') && v.sector && v.necesidad && v.objetivo && v.plazo;
-    }
-
-    function buildMsg(v: ReturnType<typeof vals>) {
-      let msg = `Hola, me llamo ${v.nombre} y mi correo es ${v.correo}. Trabajo en una empresa del sector ${v.sector}. Actualmente necesitamos ${v.necesidad} y queremos lograr ${v.objetivo}. Nos gustaría empezar ${v.plazo}.`;
-      if (v.extra) msg += ` ${v.extra}`;
-      return msg;
-    }
-
-    function updatePreview() {
-      const v = vals();
-      submitBtn.toggleAttribute('disabled', !isComplete(v));
-      if (isComplete(v)) {
-        previewText.textContent = buildMsg(v);
-        preview.classList.add('show');
-      } else {
-        preview.classList.remove('show');
-      }
-    }
-
-    // Live resize on input
-    inputs.forEach(el => {
-      el.addEventListener('input', () => {
-        sizeInput(el);
-        updatePreview();
-      });
-    });
-
-    // Update on select change
-    form.querySelectorAll('.ml-select').forEach(sel => {
-      sel.addEventListener('change', updatePreview);
-    });
-
-    // Submit
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const v = vals();
-      if (!isComplete(v)) return;
-
-      form.style.display = 'none';
-      successMsg.textContent = `¡Gracias, ${v.nombre}! Recibimos tu mensaje.`;
-      successDiv.classList.remove('hidden');
-
-      // TODO: integrate with /api/contacto
-    });
-
-    // Initial sizing
-    inputs.forEach(sizeInput);
-  }
-
-  document.addEventListener('DOMContentLoaded', initMadLibs);
-</script>

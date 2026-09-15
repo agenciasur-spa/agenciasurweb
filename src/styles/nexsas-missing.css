@@ -29,8 +29,8 @@
 }
 
 @utility btn-primary-v2 {
-  @apply bg-primary-500 text-white;
-  .btn-v2-icon { @apply fill-white; }
+  @apply bg-accent-500 text-secondary;
+  .btn-v2-icon { @apply fill-secondary; }
 }
 
 @utility btn-secondary-v2 {
@@ -49,7 +49,7 @@
 }
 
 @utility btn-green-v2 {
-  @apply bg-ns-green text-secondary shadow-[0_1px_2px_0_rgba(16,24,40,0.05)];
+  @apply bg-accent-300 text-secondary shadow-[0_1px_2px_0_rgba(16,24,40,0.05)];
   .btn-v2-icon { @apply fill-secondary; }
 }
 
@@ -80,7 +80,7 @@
 }
 
 @utility btn-v3-primary {
-  @apply bg-primary-500 text-white;
+  @apply bg-accent-500 text-secondary;
   [data-button-v3-icon] { @apply fill-secondary bg-white; }
 }
 
@@ -135,7 +135,7 @@
 
 /* ========== BADGE VARIANTS ========== */
 @utility badge-green-v2 {
-  @apply bg-ns-green-light dark:text-ns-green dark:bg-accent/10;
+  @apply bg-ns-green-light dark:text-accent-300 dark:bg-accent/10;
 }
 
 @utility badge-ns-green-light {
@@ -167,11 +167,11 @@
 }
 
 @utility badge-primary-light {
-  @apply bg-primary-100 dark:bg-accent/10 dark:text-accent;
+  @apply bg-accent-300/25 dark:bg-accent/10 dark:text-accent;
 }
 
 @utility badge-blur-v2 {
-  @apply bg-accent/20 text-primary-50 dark:bg-secondary/20 dark:text-accent/60;
+  @apply bg-accent/20 text-accent-300 dark:bg-secondary/20 dark:text-accent/60;
 }
 
 @utility badge-blur-light {
@@ -179,7 +179,7 @@
 }
 
 @utility badge-secondary-light {
-  @apply bg-secondary/20 text-primary-50 dark:bg-accent/20 dark:text-accent;
+  @apply bg-secondary/20 text-accent-300 dark:bg-accent/20 dark:text-accent;
 }
 
 @utility badge-secondary {
@@ -592,7 +592,7 @@
 }
 
 .blog-article-swiper .swiper-pagination-bullet-active {
-  @apply border-primary-500 dark:border-accent bg-primary-500 dark:bg-accent size-3.5 rounded-full;
+  @apply border-accent-500 dark:border-accent bg-accent-500 dark:bg-accent size-3.5 rounded-full;
 }
 
 .blog-article-swiper .pagination-bullets {

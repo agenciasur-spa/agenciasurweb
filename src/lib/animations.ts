@@ -82,42 +82,22 @@ function initRevealElements() {
 // ── Header Scroll (all variants) ──────────────────────────────────────
 
 function initHeaderScroll() {
-  const scrollHandler = (selector: string, scrollClass: string, threshold = 100, topReset?: string) => {
-    const header = document.querySelector<HTMLElement>(selector);
-    if (!header) return;
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > threshold) {
-        header.style.transition = 'all 0.5s ease-in-out';
-        header.classList.add(scrollClass);
-      } else {
-        header.classList.remove(scrollClass);
-        if (topReset) header.style.top = topReset;
-      }
-    });
-  };
-
-  scrollHandler('.header-one', 'scroll-header');
-  scrollHandler('.header-three', 'header-three-scroll');
-  scrollHandler('.header-four', 'header-four-scroll');
-  scrollHandler('.header-five', 'header-five-scroll', 25);
-  scrollHandler('.header-six', 'header-six-scroll');
-  scrollHandler('.ai-voice-header', 'scroll-ai-voice-header');
-  scrollHandler('.financial-management-platform-header', 'financial-management-platform-header-scroll');
-
-  // headerTwo has special logic (top position changes)
+  // Only .header-two is used in this project (Navbar.astro); the other
+  // header variants (header-one/three/four/five/six, ai-voice, financial)
+  // were leftover from the ported template and were removed.
   const headerTwo = document.querySelector<HTMLElement>('.header-two');
-  if (headerTwo) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 150) {
-        headerTwo.style.transition = 'all 0.5s ease-in-out';
-        headerTwo.style.top = '20px';
-        headerTwo.classList.add('header-two-scroll');
-      } else {
-        headerTwo.classList.remove('header-two-scroll');
-        headerTwo.style.top = '50px';
-      }
-    });
-  }
+  if (!headerTwo) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 150) {
+      headerTwo.style.transition = 'all 0.5s ease-in-out';
+      headerTwo.style.top = '20px';
+      headerTwo.classList.add('header-two-scroll');
+    } else {
+      headerTwo.classList.remove('header-two-scroll');
+      headerTwo.style.top = '50px';
+    }
+  });
 }
 
 // ── Navigation Menu ──────────────────────────────────────────────────
@@ -388,38 +368,6 @@ const buttonV3 = {
   },
 };
 
-// ── Progress Bars ────────────────────────────────────────────────────
-
-function initProgressAnimation() {
-  const items = document.querySelectorAll<HTMLElement>('[data-progress-item]');
-  items.forEach((item, index) => {
-    const value = parseInt(item.getAttribute('data-progress-value') ?? '0', 10);
-    const bar = item.querySelector<HTMLElement>('[data-progress-bar]');
-    const text = item.querySelector<HTMLElement>('[data-progress-text]');
-    const duration = parseFloat(item.getAttribute('data-progress-duration') ?? '1.5');
-    if (!bar || !text) return;
-
-    gsap.set(bar, { width: '0%', opacity: 0.8 });
-    gsap.to(bar, {
-      width: `${value}%`, opacity: 1, duration, delay: 0.3 + index * 0.2, ease: 'power3.out',
-      scrollTrigger: { trigger: item, start: 'top 90%', end: 'bottom 15%' },
-    });
-
-    gsap.set(text, { opacity: 0 });
-    gsap.to(text, {
-      opacity: 1, y: 0, duration: 0.8, delay: 0.3 + index * 0.2, ease: 'power2.out',
-      scrollTrigger: { trigger: item, start: 'top 90%', end: 'bottom 15%' },
-    });
-
-    const counter = { val: 0 };
-    gsap.to(counter, {
-      val: value, duration: 2.5, ease: 'power2.out',
-      scrollTrigger: { trigger: item, start: 'top 90%', end: 'bottom 15%' },
-      onUpdate: () => { text.textContent = `${Math.floor(counter.val)}%`; },
-    });
-  });
-}
-
 // ── Number Counter (IntersectionObserver) ────────────────────────────
 
 function initCounterAnimation() {
@@ -535,25 +483,6 @@ function initParallax() {
   });
 }
 
-// ── Price Switcher ──────────────────────────────────────────────────
-
-function initPriceSwitcher() {
-  const toggle = document.getElementById('priceCheck') as HTMLInputElement | null;
-  if (!toggle) return;
-
-  const update = () => {
-    document.querySelectorAll<HTMLElement>('.price-month').forEach((el) => {
-      el.style.display = toggle!.checked ? 'none' : 'block';
-    });
-    document.querySelectorAll<HTMLElement>('.price-year').forEach((el) => {
-      el.style.display = toggle!.checked ? 'block' : 'none';
-    });
-  };
-
-  toggle.addEventListener('click', update);
-  update();
-}
-
 // ── Divider Expand ──────────────────────────────────────────────────
 
 function initDividerExpand() {
@@ -613,11 +542,9 @@ export function initNexsasAnimations() {
     initRevealElements();
     initHeaderScroll();
     initSidebar();
-    initProgressAnimation();
     initCounterAnimation();
     initStepLineAnimation();
     initParallax();
-    initPriceSwitcher();
     initDividerExpand();
     themeSwitcher.init();
     buttonV3.init();

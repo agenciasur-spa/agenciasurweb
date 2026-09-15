@@ -1,5 +1,6 @@
 ---
 import { UserCog, Workflow, Code, Cloud } from '@lucide/astro';
+import SectionHeader  from '../components/blocks/SectionHeader.astro';
 
 const servicios = [
   {
@@ -10,21 +11,18 @@ const servicios = [
   },
   {
     icon: Code,
-    gradient: 'gradient-2',
     title: 'Desarrollo Web & Mobile High-End',
     description:
       'Construimos sistemas robustos sobre arquitecturas modernas o evolucionamos tu infraestructura actual en WordPress/Prestashop hacia el alto rendimiento.',
   },
   {
     icon: Workflow,
-    gradient: 'gradient-violet',
     title: 'Integración & Soporte Continuo',
     description:
       'Conectamos tus sistemas existentes con APIs y middleware. Soporte post-entrega para asegurar la operación sin interrupciones.',
   },
   {
     icon: Cloud,
-    gradient: 'gradient-amber',
     title: 'Infraestructura Cloud',
     description:
       'Despliegue, monitoreo y escalabilidad en la nube. Tu operación, siempre disponible.',
@@ -40,18 +38,17 @@ const servicios = [
       class="flex flex-col items-start justify-center max-md:gap-y-18 md:flex-row md:justify-between md:gap-x-[120px]"
     >
       <!-- Left: Sticky heading -->
-      <div class="lg:sticky lg:top-28 w-full md:max-w-[460px]">
-        <span data-ns-animate data-delay="0.1" class="badge-section">Servicios</span>
-        <div class="mb-14 space-y-2 md:max-w-[595px]">
-          <h2 data-ns-animate data-delay="0.2" class="font-light">
-            <span class="text-accent-400 block">Soluciones</span> para la era digital
-          </h2>
-          <p data-ns-animate data-delay="0.3" class="max-w-[512px]">
-            Transformamos procesos complejos en soluciones simples, eficientes y escalables.
-          </p>
-        </div>
-      </div>
 
+      <SectionHeader
+  badgeText="Servicios"
+  titleHighlight="Soluciones"
+  titleRest=" para la era digital"
+  description="Transformamos procesos complejos en soluciones simples, eficientes y escalables."
+  badgeDelay="0.1"
+  titleDelay="0.2"
+  descriptionDelay="0.3"
+/>
+  
       <!-- Right: Stack cards -->
       <div class="stack-cards js-stack-cards w-full max-w-xl">
         {servicios.map(({ icon: Icon, title, description }) => (
@@ -63,7 +60,7 @@ const servicios = [
                   <Icon color="currentColor" size={48} stroke-width={1} class="text-accent-400" />
                 </div>
                 <div class="space-y-2">
-                  <h3 class="text-heading-5 fw-300">{title}</h3>
+                  <h3 class="text-heading-5 font-light">{title}</h3>
                   <p class="text-secondary/70 dark:text-accent/70">{description}</p>
                 </div>
               </div>
@@ -76,38 +73,6 @@ const servicios = [
 </section>
 
 <style>
-  /* === Gradient definitions — using design tokens === */
-  .gradient-blue { background: var(--color-gradient-card-blue); }
-  .gradient-emerald { background: var(--color-gradient-card-emerald); }
-  .gradient-violet { background: var(--color-gradient-card-violet); }
-  .gradient-amber { background: var(--color-gradient-card-amber); }
-
-  /* === Card wrapper with gradient border === */
-  .card-wrapper {
-    animation: glow-pulse 4s ease-in-out infinite alternate;
-  }
-
-  /* === Icon gradient background === */
-  .icon-gradient {
-    background: var(--color-gradient-card-blue);
-  }
-
-  .gradient-1 {
-    background: var(--color-gradient-1);
-  }
-
-  /* === Glow animation === */
-  @keyframes glow-pulse {
-    0% {
-      filter: brightness(1) saturate(1);
-      box-shadow: 0 0 20px 0 color-mix(in srgb, var(--card-from, #3b82f6) 30%, transparent);
-    }
-    100% {
-      filter: brightness(1.1) saturate(1.2);
-      box-shadow: 0 0 40px 0 color-mix(in srgb, var(--card-from, #3b82f6) 45%, transparent);
-    }
-  }
-
   /* === Stacked card blur === */
   .stack-cards__item {
     transition: filter 0.15s ease-out, opacity 0.15s ease-out;

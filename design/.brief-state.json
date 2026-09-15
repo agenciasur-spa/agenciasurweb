@@ -1,0 +1,30 @@
+{
+  "current_stage": "tecnico",
+  "stages": {
+    "negocio": {
+      "status": "done",
+      "docs": ["02-brief-del-proyecto.md"],
+      "note": "Secciones 1-4 y 7 completas. Único [FALTA] restante: métrica de éxito (aún no la miden)."
+    },
+    "contenido": {
+      "status": "done",
+      "docs": ["01-documento-de-contenido.md"],
+      "note": "Home + 5 páginas internas relevadas del código real y verificadas con Playwright (incluye simulación completa del form de contacto). Pendientes menores: URLs reales de Sistemas Core, FAQ (confirmar si se agrega), grafía oficial AgenciaSur/Agencia Sur, redes sociales del footer, caso de éxito de Saval. Hallazgos técnicos importantes trasladados a la etapa Técnica: form de la Home sin backend conectado (TODO en el código), dos componentes de formulario distintos para el mismo propósito, logos de clientes hardcodeados (debería ir a Sanity), sección Diferenciadores oculta con typo."
+    },
+    "visual": {
+      "status": "done",
+      "docs": ["02-brief-del-proyecto.md", "03-referencias-tecnicas.md", "07-design-tokens.md"],
+      "note": "Verde corporativo real detectado en agenciasur.cl (#8BC841, distinto del neón #22FF88 ya cargado en el proyecto nuevo) y evolucionado a punto medio (#8FD14F) por decisión del usuario. Dirección visual: Refokus + Baunfire (dark, contraste tipográfico bold/liviano, espacio negativo). Anti-patrón confirmado: nada de glow/gradiente-borde en cards."
+    },
+    "tecnico": {
+      "status": "done",
+      "docs": ["02-brief-del-proyecto.md", "04-mapa-de-secciones.md"],
+      "note": "Stack: Astro + Tailwind v4 + Sanity CMS. Sin deadline fijo, aprueba el propio equipo. Mapa de secciones cubre Home en detalle + resumen de las 5 páginas internas, con orden de prioridad de construcción y dependencias cruzadas."
+    }
+  },
+  "assembly": {
+    "status": "done",
+    "docs": ["05-como-briefear.md", "06-prompt-maestro.md"],
+    "note": "Output: componente por componente sobre el proyecto Astro existente. Hero 3D tipo Refokus documentado como referencia pero pospuesto a una iteración de animaciones."
+  }
+}
