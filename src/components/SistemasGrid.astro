@@ -36,24 +36,28 @@ const sistemas = [
   <div
     data-ns-animate
     data-delay="0.1"
-    class="w-full text-center -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
+    class="w-full py-10 md:py-14 lg:py-16 text-center -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
   >
     <!-- Fondo animado "mesh drift" (WebGL, ver src/lib/meshDriftShader.ts).
          Reemplaza la imagen decorativa estática (ns-img-508.png), que ya no
-         se ajustaba bien en distintos anchos. -->
+         se ajustaba bien en distintos anchos. Opacidad reducida para que
+         los "blobs" no compitan en brillo con el texto. -->
     <canvas
       data-mesh-drift
       aria-hidden="true"
-      class="absolute inset-0 -z-10 h-full w-full"
+      class="absolute inset-0 -z-10 h-full w-full opacity-[0.55]"
     ></canvas>
 
-    <div class="relative z-10 py-4 lg:py-8">
+    <!-- main-container (el mismo que usa #servicios) en vez de paddings
+         ad-hoc, para que el heading y el grid queden alineados con el
+         resto del sitio pese a que el contenedor exterior es full-bleed. -->
+    <div class="relative z-10 main-container">
       <BadgeSection text="Sistemas Core" delay={0.4} />
 
       <h2
         data-ns-animate
         data-delay="0.4"
-        class="mt-4 px-10 font-light text-white"
+        class="mt-4 font-light text-white"
       >
         Plataformas modulares diseñadas para <span
           class="text-accent-400 block">optimizar</span
@@ -62,7 +66,7 @@ const sistemas = [
 
       <!-- Content -->
       <div
-        class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 max-xl:px-8 max-[400px]:px-6 mt-10"
+        class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 mt-10"
       >
         {
           sistemas.map(({ icon: Icon, title, description, link }, index) => (
