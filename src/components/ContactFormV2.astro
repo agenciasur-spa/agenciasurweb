@@ -18,7 +18,7 @@ import BadgeSection from './blocks/BadgeSection.astro';
 ---
 
 <section
-  class="pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px]"
+  class="bg-background-2 dark:bg-background-6 pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px]"
 >
   <div
     data-od-id="form"
@@ -311,9 +311,9 @@ import BadgeSection from './blocks/BadgeSection.astro';
     color: #1a1a1c;
   }
   .cf-stepper-item.is-done .cf-stepper-num {
-    background: rgba(34, 255, 136, 0.15);
-    border-color: rgba(34, 255, 136, 0.3);
-    color: #22ff88;
+    background: rgba(143, 209, 79, 0.15);
+    border-color: rgba(143, 209, 79, 0.3);
+    color: #8fd14f;
   }
   .cf-stepper-item.is-done .cf-stepper-num-text { display: none; }
   .cf-stepper-item.is-done .cf-stepper-num-check { display: inline; }
@@ -362,9 +362,9 @@ import BadgeSection from './blocks/BadgeSection.astro';
     transition: all 150ms ease;
   }
   .cf-summary-actions button:hover {
-    color: #22ff88;
-    border-color: #22ff88;
-    background: rgba(34, 255, 136, 0.05);
+    color: #8fd14f;
+    border-color: #8fd14f;
+    background: rgba(143, 209, 79, 0.05);
   }
 
   /* ─── Thanks animation ────────────────────────────────────── */
@@ -379,7 +379,6 @@ import BadgeSection from './blocks/BadgeSection.astro';
 
   /* ─── Responsive ──────────────────────────────────────────── */
   @media (max-width: 640px) {
-    .cf-step-actions,
     .cf-wizard fieldset > div:last-child {
       flex-direction: column-reverse;
       align-items: stretch;
@@ -407,11 +406,11 @@ import BadgeSection from './blocks/BadgeSection.astro';
   }
   .cf-summary-letter mark,
   .cf-thanks-letter mark {
-    background: rgba(34, 255, 136, 0.15) !important;
-    color: #22ff88 !important;
+    background: rgba(143, 209, 79, 0.15) !important;
+    color: #8fd14f !important;
     padding: 2px 8px;
     border-radius: 6px;
-    border: 1px solid rgba(34, 255, 136, 0.3);
+    border: 1px solid rgba(143, 209, 79, 0.3);
     font-weight: 500;
   }
   .cf-summary-letter .cf-missing,
