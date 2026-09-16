@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ContactoFooter from '../components/ContactoFooter.astro';
 import DemoModal from '../components/DemoModal.astro';
+import Footer from '../components/Footer.astro';
 import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket, CheckCircle, Smartphone, Accessibility, Monitor, Server, Database, Container, Globe, GitBranch, Zap, Webhook } from '@lucide/astro';
 import StackIcon from 'tech-stack-icons';
 
@@ -59,7 +60,6 @@ const tecnologias = [
     { name: 'django' },
     { name: 'flask' },
     { name: 'js' },
-    { name: 'redis' },
     { name: 'php' },
     { name: 'laravel' },
     { name: 'mysql' },
@@ -96,10 +96,10 @@ const diferenciadores = [
     
         <span data-ns-animate data-delay="0.1" class="badge badge-section">Nuestro Método</span>
         <div class="space-y-3">
-          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light">
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light text-white">
             Cómo trabajamos
           </h2>
-          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
+          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto text-white/60">
             No vendemos horas. Entregamos soluciones que resuelven problemas reales.
             Nuestro proceso existe para garantizar que cada proyecto tenga impacto medible.
           </p>
@@ -117,9 +117,9 @@ const diferenciadores = [
               <div>
                 <!-- Step circle -->
                 <div
-                  class="size-[34px] flex items-center justify-center mx-auto rounded-full bg-black drop-shadow-2xl dark:bg-black "
+                  class="size-[34px] flex items-center justify-center mx-auto rounded-full bg-secondary dark:bg-background-8 drop-shadow-2xl"
                 >
-                  <span class="text-black text-accent-300">{item.step}</span>
+                  <span class="text-accent-300">{item.step}</span>
                 </div>
                 {/* Gradient line — only if NOT the last step */}
                 {!isLast && (
@@ -147,10 +147,10 @@ const diferenciadores = [
                           y2="221"
                           gradientUnits="userSpaceOnUse"
                         >
-                          <stop offset="0" stop-color="#66ffb2" />
-                          <stop offset="0.25" stop-color="#00e676" />
-                          <stop offset="0.5" stop-color="#00e676" />
-                          <stop offset="1" stop-color="#66ffb2" />
+                          <stop offset="0" stop-color="var(--color-accent-300)" />
+                          <stop offset="0.25" stop-color="var(--color-accent-400)" />
+                          <stop offset="0.5" stop-color="var(--color-accent-400)" />
+                          <stop offset="1" stop-color="var(--color-accent-300)" />
                         </linearGradient>
                       </defs>
                     </svg>
@@ -167,13 +167,13 @@ const diferenciadores = [
                     ? 'lg:left-0 lg:top-0 left-1/2 lg:translate-x-0 -translate-x-1/2 top-1/2 lg:translate-y-0 -translate-y-1/2'
                     : 'lg:right-0 lg:top-0 right-1/2 lg:translate-x-0 translate-x-1/2 top-1/2 -translate-y-1/2',
                   isLast && 'top-16',
-                  'lg:bg-none dark:bg-background-6 lg:dark:bg-transparent lg:p-0 lg:rounded-none p-6 rounded-[20px] max-sm:bg-background-4',
+                  'lg:bg-none lg:p-0 lg:rounded-none p-6 rounded-[20px] max-sm:bg-secondary',
                 ]}
               >
                 <p class="text-accent-600">PASO {item.step}</p>
                 <div class="space-y-2">
-                  <h5 class="text-heading-6 lg:text-heading-5 dark:text-accent-400">{item.title}</h5>
-                  <small class="dark:text-white/50">{item.description}</small>
+                  <h5 class="text-heading-6 lg:text-heading-5 text-accent-400">{item.title}</h5>
+                  <small class="text-white/70">{item.description}</small>
                 </div>
               </div>
             </div>
@@ -196,7 +196,7 @@ const diferenciadores = [
 
 
   <!-- Diferenciadores — Nexsas feature.htm two-column pattern -->
-  <section class="relative pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px] overflow-hidden">
+  <section class="relative bg-background-2 dark:bg-background-6 pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px] overflow-hidden">
     <div class="main-container">
       <div class="flex items-center flex-wrap lg:flex-nowrap gap-y-8 lg:gap-4 xl:gap-8">
         <div class="w-full lg:w-1/2">
@@ -239,7 +239,7 @@ const diferenciadores = [
                       class="fill-secondary/80 dark:fill-accent/80"
                     />
                   </svg>
-                  <span class="text-secondary/40 dark:text-accent/60">{d}</span>
+                  <span class="text-secondary/70 dark:text-accent/60">{d}</span>
                 </li>
               ))}
             </ul>
@@ -363,10 +363,10 @@ Tech Stack Marquee
     <div class="main-container space-y-[70px]">
       <div class="flex flex-col items-center text-center">
         <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">¿Listo para empezar?</span>
-        <h2 data-ns-animate data-delay="0.2" class="max-w-[650px] mx-auto mb-8 font-light">
+        <h2 data-ns-animate data-delay="0.2" class="max-w-[650px] mx-auto mb-8 font-light text-white">
           ¿Listo para levantar tu proceso?
         </h2>
-        <p data-ns-animate data-delay="0.3" class="max-w-[500px] mx-auto mb-8">
+        <p data-ns-animate data-delay="0.3" class="max-w-[500px] mx-auto mb-8 text-white/60">
           El primer paso es una reunión de diagnóstico. Sin compromiso, sin letra chica.
         </p>
         <div data-ns-animate data-delay="0.4">
@@ -381,6 +381,8 @@ Tech Stack Marquee
     </div>
   </section>
 
+  <ContactoFooter />
+  <Footer />
 
 <style is:inline>
   /* StackIcon variant toggle — default is dark theme, .light class overrides */
