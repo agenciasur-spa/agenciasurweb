@@ -46,6 +46,29 @@ const procesoSteps = [
   },
 ];
 
+const servicios = [
+  {
+    icon: UserCog,
+    title: 'Consultoría',
+    description: 'Asesoría tecnológica estratégica para tu negocio.',
+  },
+  {
+    icon: Workflow,
+    title: 'Automatización',
+    description: 'Optimizamos procesos críticos con tecnología inteligente.',
+  },
+  {
+    icon: Code,
+    title: 'Desarrollo Web',
+    description: 'Sistemas robustos sobre arquitecturas modernas.',
+  },
+  {
+    icon: Cloud,
+    title: 'Infraestructura y Cloud',
+    description: 'Infraestructura escalable y gestión en la nube.',
+  },
+];
+
 
 const tecnologias = [
   { name: 'symfony' },
@@ -89,99 +112,89 @@ const diferenciadores = [
 
 
 
-  <!-- Hero — Nexsas services.htm pattern -->
+  <!-- Hero — Qué hacemos (los 4 servicios reales, antes solo vivían en el mega-menu) -->
   <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
     <div class="main-container">
       <div class="text-center space-y-5 mb-[70px]">
-    
-        <span data-ns-animate data-delay="0.1" class="badge badge-section">Nuestro Método</span>
+        <span data-ns-animate data-delay="0.1" class="badge badge-section">Qué hacemos</span>
         <div class="space-y-3">
           <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light text-white">
-            Cómo trabajamos
+            Servicios pensados para tu operación
           </h2>
           <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto text-white/60">
+            Cuatro frentes de trabajo, un mismo objetivo: que la tecnología deje de ser un
+            problema y empiece a ser una ventaja.
+          </p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {servicios.map(({ icon: Icon, title, description }, index) => (
+          <div
+            data-ns-animate
+            data-direction="up"
+            data-offset="40"
+            data-delay={0.4 + index * 0.1}
+            class="rounded-[20px] border border-white/10 bg-white/[0.03] p-6 text-left transition-colors duration-300 hover:border-accent-400/40"
+          >
+            <div class="flex size-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+              <Icon color="currentColor" size={28} stroke-width={1} class="text-accent-400" />
+            </div>
+            <h3 class="text-heading-6 font-light mt-4 mb-2 text-white">{title}</h3>
+            <p class="text-white/70 text-tagline-2">{description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Nuestro Método — Nexsas services.htm pattern, ahora horizontal estilo trionn.com -->
+  <section class="relative bg-background-2 dark:bg-background-6 pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px]">
+    <div class="main-container">
+      <div class="text-center space-y-5 mb-[70px]">
+        <span data-ns-animate data-delay="0.1" class="badge badge-section">Nuestro Método</span>
+        <div class="space-y-3">
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light">
+            Cómo trabajamos
+          </h2>
+          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto text-secondary/60 dark:text-accent/60">
             No vendemos horas. Entregamos soluciones que resuelven problemas reales.
             Nuestro proceso existe para garantizar que cada proyecto tenga impacto medible.
           </p>
         </div>
       </div>
 
-    
-  <div data-ns-animate data-delay="0.4" class="process-steps">
-      <div class="max-w-[870px] mx-auto mb-[100px]">
-        {procesoSteps.map((item, i) => {
-          const isLast = i === procesoSteps.length - 1;
-          const isLeft = i % 2 === 0;
-          return (
-            <div class="relative">
-              <div>
-                <!-- Step circle -->
-                <div
-                  class="size-[34px] flex items-center justify-center mx-auto rounded-full bg-secondary dark:bg-background-8 drop-shadow-2xl"
-                >
-                  <span class="text-accent-300">{item.step}</span>
-                </div>
-                {/* Gradient line — only if NOT the last step */}
-                {!isLast && (
-                  <div class="h-[150px] lg:h-[200px] w-1 mx-auto bg-stroke-2 dark:bg-stroke-6 overflow-hidden">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="step-line w-full"
-                      style="height: 0px;"
-                      viewBox="0 0 2 222"
-                      preserveAspectRatio="none"
-                      fill="none"
-                    >
-                      <path
-                        d="M1 1L0.99999 221"
-                        stroke={`url(#step-gradient-${i})`}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                      />
-                      <defs>
-                        <linearGradient
-                          id={`step-gradient-${i}`}
-                          x1="0.5"
-                          y1="1"
-                          x2="0.49999"
-                          y2="221"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop offset="0" stop-color="var(--color-accent-300)" />
-                          <stop offset="0.25" stop-color="var(--color-accent-400)" />
-                          <stop offset="0.5" stop-color="var(--color-accent-400)" />
-                          <stop offset="1" stop-color="var(--color-accent-300)" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
-                )}
+      <!-- Steps en una sola fila conectada (antes: zigzag vertical con
+           gradiente neón). Inspirado en el "How we work" de trionn.com:
+           una sola línea que atraviesa todos los pasos, revelados al
+           hacer scroll con el sistema [data-ns-animate] existente. -->
+      <div class="process-steps relative">
+        <!-- Línea conectora horizontal (solo desktop, donde los 5 pasos
+             quedan en una sola fila). El tramo base va gris; step-line-h
+             se rellena de verde vía initStepLineAnimation al hacer scroll. -->
+        <div class="hidden lg:block absolute inset-x-0 top-[17px] h-px bg-stroke-2 dark:bg-stroke-6 overflow-hidden">
+          <div
+            class="step-line-h h-full bg-gradient-to-r from-accent-300 via-accent-400 to-accent-300"
+            style="width: 0%;"
+          ></div>
+        </div>
+
+        <div class="relative z-10 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-5 lg:gap-x-6">
+          {procesoSteps.map((item, i) => (
+            <div data-ns-animate data-delay={0.3 + i * 0.1} class="text-center lg:text-left">
+              <div class="size-[34px] flex items-center justify-center mx-auto lg:mx-0 rounded-full bg-secondary dark:bg-background-8 drop-shadow-2xl">
+                <span class="text-accent-300">{item.step}</span>
               </div>
-              <!-- Step card — alternating left/right on desktop -->
-              <div
-                data-ns-animate
-                data-delay={0.3 + i * 0.1}
-                class:list={[
-                  'card-item absolute max-w-[370px] w-full space-y-3',
-                  isLeft
-                    ? 'lg:left-0 lg:top-0 left-1/2 lg:translate-x-0 -translate-x-1/2 top-1/2 lg:translate-y-0 -translate-y-1/2'
-                    : 'lg:right-0 lg:top-0 right-1/2 lg:translate-x-0 translate-x-1/2 top-1/2 -translate-y-1/2',
-                  isLast && 'top-16',
-                  'lg:bg-none lg:p-0 lg:rounded-none p-6 rounded-[20px] max-sm:bg-secondary',
-                ]}
-              >
-                <p class="text-accent-600">PASO {item.step}</p>
-                <div class="space-y-2">
-                  <h5 class="text-heading-6 lg:text-heading-5 text-accent-400">{item.title}</h5>
-                  <small class="text-white/70">{item.description}</small>
-                </div>
+              <div class="mt-6 space-y-2 max-w-[280px] mx-auto lg:mx-0">
+                <p class="text-accent-600 text-tagline-2 font-medium">PASO {item.step}</p>
+                <h5 class="text-heading-6 text-secondary dark:text-accent">{item.title}</h5>
+                <small class="text-secondary/60 dark:text-accent/60">{item.description}</small>
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
-    </div>
-
     </div>
   </section>
 

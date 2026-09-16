@@ -404,32 +404,32 @@ function initCounterAnimation() {
   observers.push(observer);
 }
 
-// ── Step Line Animation (Process Steps) ──────────────────────────────
+// ── Step Line Animation (Process Steps, /servicios "Cómo trabajamos") ────
+// Línea horizontal única que conecta los 5 pasos (antes: un segmento
+// vertical animado en altura entre cada par de pasos, estilo zigzag).
+// Se anima en ancho, una sola vez, sincronizada con el scroll del bloque
+// completo — inspirado en el "How we work" de trionn.com.
 
 function initStepLineAnimation() {
-  const stepLines = document.querySelectorAll<HTMLElement>('.step-line');
+  const stepLines = document.querySelectorAll<HTMLElement>('.step-line-h');
   if (!stepLines.length) return;
 
-  stepLines.forEach((line, index) => {
-    // Each step-line sits inside a container with h-[320px] lg:h-[380px]
-    // Animate to fill the full parent height
-    const parent = line.parentElement;
-    if (!parent) return;
-    const targetHeight = parent.getBoundingClientRect().height;
+  stepLines.forEach((line) => {
+    const track = line.parentElement;
+    if (!track) return;
 
-    gsap.set(line, { height: '0px' });
+    gsap.set(line, { width: '0%' });
 
     gsap.to(line, {
-      height: targetHeight,
+      width: '100%',
       duration: 1.5,
       ease: 'power3.out',
       scrollTrigger: {
-        trigger: line,
-        start: 'top 75%',
-        end: 'top 15%',
+        trigger: track,
+        start: 'top 70%',
+        end: 'top 20%',
         toggleActions: 'play none none reverse',
       },
-      delay: index * 0.15,
     });
   });
 }
