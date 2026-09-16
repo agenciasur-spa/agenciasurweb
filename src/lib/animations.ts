@@ -19,6 +19,7 @@
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { initMeshDriftShader } from './meshDriftShader';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -680,6 +681,7 @@ export function initNexsasAnimations() {
     initParallax();
     initDividerExpand();
     initServiciosReveal();
+    initMeshDriftShader();
     initHeroPhraseRotator();
     initDemoModalTriggers();
     initHeroScrollCue();

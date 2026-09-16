@@ -38,66 +38,60 @@ const sistemas = [
     data-delay="0.1"
     class="main-container-xl text-center rounded-4xl py-4 lg:py-8 -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
   >
-    <!-- background image -->
-    <div
-      data-ns-animate
-      data-delay="0.3"
-      data-duration="2"
-      data-spring
-      data-direction="right"
-      data-offset="50"
-      class="absolute max-[400px]:-right-[32%] max-[400px]:-top-[20%] -top-[31%] -right-[40%] sm:-right-[20%] md:-right-[28%] lg:-right-[20%] xl:-right-[12%] max-w-[530px] rotate-90 md:rotate-[108deg] select-none pointer-events-none"
-    >
-      <img
-        src="/images/ns-img-508.png"
-        alt="how-to-work"
-        class="w-full h-full object-cover"
-      />
-    </div>
+    <!-- Fondo animado "mesh drift" (WebGL, ver src/lib/meshDriftShader.ts).
+         Reemplaza la imagen decorativa estática (ns-img-508.png), que ya no
+         se ajustaba bien en distintos anchos. -->
+    <canvas
+      data-mesh-drift
+      aria-hidden="true"
+      class="absolute inset-0 -z-10 h-full w-full"
+    ></canvas>
 
-    <BadgeSection text="Sistemas Core" delay={0.4} />
+    <div class="relative z-10">
+      <BadgeSection text="Sistemas Core" delay={0.4} />
 
-    <h2
-      data-ns-animate
-      data-delay="0.4"
-      class="mt-4 px-10 font-light text-white"
-    >
-      Plataformas modulares diseñadas para <span
-        class="text-accent-400 block">optimizar</span
-      > la gestión empresarial
-    </h2>
+      <h2
+        data-ns-animate
+        data-delay="0.4"
+        class="mt-4 px-10 font-light text-white"
+      >
+        Plataformas modulares diseñadas para <span
+          class="text-accent-400 block">optimizar</span
+        > la gestión empresarial
+      </h2>
 
-    <!-- Content -->
-    <div
-      class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 max-xl:px-8 max-[400px]:px-6 mt-10"
-    >
-      {
-        sistemas.map(({ icon: Icon, title, description, link }, index) => (
-          <div
-            data-ns-animate
-            data-direction="up"
-            data-offset="40"
-            data-delay={0.5 + 0.15 * index}
-            class="rounded-[20px] border border-white/10 bg-white/[0.03] p-6 text-left transition-colors duration-300 hover:border-accent-400/40"
-          >
-            <div class="flex size-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
-              <Icon color="currentColor" size={28} stroke-width={1} class="text-accent-400" />
-            </div>
-
-            <h3 class="text-heading-5 font-light mt-4 mb-2 text-white">
-              {title}
-            </h3>
-            <p class="text-white/70">{description}</p>
-            <a
-              href={link}
-              class="group mt-5 inline-flex items-center gap-2 text-tagline-1 font-medium text-accent-400 transition-colors hover:text-white"
+      <!-- Content -->
+      <div
+        class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 max-xl:px-8 max-[400px]:px-6 mt-10"
+      >
+        {
+          sistemas.map(({ icon: Icon, title, description, link }, index) => (
+            <div
+              data-ns-animate
+              data-direction="up"
+              data-offset="40"
+              data-delay={0.5 + 0.15 * index}
+              class="rounded-[20px] border border-white/10 bg-white/[0.03] p-6 text-left transition-colors duration-300 hover:border-accent-400/40"
             >
-              <span>Ver más</span>
-              <ArrowRight class="size-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </a>
-          </div>
-        ))
-      }
+              <div class="flex size-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                <Icon color="currentColor" size={28} stroke-width={1} class="text-accent-400" />
+              </div>
+
+              <h3 class="text-heading-5 font-light mt-4 mb-2 text-white">
+                {title}
+              </h3>
+              <p class="text-white/70">{description}</p>
+              <a
+                href={link}
+                class="group mt-5 inline-flex items-center gap-2 text-tagline-1 font-medium text-accent-400 transition-colors hover:text-white"
+              >
+                <span>Ver más</span>
+                <ArrowRight class="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
