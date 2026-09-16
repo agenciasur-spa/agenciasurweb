@@ -1,6 +1,6 @@
 ---
 import { UserCog, Workflow, Code, Cloud } from '@lucide/astro';
-import SectionHeader  from '../components/blocks/SectionHeader.astro';
+import BadgeSection from '../components/blocks/BadgeSection.astro';
 
 const servicios = [
   {
@@ -8,24 +8,28 @@ const servicios = [
     title: 'Levantamiento de Procesos',
     description:
       'No programamos sin entender. Analizamos y definimos la metodología óptima antes de digitalizar.',
+    tag: 'Discovery & mapeo',
   },
   {
     icon: Code,
     title: 'Desarrollo Web & Mobile High-End',
     description:
       'Construimos sistemas robustos sobre arquitecturas modernas o evolucionamos tu infraestructura actual en WordPress/Prestashop hacia el alto rendimiento.',
+    tag: 'Arquitecturas modernas',
   },
   {
     icon: Workflow,
     title: 'Integración & Soporte Continuo',
     description:
       'Conectamos tus sistemas existentes con APIs y middleware. Soporte post-entrega para asegurar la operación sin interrupciones.',
+    tag: 'APIs & middleware',
   },
   {
     icon: Cloud,
     title: 'Infraestructura Cloud',
     description:
       'Despliegue, monitoreo y escalabilidad en la nube. Tu operación, siempre disponible.',
+    tag: 'Monitoreo 24/7',
   },
 ];
 ---
@@ -42,86 +46,52 @@ const servicios = [
   class="relative z-10 -mt-8 rounded-t-[28px] bg-background-2 pt-16 md:-mt-12 md:rounded-t-[36px] md:pt-20 lg:pt-[90px] xl:pt-[100px] pb-16 md:pb-20 lg:pb-[90px] xl:pb-[100px] dark:bg-background-6"
 >
   <div class="main-container">
-    <div
-      class="flex flex-col items-start justify-center max-md:gap-y-18 md:flex-row md:justify-between md:gap-x-[120px]"
-    >
-      <!-- Left: Sticky heading -->
-
-      <SectionHeader
-  badgeText="Servicios"
-  titleHighlight="Soluciones"
-  titleRest=" para la era digital"
-  description="Transformamos procesos complejos en soluciones simples, eficientes y escalables."
-  badgeDelay="0.1"
-  titleDelay="0.2"
-  descriptionDelay="0.3"
-/>
-  
-      <!-- Right: Stack cards -->
-      <div class="stack-cards js-stack-cards w-full max-w-xl">
-        {servicios.map(({ icon: Icon, title, description }) => (
-          <div class="stack-cards__item js-stack-cards__item max-sm:min-h-[433px]">
-            <div class={`border border-stroke-1 dark:border-stroke-7 rounded-[20px] relative z-10 overflow-hidden`}>
-              <!-- Card content -->
-              <div class="relative p-8 bg-white dark:bg-background-5 rounded-xl space-y-6 z-10">
-                <div class="bg-black flex size-17 items-center justify-center rounded-2xl p-4 shadow-lg border border-stroke-1 dark:border-stroke-6 dark:bg-background-5">                
-                  <Icon color="currentColor" size={48} stroke-width={1} class="text-accent-400" />
-                </div>
-                <div class="space-y-2">
-                  <h3 class="text-heading-5 font-light">{title}</h3>
-                  <p class="text-secondary/70 dark:text-accent/70">{description}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
+    <!-- Header centrado: mismo ritmo visual que SistemasGrid, la
+         seccion siguiente (badge + heading centrados antes del grid),
+         para que ambas secciones se lean como parte de un mismo
+         sistema en vez de layouts distintos una tras otra. -->
+    <div class="mx-auto max-w-[640px] text-center">
+      <div class="flex justify-center">
+        <BadgeSection text="Servicios" delay={0.1} />
       </div>
+      <div class="mt-4 space-y-2">
+        <h2 data-ns-animate data-delay="0.2" class="font-light">
+          <span class="text-accent-400 block">Soluciones</span>
+          para la era digital
+        </h2>
+        <p data-ns-animate data-delay="0.3" class="mx-auto max-w-[512px]">
+          Transformamos procesos complejos en soluciones simples, eficientes y escalables.
+        </p>
+      </div>
+    </div>
+
+    <!-- Grid de servicios: reemplaza el stack-scroll (dependia de
+         stack-card.min.js + un parser regex sobre su transform inline,
+         fragil). Ahora usa el mismo sistema de reveal (data-ns-animate)
+         que el resto del sitio. -->
+    <div class="mt-14 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-2 md:gap-8">
+      {servicios.map(({ icon: Icon, title, description, tag }, index) => (
+        <div
+          data-ns-animate
+          data-delay={0.15 * index}
+          data-direction="up"
+          data-offset="40"
+          class="group rounded-[20px] border border-stroke-1 bg-white p-8 transition-colors duration-300 hover:border-accent-400/50 dark:border-stroke-7 dark:bg-background-5"
+        >
+          <div class="flex items-start justify-between gap-4">
+            <div class="bg-black flex size-17 items-center justify-center rounded-2xl p-4 shadow-lg border border-stroke-1 dark:border-stroke-6 dark:bg-background-5">
+              <Icon color="currentColor" size={48} stroke-width={1} class="text-accent-400" />
+            </div>
+            <span class="mt-2 shrink-0 rounded-full border border-accent-400/30 bg-accent-400/10 px-3 py-1 text-tagline-2 font-medium text-accent-400">
+              {tag}
+            </span>
+          </div>
+          <div class="mt-6 space-y-2">
+            <h3 class="text-heading-5 font-light">{title}</h3>
+            <p class="text-secondary/70 dark:text-accent/70">{description}</p>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
-
-<style>
-  /* === Stacked card blur === */
-  .stack-cards__item {
-    transition: filter 0.15s ease-out, opacity 0.15s ease-out;
-  }
-</style>
-
-<script>
-  function initStackBlur() {
-    const container = document.querySelector('.js-stack-cards');
-    if (!container) return;
-
-    const items = Array.from(container.querySelectorAll('.js-stack-cards__item'));
-
-    function updateBlur() {
-      items.forEach((item, i) => {
-        // Read the scale computed by stack-card.min.js from the transform
-        const transform = item.style.transform || '';
-        const scaleMatch = transform.match(/scale\(([^)]+)\)/);
-        const scale = scaleMatch ? parseFloat(scaleMatch[1]) : 1;
-
-        if (scale < 1) {
-          // Cards behind the top one: blur proportional to how much they're scaled down
-          const blurAmount = Math.min((1 - scale) * 35, 50); // max 4px
-          const opacityVal = Math.min(Math.max(scale + 0.1, 0.6), 1); // clamp 0.6–1
-          item.style.filter = `blur(${blurAmount}px)`;
-          item.style.opacity = String(opacityVal);
-        } else {
-          item.style.filter = 'blur(0px)';
-          item.style.opacity = '1';
-        }
-      });
-    }
-
-    window.addEventListener('scroll', updateBlur, { passive: true });
-    updateBlur();
-  }
-
-  // Run after stack-card.min.js initializes
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => setTimeout(initStackBlur, 100));
-  } else {
-    setTimeout(initStackBlur, 100);
-  }
-</script>

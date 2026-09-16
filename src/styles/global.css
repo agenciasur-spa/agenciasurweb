@@ -556,14 +556,6 @@ body {
   display: none;
 }
 
-/* === Stack Cards === */
-.stack-cards {
-  --stack-cards-gap: 24px;
-}
-.stack-cards__item {
-  @apply sticky top-28 origin-top overflow-hidden;
-}
-
 /* === Footer links === */
 @utility footer-link {
   @apply text-tagline-1 max-[426px]:text-tagline-2 text-accent/70 relative inline-block overflow-hidden font-normal before:absolute before:bottom-0 before:left-0 before:h-px before:w-full before:origin-right before:scale-x-0 before:bg-white before:transition-transform before:duration-500 before:content-[''] hover:before:origin-left hover:before:scale-x-100;
