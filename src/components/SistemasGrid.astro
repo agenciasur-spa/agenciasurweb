@@ -36,7 +36,7 @@ const sistemas = [
   <div
     data-ns-animate
     data-delay="0.1"
-    class="main-container-xl text-center rounded-4xl py-4 lg:py-8 -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
+    class="w-full text-center -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
   >
     <!-- Fondo animado "mesh drift" (WebGL, ver src/lib/meshDriftShader.ts).
          Reemplaza la imagen decorativa estática (ns-img-508.png), que ya no
@@ -47,7 +47,7 @@ const sistemas = [
       class="absolute inset-0 -z-10 h-full w-full"
     ></canvas>
 
-    <div class="relative z-10">
+    <div class="relative z-10 py-4 lg:py-8">
       <BadgeSection text="Sistemas Core" delay={0.4} />
 
       <h2

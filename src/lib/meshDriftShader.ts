@@ -160,7 +160,7 @@ vec3 shade(vec2 uv, vec2 p, float t) {
     vec2 c = vec2(
       sin(t * (0.21 + fi * 0.071) + fi * 2.4 + u_seed),
       cos(t * (0.17 + fi * 0.093) + fi * 1.7)) * (0.45 + u_intensity * 0.35);
-    float w = exp(-dot(p - c, p - c) * 6.0);
+    float w = exp(-dot(p - c, p - c) * 20.0);
     acc += u_colors[i] * w;
     total += w;
   }
