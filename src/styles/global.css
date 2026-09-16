@@ -297,14 +297,14 @@
     @apply flex  items-center justify-center;
     
     svg {
-      stroke: var(--color-accent-600); /* Heredando variable del tema */
+      stroke: var(--color-accent-400); /* Heredando variable del tema */
     }
   }
 
   .feature-text {
     font-family: var(--font-mono); /* Heredando la fuente del sitio */
     font-size: 12px;
-    color: var(--color-accent-600); /* Heredando variable del tema */
+    color: var(--color-accent-400); /* Heredando variable del tema */
   }
 }
 
@@ -354,26 +354,16 @@
 }
 
 
-/* Nota: estas 5 clases estaban dentro de un bloque "@layer components"
-   usando la sintaxis inexistente "@component nombre { }" (no es una
-   regla valida de CSS ni de Tailwind v4). El navegador la ignoraba
-   en silencio, asi que nunca se aplicaba ningun estilo — ni el fondo
-   rojo de debug que se encontro antes en feature-list-item, ni estos
-   estilos reales. Tailwind v4 requiere que "@utility" este a nivel
-   raiz (no anidado en @layer), asi que se sacan del @layer y se
-   definen igual que el resto de las utilities de este archivo. */
-
-@utility feature-list-item {
-  @apply flex items-center gap-2;
-}
-
-@utility feature-icon {
-  @apply inline-flex size-6 shrink-0 items-center justify-center text-accent-400;
-}
-
-@utility feature-text {
-  @apply text-accent-400 text-tagline-2 font-medium;
-}
+/* Nota: case-item/case-label estaban dentro de un bloque "@layer
+   components" usando la sintaxis inexistente "@component nombre { }"
+   (no es una regla valida de CSS ni de Tailwind v4) — el navegador la
+   ignoraba en silencio y nunca se aplicaba ningun estilo (incluido el
+   fondo rojo de debug que tenia feature-list-item ahi mismo, que en
+   realidad tampoco se veia). feature-list-item/feature-icon/
+   feature-text ya se definieron arriba, junto a badge-section, con
+   nesting real; aqui solo quedan case-item/case-label, movidas a
+   @utility a nivel raiz (Tailwind v4 no permite @utility anidado
+   dentro de @layer). */
 
 /* Para el contenedor de la lista (labels "Empresa:"/"Sector:"/"Proyecto:" en casos-exito/[slug].astro) */
 @utility case-item {
