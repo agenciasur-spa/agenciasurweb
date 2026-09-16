@@ -124,6 +124,19 @@
   --color-accent: #fcfcfc;
 }
 
+/* === Section-light ===
+   Bloques que rompen el ritmo de negro continuo del dark mode: fuerzan
+   los tokens de texto de vuelta a sus valores claros (los mismos que
+   usaría light mode) sin importar que .dark siga activo en <html>.
+   El fondo y los bordes de la sección que use esta clase deben
+   fijarse aparte (bg-background-2, border-stroke-1, etc.) ya que esos
+   tokens no son theme-aware. */
+.section-light {
+  --color-split-text: #1a1a1c;
+  --color-secondary: #1a1a1c;
+  --color-accent: #1a1a1c;
+}
+
 /* =============================================
    UTILITIES
    ============================================= */
@@ -346,11 +359,10 @@
 
   @component feature-list-item {
     @apply flex items-center gap-2;
-    background: red!important;
   }
 
   @component feature-icon {
-    @apply inline-flex size-[18px] items-center justify-center rounded-full bg-green-500/20;
+    @apply inline-flex size-[18px] items-center justify-center rounded-full bg-accent-400/20;
   }
 
   @component feature-text {

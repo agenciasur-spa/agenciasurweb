@@ -5,14 +5,14 @@ import StatsBar from '../components/StatsBar.astro';
 
 <section
   id="nosotros"
-  class="pb-20 pt-14 md:pb-28 md:pt-16 lg:pb-44 lg:pt-[88px] xl:pb-[200px] xl:pt-[100px] dark:bg-background-8"
+  class="section-light bg-background-2 pb-20 pt-14 md:pb-28 md:pt-16 lg:pb-44 lg:pt-[88px] xl:pb-[200px] xl:pt-[100px]"
 >
   <div class="main-container">
     <div class="grid grid-cols-12 gap-y-14 xl:gap-x-28 items-center">
       <!-- Left: Texto -->
       <div class="col-span-12 lg:col-span-6 mx-4 xl:mx-0">
         <div class="space-y-3">
-          <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">Sobre Agencia Sur</span>
+          <span data-ns-animate data-delay="0.1" class="badge badge-green mb-5">Sobre Agencia Sur</span>
           <h2 data-ns-animate data-delay="0.2" class="font-light tracking-[-0.02em]">
             Transformamos complejidad operativa en <span class="text-accent-400 block font-light">flujos simples</span>.
           </h2>
@@ -30,7 +30,7 @@ import StatsBar from '../components/StatsBar.astro';
           class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4"
         >
           {clientes.map((cliente) => (
-            <span class="text-black/40 dark:text-accent/40 text-tagline-1 font-bold uppercase tracking-widest">
+            <span class="text-black/40 text-tagline-1 font-bold uppercase tracking-widest">
               {cliente}
             </span>
           ))}
@@ -42,16 +42,16 @@ import StatsBar from '../components/StatsBar.astro';
         <div
           data-ns-animate
           data-delay="0.5"
-          class="p-[26px] shadow-2 min-h-[380px] rounded-[20px] h-full  flex flex-col justify-center items-center border border-stroke-1 dark:border-stroke-7"
+          class="p-[26px] shadow-2 min-h-[380px] rounded-[20px] h-full bg-white flex flex-col justify-center items-center border border-stroke-1"
         >
         
 
 
   <div class="space-y-1 text-center mb-4">
-              <h6 class="text-secondary dark:text-accent text-xl font-normal">
+              <h6 class="text-secondary text-xl font-normal">
                 Trayectoria comprobada
               </h6>
-              <p class="text-secondary/60 dark:text-accent/60">
+              <p class="text-secondary/60">
                 Desde consultoría TI hasta desarrollo a medida
               </p>
             </div>
