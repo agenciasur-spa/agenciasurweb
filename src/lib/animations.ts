@@ -531,6 +531,46 @@ function initForceTheme() {
   }
 }
 
+/**
+ * Hero phrase rotator — cicla la palabra de acento del H1 del Hero
+ * (ej. "criticos" -> "manuales" -> "repetitivos") con un crossfade +
+ * blur sutil, inspirado en el "Designed to mean ___." de trionn.com.
+ * Se detiene si el usuario prefiere menos movimiento.
+ */
+function initHeroPhraseRotator() {
+  const el = document.querySelector<HTMLElement>('[data-hero-rotate]');
+  if (!el) return;
+
+  let words: string[] = [];
+  try {
+    words = JSON.parse(el.getAttribute('data-words') || '[]');
+  } catch {
+    words = [];
+  }
+  if (words.length < 2) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const transitionMs = 450;
+  const holdMs = 2800;
+  let index = 0;
+
+  el.style.display = 'inline-block';
+  el.style.transition = `opacity ${transitionMs}ms ease, filter ${transitionMs}ms ease`;
+  el.style.willChange = 'opacity, filter';
+
+  setInterval(() => {
+    index = (index + 1) % words.length;
+    el.style.opacity = '0';
+    el.style.filter = 'blur(8px)';
+    setTimeout(() => {
+      el.textContent = words[index];
+      el.style.opacity = '1';
+      el.style.filter = 'blur(0px)';
+    }, transitionMs);
+  }, holdMs + transitionMs);
+}
+
 // ── Init ─────────────────────────────────────────────────────────────
 
 export function initNexsasAnimations() {
@@ -546,6 +586,7 @@ export function initNexsasAnimations() {
     initStepLineAnimation();
     initParallax();
     initDividerExpand();
+    initHeroPhraseRotator();
     themeSwitcher.init();
     buttonV3.init();
 
