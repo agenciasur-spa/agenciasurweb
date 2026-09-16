@@ -30,9 +30,16 @@ const servicios = [
 ];
 ---
 
+<!-- Sentinel: marca la posicion "natural" (sin transform) del borde
+     superior de #servicios, para que el ScrollTrigger de la animacion
+     de entrada (initServiciosReveal en animations.ts) no mida un
+     elemento que el mismo esta transformando (eso desincroniza el
+     scrub). Vive fuera de #servicios a proposito. -->
+<div id="servicios-trigger" aria-hidden="true" class="h-px w-full"></div>
+
 <section
   id="servicios"
-  class="pt-16 md:pt-20 lg:pt-[90px] xl:pt-[100px] pb-16 md:pb-20 lg:pb-[90px] xl:pb-[100px]"
+  class="relative z-10 -mt-8 rounded-t-[28px] bg-background-2 pt-16 md:-mt-12 md:rounded-t-[36px] md:pt-20 lg:pt-[90px] xl:pt-[100px] pb-16 md:pb-20 lg:pb-[90px] xl:pb-[100px] dark:bg-background-6"
 >
   <div class="main-container">
     <div

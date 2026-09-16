@@ -495,6 +495,47 @@ function initDividerExpand() {
   });
 }
 
+// ── Servicios reveal (entrada sobre el Hero) ────────────────────────
+// El panel de #servicios (fondo claro, esquinas redondeadas superiores)
+// se "desliza" hacia arriba y se asienta sobre el Hero oscuro a medida
+// que se hace scroll, en vez de aparecer estático de golpe.
+
+function initServiciosReveal() {
+  const panel = document.getElementById('servicios');
+  // Sentinel sin transform (ver ServiciosGrid.astro): el trigger del
+  // scroll NO puede ser el propio panel animado, porque GSAP mide su
+  // posicion con getBoundingClientRect y el transform que le vamos
+  // aplicando retroalimenta esa medicion y desincroniza el scrub.
+  const trigger = document.getElementById('servicios-trigger');
+  if (!panel || !trigger) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  gsap.set(panel, { transformOrigin: '50% 0%', willChange: 'transform, box-shadow' });
+
+  gsap.fromTo(
+    panel,
+    {
+      y: 140,
+      scale: 0.96,
+      boxShadow: '0 0px 0px 0px rgba(0,0,0,0)',
+    },
+    {
+      y: 0,
+      scale: 1,
+      boxShadow: '0 -40px 80px -40px rgba(0,0,0,0.35)',
+      ease: 'none',
+      scrollTrigger: {
+        trigger,
+        start: 'top bottom',
+        end: 'top 55%',
+        scrub: true,
+      },
+    }
+  );
+}
+
 // ── Theme Switcher ──────────────────────────────────────────────────
 
 const themeSwitcher = {
@@ -638,6 +679,7 @@ export function initNexsasAnimations() {
     initStepLineAnimation();
     initParallax();
     initDividerExpand();
+    initServiciosReveal();
     initHeroPhraseRotator();
     initDemoModalTriggers();
     initHeroScrollCue();
