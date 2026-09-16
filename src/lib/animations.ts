@@ -20,6 +20,7 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initMeshDriftShader } from './meshDriftShader';
+import { initLiveGradientShader } from './liveGradientShader';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -682,6 +683,7 @@ export function initNexsasAnimations() {
     initDividerExpand();
     initServiciosReveal();
     initMeshDriftShader();
+    initLiveGradientShader();
     initHeroPhraseRotator();
     initDemoModalTriggers();
     initHeroScrollCue();

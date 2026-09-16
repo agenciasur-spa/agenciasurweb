@@ -113,8 +113,13 @@ const diferenciadores = [
 
 
   <!-- Hero — Qué hacemos (los 4 servicios reales, antes solo vivían en el mega-menu) -->
-  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
-    <div class="main-container">
+  <section class="relative overflow-hidden bg-background-6 pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+    <canvas
+      data-live-gradient
+      class="pointer-events-none absolute inset-0 -z-10 h-full w-full"
+      aria-hidden="true"
+    ></canvas>
+    <div class="main-container relative z-10">
       <div class="text-center space-y-5 mb-[70px]">
         <span data-ns-animate data-delay="0.1" class="badge badge-section">Qué hacemos</span>
         <div class="space-y-3">
