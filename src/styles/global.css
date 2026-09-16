@@ -354,33 +354,35 @@
 }
 
 
-@layer components {
+/* Nota: estas 5 clases estaban dentro de un bloque "@layer components"
+   usando la sintaxis inexistente "@component nombre { }" (no es una
+   regla valida de CSS ni de Tailwind v4). El navegador la ignoraba
+   en silencio, asi que nunca se aplicaba ningun estilo — ni el fondo
+   rojo de debug que se encontro antes en feature-list-item, ni estos
+   estilos reales. Tailwind v4 requiere que "@utility" este a nivel
+   raiz (no anidado en @layer), asi que se sacan del @layer y se
+   definen igual que el resto de las utilities de este archivo. */
 
+@utility feature-list-item {
+  @apply flex items-center gap-2;
+}
 
-  @component feature-list-item {
-    @apply flex items-center gap-2;
-  }
+@utility feature-icon {
+  @apply inline-flex size-6 shrink-0 items-center justify-center text-accent-400;
+}
 
-  @component feature-icon {
-    @apply inline-flex size-[18px] items-center justify-center rounded-full bg-accent-400/20;
-  }
+@utility feature-text {
+  @apply text-accent-400 text-tagline-2 font-medium;
+}
 
-  @component feature-text {
-    @apply text-accent/60 text-tagline-2;
-  }
+/* Para el contenedor de la lista (labels "Empresa:"/"Sector:"/"Proyecto:" en casos-exito/[slug].astro) */
+@utility case-item {
+  @apply text-black/60 dark:text-white/60;
+}
 
-  /* Para el contenedor de la lista */
-  @component case-item {
-    @apply text-black/60 dark:text-white/60;
-  }
-
-  /* Para el label/título */
-  @component case-label {
-    @apply text-secondary dark:!text-accent text-sm font-medium;
-  }
-
-
-  
+/* Para el label/titulo */
+@utility case-label {
+  @apply text-secondary dark:text-accent! text-sm font-medium;
 }
 
 
