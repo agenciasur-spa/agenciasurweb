@@ -375,6 +375,25 @@
   @apply text-secondary dark:text-accent! text-sm font-medium;
 }
 
+/* === Scroll cue — boton "ver mas" al pie del Hero === */
+@keyframes scroll-cue-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+@utility scroll-cue {
+  @apply items-center justify-center size-10 rounded-full border border-white/20 text-white/70 transition-colors duration-300;
+  animation: scroll-cue-bounce 2s ease-in-out infinite;
+
+  &:hover {
+    @apply border-accent-400 text-accent-400;
+  }
+
+  svg {
+    @apply size-4;
+  }
+}
+
 
 
 /* === Gradient lines animation === */
