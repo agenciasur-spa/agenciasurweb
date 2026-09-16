@@ -338,27 +338,10 @@ import BadgeSection from './blocks/BadgeSection.astro';
   }
 
   /* ─── Summary marks ───────────────────────────────────────── */
-  .cf-summary .cf-summary-letter,
-  #cf-summary .cf-summary-letter,
-  .cf-summary-letter {
-    font-size: 1rem;
-    line-height: 1.65;
-    color: #fff !important;
-    margin: 0;
-  }
-  .cf-summary-letter mark,
-  #cf-summary mark {
-    background: rgba(34, 255, 136, 0.15) !important;
-    color: #22ff88 !important;
-    padding: 2px 8px;
-    border-radius: 6px;
-    border: 1px solid rgba(34, 255, 136, 0.3);
-    font-weight: 500;
-  }
-  .cf-summary-letter .cf-missing {
-    color: rgba(255, 255, 255, 0.3) !important;
-    font-style: italic;
-  }
+  /* .cf-summary-letter / mark / .cf-missing are injected client-side via
+     innerHTML (renderSummary/renderThanks), so they never receive Astro's
+     scoped data-astro-cid attribute — their rules live in the is:global
+     block below instead, or these scoped copies would silently no-op. */
   .cf-summary-actions {
     display: flex;
     gap: 8px;
@@ -389,15 +372,6 @@ import BadgeSection from './blocks/BadgeSection.astro';
     animation: cf-thanks-in 320ms cubic-bezier(0.2, 0, 0, 1) both;
   }
   .cf-thanks[hidden] { display: none; }
-  .cf-thanks-letter mark,
-  #cf-thanks mark {
-    background: rgba(34, 255, 136, 0.15) !important;
-    color: #22ff88 !important;
-    padding: 2px 8px;
-    border-radius: 6px;
-    border: 1px solid rgba(34, 255, 136, 0.3);
-    font-weight: 500;
-  }
   @keyframes cf-thanks-in {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -418,6 +392,32 @@ import BadgeSection from './blocks/BadgeSection.astro';
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
     }
+  }
+</style>
+
+<!-- Estilos para el contenido de #cf-summary / #cf-thanks inyectado por JS
+     (innerHTML): Astro no puede aplicarles el scoping de <style> normal,
+     por eso van en un bloque is:global aparte. -->
+<style is:global>
+  .cf-summary-letter {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #fff !important;
+    margin: 0;
+  }
+  .cf-summary-letter mark,
+  .cf-thanks-letter mark {
+    background: rgba(34, 255, 136, 0.15) !important;
+    color: #22ff88 !important;
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(34, 255, 136, 0.3);
+    font-weight: 500;
+  }
+  .cf-summary-letter .cf-missing,
+  .cf-thanks-letter .cf-missing {
+    color: rgba(255, 255, 255, 0.3) !important;
+    font-style: italic;
   }
 </style>
 
