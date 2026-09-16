@@ -571,6 +571,34 @@ function initHeroPhraseRotator() {
   }, holdMs + transitionMs);
 }
 
+/**
+ * Conecta los triggers de "contacto inmediato" (ej. Hero: "Hablemos de tu
+ * proyecto" / "Agenda una llamada", estilo trionn.com) con el DemoModal
+ * existente. Cada trigger declara su copy via data-attributes y se la pasa
+ * al modal como CustomEvent.detail, asi un mismo modal cubre ambos
+ * "intents" (obtener el lead / agendar una llamada) sin duplicar el
+ * componente. Ver DemoModal.astro para el lado que consume el detail.
+ */
+function initDemoModalTriggers() {
+  const triggers = document.querySelectorAll<HTMLElement>('[data-open-demo-modal]');
+  if (!triggers.length) return;
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      document.dispatchEvent(
+        new CustomEvent('open-demo-modal', {
+          detail: {
+            modalTitle: trigger.dataset.modalTitle,
+            ctaLabel: trigger.dataset.ctaLabel,
+            solucion: trigger.dataset.solucion,
+            description: trigger.dataset.description,
+          },
+        })
+      );
+    });
+  });
+}
+
 // ── Init ─────────────────────────────────────────────────────────────
 
 export function initNexsasAnimations() {
@@ -587,6 +615,7 @@ export function initNexsasAnimations() {
     initParallax();
     initDividerExpand();
     initHeroPhraseRotator();
+    initDemoModalTriggers();
     themeSwitcher.init();
     buttonV3.init();
 

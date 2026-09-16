@@ -34,14 +34,14 @@ const subtitle = modalDescription || `Completa tus datos y te contactamos para a
     <!-- Header -->
     <div class="mb-6">
       <h3 id="demo-modal-title" class="text-heading-3 mb-2">{modalTitle}</h3>
-      <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+      <p id="demo-modal-subtitle" class="text-tagline-1 text-secondary/60 dark:text-accent/60">
         {subtitle && <Fragment set:html={subtitle} />}
       </p>
     </div>
 
     <!-- Form -->
     <form id="demo-form" class="space-y-5">
-      <input type="hidden" name="solucion" value={solucionTitle} />
+      <input type="hidden" id="demo-solucion" name="solucion" value={solucionTitle} />
 
       <div class="space-y-1.5">
         <label for="demo-nombre" class="text-sm font-medium text-secondary dark:text-accent">Nombre *</label>
@@ -96,6 +96,7 @@ const subtitle = modalDescription || `Completa tus datos y te contactamos para a
       <button
         type="submit"
         id="demo-submit"
+        data-default-cta={ctaLabel}
         class="btn btn-primary btn-md w-full"
       >
         <span>{ctaLabel}</span>
@@ -130,10 +131,40 @@ const subtitle = modalDescription || `Completa tus datos y te contactamos para a
     const submitBtn = document.getElementById('demo-submit') as HTMLButtonElement;
     const errorDiv = document.getElementById('demo-error') as HTMLDivElement;
     const successDiv = document.getElementById('demo-success') as HTMLDivElement;
+    const titleEl = document.getElementById('demo-modal-title') as HTMLHeadingElement;
+    const subtitleEl = document.getElementById('demo-modal-subtitle') as HTMLParagraphElement;
+    const solucionInput = document.getElementById('demo-solucion') as HTMLInputElement;
 
     if (!overlay || !modal) return;
 
-    function openModal() {
+    // Valores por defecto (los props con los que se renderizo el componente).
+    // Un trigger puede pisarlos puntualmente pasando un CustomEvent con
+    // `detail` (ver initDemoModalTriggers en animations.ts) — asi un mismo
+    // DemoModal sirve para varios "intents" (ej. Hero: "Hablemos de tu
+    // proyecto" vs "Agenda una llamada") sin duplicar el componente.
+    const defaultTitle = titleEl?.textContent || '';
+    const defaultSubtitleHTML = subtitleEl?.innerHTML || '';
+    const defaultSolucion = solucionInput?.value || '';
+    const defaultCtaLabel = submitBtn?.dataset.defaultCta || '';
+    let currentCtaLabel = defaultCtaLabel;
+
+    type DemoModalDetail = {
+      modalTitle?: string;
+      ctaLabel?: string;
+      solucion?: string;
+      description?: string;
+    };
+
+    function openModal(e?: Event) {
+      const detail = (e as CustomEvent<DemoModalDetail> | undefined)?.detail;
+
+      if (titleEl) titleEl.textContent = detail?.modalTitle || defaultTitle;
+      if (subtitleEl) subtitleEl.innerHTML = detail?.description || defaultSubtitleHTML;
+      if (solucionInput) solucionInput.value = detail?.solucion || defaultSolucion;
+
+      currentCtaLabel = detail?.ctaLabel || defaultCtaLabel;
+      if (submitBtn) submitBtn.innerHTML = `<span>${currentCtaLabel}</span>`;
+
       overlay.classList.remove('hidden');
       overlay.classList.add('flex');
       requestAnimationFrame(() => {
@@ -156,7 +187,7 @@ const subtitle = modalDescription || `Completa tus datos y te contactamos para a
         successDiv.classList.add('hidden');
         errorDiv.classList.add('hidden');
         submitBtn.disabled = false;
-        submitBtn.innerHTML = `<span>${ctaLabel}</span>`;
+        submitBtn.innerHTML = `<span>${currentCtaLabel}</span>`;
       }, 300);
     }
 
@@ -218,7 +249,7 @@ const subtitle = modalDescription || `Completa tus datos y te contactamos para a
         errorDiv.textContent = error.message || 'Error al enviar. Intenta nuevamente.';
         errorDiv.classList.remove('hidden');
         submitBtn.disabled = false;
-        submitBtn.innerHTML = `<span>${ctaLabel}</span>`;
+        submitBtn.innerHTML = `<span>${currentCtaLabel}</span>`;
       }
     });
   }

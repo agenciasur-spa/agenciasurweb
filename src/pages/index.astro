@@ -6,6 +6,7 @@ import SistemasGrid from '../components/SistemasGrid.astro';
 import NosotrosSection from '../components/NosotrosSection.astro';
 import ContactoFooter from '../components/ContactoFooter.astro';
 import Footer from '../components/Footer.astro';
+import DemoModal from '../components/DemoModal.astro';
 ---
 
 <Layout title="Agencia Sur | Transformación Digital">
@@ -15,4 +16,16 @@ import Footer from '../components/Footer.astro';
   <NosotrosSection />
   <ContactoFooter />
   <Footer />
+
+  <!-- Modal de contacto inmediato disparado desde el Hero (ver
+       data-open-demo-modal / initDemoModalTriggers en animations.ts).
+       Estas props son el fallback por si algun trigger no manda detail. -->
+  <DemoModal
+    modalTitle="Conversemos"
+    modalDescription="Cuéntanos sobre tu proyecto y te contactamos a la brevedad."
+    ctaLabel="Enviar mensaje"
+    solucionTitle="Consulta general"
+    successTitle="¡Mensaje enviado!"
+    successMessage="Te contactaremos en las próximas 24 horas hábiles."
+  />
 </Layout>
