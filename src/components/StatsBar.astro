@@ -1,65 +1,32 @@
 ---
-import { Clock, CheckCircle, TrendingUp, Award } from '@lucide/astro';
+import { Clock, CheckCircle, TrendingUp } from '@lucide/astro';
 
 const stats = [
-  { value: '18+', label: 'Años de Trayectoria', icon: Clock },
-  { value: '200+', label: 'Procesos Analizados', icon: CheckCircle },
-  { value: '50+', label: 'Proyectos de Éxito', icon: TrendingUp },
+  { value: 18, label: 'Años de trayectoria', icon: Clock },
+  { value: 200, label: 'Procesos analizados', icon: CheckCircle },
+  { value: 50, label: 'Proyectos de éxito', icon: TrendingUp },
 ];
 ---
 
-
 <section aria-label="Indicadores">
-  <div class="main-container s">
-    <div data-ns-animate data-delay="0.5" class="flex flex-col md:flex-row gap-4 md:gap-y-2 items-center md:items-start justify-center">
-    <div
-          data-instant="true"
-          data-ns-animate
-          data-delay="0.9"
-          class="flex items-start flex-col bg-secondary dark:bg-background-6 gap-1 p-4 rounded-2xl"
-         
-        >
-        <h5 class="flex items-center gap-05 text-accent-300 font-normal">
-            <span class="text-accent-300" data-counter="18">18</span><span class="text-accent-300"> +</span>
-          </h5>
-
-          <small class="text-white font-light">Años de trayectoria</small>
-          
-        </div>
-
-
-    <div
-          data-instant="true"
-          data-ns-animate
-          data-delay="0.9"
-          class="flex items-start flex-col bg-secondary dark:bg-background-6 gap-1 p-4 rounded-2xl"
-         
-        >
-        <h5 class="flex items-center gap-05 text-accent-300 font-normal">
-            <span class="text-accent-300" data-counter="200">200</span><span class="text-accent-300"> +</span>
-          </h5>
-
-          <small class="text-white font-light">Procesos analizados</small>
-          
-        </div>
-
-            <div
-          data-instant="true"
-          data-ns-animate
-          data-delay="0.9"
-          class="flex items-start flex-col bg-secondary dark:bg-background-6 gap-1 p-4 rounded-2xl"
-         
-        >
-        <h5 class="flex items-center gap-05 text-accent-300 font-normal">
-            <span class="text-accent-300" data-counter="50">50</span><span class="text-accent-300"> +</span>
-          </h5>
-
-          <small class="text-white font-light">Proyectos de éxito</small>
-          
-        </div>
-
-
-
-    </div>
+  <div
+    data-ns-animate
+    data-delay="0.6"
+    class="grid grid-cols-1 gap-3 sm:grid-cols-3"
+  >
+    {stats.map(({ value, label, icon: Icon }, index) => (
+      <div
+        data-instant="true"
+        data-ns-animate
+        data-delay={0.7 + index * 0.1}
+        class="flex flex-col items-start gap-2 rounded-2xl bg-secondary dark:bg-background-6 p-4"
+      >
+        <Icon color="currentColor" size={20} stroke-width={1.5} class="text-accent-300" />
+        <h5 class="flex items-center gap-0.5 text-accent-300 font-normal">
+          <span data-counter={value}>{value}</span><span>+</span>
+        </h5>
+        <small class="text-white font-light">{label}</small>
+      </div>
+    ))}
   </div>
 </section>
