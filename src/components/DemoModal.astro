@@ -16,16 +16,16 @@ const {
   successMessage = 'Te contactaremos en las próximas 24 horas hábiles.',
 } = Astro.props;
 
-const subtitle = modalDescription || `Completa tus datos y te contactamos para agendar una demo personalizada de <strong class="text-secondary dark:text-accent">${solucionTitle}</strong>.`;
+const subtitle = modalDescription || `Completa tus datos y te contactamos para agendar una demo personalizada de <strong class="text-accent-400">${solucionTitle}</strong>.`;
 ---
 
 <!-- Demo Modal Overlay -->
 <div id="demo-modal-overlay" class="fixed inset-0 z-[10000] bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
   <!-- Modal Content -->
-  <div id="demo-modal" class="relative w-full max-w-lg bg-background-6 dark:bg-background-8 rounded-[20px] p-8 md:p-10 shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
+  <div id="demo-modal" class="relative w-full max-w-lg bg-secondary dark:bg-background-8 rounded-[20px] p-8 md:p-10 shadow-2xl transform scale-95 opacity-0 transition-all duration-300">
     <!-- Close button -->
-    <button id="demo-modal-close" class="absolute top-4 right-4 size-8 flex items-center justify-center rounded-full hover:bg-background-3 dark:hover:bg-background-7 transition-colors" aria-label="Cerrar">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-secondary/60 dark:text-accent/60">
+    <button id="demo-modal-close" class="absolute top-4 right-4 size-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors" aria-label="Cerrar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white/60">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
@@ -33,8 +33,8 @@ const subtitle = modalDescription || `Completa tus datos y te contactamos para a
 
     <!-- Header -->
     <div class="mb-6">
-      <h3 id="demo-modal-title" class="text-heading-3 mb-2">{modalTitle}</h3>
-      <p id="demo-modal-subtitle" class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+      <h3 id="demo-modal-title" class="text-heading-3 mb-2 text-white">{modalTitle}</h3>
+      <p id="demo-modal-subtitle" class="text-tagline-1 text-white/60">
         {subtitle && <Fragment set:html={subtitle} />}
       </p>
     </div>
@@ -44,48 +44,48 @@ const subtitle = modalDescription || `Completa tus datos y te contactamos para a
       <input type="hidden" id="demo-solucion" name="solucion" value={solucionTitle} />
 
       <div class="space-y-1.5">
-        <label for="demo-nombre" class="text-sm font-medium text-secondary dark:text-accent">Nombre *</label>
+        <label for="demo-nombre" class="text-sm font-medium text-white">Nombre *</label>
         <input
           type="text"
           id="demo-nombre"
           name="nombre"
           required
           placeholder="Tu nombre"
-          class="w-full rounded-xl border border-stroke-4 dark:border-stroke-7 bg-transparent px-4 py-3 text-secondary dark:text-accent placeholder:text-secondary/40 dark:placeholder:text-accent/40 focus:border-green focus:outline-none transition-colors"
+          class="w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"
         />
       </div>
 
       <div class="space-y-1.5">
-        <label for="demo-email" class="text-sm font-medium text-secondary dark:text-accent">Email *</label>
+        <label for="demo-email" class="text-sm font-medium text-white">Email *</label>
         <input
           type="email"
           id="demo-email"
           name="email"
           required
           placeholder="tu@empresa.com"
-          class="w-full rounded-xl border border-stroke-4 dark:border-stroke-7 bg-transparent px-4 py-3 text-secondary dark:text-accent placeholder:text-secondary/40 dark:placeholder:text-accent/40 focus:border-green focus:outline-none transition-colors"
+          class="w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"
         />
       </div>
 
       <div class="space-y-1.5">
-        <label for="demo-empresa" class="text-sm font-medium text-secondary dark:text-accent">Empresa</label>
+        <label for="demo-empresa" class="text-sm font-medium text-white">Empresa</label>
         <input
           type="text"
           id="demo-empresa"
           name="empresa"
           placeholder="Nombre de tu empresa"
-          class="w-full rounded-xl border border-stroke-4 dark:border-stroke-7 bg-transparent px-4 py-3 text-secondary dark:text-accent placeholder:text-secondary/40 dark:placeholder:text-accent/40 focus:border-green focus:outline-none transition-colors"
+          class="w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"
         />
       </div>
 
       <div class="space-y-1.5">
-        <label for="demo-mensaje" class="text-sm font-medium text-secondary dark:text-accent">Mensaje <span class="text-secondary/40 dark:text-accent/40">(opcional)</span></label>
+        <label for="demo-mensaje" class="text-sm font-medium text-white">Mensaje <span class="text-white/40">(opcional)</span></label>
         <textarea
           id="demo-mensaje"
           name="mensaje"
           rows="3"
           placeholder="Cuéntanos brevemente qué te interesa del sistema..."
-          class="w-full rounded-xl border border-stroke-4 dark:border-stroke-7 bg-transparent px-4 py-3 text-secondary dark:text-accent placeholder:text-secondary/40 dark:placeholder:text-accent/40 focus:border-green focus:outline-none transition-colors resize-none"
+          class="w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors resize-none"
         ></textarea>
       </div>
 
@@ -106,14 +106,14 @@ const subtitle = modalDescription || `Completa tus datos y te contactamos para a
     <!-- Success state -->
     <div id="demo-success" class="hidden">
       <div class="flex flex-col items-center gap-4 py-6 text-center">
-        <div class="flex size-14 items-center justify-center rounded-full bg-green/20">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-green">
+        <div class="flex size-14 items-center justify-center rounded-full bg-accent-400/20">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent-400">
             <path d="M20 6 9 17l-5-5"/>
           </svg>
         </div>
         <div>
-          <h4 class="mb-1">{successTitle}</h4>
-          <p class="text-tagline-1 text-secondary/60 dark:text-accent/60">
+          <h4 class="mb-1 text-white">{successTitle}</h4>
+          <p class="text-tagline-1 text-white/60">
             {successMessage}
           </p>
         </div>
