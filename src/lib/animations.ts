@@ -599,6 +599,30 @@ function initDemoModalTriggers() {
   });
 }
 
+/**
+ * El boton "ver mas" del Hero es `position: fixed` (asi el margen inferior
+ * se calcula siempre sobre el 100vh real de la pantalla, sin depender de
+ * cuanto mida el Hero en cada breakpoint). Al ser fixed persiste mientras
+ * se scrollea el resto del sitio, asi que lo ocultamos apenas se avanza
+ * mas alla del propio Hero para que no quede flotando sobre las demas
+ * secciones.
+ */
+function initHeroScrollCue() {
+  const cue = document.getElementById('hero-scroll-cue');
+  if (!cue) return;
+
+  cue.style.transition = 'opacity 300ms ease';
+
+  function update() {
+    const past = window.scrollY > window.innerHeight * 0.6;
+    cue!.style.opacity = past ? '0' : '1';
+    cue!.style.pointerEvents = past ? 'none' : 'auto';
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
 // ── Init ─────────────────────────────────────────────────────────────
 
 export function initNexsasAnimations() {
@@ -616,6 +640,7 @@ export function initNexsasAnimations() {
     initDividerExpand();
     initHeroPhraseRotator();
     initDemoModalTriggers();
+    initHeroScrollCue();
     themeSwitcher.init();
     buttonV3.init();
 
