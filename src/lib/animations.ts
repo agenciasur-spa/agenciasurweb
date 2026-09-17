@@ -497,18 +497,21 @@ function initDividerExpand() {
   });
 }
 
-// ── Servicios reveal (entrada sobre el Hero) ────────────────────────
-// El panel de #servicios (fondo claro, esquinas redondeadas superiores)
-// se "desliza" hacia arriba y se asienta sobre el Hero oscuro a medida
-// que se hace scroll, en vez de aparecer estático de golpe.
-
-function initServiciosReveal() {
-  const panel = document.getElementById('servicios');
-  // Sentinel sin transform (ver ServiciosGrid.astro): el trigger del
-  // scroll NO puede ser el propio panel animado, porque GSAP mide su
-  // posicion con getBoundingClientRect y el transform que le vamos
-  // aplicando retroalimenta esa medicion y desincroniza el scrub.
-  const trigger = document.getElementById('servicios-trigger');
+// ── Panel reveal (parallax de contenedor) ───────────────────────────
+// El panel (fondo propio, esquinas redondeadas) se "desliza" hacia
+// arriba, escala de 0.96 a 1 y gana sombra a medida que se hace scroll,
+// en vez de aparecer estático de golpe — sensacion de profundidad en el
+// contenedor completo, no solo en su contenido. Usado por #servicios
+// (ServiciosGrid.astro, entrada sobre el Hero) y por el panel del
+// formulario de contacto (ContactFormV2.astro) — mismos valores para
+// que ambos se sientan parte del mismo sistema visual.
+function initPanelReveal(panelId: string, triggerId: string) {
+  const panel = document.getElementById(panelId);
+  // Sentinel sin transform: el trigger del scroll NO puede ser el propio
+  // panel animado, porque GSAP mide su posicion con getBoundingClientRect
+  // y el transform que le vamos aplicando retroalimenta esa medicion y
+  // desincroniza el scrub.
+  const trigger = document.getElementById(triggerId);
   if (!panel || !trigger) return;
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -681,7 +684,8 @@ export function initNexsasAnimations() {
     initStepLineAnimation();
     initParallax();
     initDividerExpand();
-    initServiciosReveal();
+    initPanelReveal('servicios', 'servicios-trigger');
+    initPanelReveal('contact-form-panel', 'contact-form-trigger');
     initMeshDriftShader();
     initLiveGradientShader();
     initHeroPhraseRotator();
