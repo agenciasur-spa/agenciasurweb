@@ -325,14 +325,14 @@
   ul {
     @apply space-y-4;
     li {
-      @apply text-tagline-1 dark:text-accent before:relative before:left-0 before:mr-3 before:h-5 before:w-5 before:content-[url('/images/icons/checkmark-white.svg')] before:max-md:top-0 before:md:top-1 dark:before:content-[url('/images/icons/checkmark-white.svg')];
+      @apply text-tagline-1 dark:text-accent;
     }
   }
 
   ol {
     @apply space-y-4;
     li {
-      @apply text-tagline-1 text-white font-medium before:relative before:top-1 before:left-0 before:mr-3 before:h-5 before:w-5 before:content-[url('/images/icons/checkmark-white.svg')] dark:before:content-[url('/images/icons/checkmark-white.svg')];
+      @apply text-tagline-1 text-white font-medium;
     }
   }
 }
