@@ -7,11 +7,19 @@
 ---
 
 <style>
+  /* Por defecto (sin .dark ni .light aplicada, el caso mas comun ya que
+     el script de init en Layout.astro solo agrega .light explicitamente
+     y nunca agrega .dark) el boton ya se ve oscuro (bg-background-8, ya
+     que dark:bg-white no se dispara), asi que mostramos la luna --
+     misma pareja bg-oscuro/icono-luna que el estado .light explicito.
+     Cuando .dark SI esta presente (bg-white via dark:bg-white) mostramos
+     el sol. Antes ninguna regla cubria el estado "sin clase", dejando el
+     boton sin icono para todo visitante nuevo. */
   #icon-sun { display: none; }
-  #icon-moon { display: none; }
+  #icon-moon { display: flex; }
 
   :global(.dark) #icon-sun { display: flex; }
-  :global(.light) #icon-moon { display: flex; }
+  :global(.dark) #icon-moon { display: none; }
 </style>
 
 <button
