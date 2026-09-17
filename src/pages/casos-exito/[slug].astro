@@ -87,14 +87,14 @@ if (!caso) {
           <!--a href="/casos-exito" class="text-tagline-1 text-accent/60 dark:text-accent/60  font-medium hover:underline inline-block mb-2">
             ← Volver a Casos de Éxito
           </a-->
-          <span data-ns-animate data-delay="0.1" class="badge-section"
+          <span data-ns-animate data-delay="0.1" class="badge badge-section"
             >{caso.client}</span
           >
           <div class="space-y-3">
             <h1
               data-ns-animate
               data-delay="0.2"
-              class="max-w-[884px] font-light"
+              class="max-w-[884px] font-light text-white"
             >
               {caso.title}
             </h1>
@@ -103,7 +103,7 @@ if (!caso) {
                 <p
                   data-ns-animate
                   data-delay="0.3"
-                  class="text-secondary/60 dark:text-accent/60"
+                  class="text-white/60"
                 >
                   Sector: {caso.industry}
                 </p>
@@ -160,7 +160,7 @@ if (!caso) {
             >
               <div data-ns-animate data-delay="0.1">
                 <p
-                  class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28"
+                  class="text-heading-4 md:text-heading-5 text-white sticky top-28"
                 >
                   El desafío
                 </p>
@@ -176,7 +176,7 @@ if (!caso) {
                 }
                 {
                   !caso.challenge && (
-                    <p data-ns-animate data-delay="0.2">
+                    <p data-ns-animate data-delay="0.2" class="text-white/60">
                       {caso.client} enfrentaba el desafío de{" "}
                       {caso.industry || "su industria"}: optimizar procesos que
                       limitaban su capacidad de crecer y escalar eficientemente.
@@ -192,7 +192,7 @@ if (!caso) {
             >
               <div data-ns-animate data-delay="0.1">
                 <p
-                  class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28"
+                  class="text-heading-4 md:text-heading-5 text-white sticky top-28"
                 >
                   La solución
                 </p>
@@ -208,7 +208,7 @@ if (!caso) {
                 }
                 {
                   !caso.solution && (
-                    <p data-ns-animate data-delay="0.2">
+                    <p data-ns-animate data-delay="0.2" class="text-white/60">
                       Agencia Sur diseñó e implementó una plataforma a medida
                       que permitió
                       {caso.results?.[0]?.toLowerCase() ||
@@ -224,8 +224,8 @@ if (!caso) {
                   caso.results && caso.results.length > 0 && (
                     <ul data-ns-animate data-delay="0.3" class="space-y-4">
                       {caso.results.map((result, idx) => (
-                        <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
-                          <span class="bg-secondary dark:bg-accent size-2 rounded-full" />
+                        <li class="text-white/60 flex items-center justify-start gap-x-3">
+                          <span class="bg-white size-2 rounded-full" />
                           {result}
                         </li>
                       ))}
@@ -241,7 +241,7 @@ if (!caso) {
             >
               <div data-ns-animate data-delay="0.1">
                 <p
-                  class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28"
+                  class="text-heading-4 md:text-heading-5 text-white sticky top-28"
                 >
                   Los resultados
                 </p>
@@ -257,7 +257,7 @@ if (!caso) {
                     >
                       {caso.results.map((result, idx) => (
                         <div class="border-stroke-1 dark:border-stroke-7 bg-background-1 dark:bg-background-6 rounded-2xl border p-6 space-y-2">
-                          <p class="text-2xl font-bold text-green">
+                          <p class="text-2xl font-bold text-accent-400">
                             {result.split(/(\d+%|\d+x)/)[1] || "✓"}
                           </p>
                           <p class="font-medium text-secondary dark:text-accent">
@@ -270,7 +270,7 @@ if (!caso) {
                     <p
                       data-ns-animate
                       data-delay="0.2"
-                      class="text-secondary/60 dark:text-accent/60"
+                      class="text-white/60"
                     >
                       Próximamente compartiremos los resultados cuantificables
                       de este proyecto.
@@ -286,7 +286,7 @@ if (!caso) {
             >
               <div data-ns-animate data-delay="0.1">
                 <p
-                  class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28"
+                  class="text-heading-4 md:text-heading-5 text-white sticky top-28"
                 >
                   Testimonio
                 </p>
@@ -327,7 +327,7 @@ if (!caso) {
                     <p
                       data-ns-animate
                       data-delay="0.2"
-                      class="text-secondary/60 dark:text-accent/60"
+                      class="text-white/60"
                     >
                       Próximamente compartiremos el testimonio de {caso.client}.
                     </p>
@@ -342,7 +342,7 @@ if (!caso) {
             >
               <div data-ns-animate data-delay="0.1">
                 <p
-                  class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28"
+                  class="text-heading-4 md:text-heading-5 text-white sticky top-28"
                 >
                   Características
                 </p>
@@ -354,12 +354,12 @@ if (!caso) {
                 class="space-y-6 lg:max-w-[808px]"
               >
                 <h5
-                  class="text-heading-4 font-light"
+                  class="text-heading-4 font-light text-white"
                   id="caracteristicas-clave"
                 >
                   Características implementadas
                 </h5>
-                <p class="text-secondary/60 dark:text-accent/60">
+                <p class="text-white/60">
                   Próximamente compartiremos las características técnicas
                   implementadas en este proyecto.
                 </p>
@@ -375,10 +375,10 @@ if (!caso) {
   <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px]">
     <div class="main-container text-center">
       <div class="max-w-[600px] mx-auto space-y-5">
-        <h2 data-ns-animate data-delay="0.1">
+        <h2 data-ns-animate data-delay="0.1" class="font-light text-white">
           ¿Tu empresa tiene un desafío similar?
         </h2>
-        <p data-ns-animate data-delay="0.2">
+        <p data-ns-animate data-delay="0.2" class="text-white/60">
           Hablemos sobre cómo podemos ayudarte a lograr resultados como estos.
         </p>
         <div data-ns-animate data-delay="0.3">
