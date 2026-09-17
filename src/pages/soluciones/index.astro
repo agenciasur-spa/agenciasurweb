@@ -61,12 +61,12 @@ const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSolucione
   <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
     <div class="main-container">
       <div class="text-center space-y-5 mb-[70px]">
-        <span data-ns-animate data-delay="0.1" class="badge-section mb-5">Soluciones</span>
+        <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">Soluciones</span>
         <div class="space-y-3">
-          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light">
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light text-white">
             Soluciones que resuelven problemas <span class="text-accent-400">reales</span>
           </h2>
-          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
+          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto text-white/60">
             Sistemas cerrados, probados en producción, diseñados para procesos empresariales críticos.
             No vendemos software genérico — entregamos herramientas que encajan en tu operación.
           </p>
@@ -83,12 +83,12 @@ const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSolucione
                 <div class="bg-gradient-to-br from-background-8 to-background-6 dark:from-accent/10 dark:to-accent/5 flex size-16 items-center justify-center rounded-2xl ring-1 ring-accent-400/20">
                   {(() => {
                     const Icon = iconMap[sol.slug];
-                    return Icon ? <Icon color="currentColor" size={36} stroke-width={1} class="text-accent-400" /> : <span class="text-2xl text-white">⚡</span>;
+                    return Icon ? <Icon color="currentColor" size={36} stroke-width={1} class="text-accent-400" /> : <span class="text-2xl text-secondary dark:text-accent">⚡</span>;
                   })()}
                 </div>
 
                 <div class="space-y-3">
-                  <h3 class="text-xl font-light text-secondary dark:text-accent group-hover:text-green-500 dark:group-hover:text-accent transition-colors">
+                  <h3 class="text-xl font-light text-secondary dark:text-accent group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
                     {sol.title}
                   </h3>
                   <p class="text-secondary/60 dark:text-accent/50 text-sm leading-relaxed">
@@ -97,7 +97,7 @@ const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSolucione
                 </div>
 
                 <div>
-                  <span class="inline-flex items-center gap-2 text-sm font-medium text-green-500 dark:text-accent group-hover:gap-3 transition-all">
+                  <span class="inline-flex items-center gap-2 text-sm font-medium text-accent-600 dark:text-accent-400 group-hover:gap-3 transition-all">
                     <span>Ver detalle</span>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
