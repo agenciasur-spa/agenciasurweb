@@ -50,10 +50,10 @@ const rest = displayCasos.slice(1);
     <div class="main-container">
       <div class="space-y-[70px]">
         <div class="max-w-[800px] space-y-3">
-          <h1 data-ns-animate data-delay="0.2" class="text-heading-3 md:text-heading-2 font-light">
+          <h1 data-ns-animate data-delay="0.2" class="text-heading-3 md:text-heading-2 font-light text-white">
             Problemas reales. Resultados <span class="text-accent-400">medibles</span>.
           </h1>
-          <p data-ns-animate data-delay="0.3">
+          <p data-ns-animate data-delay="0.3" class="text-white/60">
             Desde startups en crecimiento hasta empresas consolidadas, organizaciones de todo tipo usan
             nuestras soluciones para optimizar operaciones, aumentar visibilidad y acelerar su transformación digital.
           </p>
@@ -62,19 +62,19 @@ const rest = displayCasos.slice(1);
         <!-- Featured case study -->
         {featured && (
           <div class="space-y-4">
-            <span data-ns-animate data-delay="0.4" class="badge-section">Caso destacado</span>
+            <span data-ns-animate data-delay="0.4" class="badge badge-section">Caso destacado</span>
             <ul class="max-w-[435px] space-y-2">
-              <li data-ns-animate data-delay="0.5" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
+              <li data-ns-animate data-delay="0.5" data-instant class="text-white text-lg leading-[150%] font-medium">
                 Cliente:
-                <span class="text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal">{featured.client}</span>
+                <span class="text-tagline-1 text-white/60 font-normal">{featured.client}</span>
               </li>
-              <li data-ns-animate data-delay="0.6" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
+              <li data-ns-animate data-delay="0.6" data-instant class="text-white text-lg leading-[150%] font-medium">
                 Sector:
-                <span class="text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal">{featured.industry}</span>
+                <span class="text-tagline-1 text-white/60 font-normal">{featured.industry}</span>
               </li>
-              <li data-ns-animate data-delay="0.7" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
+              <li data-ns-animate data-delay="0.7" data-instant class="text-white text-lg leading-[150%] font-medium">
                 Resultados:
-                <span class="text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal">{featured.results?.slice(0, 2).join(' · ')}</span>
+                <span class="text-tagline-1 text-white/60 font-normal">{featured.results?.slice(0, 2).join(' · ')}</span>
               </li>
             </ul>
           </div>
@@ -86,8 +86,8 @@ const rest = displayCasos.slice(1);
 
         {featured && (
           <div class="space-y-1">
-            <h3 data-ns-animate data-delay="0.1" class="text-heading-4">El desafío</h3>
-            <p data-ns-animate data-delay="0.2" class="max-w-[705px]">
+            <h3 data-ns-animate data-delay="0.1" class="text-heading-4 text-white">El desafío</h3>
+            <p data-ns-animate data-delay="0.2" class="max-w-[705px] text-white/60">
               {featured.title}. {featured.client} necesitaba una solución que permitiera {featured.results?.[0]?.toLowerCase()} sin interrumpir la operación diaria.
             </p>
           </div>
@@ -97,14 +97,14 @@ const rest = displayCasos.slice(1);
         <div class="flex flex-col items-center justify-between gap-16 md:flex-row">
           <div class="space-y-6">
             <div>
-              <h4 data-ns-animate data-delay="0.3" class="text-heading-4">La Solución</h4>
-              <p data-ns-animate data-delay="0.4">Agencia Sur trabajó en:</p>
+              <h4 data-ns-animate data-delay="0.3" class="text-heading-4 text-white">La Solución</h4>
+              <p data-ns-animate data-delay="0.4" class="text-white/60">Agencia Sur trabajó en:</p>
             </div>
             <ul class="space-y-2">
               {featured.results?.slice(0, 3).map((result, idx) => (
                 <li data-ns-animate data-delay={0.3 + idx * 0.1}>
                   <p
-                    class="before:bg-secondary dark:before:bg-accent before:mr-3 before:inline-block before:size-2 before:rounded-full before:content-['']"
+                    class="text-white/70 before:bg-white before:mr-3 before:inline-block before:size-2 before:rounded-full before:content-['']"
                   >
                     {result}
                   </p>
@@ -115,8 +115,8 @@ const rest = displayCasos.slice(1);
 
           <div class="space-y-6">
             <div>
-              <h4 data-ns-animate data-delay="0.3" class="text-heading-4">Los Resultados</h4>
-              <p data-ns-animate data-delay="0.4">Logramos:</p>
+              <h4 data-ns-animate data-delay="0.3" class="text-heading-4 text-white">Los Resultados</h4>
+              <p data-ns-animate data-delay="0.4" class="text-white/60">Logramos:</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {featured.results?.slice(0, 4).map((result, idx) => {
@@ -142,8 +142,8 @@ const rest = displayCasos.slice(1);
     <div class="main-container">
       <div class="space-y-[70px]">
         <div class="space-y-3 text-center">
-          <h2 data-ns-animate data-delay="0.1" class="text-heading-3 font-light">Más casos de éxito</h2>
-          <p data-ns-animate data-delay="0.2" class="max-w-[738px] mx-auto">
+          <h2 data-ns-animate data-delay="0.1" class="text-heading-3 font-light text-white">Más casos de éxito</h2>
+          <p data-ns-animate data-delay="0.2" class="max-w-[738px] mx-auto text-white/60">
             Cada proyecto representa un problema real resuelto con software a medida. Estos son algunos de los resultados.
           </p>
         </div>
@@ -198,7 +198,7 @@ const rest = displayCasos.slice(1);
         </div>
         <div class="py-14 px-6 md:px-11 grid max-sm:grid-cols-1 grid-cols-2 max-sm:gap-10 gap-5">
           <div class="max-w-[500px]">
-            <h2 id="feature-heading" class="text-accent text-heading-5 mb-8">
+            <h2 id="feature-heading" class="text-accent text-heading-5 mb-8 font-light">
               Estos son algunos de los casos de uso que hemos resuelto con éxito.
             </h2>
             <a href="/contacto" class="btn btn-md dark:btn-dark dark:hover:btn-white hover:btn-primary border-0 btn-white">
@@ -256,7 +256,7 @@ const rest = displayCasos.slice(1);
         <div class="xl:max-w-[650px] lg:max-w-[476px] max-[400px]:max-w-[300px] w-full space-y-5 text-center lg:text-left">
           <span data-ns-animate data-delay="0.3" class="badge badge-section">Contacto</span>
           <div class="space-y-3">
-            <h2 data-ns-animate data-delay="0.4" class="text-secondary dark:text-accent text-heading-5 sm:text-heading-4 lg:text-heading-2">
+            <h2 data-ns-animate data-delay="0.4" class="text-secondary dark:text-accent text-heading-5 sm:text-heading-4 lg:text-heading-2 font-light">
               ¿Tu empresa tiene un <span class="text-accent-400">desafío similar?</span>
             </h2>
             <p data-ns-animate data-delay="0.5">Hablemos sobre cómo podemos ayudarte a lograr resultados como estos.</p>
