@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactoFooter from '../components/ContactoFooter.astro';
-import DemoModal from '../components/DemoModal.astro';
 import Footer from '../components/Footer.astro';
 import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket, CheckCircle, Smartphone, Accessibility, Monitor, Server, Database, Container, Globe, GitBranch, Zap, Webhook } from '@lucide/astro';
 import StackIcon from 'tech-stack-icons';
@@ -535,25 +534,31 @@ Tech Stack Marquee
     </div>
   </section>
 
-  <!-- CTA — Nexsas pricing.htm centered pattern -->
-  <section class="relative xl:py-[200px] py-24 overflow-hidden">
-    <div class="main-container space-y-[70px]">
-      <div class="flex flex-col items-center text-center">
-        <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">¿Listo para empezar?</span>
-        <h2 data-ns-animate data-delay="0.2" class="max-w-[650px] mx-auto mb-8 font-light text-white">
-          ¿Listo para levantar tu proceso?
-        </h2>
-        <p data-ns-animate data-delay="0.3" class="max-w-[500px] mx-auto mb-8 text-white/60">
-          El primer paso es una reunión de diagnóstico. Sin compromiso, sin letra chica.
-        </p>
-        <div data-ns-animate data-delay="0.4">
-          <button
-            id="cta-diagnostico-btn"
-            class="btn btn-green btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent"
-          >
-            <span>Agendar Diagnóstico</span>
-          </button>
-        </div>
+  <!-- CTA final — se saca el bloque con badge/heading propios (quedaba
+       redundante justo antes del formulario de contacto, ContactoFooter,
+       inmediatamente debajo). Se deja una barra simple con los dos
+       accesos pedidos: al formulario y a Calendly. El link de Calendly
+       es un placeholder ("#") hasta tener el real — buscar
+       data-calendly-link para reemplazarlo. -->
+  <section class="relative py-16 md:py-20 overflow-hidden">
+    <div class="main-container flex flex-col items-center gap-6 text-center">
+      <p data-ns-animate data-delay="0.1" class="max-w-[500px] mx-auto">
+        El primer paso es una reunión de diagnóstico. Sin compromiso, sin letra chica.
+      </p>
+      <div data-ns-animate data-delay="0.2" class="flex flex-col items-center gap-4 sm:flex-row">
+        <a
+          href="#contact-form-panel"
+          class="btn btn-green btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent"
+        >
+          <span>Completar formulario</span>
+        </a>
+        <a
+          href="#"
+          data-calendly-link
+          class="btn btn-lg md:btn-xl btn-white hover:btn-green dark:btn-transparent dark:hover:btn-green"
+        >
+          <span>Agendar en Calendly</span>
+        </a>
       </div>
     </div>
   </section>
@@ -638,20 +643,6 @@ document.addEventListener('astro:after-swap', () => {
 
 </script>
 
-<DemoModal
-  modalTitle="Agendar Diagnóstico"
-  modalDescription="Completá tus datos y te contactamos para una reunión de diagnóstico sin compromiso. Analizamos tu operación y te proponemos un plan de acción."
-  ctaLabel="Agendar Diagnóstico"
-  successTitle="¡Solicitud recibida!"
-  successMessage="Te contactaremos en las próximas 24 horas hábiles para agendar tu diagnóstico."
-  solucionTitle="Diagnóstico Gratuito"
-/>
-
-<script>
-  document.getElementById('cta-diagnostico-btn')?.addEventListener('click', () => {
-    document.dispatchEvent(new CustomEvent('open-demo-modal'));
-  });
-</script>
 </Layout>
 
 
