@@ -51,7 +51,16 @@
             <svg class="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <span class="text-tagline-1 text-white/60">Lun - Vie: 9:00 - 18:00</span>
+            <span class="text-tagline-1 text-white/60">
+              Lun - Vie: 9:00 - 18:00 ·
+              <span id="footer-local-time" data-footer-clock>--:--</span> en Santiago
+            </span>
+          </li>
+          <li class="flex items-start gap-2">
+            <svg class="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.25 6.75c0 8.284 6.716 15 15 15h1.5a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+            </svg>
+            <a href="/contacto" class="footer-link">Agendar una llamada</a>
           </li>
         </ul>
       </div>
@@ -69,3 +78,30 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Reloj local del footer — patron "IST -> 20:04" de trionn.com/services,
+  // pero con la hora real de Santiago (no la del visitante), ya que
+  // Agencia Sur opera desde ahi. Se actualiza cada 30s, es puramente
+  // decorativo (no bloquea nada si falla).
+  function updateFooterClock() {
+    const els = document.querySelectorAll('[data-footer-clock]');
+    if (!els.length) return;
+    try {
+      const time = new Intl.DateTimeFormat('es-CL', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false,
+        timeZone: 'America/Santiago',
+      }).format(new Date());
+      els.forEach((el) => {
+        el.textContent = time;
+      });
+    } catch {
+      // Intl/timeZone no soportado: deja el placeholder "--:--".
+    }
+  }
+
+  updateFooterClock();
+  setInterval(updateFooterClock, 30000);
+</script>
