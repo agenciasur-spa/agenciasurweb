@@ -145,6 +145,29 @@ const tecnologias = [
     
 ];
 
+const stackCategorias = [
+  {
+    titulo: 'Frontend',
+    items: ['React', 'Vue.js', 'Angular', 'Next.js', 'Astro', 'JavaScript'],
+  },
+  {
+    titulo: 'Backend',
+    items: ['Node.js', 'Symfony', 'NestJS', 'Python', 'Django', 'Flask', 'Laravel', 'PHP'],
+  },
+  {
+    titulo: 'Bases de datos',
+    items: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis'],
+  },
+  {
+    titulo: 'Cloud & Hosting',
+    items: ['AWS', 'Azure', 'DigitalOcean', 'Supabase', 'Heroku', 'Vercel', 'Netlify'],
+  },
+  {
+    titulo: 'DevOps',
+    items: ['Docker', 'Kubernetes'],
+  },
+];
+
 const diferenciadores = [
   'Clarity Over Clutter — simplificamos lo complejo sin perder funcionalidad.',
   'People Before Features — el usuario opera, no el manual.',
@@ -498,7 +521,34 @@ Tech Stack Marquee
   </div>
 </section>
 
+  <!-- Stack tecnológico categorizado — patron "technology stack" de
+       trionn.com/services: mismo stack que el marquee de logos de
+       arriba, pero organizado por categoria en texto — complementa,
+       no reemplaza, el marquee (mas "credencial tecnica" para quien
+       lee en detalle). -->
+  <section class="py-24 lg:py-[120px] bg-background-2 dark:bg-background-8">
+    <div class="main-container">
+      <div class="max-w-[700px] mb-16 md:mb-20">
+        <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">Detalle técnico</span>
+        <h2 data-ns-animate data-delay="0.2" class="font-light mb-3">Construido con arquitectura escalable</h2>
+        <p data-ns-animate data-delay="0.3">
+          Elegimos la herramienta correcta para cada capa, no la que está de moda.
+        </p>
+      </div>
 
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-14">
+        {stackCategorias.map((cat, i) => (
+          <div data-ns-animate data-delay={0.2 + i * 0.1} class="border-t border-stroke-1 dark:border-stroke-7 pt-6">
+            <div class="flex items-baseline gap-3 mb-4">
+              <span class="text-accent-400 text-tagline-2 font-medium">{String(i + 1).padStart(2, '0')}</span>
+              <h5 class="text-heading-6 font-light">{cat.titulo}</h5>
+            </div>
+            <p class="text-secondary/60 dark:text-accent/50">{cat.items.join(' · ')}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
   <!-- CTA — Nexsas pricing.htm centered pattern -->
   <section class="relative xl:py-[200px] py-24 overflow-hidden">
