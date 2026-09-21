@@ -287,7 +287,7 @@ const diferenciadores = [
   </section>
 
   <!-- Nuestro Método — Nexsas services.htm pattern, ahora horizontal estilo trionn.com -->
-  <section class="relative bg-background-2 dark:bg-background-6 pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px]">
+  <section class="relative section-dark bg-background-6 pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px]">
     <div class="main-container">
       <div class="text-center space-y-5 mb-[70px]">
         <span data-ns-animate data-delay="0.1" class="badge badge-section">Nuestro Método</span>
@@ -310,7 +310,7 @@ const diferenciadores = [
         <!-- Línea conectora horizontal (solo desktop, donde los 5 pasos
              quedan en una sola fila). El tramo base va gris; step-line-h
              se rellena de verde vía initStepLineAnimation al hacer scroll. -->
-        <div class="hidden lg:block absolute inset-x-0 top-[17px] h-px bg-stroke-2 dark:bg-stroke-6 overflow-hidden">
+        <div class="hidden lg:block absolute inset-x-0 top-[17px] h-px bg-stroke-6 overflow-hidden">
           <div
             class="step-line-h h-full bg-gradient-to-r from-accent-300 via-accent-400 to-accent-300"
             style="width: 0%;"
@@ -320,11 +320,11 @@ const diferenciadores = [
         <div class="relative z-10 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-5 lg:gap-x-6">
           {procesoSteps.map((item, i) => (
             <div data-ns-animate data-delay={0.3 + i * 0.1} class="text-center lg:text-left">
-              <div class="size-[34px] flex items-center justify-center mx-auto lg:mx-0 rounded-full bg-secondary dark:bg-background-8 drop-shadow-2xl">
+              <div class="size-[34px] flex items-center justify-center mx-auto lg:mx-0 rounded-full bg-background-8 drop-shadow-2xl">
                 <span class="text-accent-300">{item.step}</span>
               </div>
               <div class="mt-6 space-y-2 max-w-[280px] mx-auto lg:mx-0">
-                <p class="text-accent-600 text-tagline-2 font-medium">PASO {item.step}</p>
+                <p class="text-accent-400 text-tagline-2 font-medium">PASO {item.step}</p>
                 <h5 class="text-heading-6 text-secondary dark:text-accent">{item.title}</h5>
                 <small class="text-secondary/60 dark:text-accent/60">{item.description}</small>
               </div>

@@ -137,6 +137,21 @@
   --color-accent: #1a1a1c;
 }
 
+/* === Section-dark ===
+   Contraparte de section-light: fuerza los tokens de texto a sus
+   valores de dark mode (blanco) sin importar que .dark NO este activo
+   en <html>. El fondo y los bordes de la seccion que use esta clase
+   deben fijarse aparte (bg-background-6, border-stroke-7, etc.) ya
+   que esos tokens no son theme-aware. Cualquier elemento que use
+   bg-secondary (no solo texto) tambien se vera afectado, porque
+   --color-secondary se reutiliza para fondos ademas de texto — revisar
+   ese caso puntual dentro de la seccion antes de aplicar esta clase. */
+.section-dark {
+  --color-split-text: #fcfcfc;
+  --color-secondary: #fcfcfc;
+  --color-accent: #fcfcfc;
+}
+
 /* =============================================
    UTILITIES
    ============================================= */
