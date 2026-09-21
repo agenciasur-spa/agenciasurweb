@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ContactoFooter from '../components/ContactoFooter.astro';
 import Footer from '../components/Footer.astro';
+import DemoModal from '../components/DemoModal.astro';
 import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket, CheckCircle, Smartphone, Accessibility, Monitor, Server, Database, Container, Globe, GitBranch, Zap, Webhook } from '@lucide/astro';
 import StackIcon from 'tech-stack-icons';
 
@@ -197,6 +198,50 @@ const diferenciadores = [
             problema y empiece a ser una ventaja.
           </p>
         </div>
+
+        <!-- Mismos CTAs (texto + accion) que el Hero del home: abren el
+             DemoModal via data-open-demo-modal / initDemoModalTriggers en
+             animations.ts, con el mismo texto/props por boton. -->
+        <ul class="mt-8 flex flex-col items-center gap-y-4 sm:flex-row sm:justify-center sm:gap-x-4">
+          <li
+            data-ns-animate
+            data-delay="0.5"
+            data-direction="up"
+            data-offset="30"
+            class="w-full sm:w-auto"
+          >
+            <button
+              type="button"
+              data-open-demo-modal
+              data-modal-title="Hablemos de tu proyecto"
+              data-cta-label="Enviar mensaje"
+              data-solucion="Consulta general"
+              data-description="Cuéntanos brevemente en qué podemos ayudarte y te contactamos a la brevedad."
+              class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto sm:mx-0 block md:inline-block w-[90%] md:w-auto btn-lg md:btn-xl border-0"
+            >
+              <span>Hablemos de tu proyecto</span>
+            </button>
+          </li>
+          <li
+            data-ns-animate
+            data-delay="0.6"
+            data-direction="up"
+            data-offset="30"
+            class="w-full sm:w-auto"
+          >
+            <button
+              type="button"
+              data-open-demo-modal
+              data-modal-title="Agenda una llamada"
+              data-cta-label="Solicitar llamada"
+              data-solucion="Llamada agendada"
+              data-description="Déjanos tus datos y coordinamos un horario que te acomode."
+              class="btn btn-lg md:btn-xl dark:btn-transparent dark:border btn-dark bg-accent/20 mx-auto block w-[90%] sm:mx-0 sm:w-auto md:inline-block hover:btn-accent"
+            >
+              <span>Agenda una llamada</span>
+            </button>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -652,6 +697,19 @@ document.addEventListener('astro:after-swap', () => {
 });
 
 </script>
+
+<!-- Modal de contacto inmediato disparado desde los CTAs del Hero (ver
+     data-open-demo-modal / initDemoModalTriggers en animations.ts).
+     Mismas props de fallback que el DemoModal del home (index.astro);
+     los botones del Hero ya mandan su propio detail por click. -->
+<DemoModal
+  modalTitle="Conversemos"
+  modalDescription="Cuéntanos sobre tu proyecto y te contactamos a la brevedad."
+  ctaLabel="Enviar mensaje"
+  solucionTitle="Consulta general"
+  successTitle="¡Mensaje enviado!"
+  successMessage="Te contactaremos en las próximas 24 horas hábiles."
+/>
 
 </Layout>
 
