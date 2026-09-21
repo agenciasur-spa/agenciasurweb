@@ -237,10 +237,12 @@ const diferenciadores = [
        bloque) — si el archivo no existe, el layer de gradiente de fondo
        queda visible sin icono de imagen rota. -->
   <section class="relative bg-background-1 dark:bg-background-6">
-    {servicios.map(({ title, detalle, capacidades, slug }, index) => (
+    {servicios.map(({ title, detalle, capacidades, slug }, index) => {
+      const reversed = index % 2 === 1;
+      return (
       <div class={`main-container py-20 md:py-24 lg:py-28 ${index !== 0 ? 'border-t border-stroke-1 dark:border-stroke-7' : ''}`}>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-8 items-center">
-          <div class="lg:col-span-5">
+          <div class={`lg:col-span-5 ${reversed ? 'lg:col-start-8' : ''}`}>
             <div data-ns-animate data-delay="0.1" class="mb-16 lg:mb-20">
               <h2 class="text-heading-3 font-light -tracking-[0.02em] mb-6">{title}</h2>
               <p class="max-w-md">{detalle}</p>
@@ -274,13 +276,14 @@ const diferenciadores = [
             data-offset="30"
             data-delay="0.3"
             data-service-image={slug}
-            class="lg:col-span-6 lg:col-start-7 aspect-4/3 rounded-[20px] border border-stroke-1 dark:border-stroke-7 bg-gradient-to-br from-accent-400/25 via-background-3 to-secondary/5 dark:from-accent-400/15 dark:via-background-6 dark:to-background-8 bg-cover bg-center"
+            class={`lg:col-span-6 ${reversed ? 'lg:col-start-1' : 'lg:col-start-7'} aspect-4/3 rounded-[20px] border border-stroke-1 dark:border-stroke-7 bg-gradient-to-br from-accent-400/25 via-background-3 to-secondary/5 dark:from-accent-400/15 dark:via-background-6 dark:to-background-8 bg-cover bg-center`}
             style={`background-image: url('/images/servicios/${slug}.jpg');`}
           >
           </div>
         </div>
       </div>
-    ))}
+      );
+    })}
   </section>
 
   <!-- Nuestro Método — Nexsas services.htm pattern, ahora horizontal estilo trionn.com -->
