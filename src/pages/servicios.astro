@@ -244,6 +244,24 @@ const diferenciadores = [
         </ul>
       </div>
     </div>
+
+    <!-- Scroll cue: mismo patron que Hero.astro (home) — fixed (no
+         absolute) para que el margen quede calculado siempre sobre el
+         100vh real de la pantalla, sin depender de cuanto mida el Hero
+         en cada breakpoint. Fuera del sistema data-ns-animate a
+         proposito, su fade lo maneja initHeroScrollCue en
+         animations.ts (ya wireado de forma generica por id) segun la
+         posicion de scroll. -->
+    <a
+      id="hero-scroll-cue"
+      href="#marquee-servicios"
+      aria-label="Ver más contenido"
+      class="scroll-cue fixed bottom-6 left-1/2 z-30 hidden -translate-x-1/2 md:flex"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+    </a>
   </section>
 
 
@@ -252,7 +270,7 @@ const diferenciadores = [
        loop horizontal con tipografia gigante. Sin WebGL — solo CSS +
        vanilla-infinite-marquee (misma lib que el stack tecnologico mas
        abajo, ver initMarquees()). -->
-  <section class="relative overflow-hidden bg-background-6 py-16 md:py-20 lg:py-24">
+  <section id="marquee-servicios" class="relative overflow-hidden bg-background-6 py-16 md:py-20 lg:py-24">
     <div class="absolute left-0 top-0 h-full w-[80px] md:w-[140px] bg-gradient-to-r from-background-6 to-transparent z-10"></div>
     <div class="absolute right-0 top-0 h-full w-[80px] md:w-[140px] bg-gradient-to-l from-background-6 to-transparent z-10"></div>
 
