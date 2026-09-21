@@ -208,14 +208,14 @@ const diferenciadores = [
        loop horizontal con tipografia gigante. Sin WebGL — solo CSS +
        vanilla-infinite-marquee (misma lib que el stack tecnologico mas
        abajo, ver initMarquees()). -->
-  <section class="relative overflow-hidden bg-background-1 dark:bg-background-6 py-16 md:py-20 lg:py-24">
-    <div class="absolute left-0 top-0 h-full w-[80px] md:w-[140px] bg-gradient-to-r from-background-1 to-transparent dark:from-background-6 z-10"></div>
-    <div class="absolute right-0 top-0 h-full w-[80px] md:w-[140px] bg-gradient-to-l from-background-1 to-transparent dark:from-background-6 z-10"></div>
+  <section class="relative overflow-hidden bg-background-6 py-16 md:py-20 lg:py-24">
+    <div class="absolute left-0 top-0 h-full w-[80px] md:w-[140px] bg-gradient-to-r from-background-6 to-transparent z-10"></div>
+    <div class="absolute right-0 top-0 h-full w-[80px] md:w-[140px] bg-gradient-to-l from-background-6 to-transparent z-10"></div>
 
     <div class="disciplines-marquee-container flex items-center whitespace-nowrap">
       {servicios.map(({ title }) => (
         <div class="flex items-center gap-8 md:gap-12 px-4">
-          <span class="text-[2.75rem] sm:text-[4.25rem] lg:text-[5.5rem] font-light uppercase tracking-tight text-secondary dark:text-accent">
+          <span class="text-[2.75rem] sm:text-[4.25rem] lg:text-[5.5rem] font-light uppercase tracking-tight text-white">
             {title}
           </span>
           <span class="text-accent-400 text-[1.75rem] sm:text-[2.5rem] lg:text-[3rem]" aria-hidden="true">+</span>
@@ -223,7 +223,7 @@ const diferenciadores = [
       ))}
     </div>
 
-    <p data-ns-animate data-delay="0.2" class="text-center mt-10 md:mt-14 text-secondary/50 dark:text-accent/40">
+    <p data-ns-animate data-delay="0.2" class="text-center mt-10 md:mt-14 text-white/50">
       ✦ Capacidades pensadas para escalar con tu operación.
     </p>
   </section>
