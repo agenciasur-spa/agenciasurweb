@@ -1,7 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactoFooter from '../../components/ContactoFooter.astro';
-import DemoModal from '../../components/DemoModal.astro';
 import { sanityClient, urlFor } from '../../lib/sanity';
 import PortableText from '../../components/PortableText';
 import type { Solucion } from '../../types/sanity';
@@ -295,24 +294,16 @@ if (!solucion) {
           Agenda una demo personalizada y veamos cómo se adapta a tu operación.
         </p>
         <div data-ns-animate data-delay="0.3">
-          <button
-            id="cta-demo-btn"
+          <a
+            href="#contact-form-panel"
             class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent"
           >
             <span>Solicitar Demo</span>
-          </button>
+          </a>
         </div>
       </div>
     </div>
   </section>
-
-  <DemoModal solucionTitle={solucion.title} />
-
-  <script>
-    document.getElementById('cta-demo-btn')?.addEventListener('click', () => {
-      document.dispatchEvent(new CustomEvent('open-demo-modal'));
-    });
-  </script>
 
   <ContactoFooter />
 </Layout>
