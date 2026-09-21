@@ -49,23 +49,67 @@ const procesoSteps = [
 const servicios = [
   {
     icon: UserCog,
+    slug: 'consultoria',
     title: 'Consultoría',
     description: 'Asesoría tecnológica estratégica para tu negocio.',
+    detalle:
+      'Diagnosticamos tu operación antes de proponer una sola herramienta. Identificamos cuellos de botella reales, priorizamos por impacto y definimos una hoja de ruta técnica que tu equipo puede ejecutar con o sin nosotros.',
+    capacidades: [
+      'Diagnóstico de procesos y sistemas',
+      'Arquitectura de solución',
+      'Priorización por impacto',
+      'Roadmap técnico',
+      'Acompañamiento a equipos internos',
+      'Auditoría de infraestructura existente',
+    ],
   },
   {
     icon: Workflow,
+    slug: 'automatizacion',
     title: 'Automatización',
     description: 'Optimizamos procesos críticos con tecnología inteligente.',
+    detalle:
+      'Conectamos tus sistemas y eliminamos tareas manuales repetitivas. Diseñamos flujos que se adaptan a cómo opera tu negocio, no al revés.',
+    capacidades: [
+      'Automatización de flujos de trabajo',
+      'Integraciones entre sistemas (APIs)',
+      'Bots y agentes para tareas repetitivas',
+      'Orquestación de procesos (n8n y similares)',
+      'Notificaciones y alertas automatizadas',
+      'Reducción de errores operativos',
+    ],
   },
   {
     icon: Code,
+    slug: 'desarrollo-web',
     title: 'Desarrollo Web',
     description: 'Sistemas robustos sobre arquitecturas modernas.',
+    detalle:
+      'Construimos plataformas y sistemas web sobre arquitecturas modernas, pensadas para crecer sin reescribirse cada dos años.',
+    capacidades: [
+      'Frontend & backend a medida',
+      'Integraciones con CMS headless',
+      'APIs y arquitectura de datos',
+      'Aplicaciones web responsivas',
+      'Performance y accesibilidad',
+      'Mantenimiento y evolución continua',
+    ],
   },
   {
     icon: Cloud,
+    slug: 'infraestructura-cloud',
     title: 'Infraestructura y Cloud',
     description: 'Infraestructura escalable y gestión en la nube.',
+    detalle:
+      'Diseñamos infraestructura que escala con tu operación, con foco en disponibilidad, seguridad y costos predecibles.',
+    capacidades: [
+      'Arquitectura cloud (AWS, GCP, Azure)',
+      'Despliegues y CI/CD',
+      'Monitoreo y observabilidad',
+      'Seguridad desde el diseño',
+      'Optimización de costos',
+      'Migración y modernización',
+    ],
   },
 ];
 
@@ -153,6 +197,61 @@ const diferenciadores = [
     </div>
   </section>
 
+
+  <!-- Detalle por servicio — patron "Our Core Capabilities" de
+       trionn.com/services: imagen + titulo + descripcion + lista de
+       capacidades, con una linea que se dibuja (scaleX 0 -> 1) al hacer
+       scroll via initCapabilityLines en animations.ts. La imagen es un
+       placeholder con gradiente de marca hasta que se suba la foto real a
+       /public/images/servicios/{slug}.jpg (ver data-service-image de cada
+       bloque) — si el archivo no existe, el layer de gradiente de fondo
+       queda visible sin icono de imagen rota. -->
+  <section class="relative bg-background-1 dark:bg-background-6">
+    {servicios.map(({ title, detalle, capacidades, slug }, index) => (
+      <div class={`main-container py-20 md:py-24 lg:py-28 ${index !== 0 ? 'border-t border-stroke-1 dark:border-stroke-7' : ''}`}>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-8 items-center">
+          <div class="lg:col-span-5">
+            <div data-ns-animate data-delay="0.1" class="mb-16 lg:mb-20">
+              <h2 class="text-heading-3 font-light -tracking-[0.02em] mb-6">{title}</h2>
+              <p class="max-w-md">{detalle}</p>
+            </div>
+            <div data-ns-animate data-delay="0.2" class="max-w-md">
+              <span class="text-tagline-2 uppercase tracking-widest text-secondary/50 dark:text-accent/40 block mb-6">
+                Capacidades
+              </span>
+              <div class="cap-list" id={`cap-list-${slug}`}>
+                {capacidades.map((cap, i) => (
+                  <Fragment>
+                    <div class="py-4">
+                      <p class="text-secondary dark:text-accent">{cap}</p>
+                    </div>
+                    {i < capacidades.length - 1 && (
+                      <div class="relative h-px">
+                        <div class="cap-divider-line absolute inset-0 origin-left scale-x-0 bg-stroke-2 dark:bg-stroke-6"></div>
+                      </div>
+                    )}
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Placeholder de imagen: gradiente de marca + intento de carga
+               de la foto real (que aun no existe). -->
+          <div
+            data-ns-animate
+            data-direction="up"
+            data-offset="30"
+            data-delay="0.3"
+            data-service-image={slug}
+            class="lg:col-span-6 lg:col-start-7 aspect-4/3 rounded-[20px] border border-stroke-1 dark:border-stroke-7 bg-gradient-to-br from-accent-400/25 via-background-3 to-secondary/5 dark:from-accent-400/15 dark:via-background-6 dark:to-background-8 bg-cover bg-center"
+            style={`background-image: url('/images/servicios/${slug}.jpg');`}
+          >
+          </div>
+        </div>
+      </div>
+    ))}
+  </section>
 
   <!-- Nuestro Método — Nexsas services.htm pattern, ahora horizontal estilo trionn.com -->
   <section class="relative bg-background-2 dark:bg-background-6 pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px]">

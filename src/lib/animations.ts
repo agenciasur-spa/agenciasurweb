@@ -566,6 +566,46 @@ const themeSwitcher = {
   },
 };
 
+// ── Capability lines (paginas de servicios) ─────────────────────────
+// Cada bloque de "Capacidades" (servicios.astro, patron trionn.com) tiene
+// una linea horizontal entre items con scale-x-0 origin-left por CSS. Al
+// entrar en viewport, se anima scaleX 0 -> 1 con stagger, como si la
+// linea se "dibujara" de izquierda a derecha. once:true — no se repite al
+// volver a scrollear.
+
+function initCapabilityLines() {
+  const lists = document.querySelectorAll<HTMLElement>('.cap-list');
+  if (!lists.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  lists.forEach((list) => {
+    const lines = list.querySelectorAll<HTMLElement>('.cap-divider-line');
+    if (!lines.length) return;
+
+    if (reduceMotion) {
+      lines.forEach((line) => {
+        line.style.transform = 'scaleX(1)';
+      });
+      return;
+    }
+
+    ScrollTrigger.create({
+      trigger: list,
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        gsap.to(lines, {
+          scaleX: 1,
+          duration: 0.7,
+          ease: 'power2.out',
+          stagger: 0.12,
+        });
+      },
+    });
+  });
+}
+
 // ── Force Theme Switcher (landing pages) ────────────────────────────
 
 function initForceTheme() {
@@ -693,6 +733,7 @@ export function initNexsasAnimations() {
     initDividerExpand();
     initPanelReveal('servicios', 'servicios-trigger');
     initPanelReveal('contact-form-panel', 'contact-form-trigger');
+    initCapabilityLines();
     initMeshDriftShader();
     initLiveGradientShader();
     initPhraseRotator();
