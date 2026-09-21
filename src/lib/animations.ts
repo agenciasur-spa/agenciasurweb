@@ -732,6 +732,7 @@ export function initNexsasAnimations() {
     initParallax();
     initDividerExpand();
     initPanelReveal('servicios', 'servicios-trigger');
+    initPanelReveal('detalle-servicios', 'detalle-servicios-trigger');
     initPanelReveal('contact-form-panel', 'contact-form-trigger');
     initCapabilityLines();
     initMeshDriftShader();

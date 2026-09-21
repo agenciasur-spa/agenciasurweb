@@ -227,6 +227,13 @@ const diferenciadores = [
     </p>
   </section>
 
+  <!-- Sentinel: misma logica que #servicios-trigger en ServiciosGrid.astro
+       (mismo efecto de entrada pedido para esta seccion) — marca la
+       posicion "natural" del borde superior del panel para que el
+       ScrollTrigger de initPanelReveal no mida un elemento que el mismo
+       esta transformando. Vive fuera de la seccion a proposito. -->
+  <div id="detalle-servicios-trigger" aria-hidden="true" class="h-0 w-full"></div>
+
   <!-- Detalle por servicio — patron "Our Core Capabilities" de
        trionn.com/services: imagen + titulo + descripcion + lista de
        capacidades, con una linea que se dibuja (scaleX 0 -> 1) al hacer
@@ -234,8 +241,11 @@ const diferenciadores = [
        placeholder con gradiente de marca hasta que se suba la foto real a
        /public/images/servicios/{slug}.jpg (ver data-service-image de cada
        bloque) — si el archivo no existe, el layer de gradiente de fondo
-       queda visible sin icono de imagen rota. -->
-  <section class="relative bg-background-1 dark:bg-background-6">
+       queda visible sin icono de imagen rota. Panel con el mismo efecto
+       de entrada que #servicios en el home (initPanelReveal en
+       animations.ts): se desliza hacia arriba, escala de 0.96 a 1 y gana
+       sombra al hacer scroll, con esquinas redondeadas sobre el marquee. -->
+  <section id="detalle-servicios" class="relative z-10 -mt-8 rounded-t-[28px] md:-mt-12 md:rounded-t-[36px] bg-background-1 dark:bg-background-6">
     {servicios.map(({ title, detalle, capacidades, slug }, index) => {
       const reversed = index % 2 === 1;
       return (
