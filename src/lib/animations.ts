@@ -578,43 +578,50 @@ function initForceTheme() {
 }
 
 /**
- * Hero phrase rotator — cicla la palabra de acento del H1 del Hero
- * (ej. "criticos" -> "manuales" -> "repetitivos") con un crossfade +
+ * Phrase rotator — cicla la palabra/frase de acento marcada con
+ * [data-hero-rotate] (ej. H1 del Hero: "criticos" -> "manuales" ->
+ * "repetitivos"; H2 de "Sobre Agencia Sur": "flujos simples." ->
+ * "procesos claros." -> "resultados medibles.") con un crossfade +
  * blur sutil, inspirado en el "Designed to mean ___." de trionn.com.
- * Se detiene si el usuario prefiere menos movimiento.
+ * Soporta varios rotadores independientes en la misma pagina — cada
+ * [data-hero-rotate] arranca su propio index/interval. Se detiene si
+ * el usuario prefiere menos movimiento.
  */
-function initHeroPhraseRotator() {
-  const el = document.querySelector<HTMLElement>('[data-hero-rotate]');
-  if (!el) return;
-
-  let words: string[] = [];
-  try {
-    words = JSON.parse(el.getAttribute('data-words') || '[]');
-  } catch {
-    words = [];
-  }
-  if (words.length < 2) return;
+function initPhraseRotator() {
+  const els = document.querySelectorAll<HTMLElement>('[data-hero-rotate]');
+  if (!els.length) return;
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const transitionMs = 450;
   const holdMs = 2800;
-  let index = 0;
 
-  el.style.display = 'inline-block';
-  el.style.transition = `opacity ${transitionMs}ms ease, filter ${transitionMs}ms ease`;
-  el.style.willChange = 'opacity, filter';
+  els.forEach((el) => {
+    let words: string[] = [];
+    try {
+      words = JSON.parse(el.getAttribute('data-words') || '[]');
+    } catch {
+      words = [];
+    }
+    if (words.length < 2) return;
 
-  setInterval(() => {
-    index = (index + 1) % words.length;
-    el.style.opacity = '0';
-    el.style.filter = 'blur(8px)';
-    setTimeout(() => {
-      el.textContent = words[index];
-      el.style.opacity = '1';
-      el.style.filter = 'blur(0px)';
-    }, transitionMs);
-  }, holdMs + transitionMs);
+    let index = 0;
+
+    el.style.display = 'inline-block';
+    el.style.transition = `opacity ${transitionMs}ms ease, filter ${transitionMs}ms ease`;
+    el.style.willChange = 'opacity, filter';
+
+    setInterval(() => {
+      index = (index + 1) % words.length;
+      el.style.opacity = '0';
+      el.style.filter = 'blur(8px)';
+      setTimeout(() => {
+        el.textContent = words[index];
+        el.style.opacity = '1';
+        el.style.filter = 'blur(0px)';
+      }, transitionMs);
+    }, holdMs + transitionMs);
+  });
 }
 
 /**
@@ -688,7 +695,7 @@ export function initNexsasAnimations() {
     initPanelReveal('contact-form-panel', 'contact-form-trigger');
     initMeshDriftShader();
     initLiveGradientShader();
-    initHeroPhraseRotator();
+    initPhraseRotator();
     initDemoModalTriggers();
     initHeroScrollCue();
     themeSwitcher.init();
