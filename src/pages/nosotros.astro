@@ -79,6 +79,10 @@ const principios = [
                 <text x="38" y="90" fill="rgba(255,255,255,0.7)" font-size="9" font-family="system-ui, sans-serif">Diseño de arquitectura</text>
                 <text x="200" y="90" text-anchor="end" fill="rgba(143,209,79,0.5)" font-size="8" font-family="system-ui, sans-serif">✓</text>
                 <rect x="16" y="112" width="222" height="36" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <circle cx="28" cy="130" r="10" fill="none" stroke="rgba(143,209,79,0.25)" stroke-width="1">
+                  <animate attributeName="r" values="10;15;10" dur="1.8s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.25;0;0.25" dur="1.8s" repeatCount="indefinite"/>
+                </circle>
                 <circle cx="28" cy="130" r="5" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.4)" stroke-width="1"/>
                 <text x="38" y="132" fill="rgba(255,255,255,0.55)" font-size="9" font-family="system-ui, sans-serif">Desarrollo módulo API</text>
                 <text x="200" y="132" text-anchor="end" fill="rgba(143,209,79,0.4)" font-size="8" font-family="system-ui, sans-serif">en curso</text>
@@ -106,7 +110,10 @@ const principios = [
                 <text x="12" y="22" fill="rgba(255,255,255,0.2)" font-size="7" font-family="system-ui, sans-serif" letter-spacing="0.5">ÚLTIMO DEPLOY</text>
                 <rect x="12" y="30" width="119" height="40" rx="8" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
                 <circle cx="24" cy="50" r="4" fill="#8FD14F"/>
-                <circle cx="24" cy="50" r="7" fill="transparent" stroke="rgba(143,209,79,0.3)" stroke-width="1"/>
+                <circle cx="24" cy="50" r="7" fill="transparent" stroke="rgba(143,209,79,0.3)" stroke-width="1">
+                  <animate attributeName="r" values="7;12;7" dur="2s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/>
+                </circle>
                 <text x="36" y="46" fill="rgba(255,255,255,0.75)" font-size="9" font-family="system-ui, sans-serif">Deploy #52</text>
                 <text x="36" y="58" fill="rgba(143,209,79,0.6)" font-size="8" font-family="system-ui, sans-serif">producción · ok</text>
                 <text x="12" y="86" fill="rgba(255,255,255,0.2)" font-size="7" font-family="system-ui, sans-serif">hace 47 min · sin errores</text>
@@ -130,6 +137,9 @@ const principios = [
               <text x="32" y="68" fill="rgba(255,255,255,0.55)" font-size="14" font-family="system-ui, sans-serif" font-weight="300">Trayectoria 2008 — 2024</text>
               <line x1="32" y1="78" x2="598" y2="78" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
               <line x1="40" y1="210" x2="590" y2="210" stroke="rgba(143,209,79,0.5)" stroke-width="1.5"/>
+              <path id="nos-tl-path" d="M 40 210 L 590 210" stroke="none" fill="none"/>
+              <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="5s" repeatCount="indefinite" begin="0s"><mpath href="#nos-tl-path"/></animateMotion></circle>
+              <circle r="2" fill="rgba(143,209,79,0.45)"><animateMotion dur="5s" repeatCount="indefinite" begin="2.5s"><mpath href="#nos-tl-path"/></animateMotion></circle>
               <circle cx="40" cy="210" r="5" fill="rgba(143,209,79,0.15)" stroke="rgba(143,209,79,0.35)" stroke-width="1.5"/>
               <text x="40" y="196" text-anchor="middle" fill="rgba(143,209,79,0.6)" font-size="10" font-family="system-ui, sans-serif" font-weight="500">2008</text>
               <text x="40" y="234" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8" font-family="system-ui, sans-serif">Trayectoria</text>
@@ -138,13 +148,19 @@ const principios = [
               <text x="150" y="196" text-anchor="middle" fill="rgba(143,209,79,0.6)" font-size="10" font-family="system-ui, sans-serif" font-weight="500">2012</text>
               <text x="150" y="234" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8" font-family="system-ui, sans-serif">Sector</text>
               <text x="150" y="246" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-size="8" font-family="system-ui, sans-serif">financiero</text>
+              <circle cx="260" cy="210" r="18" fill="none" stroke="rgba(143,209,79,0.18)" stroke-width="1">
+                <animate attributeName="r" values="18;28;18" dur="2.8s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.18;0;0.18" dur="2.8s" repeatCount="indefinite"/>
+              </circle>
               <circle cx="260" cy="210" r="10" fill="rgba(143,209,79,0.18)" stroke="#8FD14F" stroke-width="2"/>
               <circle cx="260" cy="210" r="5" fill="#8FD14F"/>
               <text x="260" y="192" text-anchor="middle" fill="#8FD14F" font-size="11" font-family="system-ui, sans-serif" font-weight="600">2016</text>
               <text x="260" y="232" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="system-ui, sans-serif" font-weight="500">Fundación</text>
               <text x="260" y="245" text-anchor="middle" fill="rgba(143,209,79,0.55)" font-size="8" font-family="system-ui, sans-serif">AgenciaSur</text>
               <line x1="260" y1="258" x2="260" y2="285" stroke="rgba(143,209,79,0.25)" stroke-width="1" stroke-dasharray="3 2"/>
-              <rect x="212" y="285" width="96" height="28" rx="6" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.3)" stroke-width="1"/>
+              <rect x="212" y="285" width="96" height="28" rx="6" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.3)" stroke-width="1" stroke-dasharray="6 4">
+                <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+              </rect>
               <text x="260" y="303" text-anchor="middle" fill="rgba(143,209,79,0.8)" font-size="8" font-family="system-ui, sans-serif">Transformación Digital</text>
               <circle cx="370" cy="210" r="6" fill="rgba(143,209,79,0.12)" stroke="rgba(143,209,79,0.35)" stroke-width="1.5"/>
               <text x="370" y="196" text-anchor="middle" fill="rgba(143,209,79,0.6)" font-size="10" font-family="system-ui, sans-serif" font-weight="500">2019</text>
@@ -154,6 +170,10 @@ const principios = [
               <text x="480" y="196" text-anchor="middle" fill="rgba(143,209,79,0.6)" font-size="10" font-family="system-ui, sans-serif" font-weight="500">2021</text>
               <text x="480" y="234" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8" font-family="system-ui, sans-serif">Expansión</text>
               <text x="480" y="246" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-size="8" font-family="system-ui, sans-serif">de productos</text>
+              <circle cx="590" cy="210" r="12" fill="none" stroke="rgba(143,209,79,0.15)" stroke-width="1">
+                <animate attributeName="r" values="12;20;12" dur="2.2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.15;0;0.15" dur="2.2s" repeatCount="indefinite"/>
+              </circle>
               <circle cx="590" cy="210" r="7" fill="rgba(143,209,79,0.15)" stroke="#8FD14F" stroke-width="1.5"/>
               <circle cx="590" cy="210" r="3" fill="#8FD14F"/>
               <text x="590" y="196" text-anchor="middle" fill="#8FD14F" font-size="10" font-family="system-ui, sans-serif" font-weight="600">2024</text>
@@ -190,51 +210,94 @@ const principios = [
           </div>
         </figure>
 
-        <article class="space-y-[37px] max-md:w-full">
-          <figure data-ns-animate data-delay="0.5" data-spring data-duration="2.2">
-            <div class="flex items-center gap-2 text-tagline-1 font-medium text-white">
-              <CheckCircle class="size-5 text-accent-300" />
-              <span>Procesos certificados</span>
-            </div>
+        <article class="max-md:w-full md:flex-shrink-0">
+          <figure data-ns-animate data-delay="0.5" data-direction="right" class="rounded-2xl overflow-hidden" style="background-color: #0b0d10;">
+            <svg viewBox="0 0 288 360" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto block" aria-hidden="true">
+              <defs>
+                <pattern id="nos-stat-dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
+                  <circle cx="0.5" cy="0.5" r="0.7" fill="rgba(143,209,79,0.07)"/>
+                </pattern>
+              </defs>
+
+              <!-- Background -->
+              <rect width="288" height="360" rx="16" fill="#0b0d10"/>
+              <rect width="288" height="360" rx="16" fill="url(#nos-stat-dots)"/>
+
+              <!-- Header -->
+              <text x="20" y="28" font-family="system-ui,-apple-system,sans-serif" font-size="8" letter-spacing="0.8" fill="rgba(255,255,255,0.2)">AGENCIASUR</text>
+              <line x1="20" y1="36" x2="268" y2="36" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+              <!-- Sonar pulse ring -->
+              <circle cx="144" cy="106" r="68" fill="none" stroke="rgba(143,209,79,0.06)" stroke-width="1">
+                <animate attributeName="r" values="68;76;68" dur="3.5s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0.06;0;0.06" dur="3.5s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Reference ring -->
+              <circle cx="144" cy="106" r="56" fill="rgba(143,209,79,0.03)" stroke="rgba(143,209,79,0.09)" stroke-width="1"/>
+
+              <!-- Progress ring bg -->
+              <circle cx="144" cy="106" r="48" fill="none" stroke="rgba(143,209,79,0.1)" stroke-width="5"/>
+
+              <!-- Progress arc: 72% = 18 años (circumference≈301.6 → 217 filled) -->
+              <circle cx="144" cy="106" r="48" fill="none" stroke="rgba(143,209,79,0.65)" stroke-width="4"
+                      stroke-dasharray="217 85" stroke-linecap="round" transform="rotate(-90 144 106)">
+                <animate attributeName="stroke-dashoffset" from="0" to="-302" dur="14s" repeatCount="indefinite"/>
+              </circle>
+
+              <!-- Inner fill -->
+              <circle cx="144" cy="106" r="38" fill="rgba(0,0,0,0.2)" stroke="rgba(143,209,79,0.05)" stroke-width="0.5"/>
+
+              <!-- Central metric -->
+              <text x="144" y="97" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="30" font-weight="300" fill="white">18</text>
+              <text x="144" y="112" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="9" fill="rgba(143,209,79,0.8)">años de</text>
+              <text x="144" y="124" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="9" fill="rgba(143,209,79,0.6)">experiencia</text>
+
+              <!-- Separator -->
+              <line x1="20" y1="170" x2="268" y2="170" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+              <!-- Stat cards -->
+              <rect x="20" y="180" width="74" height="68" rx="10" fill="rgba(143,209,79,0.06)" stroke="rgba(143,209,79,0.2)" stroke-width="1"/>
+              <text x="33" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="8" fill="rgba(143,209,79,0.55)">Proyectos</text>
+              <text x="33" y="228" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="300" fill="#8FD14F">50+</text>
+
+              <rect x="103" y="180" width="74" height="68" rx="10" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+              <text x="116" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="8" fill="rgba(255,255,255,0.35)">Clientes</text>
+              <text x="116" y="228" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="300" fill="rgba(255,255,255,0.75)">30+</text>
+
+              <rect x="186" y="180" width="82" height="68" rx="10" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+              <text x="199" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="8" fill="rgba(255,255,255,0.35)">Procesos</text>
+              <text x="199" y="228" font-family="system-ui,-apple-system,sans-serif" font-size="22" font-weight="300" fill="rgba(255,255,255,0.75)">200+</text>
+
+              <!-- Separator -->
+              <line x1="20" y1="262" x2="268" y2="262" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+              <!-- Certified badge -->
+              <rect x="20" y="272" width="248" height="34" rx="10" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+              <circle cx="38" cy="289" r="5" fill="#8FD14F">
+                <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
+              </circle>
+              <path d="M35 289 L38 292 L42 286" stroke="#0b0d10" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <text x="52" y="293" font-family="system-ui,-apple-system,sans-serif" font-size="10" fill="rgba(255,255,255,0.75)">Procesos certificados</text>
+
+              <!-- Year timeline -->
+              <line x1="20" y1="325" x2="268" y2="325" stroke="rgba(143,209,79,0.15)" stroke-width="1"/>
+              <circle cx="20" cy="325" r="2.5" fill="rgba(143,209,79,0.35)"/>
+              <text x="20" y="338" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="7" fill="rgba(255,255,255,0.2)">2008</text>
+              <circle cx="87" cy="325" r="2.5" fill="rgba(143,209,79,0.28)"/>
+              <text x="87" y="338" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="7" fill="rgba(255,255,255,0.15)">2012</text>
+              <circle cx="155" cy="325" r="4" fill="rgba(143,209,79,0.45)" stroke="rgba(143,209,79,0.2)" stroke-width="1"/>
+              <circle cx="155" cy="325" r="1.5" fill="#8FD14F"/>
+              <text x="155" y="338" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="7" fill="rgba(143,209,79,0.5)">2016</text>
+              <circle cx="218" cy="325" r="2.5" fill="rgba(143,209,79,0.28)"/>
+              <text x="218" y="338" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="7" fill="rgba(255,255,255,0.15)">2021</text>
+              <circle cx="268" cy="325" r="3.5" fill="rgba(143,209,79,0.4)"/>
+              <text x="268" y="338" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="7" fill="rgba(143,209,79,0.4)">2024</text>
+
+              <!-- Footer -->
+              <text x="144" y="354" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="7" fill="rgba(255,255,255,0.1)">Ingenieros que resuelven problemas de negocio</text>
+            </svg>
           </figure>
-
-          <div data-ns-animate data-delay="0.4" data-direction="right"
-            class="bg-secondary dark:bg-accent flex h-auto w-full flex-col items-start gap-1 rounded-2xl p-4 md:h-[91px] md:w-[148px]">
-            <h3 class="text-tagline-2 text-accent dark:text-secondary font-normal">Proyectos</h3>
-            <h3 class="text-heading-5 text-accent-300 dark:text-secondary flex items-center justify-center gap-0.5 font-normal">
-              <span data-counter data-number="50" data-speed="1000" data-interval="180" data-rooms="2" data-height-space="2.6">50</span>+
-            </h3>
-          </div>
-
-          <div data-ns-animate data-delay="0.6" data-direction="right"
-            class="max-w-full min-w-full rounded-2xl bg-white p-6 md:max-w-[288px] md:min-w-[288px] dark:bg-black">
-            <div class="text-left">
-              <span class="text-tagline-2 text-secondary dark:text-accent font-normal">Experiencia</span>
-              <h3 class="mt-2 mb-[30px] flex items-center text-heading-2 leading-[1.2] font-normal">
-                <span data-counter data-number="18" data-speed="1000" data-interval="180" data-rooms="2" data-height-space="2.2">18</span>+ años
-              </h3>
-            </div>
-            <div class="flex gap-3">
-              <div class="bg-background-4 dark:bg-background-9 flex-1 space-y-2 rounded-xl p-4 text-left">
-                <div class="text-tagline-2 text-secondary dark:text-accent flex items-center justify-start gap-2">
-                  <span class="bg-accent-300 flex size-[18px] items-center justify-center rounded-full p-1">
-                    <svg width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M7.8842 4.50308C7.81538 4.57946 7.72089 4.62436 7.62101 4.62815C7.51393 4.63024 7.41095 4.58486 7.33717 4.50308L4.39555 1.40367L4.39555 8.59218C4.39277 8.81619 4.2211 8.99707 4.0085 9C3.79589 8.99707 3.62422 8.81619 3.62144 8.59218L3.62144 1.40367L0.679823 4.50308C0.581182 4.60993 0.435935 4.65321 0.298794 4.61663C0.161654 4.58004 0.0534544 4.46915 0.0149541 4.32572C-0.0235462 4.18229 0.0135021 4.02811 0.112143 3.92127L3.72465 0.114967C3.87798 -0.0383222 4.11836 -0.0383222 4.27169 0.114967L7.8842 3.92127C7.95828 3.99794 8 4.10276 8 4.21217C8 4.32159 7.95828 4.42641 7.8842 4.50308Z" fill="#1A1A1C"/></svg>
-                  </span>
-                  Procesos
-                </div>
-                <div class="dark:text-accent flex items-center text-lg leading-[1.5] font-medium">200+</div>
-              </div>
-              <div class="bg-background-4 dark:bg-background-9 flex-1 space-y-2 rounded-xl p-4 text-left">
-                <div class="text-tagline-2 text-secondary dark:text-accent flex items-center justify-start gap-2">
-                  <span class="bg-accent-300 flex size-[18px] items-center justify-center rounded-full p-1">
-                    <svg width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M7.8842 4.49692C7.81538 4.42054 7.72089 4.37564 7.62101 4.37185C7.51393 4.36976 7.41095 4.41514 7.33717 4.49692L4.39555 7.59633L4.39555 0.407818C4.39277 0.18381 4.2211 0.00292873 4.0085 0C3.79589 0.00292873 3.62422 0.18381 3.62144 0.407818L3.62144 7.59633L0.679823 4.49692C0.581182 4.39007 0.435935 4.34679 0.298794 4.38337C0.161654 4.41996 0.0534544 4.53085 0.0149541 4.67428C-0.0235462 4.81771 0.0135021 4.97189 0.112143 5.07873L3.72465 8.88503C3.87798 9.03832 4.11836 9.03832 4.27169 8.88503L7.8842 5.07873C7.95828 5.00206 8 4.89724 8 4.78783C8 4.67841 7.95828 4.57359 7.8842 4.49692Z" fill="#1A1A1C"/></svg>
-                  </span>
-                  Clientes
-                </div>
-                <div class="dark:text-accent flex items-center text-lg leading-[1.5] font-medium">30+</div>
-              </div>
-            </div>
-          </div>
         </article>
       </div>
     </div>
@@ -321,7 +384,7 @@ const principios = [
         </div>
         <div class="py-14 px-6 md:px-11 grid max-sm:grid-cols-1 grid-cols-2 max-sm:gap-10 gap-5">
           <div class="max-w-[500px]">
-            <h2 class="text-accent text-heading-5 mb-8">
+            <h2 class="text-accent text-heading-5 mb-8 font-light">
               Antes de programar, entendemos. Cada línea de código responde a un objetivo de negocio real.
             </h2>
             <div>
@@ -353,7 +416,7 @@ const principios = [
     <div class="main-container">
       <div class="mb-10 max-w-[514px] space-y-3 md:mb-[70px]">
         <span data-ns-animate data-delay="0.1" class="badge badge-section">Valores</span>
-        <h2 data-ns-animate data-delay="0.2" class="text-accent">Cómo Trabajamos</h2>
+        <h2 data-ns-animate data-delay="0.2" class="text-accent font-light">Cómo Trabajamos</h2>
       </div>
 
       <div class="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">

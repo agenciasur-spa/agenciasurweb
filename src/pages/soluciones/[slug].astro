@@ -198,52 +198,48 @@ if (!solucion) {
           </div>
         </div>
 
-        <!-- Table of Contents sidebar — Nexsas sticky TOC pattern -->
+        <!-- Table of Contents sidebar -->
         <div class="table-of-contents hidden w-full lg:sticky lg:top-20 lg:block lg:max-w-[449px]" data-ns-animate data-delay="0.3">
-          <div class="bg-background-1 dark:bg-background-6 w-full space-y-4 rounded-[20px] p-11">
-            <h3 class="text-heading-5">Secciones</h3>
-            <ul class="table-of-list w-full">
-              <li>
-                <a href="#descripcion" class="lenis-scroll-to border-b-stroke-4 dark:border-b-stroke-7 flex items-center justify-between border-b py-4">
-                  <span class="text-secondary dark:text-accent text-lg leading-[27px] font-medium">Descripción</span>
-                  <span>
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
-                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <div class="w-full rounded-[20px] overflow-hidden border border-white/[0.07] shadow-2xl shadow-black/40" style="backdrop-filter: blur(16px); background: rgba(255,255,255,0.025);">
+
+            <!-- Nav content -->
+            <div class="p-8 space-y-1">
+              <p class="text-xs font-medium tracking-widest uppercase text-white/30 mb-4">Secciones</p>
+              <ul class="w-full">
+                <li>
+                  <a href="#descripcion" class="lenis-scroll-to group flex items-center justify-between border-b border-white/[0.06] py-3.5 transition-colors hover:text-accent-400">
+                    <span class="text-white/80 text-base leading-[1.6] font-light group-hover:text-accent-400 transition-colors">Descripción</span>
+                    <svg width="16" height="16" viewBox="0 0 24 25" fill="none" class="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <path d="M10 8.5L14 12.5L10 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#caracteristicas" class="lenis-scroll-to border-b-stroke-4 dark:border-b-stroke-7 flex items-center justify-between border-b py-4">
-                  <span class="text-secondary/60 dark:text-accent/60 text-lg leading-[27px] font-normal">Características</span>
-                  <span class="invisible">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
-                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </a>
+                </li>
+                <li>
+                  <a href="#caracteristicas" class="lenis-scroll-to group flex items-center justify-between border-b border-white/[0.06] py-3.5 transition-colors hover:text-accent-400">
+                    <span class="text-white/50 text-base leading-[1.6] font-light group-hover:text-accent-400 transition-colors">Características</span>
+                    <svg width="16" height="16" viewBox="0 0 24 25" fill="none" class="opacity-25 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <path d="M10 8.5L14 12.5L10 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#beneficios" class="lenis-scroll-to border-b-stroke-4 dark:border-b-stroke-7 flex items-center justify-between border-b py-4">
-                  <span class="text-secondary/60 dark:text-accent/60 text-lg leading-[27px] font-normal">Beneficios</span>
-                  <span class="invisible">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
-                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </a>
+                </li>
+                <li>
+                  <a href="#beneficios" class="lenis-scroll-to group flex items-center justify-between border-b border-white/[0.06] py-3.5 transition-colors hover:text-accent-400">
+                    <span class="text-white/50 text-base leading-[1.6] font-light group-hover:text-accent-400 transition-colors">Beneficios</span>
+                    <svg width="16" height="16" viewBox="0 0 24 25" fill="none" class="opacity-25 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <path d="M10 8.5L14 12.5L10 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#testimonios" class="lenis-scroll-to flex items-center justify-between py-4">
-                  <span class="text-secondary/60 dark:text-accent/60 text-lg leading-[27px] font-normal">Testimonios</span>
-                  <span class="invisible">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
-                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </a>
+                </li>
+                <li>
+                  <a href="#testimonios" class="lenis-scroll-to group flex items-center justify-between py-3.5 transition-colors hover:text-accent-400">
+                    <span class="text-white/50 text-base leading-[1.6] font-light group-hover:text-accent-400 transition-colors">Testimonios</span>
+                    <svg width="16" height="16" viewBox="0 0 24 25" fill="none" class="opacity-25 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <path d="M10 8.5L14 12.5L10 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                  </span>
-                </a>
-              </li>
-            </ul>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
