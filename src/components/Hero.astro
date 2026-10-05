@@ -10,17 +10,109 @@ import FeatureListItem  from '../components/blocks/FeatureListItem.astro';
   <div
     class="w-full pt-[130px] sm:pt-[150px] md:pt-[160px] lg:pt-[150px] pb-[60px] sm:pb-[80px] lg:pb-[100px] max-h-[940px] relative overflow-hidden"
   >    
-    <!-- Background video -->
-    <video
-      autoplay
-      muted
-      loop
-      playsinline
-      class="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover"
+    <!-- Background SVG — sistema de integración animado -->
+    <svg
+      class="pointer-events-none absolute inset-0 -z-20 h-full w-full"
+      viewBox="0 0 1440 900"
+      preserveAspectRatio="xMidYMid slice"
+      xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <source src="/3129671-uhd_3840_2160_30fps.mp4" type="video/mp4" />
-    </video>
+      <defs>
+        <pattern id="hero-dots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+          <circle cx="0.5" cy="0.5" r="0.9" fill="rgba(143,209,79,0.09)"/>
+        </pattern>
+      </defs>
+
+      <!-- Dot grid background -->
+      <rect width="1440" height="900" fill="url(#hero-dots)"/>
+
+      <!-- ── Connection lines (marching dashes) ── -->
+      <!-- ERP → Hub -->
+      <path id="ln-erp" d="M 236 197 C 430 197 555 352 660 360" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
+        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.6s" repeatCount="indefinite"/>
+      </path>
+      <!-- CRM → Hub -->
+      <path id="ln-crm" d="M 236 367 L 660 362" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
+        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.4s" repeatCount="indefinite"/>
+      </path>
+      <!-- Procesos → Hub -->
+      <path id="ln-proc" d="M 246 540 C 430 540 555 375 660 364" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
+        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.9s" repeatCount="indefinite"/>
+      </path>
+      <!-- Hub → Web App -->
+      <path id="ln-web" d="M 780 358 C 900 358 1020 197 1204 197" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
+        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.5s" repeatCount="indefinite"/>
+      </path>
+      <!-- Hub → Base Datos -->
+      <path id="ln-db" d="M 780 362 L 1204 367" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
+        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.3s" repeatCount="indefinite"/>
+      </path>
+      <!-- Hub → API Cloud -->
+      <path id="ln-api" d="M 780 364 C 900 364 1020 540 1204 540" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
+        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.8s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- ── Data packets ── -->
+      <!-- ERP line: 2 packets -->
+      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="3.2s" repeatCount="indefinite" begin="0s"><mpath href="#ln-erp"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="3.2s" repeatCount="indefinite" begin="1.6s"><mpath href="#ln-erp"/></animateMotion></circle>
+      <!-- CRM line -->
+      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.4s"><mpath href="#ln-crm"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.8s"><mpath href="#ln-crm"/></animateMotion></circle>
+      <!-- Procesos line -->
+      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="3.6s" repeatCount="indefinite" begin="0.8s"><mpath href="#ln-proc"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="3.6s" repeatCount="indefinite" begin="2.2s"><mpath href="#ln-proc"/></animateMotion></circle>
+      <!-- Web line -->
+      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="3.0s" repeatCount="indefinite" begin="0.2s"><mpath href="#ln-web"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="3.0s" repeatCount="indefinite" begin="1.7s"><mpath href="#ln-web"/></animateMotion></circle>
+      <!-- DB line -->
+      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.0s"><mpath href="#ln-db"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.3s"><mpath href="#ln-db"/></animateMotion></circle>
+      <!-- API line -->
+      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="3.4s" repeatCount="indefinite" begin="0.6s"><mpath href="#ln-api"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="3.4s" repeatCount="indefinite" begin="2.0s"><mpath href="#ln-api"/></animateMotion></circle>
+
+      <!-- ── Left nodes (inputs) ── -->
+      <!-- ERP -->
+      <rect x="100" y="179" width="112" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
+      <text x="156" y="202" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">ERP</text>
+      <!-- CRM -->
+      <rect x="100" y="349" width="112" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
+      <text x="156" y="372" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">CRM</text>
+      <!-- Procesos -->
+      <rect x="88" y="522" width="136" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
+      <text x="156" y="545" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">Procesos</text>
+
+      <!-- ── Central Hub ── -->
+      <!-- Outer rotating dashed ring -->
+      <circle cx="720" cy="360" r="78" stroke="rgba(143,209,79,0.12)" stroke-width="1" fill="transparent" stroke-dasharray="5 10">
+        <animateTransform attributeName="transform" type="rotate" from="0 720 360" to="360 720 360" dur="28s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Mid ring -->
+      <circle cx="720" cy="360" r="60" stroke="rgba(143,209,79,0.22)" stroke-width="1.5" fill="rgba(143,209,79,0.06)"/>
+      <!-- Inner fill -->
+      <circle cx="720" cy="360" r="44" fill="rgba(143,209,79,0.08)" stroke="rgba(143,209,79,0.35)" stroke-width="1"/>
+      <!-- Center dot pulsing -->
+      <circle cx="720" cy="360" r="8" fill="rgba(143,209,79,0.9)">
+        <animate attributeName="r" values="8;11;8" dur="2.4s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.9;0.5;0.9" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Hub label -->
+      <text x="720" y="354" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="11" font-family="system-ui, sans-serif">AgenciaSur</text>
+      <text x="720" y="370" text-anchor="middle" fill="rgba(143,209,79,0.6)" font-size="10" font-family="system-ui, sans-serif">Hub</text>
+
+      <!-- ── Right nodes (outputs) ── -->
+      <!-- Web App -->
+      <rect x="1228" y="179" width="112" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
+      <text x="1284" y="202" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">Web App</text>
+      <!-- Base Datos -->
+      <rect x="1228" y="349" width="112" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
+      <text x="1284" y="372" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">Base Datos</text>
+      <!-- API / Cloud -->
+      <rect x="1216" y="522" width="136" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
+      <text x="1284" y="545" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">API / Cloud</text>
+    </svg>
 
     <!-- Overlay para legibilidad -->
     <div
