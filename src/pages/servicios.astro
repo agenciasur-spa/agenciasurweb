@@ -340,17 +340,386 @@ const diferenciadores = [
             </div>
           </div>
 
-          <!-- Placeholder de imagen: gradiente de marca + intento de carga
-               de la foto real (que aun no existe). -->
+          <!-- Ilustración SVG conceptual por servicio -->
           <div
             data-ns-animate
             data-direction="up"
             data-offset="30"
             data-delay="0.3"
-            data-service-image={slug}
-            class={`lg:col-span-6 lg:row-start-1 ${reversed ? 'lg:col-start-1 lg:self-start' : 'lg:col-start-7'} aspect-4/3 rounded-[20px] border border-stroke-1 dark:border-stroke-7 bg-gradient-to-br from-accent-400/25 via-background-3 to-secondary/5 dark:from-accent-400/15 dark:via-background-6 dark:to-background-8 bg-cover bg-center`}
-            style={`background-image: url('/images/servicios/${slug}.jpg');`}
+            class={`lg:col-span-6 lg:row-start-1 ${reversed ? 'lg:col-start-1 lg:self-start' : 'lg:col-start-7'} aspect-4/3 rounded-[20px] border border-stroke-7 overflow-hidden`}
+            style="background-color: #0b0d10;"
           >
+            {slug === 'consultoria' && (
+              <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Header -->
+                <text x="28" y="42" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif" letter-spacing="1">DIAGNÓSTICO OPERACIONAL</text>
+                <text x="428" y="42" text-anchor="end" fill="rgba(143,209,79,0.4)" font-size="9" font-family="system-ui, sans-serif">Oct 2024</text>
+                <line x1="28" y1="50" x2="452" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Stakeholder nodes (left cluster) -->
+                <text x="28" y="78" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">STAKEHOLDERS</text>
+                <!-- CEO -->
+                <circle cx="58" cy="118" r="20" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.35)" stroke-width="1.5"/>
+                <text x="58" y="122" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="system-ui, sans-serif">CEO</text>
+                <!-- Ops -->
+                <circle cx="58" cy="178" r="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+                <text x="58" y="182" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="system-ui, sans-serif">Ops</text>
+                <!-- IT -->
+                <circle cx="58" cy="238" r="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+                <text x="58" y="242" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="system-ui, sans-serif">IT</text>
+                <!-- Finance -->
+                <circle cx="58" cy="298" r="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+                <text x="58" y="302" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="system-ui, sans-serif">Fin.</text>
+
+                <!-- Process flow (center) -->
+                <text x="165" y="78" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">FLUJO ACTUAL</text>
+                <!-- Step 1 (ok) -->
+                <rect x="115" y="96" width="88" height="36" rx="7" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="159" y="116" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9" font-family="system-ui, sans-serif">Solicitud</text>
+                <text x="159" y="128" text-anchor="middle" fill="rgba(143,209,79,0.5)" font-size="7" font-family="system-ui, sans-serif">entrada</text>
+
+                <!-- Arrow down -->
+                <path d="M159 132 L159 152" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-dasharray="3 2"/>
+                <path d="M155 149 L159 154 L163 149" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 2 (bottleneck) -->
+                <rect x="115" y="155" width="88" height="36" rx="7" fill="rgba(255,120,60,0.1)" stroke="rgba(255,120,60,0.5)" stroke-width="1.5"/>
+                <text x="159" y="172" text-anchor="middle" fill="rgba(255,180,100,0.9)" font-size="9" font-family="system-ui, sans-serif">Aprobación</text>
+                <text x="159" y="184" text-anchor="middle" fill="rgba(255,120,60,0.7)" font-size="7" font-family="system-ui, sans-serif">⚠ cuello botella</text>
+
+                <!-- Arrow down -->
+                <path d="M159 191 L159 211" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-dasharray="3 2"/>
+                <path d="M155 208 L159 213 L163 208" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 3 (manual, slow) -->
+                <rect x="115" y="214" width="88" height="36" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="159" y="231" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9" font-family="system-ui, sans-serif">Procesado</text>
+                <text x="159" y="243" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="system-ui, sans-serif">manual · 3 días</text>
+
+                <!-- Arrow: flow to recommendation -->
+                <path d="M203 175 L240 175" stroke="rgba(143,209,79,0.25)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <path d="M237 171 L242 175 L237 179" stroke="rgba(143,209,79,0.25)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Connector from stakeholders to flow -->
+                <line x1="78" y1="118" x2="115" y2="118" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="78" y1="178" x2="115" y2="173" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="78" y1="238" x2="115" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 2"/>
+
+                <!-- Recommendations panel (right) -->
+                <text x="248" y="78" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">RECOMENDACIONES</text>
+                <rect x="242" y="88" width="210" height="180" rx="10" fill="rgba(143,209,79,0.05)" stroke="rgba(143,209,79,0.18)" stroke-width="1"/>
+
+                <!-- Rec 1 (high priority) -->
+                <rect x="255" y="102" width="6" height="6" rx="1.5" fill="#8FD14F"/>
+                <text x="267" y="111" fill="rgba(255,255,255,0.8)" font-size="9" font-family="system-ui, sans-serif">Automatizar aprobaciones</text>
+                <rect x="255" y="118" width="185" height="3" rx="1.5" fill="rgba(255,255,255,0.04)"/>
+                <rect x="255" y="118" width="148" height="3" rx="1.5" fill="rgba(143,209,79,0.45)"/>
+                <text x="255" y="132" fill="rgba(143,209,79,0.5)" font-size="8" font-family="system-ui, sans-serif">Impacto: alto · Urgente</text>
+
+                <!-- Divider -->
+                <line x1="255" y1="142" x2="438" y2="142" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Rec 2 -->
+                <rect x="255" y="152" width="6" height="6" rx="1.5" fill="rgba(143,209,79,0.5)"/>
+                <text x="267" y="161" fill="rgba(255,255,255,0.6)" font-size="9" font-family="system-ui, sans-serif">Integrar ERP con CRM</text>
+                <rect x="255" y="168" width="185" height="3" rx="1.5" fill="rgba(255,255,255,0.04)"/>
+                <rect x="255" y="168" width="100" height="3" rx="1.5" fill="rgba(143,209,79,0.3)"/>
+                <text x="255" y="182" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Impacto: medio · Q1</text>
+
+                <!-- Divider -->
+                <line x1="255" y1="192" x2="438" y2="192" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Rec 3 -->
+                <rect x="255" y="202" width="6" height="6" rx="1.5" fill="rgba(143,209,79,0.25)"/>
+                <text x="267" y="211" fill="rgba(255,255,255,0.45)" font-size="9" font-family="system-ui, sans-serif">Migrar base de datos legacy</text>
+                <rect x="255" y="218" width="185" height="3" rx="1.5" fill="rgba(255,255,255,0.04)"/>
+                <rect x="255" y="218" width="62" height="3" rx="1.5" fill="rgba(143,209,79,0.2)"/>
+                <text x="255" y="232" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif">Impacto: medio · Q2</text>
+
+                <!-- Bottom stat cards -->
+                <rect x="28" y="318" width="130" height="30" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <text x="44" y="332" fill="rgba(255,255,255,0.3)" font-size="8" font-family="system-ui, sans-serif">Procesos mapeados</text>
+                <text x="44" y="344" fill="rgba(143,209,79,0.7)" font-size="9" font-weight="600" font-family="system-ui, sans-serif">12</text>
+
+                <rect x="170" y="318" width="130" height="30" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <text x="186" y="332" fill="rgba(255,255,255,0.3)" font-size="8" font-family="system-ui, sans-serif">Cuellos detectados</text>
+                <text x="186" y="344" fill="rgba(255,120,60,0.7)" font-size="9" font-weight="600" font-family="system-ui, sans-serif">3</text>
+
+                <rect x="312" y="318" width="140" height="30" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <text x="328" y="332" fill="rgba(255,255,255,0.3)" font-size="8" font-family="system-ui, sans-serif">Ahorro estimado</text>
+                <text x="328" y="344" fill="rgba(143,209,79,0.7)" font-size="9" font-weight="600" font-family="system-ui, sans-serif">40% tiempo</text>
+              </svg>
+            )}
+
+            {slug === 'automatizacion' && (
+              <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Header -->
+                <text x="28" y="42" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif" letter-spacing="1">FLUJO AUTOMATIZADO</text>
+                <rect x="350" y="28" width="102" height="18" rx="9" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.3)" stroke-width="1"/>
+                <circle cx="363" cy="37" r="3" fill="#8FD14F"/>
+                <text x="390" y="41" text-anchor="middle" fill="rgba(143,209,79,0.8)" font-size="8" font-family="system-ui, sans-serif">en ejecución</text>
+                <line x1="28" y1="50" x2="452" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Trigger node -->
+                <text x="28" y="80" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">TRIGGER</text>
+                <rect x="28" y="90" width="72" height="56" rx="10" fill="rgba(143,209,79,0.12)" stroke="#8FD14F" stroke-width="1.5"/>
+                <circle cx="64" cy="108" r="10" fill="rgba(143,209,79,0.2)"/>
+                <path d="M60 108 L64 104 L68 108 L64 112 Z" fill="#8FD14F"/>
+                <text x="64" y="138" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="system-ui, sans-serif">Evento</text>
+
+                <!-- Arrow -->
+                <path d="M100 118 L124 118" stroke="rgba(143,209,79,0.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <circle cx="118" cy="118" r="4" fill="#8FD14F" opacity="0.8"/>
+                <path d="M121 114 L126 118 L121 122" stroke="rgba(143,209,79,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 1: Filter -->
+                <text x="128" y="80" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">FILTRO</text>
+                <rect x="128" y="90" width="80" height="56" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <path d="M152 110 L164 110 L160 118 L156 118 Z" stroke="rgba(143,209,79,0.6)" stroke-width="1.5" stroke-linejoin="round" fill="rgba(143,209,79,0.1)"/>
+                <text x="168" y="122" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">Reglas</text>
+                <text x="168" y="134" fill="rgba(143,209,79,0.4)" font-size="7" font-family="system-ui, sans-serif">3 condiciones</text>
+
+                <!-- Arrow + packet -->
+                <path d="M208 118 L232 118" stroke="rgba(143,209,79,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <circle cx="226" cy="118" r="4" fill="#8FD14F" opacity="0.75"/>
+                <path d="M229 114 L234 118 L229 122" stroke="rgba(143,209,79,0.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 2: Transform -->
+                <text x="236" y="80" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">TRANSFORMAR</text>
+                <rect x="236" y="90" width="80" height="56" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <rect x="252" y="106" width="14" height="14" rx="3" fill="rgba(143,209,79,0.15)" stroke="rgba(143,209,79,0.4)" stroke-width="1"/>
+                <path d="M256 113 L258 111 L260 113 L258 115 Z" fill="rgba(143,209,79,0.7)"/>
+                <text x="274" y="116" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">Mapeo</text>
+                <text x="274" y="128" fill="rgba(143,209,79,0.4)" font-size="7" font-family="system-ui, sans-serif">JSON → DB</text>
+
+                <!-- Arrow + packet -->
+                <path d="M316 118 L340 118" stroke="rgba(143,209,79,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <circle cx="334" cy="118" r="4" fill="#8FD14F" opacity="0.65"/>
+                <path d="M337 114 L342 118 L337 122" stroke="rgba(143,209,79,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 3: Action -->
+                <text x="344" y="80" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">ACCIÓN</text>
+                <rect x="344" y="90" width="80" height="56" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <circle cx="372" cy="112" r="8" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.4)" stroke-width="1"/>
+                <path d="M369 112 L372 109 L375 112 L372 115 Z" fill="rgba(143,209,79,0.7)"/>
+                <text x="386" y="116" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">Envío</text>
+                <text x="386" y="128" fill="rgba(143,209,79,0.4)" font-size="7" font-family="system-ui, sans-serif">Email + DB</text>
+
+                <!-- Branch lines (below main flow) -->
+                <line x1="64" y1="146" x2="64" y2="190" stroke="rgba(143,209,79,0.12)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="168" y1="146" x2="168" y2="190" stroke="rgba(143,209,79,0.12)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="276" y1="146" x2="276" y2="190" stroke="rgba(143,209,79,0.12)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="384" y1="146" x2="384" y2="190" stroke="rgba(143,209,79,0.12)" stroke-width="1" stroke-dasharray="3 2"/>
+
+                <!-- Sub-nodes row -->
+                <rect x="28" y="190" width="72" height="30" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="64" y="208" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Webhook</text>
+                <rect x="128" y="190" width="80" height="30" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="168" y="208" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">API externa</text>
+                <rect x="236" y="190" width="80" height="30" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="276" y="208" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Validación</text>
+                <rect x="344" y="190" width="80" height="30" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="384" y="208" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Slack / SMS</text>
+
+                <!-- Log panel -->
+                <rect x="28" y="238" width="424" height="88" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <text x="42" y="256" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">EJECUCIONES RECIENTES</text>
+                <!-- Log rows -->
+                <circle cx="42" cy="272" r="3" fill="#8FD14F"/>
+                <text x="52" y="276" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">Solicitud #4821 — procesada en 0.3s</text>
+                <text x="400" y="276" text-anchor="end" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif">hace 2 min</text>
+
+                <circle cx="42" cy="289" r="3" fill="#8FD14F"/>
+                <text x="52" y="293" fill="rgba(255,255,255,0.35)" font-size="8" font-family="system-ui, sans-serif">Solicitud #4820 — procesada en 0.2s</text>
+                <text x="400" y="293" text-anchor="end" fill="rgba(255,255,255,0.15)" font-size="8" font-family="system-ui, sans-serif">hace 8 min</text>
+
+                <circle cx="42" cy="306" r="3" fill="rgba(143,209,79,0.4)"/>
+                <text x="52" y="310" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Solicitud #4819 — procesada en 0.4s</text>
+                <text x="400" y="310" text-anchor="end" fill="rgba(255,255,255,0.12)" font-size="8" font-family="system-ui, sans-serif">hace 15 min</text>
+
+                <!-- Bottom stat -->
+                <text x="28" y="344" fill="rgba(143,209,79,0.5)" font-size="9" font-weight="600" font-family="system-ui, sans-serif">4h / día</text>
+                <text x="82" y="344" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif">ahorradas en operaciones manuales</text>
+              </svg>
+            )}
+
+            {slug === 'desarrollo-web' && (
+              <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Header -->
+                <text x="28" y="42" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif" letter-spacing="1">ARQUITECTURA DEL SISTEMA</text>
+                <text x="452" y="42" text-anchor="end" fill="rgba(143,209,79,0.4)" font-size="9" font-family="system-ui, sans-serif">v2.4.1</text>
+                <line x1="28" y1="50" x2="452" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Layer labels (left) -->
+                <text x="28" y="98" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">FRONTEND</text>
+                <text x="28" y="188" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">API / LÓGICA</text>
+                <text x="28" y="278" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">DATOS</text>
+
+                <!-- Layer 1: Frontend -->
+                <rect x="88" y="62" width="364" height="64" rx="10" fill="rgba(143,209,79,0.05)" stroke="rgba(143,209,79,0.2)" stroke-width="1"/>
+                <!-- Component boxes inside -->
+                <rect x="100" y="74" width="72" height="40" rx="6" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.3)" stroke-width="1"/>
+                <text x="136" y="91" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="system-ui, sans-serif">Next.js</text>
+                <text x="136" y="104" text-anchor="middle" fill="rgba(143,209,79,0.5)" font-size="7" font-family="system-ui, sans-serif">SSR / SSG</text>
+
+                <rect x="182" y="74" width="72" height="40" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="218" y="91" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">React</text>
+                <text x="218" y="104" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">componentes</text>
+
+                <rect x="264" y="74" width="72" height="40" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="300" y="91" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">CMS</text>
+                <text x="300" y="104" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">Sanity / Strapi</text>
+
+                <rect x="346" y="74" width="94" height="40" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="393" y="91" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">CDN + Assets</text>
+                <text x="393" y="104" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">Vercel / CF</text>
+
+                <!-- Arrow layer 1→2 -->
+                <path d="M270 126 L270 150" stroke="rgba(143,209,79,0.2)" stroke-width="1.5" stroke-dasharray="3 2"/>
+                <path d="M266 147 L270 152 L274 147" stroke="rgba(143,209,79,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="270" cy="138" r="3.5" fill="#8FD14F" opacity="0.65"/>
+
+                <!-- Layer 2: API -->
+                <rect x="88" y="152" width="364" height="64" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <rect x="100" y="164" width="82" height="40" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="141" y="181" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">API Gateway</text>
+                <text x="141" y="194" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">REST / GraphQL</text>
+
+                <rect x="192" y="164" width="82" height="40" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="233" y="181" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">Auth / Sesión</text>
+                <text x="233" y="194" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">JWT / OAuth</text>
+
+                <rect x="284" y="164" width="76" height="40" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="322" y="181" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">Workers</text>
+                <text x="322" y="194" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">colas / jobs</text>
+
+                <rect x="370" y="164" width="70" height="40" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="405" y="181" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">Webhooks</text>
+                <text x="405" y="194" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">integraciones</text>
+
+                <!-- Arrow layer 2→3 -->
+                <path d="M270 216 L270 240" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="3 2"/>
+                <path d="M266 237 L270 242 L274 237" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="270" cy="228" r="3.5" fill="rgba(143,209,79,0.5)"/>
+
+                <!-- Layer 3: Data -->
+                <rect x="88" y="242" width="364" height="64" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <rect x="100" y="254" width="90" height="40" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <text x="145" y="271" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">PostgreSQL</text>
+                <text x="145" y="284" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">datos principal</text>
+
+                <rect x="200" y="254" width="80" height="40" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <text x="240" y="271" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">Redis</text>
+                <text x="240" y="284" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">caché / sesión</text>
+
+                <rect x="290" y="254" width="80" height="40" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <text x="330" y="271" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">S3 / Storage</text>
+                <text x="330" y="284" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">archivos / media</text>
+
+                <rect x="380" y="254" width="60" height="40" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <text x="410" y="271" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">Backups</text>
+                <text x="410" y="284" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">diarios</text>
+
+                <!-- Status indicators -->
+                <circle cx="450" cy="94" r="4" fill="#8FD14F" opacity="0.8"/>
+                <circle cx="450" cy="184" r="4" fill="#8FD14F" opacity="0.7"/>
+                <circle cx="450" cy="274" r="4" fill="rgba(143,209,79,0.5)"/>
+
+                <!-- Version label -->
+                <text x="270" y="344" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-size="8" font-family="system-ui, sans-serif">Arquitectura escalable · mantenible · sin deuda técnica</text>
+              </svg>
+            )}
+
+            {slug === 'infraestructura-cloud' && (
+              <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Header -->
+                <text x="28" y="42" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif" letter-spacing="1">INFRAESTRUCTURA ALTA DISPONIBILIDAD</text>
+                <rect x="390" y="28" width="62" height="18" rx="9" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.3)" stroke-width="1"/>
+                <circle cx="402" cy="37" r="3" fill="#8FD14F"/>
+                <text x="428" y="41" text-anchor="middle" fill="rgba(143,209,79,0.7)" font-size="8" font-family="system-ui, sans-serif">99.9%</text>
+                <line x1="28" y1="50" x2="452" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Internet / Users -->
+                <circle cx="64" cy="140" r="28" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="64" y="136" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8" font-family="system-ui, sans-serif">Internet</text>
+                <text x="64" y="148" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="system-ui, sans-serif">usuarios</text>
+
+                <!-- Arrow to LB -->
+                <path d="M92 140 L128 140" stroke="rgba(143,209,79,0.3)" stroke-width="1.5"/>
+                <circle cx="110" cy="140" r="3.5" fill="#8FD14F" opacity="0.7"/>
+                <path d="M125 136 L130 140 L125 144" stroke="rgba(143,209,79,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Load Balancer -->
+                <rect x="130" y="112" width="76" height="56" rx="10" fill="rgba(143,209,79,0.08)" stroke="rgba(143,209,79,0.3)" stroke-width="1.5"/>
+                <text x="168" y="134" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="system-ui, sans-serif">Load</text>
+                <text x="168" y="146" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="system-ui, sans-serif">Balancer</text>
+                <text x="168" y="160" text-anchor="middle" fill="rgba(143,209,79,0.5)" font-size="7" font-family="system-ui, sans-serif">auto-scale</text>
+
+                <!-- Arrows LB → App servers -->
+                <path d="M206 126 L240 100" stroke="rgba(143,209,79,0.25)" stroke-width="1.5"/>
+                <path d="M206 154 L240 180" stroke="rgba(143,209,79,0.25)" stroke-width="1.5"/>
+
+                <!-- AZ1 label -->
+                <text x="248" y="68" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">ZONA A</text>
+                <!-- App server 1 -->
+                <rect x="242" y="74" width="82" height="48" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="283" y="93" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">App Server</text>
+                <rect x="254" y="100" width="22" height="4" rx="2" fill="rgba(143,209,79,0.5)"/>
+                <rect x="280" y="100" width="16" height="4" rx="2" fill="rgba(143,209,79,0.3)"/>
+                <rect x="300" y="100" width="16" height="4" rx="2" fill="rgba(143,209,79,0.2)"/>
+                <circle cx="314" cy="83" r="4" fill="#8FD14F" opacity="0.7"/>
+
+                <!-- AZ2 label -->
+                <text x="248" y="158" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">ZONA B</text>
+                <!-- App server 2 -->
+                <rect x="242" y="164" width="82" height="48" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="283" y="183" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">App Server</text>
+                <rect x="254" y="190" width="18" height="4" rx="2" fill="rgba(143,209,79,0.5)"/>
+                <rect x="276" y="190" width="22" height="4" rx="2" fill="rgba(143,209,79,0.3)"/>
+                <rect x="302" y="190" width="14" height="4" rx="2" fill="rgba(143,209,79,0.2)"/>
+                <circle cx="314" cy="173" r="4" fill="#8FD14F" opacity="0.7"/>
+
+                <!-- Arrows app servers → DB -->
+                <path d="M324 98 L358 120" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+                <path d="M324 188 L358 166" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+
+                <!-- Shared DB -->
+                <rect x="360" y="112" width="72" height="56" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="396" y="132" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">Database</text>
+                <text x="396" y="144" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="system-ui, sans-serif">PostgreSQL</text>
+                <text x="396" y="158" text-anchor="middle" fill="rgba(143,209,79,0.4)" font-size="7" font-family="system-ui, sans-serif">primary + replica</text>
+
+                <!-- Cache (below DB) -->
+                <path d="M396 168 L396 194" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 2"/>
+                <rect x="360" y="194" width="72" height="36" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="396" y="210" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8" font-family="system-ui, sans-serif">Redis</text>
+                <text x="396" y="222" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">caché + sesión</text>
+
+                <!-- Monitoring panel bottom -->
+                <rect x="28" y="258" width="424" height="80" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                <text x="42" y="276" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">MONITOREO 24/7</text>
+
+                <!-- Metric cols -->
+                <text x="60" y="298" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="system-ui, sans-serif">Uptime</text>
+                <text x="60" y="314" text-anchor="middle" fill="#8FD14F" font-size="10" font-weight="600" font-family="system-ui, sans-serif">99.9%</text>
+
+                <line x1="108" y1="282" x2="108" y2="330" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+                <text x="155" y="298" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="system-ui, sans-serif">Latencia p95</text>
+                <text x="155" y="314" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="10" font-family="system-ui, sans-serif">68ms</text>
+
+                <line x1="210" y1="282" x2="210" y2="330" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+                <text x="258" y="298" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="system-ui, sans-serif">Alertas</text>
+                <text x="258" y="314" text-anchor="middle" fill="#8FD14F" font-size="10" font-weight="600" font-family="system-ui, sans-serif">0</text>
+
+                <line x1="312" y1="282" x2="312" y2="330" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+                <!-- Mini sparkline -->
+                <text x="344" y="288" fill="rgba(255,255,255,0.2)" font-size="7" font-family="system-ui, sans-serif">Tráfico</text>
+                <path d="M336 320 L348 314 L360 317 L372 310 L384 313 L396 307 L408 310 L420 304 L432 308 L444 302" stroke="rgba(143,209,79,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
           </div>
         </div>
       </div>
