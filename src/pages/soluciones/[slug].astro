@@ -127,17 +127,7 @@ if (!solucion) {
               </div>
             ) : null}
 
-            {(solucion.mainImage || solucion.image) ? (
-              <figure data-ns-animate data-delay="0.3" data-instant class="max-w-[767px] overflow-hidden rounded-xl">
-                <img
-                  src={urlFor(solucion.mainImage || solucion.image).width(767).height(420).fit('crop').url()}
-                  alt={`${solucion.title} vista previa`}
-                  class="size-full object-cover"
-                  loading="lazy"
-                />
-              </figure>
-            ) : (
-              <figure data-ns-animate data-delay="0.3" data-instant class="max-w-[767px] overflow-hidden rounded-xl">
+            <figure data-ns-animate data-delay="0.3" data-instant class="max-w-[767px] overflow-hidden rounded-xl">
                 <!-- Procurement pipeline: Request → Approval → PO → Supplier → Delivery -->
                 <svg class="w-full h-auto block" viewBox="0 0 767 420" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
                   <defs>
@@ -279,7 +269,6 @@ if (!solucion) {
                   <text x="340" y="52" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="9" fill="rgba(143,209,79,0.45)">Dirección</text>
                 </svg>
               </figure>
-            )}
 
             <h2 data-ns-animate data-delay="0.2" id="caracteristicas" class="font-light text-white">Características principales</h2>
             <p data-ns-animate data-delay="0.3" class="text-white/60">
