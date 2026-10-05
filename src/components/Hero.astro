@@ -10,108 +10,14 @@ import FeatureListItem  from '../components/blocks/FeatureListItem.astro';
   <div
     class="w-full pt-[130px] sm:pt-[150px] md:pt-[160px] lg:pt-[150px] pb-[60px] sm:pb-[80px] lg:pb-[100px] max-h-[940px] relative overflow-hidden"
   >    
-    <!-- Background SVG — sistema de integración animado -->
-    <svg
-      class="pointer-events-none absolute inset-0 -z-20 h-full w-full"
-      viewBox="0 0 1440 900"
-      preserveAspectRatio="xMidYMid slice"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
+    <!-- Background: dot grid -->
+    <svg class="pointer-events-none absolute inset-0 -z-20 h-full w-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
         <pattern id="hero-dots" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
           <circle cx="0.5" cy="0.5" r="0.9" fill="rgba(143,209,79,0.09)"/>
         </pattern>
       </defs>
-
-      <!-- Dot grid background -->
       <rect width="1440" height="900" fill="url(#hero-dots)"/>
-
-      <!-- ── Connection lines (marching dashes) ── -->
-      <!-- ERP → Hub -->
-      <path id="ln-erp" d="M 236 197 C 430 197 555 352 660 360" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
-        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.6s" repeatCount="indefinite"/>
-      </path>
-      <!-- CRM → Hub -->
-      <path id="ln-crm" d="M 236 367 L 660 362" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
-        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.4s" repeatCount="indefinite"/>
-      </path>
-      <!-- Procesos → Hub -->
-      <path id="ln-proc" d="M 246 540 C 430 540 555 375 660 364" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
-        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.9s" repeatCount="indefinite"/>
-      </path>
-      <!-- Hub → Web App -->
-      <path id="ln-web" d="M 780 358 C 900 358 1020 197 1204 197" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
-        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.5s" repeatCount="indefinite"/>
-      </path>
-      <!-- Hub → Base Datos -->
-      <path id="ln-db" d="M 780 362 L 1204 367" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
-        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.3s" repeatCount="indefinite"/>
-      </path>
-      <!-- Hub → API Cloud -->
-      <path id="ln-api" d="M 780 364 C 900 364 1020 540 1204 540" stroke="rgba(143,209,79,0.22)" stroke-width="1.2" stroke-dasharray="8 18" fill="none">
-        <animate attributeName="stroke-dashoffset" from="0" to="-26" dur="1.8s" repeatCount="indefinite"/>
-      </path>
-
-      <!-- ── Data packets ── -->
-      <!-- ERP line: 2 packets -->
-      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="3.2s" repeatCount="indefinite" begin="0s"><mpath href="#ln-erp"/></animateMotion></circle>
-      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="3.2s" repeatCount="indefinite" begin="1.6s"><mpath href="#ln-erp"/></animateMotion></circle>
-      <!-- CRM line -->
-      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.4s"><mpath href="#ln-crm"/></animateMotion></circle>
-      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="2.8s" repeatCount="indefinite" begin="1.8s"><mpath href="#ln-crm"/></animateMotion></circle>
-      <!-- Procesos line -->
-      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="3.6s" repeatCount="indefinite" begin="0.8s"><mpath href="#ln-proc"/></animateMotion></circle>
-      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="3.6s" repeatCount="indefinite" begin="2.2s"><mpath href="#ln-proc"/></animateMotion></circle>
-      <!-- Web line -->
-      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="3.0s" repeatCount="indefinite" begin="0.2s"><mpath href="#ln-web"/></animateMotion></circle>
-      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="3.0s" repeatCount="indefinite" begin="1.7s"><mpath href="#ln-web"/></animateMotion></circle>
-      <!-- DB line -->
-      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.0s"><mpath href="#ln-db"/></animateMotion></circle>
-      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.3s"><mpath href="#ln-db"/></animateMotion></circle>
-      <!-- API line -->
-      <circle r="3.5" fill="rgba(143,209,79,0.85)"><animateMotion dur="3.4s" repeatCount="indefinite" begin="0.6s"><mpath href="#ln-api"/></animateMotion></circle>
-      <circle r="2.5" fill="rgba(143,209,79,0.5)"><animateMotion dur="3.4s" repeatCount="indefinite" begin="2.0s"><mpath href="#ln-api"/></animateMotion></circle>
-
-      <!-- ── Left nodes (inputs) ── -->
-      <!-- ERP -->
-      <rect x="100" y="179" width="112" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
-      <text x="156" y="202" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">ERP</text>
-      <!-- CRM -->
-      <rect x="100" y="349" width="112" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
-      <text x="156" y="372" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">CRM</text>
-      <!-- Procesos -->
-      <rect x="88" y="522" width="136" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
-      <text x="156" y="545" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">Procesos</text>
-
-      <!-- ── Central Hub ── -->
-      <!-- Outer rotating dashed ring -->
-      <circle cx="720" cy="360" r="78" stroke="rgba(143,209,79,0.12)" stroke-width="1" fill="transparent" stroke-dasharray="5 10">
-        <animateTransform attributeName="transform" type="rotate" from="0 720 360" to="360 720 360" dur="28s" repeatCount="indefinite"/>
-      </circle>
-      <!-- Mid ring -->
-      <circle cx="720" cy="360" r="60" stroke="rgba(143,209,79,0.22)" stroke-width="1.5" fill="rgba(143,209,79,0.06)"/>
-      <!-- Inner fill -->
-      <circle cx="720" cy="360" r="44" fill="rgba(143,209,79,0.08)" stroke="rgba(143,209,79,0.35)" stroke-width="1"/>
-      <!-- Center dot pulsing -->
-      <circle cx="720" cy="360" r="8" fill="rgba(143,209,79,0.9)">
-        <animate attributeName="r" values="8;11;8" dur="2.4s" repeatCount="indefinite"/>
-        <animate attributeName="opacity" values="0.9;0.5;0.9" dur="2.4s" repeatCount="indefinite"/>
-      </circle>
-      <!-- Hub label -->
-      <text x="720" y="354" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="11" font-family="system-ui, sans-serif">AgenciaSur</text>
-      <text x="720" y="370" text-anchor="middle" fill="rgba(143,209,79,0.6)" font-size="10" font-family="system-ui, sans-serif">Hub</text>
-
-      <!-- ── Right nodes (outputs) ── -->
-      <!-- Web App -->
-      <rect x="1228" y="179" width="112" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
-      <text x="1284" y="202" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">Web App</text>
-      <!-- Base Datos -->
-      <rect x="1228" y="349" width="112" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
-      <text x="1284" y="372" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">Base Datos</text>
-      <!-- API / Cloud -->
-      <rect x="1216" y="522" width="136" height="36" rx="18" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
-      <text x="1284" y="545" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="12" font-family="system-ui, sans-serif" font-weight="500">API / Cloud</text>
     </svg>
 
     <!-- Overlay para legibilidad -->
@@ -123,88 +29,133 @@ import FeatureListItem  from '../components/blocks/FeatureListItem.astro';
     </div>
 
     <div class="main-container">
-      <div class="space-y-3 text-center md:text-left md:space-y-5">
-        <!-- Badge -->
-        
-        <BadgeSection text="Transformación digital" />
+      <div class="flex flex-col items-center gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-8">
 
+        <!-- Left: text + CTAs -->
+        <div class="w-full space-y-3 text-center md:text-left md:space-y-5 lg:max-w-[580px] lg:flex-shrink-0">
+          <BadgeSection text="Transformación digital" />
 
-        <!-- Heading -->
-        <div class="space-y-2.5 md:space-y-4">
-          <h1
-            data-ns-animate
-            data-delay="0.2"
-            class="max-w-[720px] leading-[1.2]"
-          >
-            <span class="block font-light tracking-[-0.02em] text-white">
-              Automatizamos tus procesos <span class="text-accent-400" data-hero-rotate data-words='["críticos","manuales","repetitivos"]'>críticos</span>.
-            </span>
-          </h1>
-          <p
-            data-ns-animate
-            data-delay="0.3"
-            class="text-white max-w-[580px]"
-          >
-            Transformamos la manera en que tu empresa opera. Desde la
-            consultoría tecnológica hasta el desarrollo de soluciones web a
-            medida, te ayudamos a optimizar cada aspecto de tu negocio.
-          </p>
+          <div class="space-y-2.5 md:space-y-4">
+            <h1 data-ns-animate data-delay="0.2" class="max-w-[720px] leading-[1.2]">
+              <span class="block font-light tracking-[-0.02em] text-white">
+                Automatizamos tus procesos <span class="text-accent-400" data-hero-rotate data-words='["críticos","manuales","repetitivos"]'>críticos</span>.
+              </span>
+            </h1>
+            <p data-ns-animate data-delay="0.3" class="text-white max-w-[580px]">
+              Transformamos la manera en que tu empresa opera. Desde la
+              consultoría tecnológica hasta el desarrollo de soluciones web a
+              medida, te ayudamos a optimizar cada aspecto de tu negocio.
+            </p>
+            <ul class="flex flex-col flex-wrap items-center gap-y-3 gap-x-6 pt-1 sm:flex-row sm:items-center md:items-start">
+              <FeatureListItem text="Consultoría TI estratégica" delay={0.4} />
+              <FeatureListItem text="Desarrollo web a medida" delay={0.5} />
+              <FeatureListItem text="Automatización inteligente" delay={0.6} />
+            </ul>
+          </div>
 
-          <!-- Feature list -->
-    <ul class="flex flex-col flex-wrap items-start gap-y-3 gap-x-9 pt-1 sm:flex-row sm:items-center">
-  
-  <FeatureListItem  text="Consultoría TI estratégica" delay={0.4} />
-  <FeatureListItem  text="Desarrollo web a medida" delay={0.5} />
-  <FeatureListItem  text="Automatización inteligente" delay={0.6}    />
-        
-    </ul>
+          <ul class="mt-8 flex flex-col items-center gap-y-4 md:flex-row md:items-start md:gap-x-4 md:justify-start">
+            <li data-ns-animate data-delay="0.7" data-direction="left" data-offset="50" class="w-full sm:w-auto">
+              <button type="button" data-open-demo-modal data-modal-title="Hablemos de tu proyecto" data-cta-label="Enviar mensaje" data-solucion="Consulta general" data-description="Cuéntanos brevemente en qué podemos ayudarte y te contactamos a la brevedad." class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto sm:mx-0 block md:inline-block w-[90%] md:w-auto btn-lg md:btn-xl border-0">
+                <span>Hablemos de tu proyecto</span>
+              </button>
+            </li>
+            <li data-ns-animate data-delay="0.9" data-direction="left" data-offset="50" class="w-full sm:w-auto">
+              <button type="button" data-open-demo-modal data-modal-title="Agenda una llamada" data-cta-label="Solicitar llamada" data-solucion="Llamada agendada" data-description="Déjanos tus datos y coordinamos un horario que te acomode." class="btn btn-lg md:btn-xl dark:btn-transparent dark:border btn-dark bg-accent/20 mx-auto block w-[90%] sm:mx-0 sm:w-auto md:inline-block hover:btn-accent">
+                <span>Agenda una llamada</span>
+              </button>
+            </li>
+          </ul>
         </div>
+
+        <!-- Right: conceptual hub-and-spoke SVG -->
+        <div data-ns-animate data-delay="0.4" class="flex w-full justify-center lg:flex-1 lg:justify-end" aria-hidden="true">
+          <svg class="w-[260px] sm:w-[320px] lg:w-full lg:max-w-[460px]" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" fill="none">
+
+            <!-- Background reference rings -->
+            <circle cx="250" cy="250" r="218" stroke="rgba(143,209,79,0.05)" stroke-width="1"/>
+            <circle cx="250" cy="250" r="152" stroke="rgba(143,209,79,0.07)" stroke-width="0.8"/>
+
+            <!-- ── Connection lines: hub → satellite nodes ── -->
+            <!-- To Node A (right-low) -->
+            <path id="h-a" d="M 250 250 L 368 318" stroke="rgba(143,209,79,0.3)" stroke-width="1.2" stroke-dasharray="6 14">
+              <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.8s" repeatCount="indefinite"/>
+            </path>
+            <!-- To Node B (left-low) -->
+            <path id="h-b" d="M 250 250 L 132 318" stroke="rgba(143,209,79,0.3)" stroke-width="1.2" stroke-dasharray="6 14">
+              <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/>
+            </path>
+            <!-- To Node C (top) -->
+            <path id="h-c" d="M 250 250 L 250 118" stroke="rgba(143,209,79,0.3)" stroke-width="1.2" stroke-dasharray="6 14">
+              <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.0s" repeatCount="indefinite"/>
+            </path>
+            <!-- To Node D (bottom) -->
+            <path id="h-d" d="M 250 250 L 250 448" stroke="rgba(143,209,79,0.22)" stroke-width="1" stroke-dasharray="6 14">
+              <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.6s" repeatCount="indefinite"/>
+            </path>
+            <!-- To Node E (far left) -->
+            <path id="h-e" d="M 250 250 L 62 352" stroke="rgba(143,209,79,0.22)" stroke-width="1" stroke-dasharray="6 14">
+              <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="2.2s" repeatCount="indefinite"/>
+            </path>
+            <!-- To Node F (far right-top) -->
+            <path id="h-f" d="M 250 250 L 438 148" stroke="rgba(143,209,79,0.22)" stroke-width="1" stroke-dasharray="6 14">
+              <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.9s" repeatCount="indefinite"/>
+            </path>
+
+            <!-- ── Secondary arcs (satellite ↔ satellite) ── -->
+            <path d="M 368 318 C 408 200 310 125 250 118" stroke="rgba(143,209,79,0.1)" stroke-width="0.8" stroke-dasharray="4 10">
+              <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="3.0s" repeatCount="indefinite"/>
+            </path>
+            <path d="M 132 318 C 90 200 190 125 250 118" stroke="rgba(143,209,79,0.1)" stroke-width="0.8" stroke-dasharray="4 10">
+              <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="3.4s" repeatCount="indefinite"/>
+            </path>
+            <path d="M 368 318 L 438 148" stroke="rgba(143,209,79,0.08)" stroke-width="0.8" stroke-dasharray="4 10">
+              <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="2.8s" repeatCount="indefinite"/>
+            </path>
+
+            <!-- ── Moving data packets ── -->
+            <circle r="3.5" fill="rgba(143,209,79,0.9)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0s"><mpath href="#h-a"/></animateMotion></circle>
+            <circle r="2" fill="rgba(143,209,79,0.55)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s"><mpath href="#h-a"/></animateMotion></circle>
+            <circle r="3.5" fill="rgba(143,209,79,0.9)"><animateMotion dur="2.0s" repeatCount="indefinite" begin="0.5s"><mpath href="#h-b"/></animateMotion></circle>
+            <circle r="2" fill="rgba(143,209,79,0.55)"><animateMotion dur="2.0s" repeatCount="indefinite" begin="1.3s"><mpath href="#h-b"/></animateMotion></circle>
+            <circle r="3.5" fill="rgba(143,209,79,0.9)"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.2s"><mpath href="#h-c"/></animateMotion></circle>
+            <circle r="2" fill="rgba(143,209,79,0.55)"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.5s"><mpath href="#h-c"/></animateMotion></circle>
+            <circle r="2.5" fill="rgba(143,209,79,0.7)"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.8s"><mpath href="#h-d"/></animateMotion></circle>
+            <circle r="2.5" fill="rgba(143,209,79,0.7)"><animateMotion dur="3.0s" repeatCount="indefinite" begin="1.5s"><mpath href="#h-e"/></animateMotion></circle>
+            <circle r="2.5" fill="rgba(143,209,79,0.7)"><animateMotion dur="2.5s" repeatCount="indefinite" begin="0.4s"><mpath href="#h-f"/></animateMotion></circle>
+
+            <!-- ── Satellite nodes (ring 1, closer) ── -->
+            <circle cx="368" cy="318" r="20" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.35)" stroke-width="1.5"/>
+            <circle cx="368" cy="318" r="8" fill="rgba(143,209,79,0.45)"/>
+            <circle cx="132" cy="318" r="20" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.35)" stroke-width="1.5"/>
+            <circle cx="132" cy="318" r="8" fill="rgba(143,209,79,0.45)"/>
+            <circle cx="250" cy="118" r="24" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.4)" stroke-width="1.5"/>
+            <circle cx="250" cy="118" r="10" fill="rgba(143,209,79,0.5)"/>
+
+            <!-- ── Satellite nodes (ring 2, outer) ── -->
+            <circle cx="250" cy="448" r="13" fill="rgba(143,209,79,0.06)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+            <circle cx="250" cy="448" r="5" fill="rgba(143,209,79,0.4)"/>
+            <circle cx="62" cy="352" r="13" fill="rgba(143,209,79,0.06)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+            <circle cx="62" cy="352" r="5" fill="rgba(143,209,79,0.4)"/>
+            <circle cx="438" cy="148" r="13" fill="rgba(143,209,79,0.06)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+            <circle cx="438" cy="148" r="5" fill="rgba(143,209,79,0.4)"/>
+
+            <!-- ── Central Hub ── -->
+            <!-- Outer rotating ring -->
+            <circle cx="250" cy="250" r="76" stroke="rgba(143,209,79,0.18)" stroke-width="1" stroke-dasharray="5 9" fill="transparent">
+              <animateTransform attributeName="transform" type="rotate" from="0 250 250" to="360 250 250" dur="24s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Hub body -->
+            <circle cx="250" cy="250" r="58" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.4)" stroke-width="1.5"/>
+            <circle cx="250" cy="250" r="42" fill="rgba(143,209,79,0.05)" stroke="rgba(143,209,79,0.2)" stroke-width="1"/>
+            <!-- Center pulsing dot -->
+            <circle cx="250" cy="250" r="11" fill="rgba(143,209,79,0.9)">
+              <animate attributeName="r" values="11;15;11" dur="2.2s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="1;0.45;1" dur="2.2s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
+        </div>
+
       </div>
-
-      <!-- CTAs -->
-
-      <ul
-        class="mt-12 flex flex-col items-center gap-y-4 md:flex-row md:items-start md:gap-x-4 md:justify-start lg:mb-[100px]"
-      >
-        <li
-          data-ns-animate
-          data-delay="0.7"
-          data-direction="left"
-          data-offset="50"
-          class="w-full sm:w-auto"
-        >
-          <button
-            type="button"
-            data-open-demo-modal
-            data-modal-title="Hablemos de tu proyecto"
-            data-cta-label="Enviar mensaje"
-            data-solucion="Consulta general"
-            data-description="Cuéntanos brevemente en qué podemos ayudarte y te contactamos a la brevedad."
-            class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto sm:mx-0 block md:inline-block w-[90%] md:w-auto btn-lg md:btn-xl border-0"
-          >
-            <span>Hablemos de tu proyecto</span>
-          </button>
-        </li>
-        <li
-          data-ns-animate
-          data-delay="0.9"
-          data-direction="left"
-          data-offset="50"
-          class="w-full sm:w-auto"
-        >
-          <button
-            type="button"
-            data-open-demo-modal
-            data-modal-title="Agenda una llamada"
-            data-cta-label="Solicitar llamada"
-            data-solucion="Llamada agendada"
-            data-description="Déjanos tus datos y coordinamos un horario que te acomode."
-            class="btn btn-lg md:btn-xl dark:btn-transparent dark:border btn-dark bg-accent/20 mx-auto block w-[90%] sm:mx-0 sm:w-auto md:inline-block hover:btn-accent"
-          >
-            <span>Agenda una llamada</span>
-          </button>
-        </li>
-      </ul>
     </div>
 
     <!-- Scroll cue: fixed (no absolute) para que el margen quede calculado
