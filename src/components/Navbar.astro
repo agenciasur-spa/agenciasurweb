@@ -14,9 +14,14 @@ import MobileMenu from "../components/MobileMenu.astro";
   class="header-two bg-secondary/50 dark:bg-background-8/50 fixed top-14 left-1/2 z-50 mx-auto flex w-full max-w-[350px] -translate-x-1/2 items-center justify-between rounded-full px-5 py-2.5 backdrop-blur-[25px] max-md:!top-8 min-[425px]:max-w-[380px] min-[500px]:max-w-[450px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1290px] xl:py-0"
 >
     <div>
-      <a href="/">
-        <span class="sr-only">Home</span>
-        <img src="/logo.svg" alt="AgenciaSur" class="h-8 w-auto" />
+      <a href="/" aria-label="AgenciaSur — inicio">
+        <svg width="91" height="20" viewBox="0 0 91 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-8 w-auto">
+          <text x="22" y="15" font-family="'Inter Tight', 'Inter', sans-serif" font-size="12" font-weight="300" fill="#FFFFFF">Agencia</text>
+          <path d="M10,0 C15.5228475,0 20,4.4771525 20,10 C20,15.5228475 15.5228475,20 10,20 C4.4771525,20 0,15.5228475 0,10 C0,4.4771525 4.4771525,0 10,0 Z M10,1 C5.02943725,1 1,5.02943725 1,10 C1,14.9705627 5.02943725,19 10,19 C14.9705627,19 19,14.9705627 19,10 C19,5.02943725 14.9705627,1 10,1 Z" fill-opacity="0.525" fill="#D8D8D8"/>
+          <path d="M12.5,10 C12.5,11.3807119 11.3807119,12.5 10,12.5 C8.61928813,12.5 7.5,11.3807119 7.5,10 C7.5,8.61928813 8.61928813,7.5 10,7.5 C11.3807119,7.5 12.5,8.61928813 12.5,10 Z M8.5,10 C8.5,10.8284271 9.17157288,11.5 10,11.5 C10.8284271,11.5 11.5,10.8284271 11.5,10 C11.5,9.17157288 10.8284271,8.5 10,8.5 C9.17157288,8.5 8.5,9.17157288 8.5,10 Z" stroke="#FFFFFF" fill="#D8D8D8"/>
+          <text x="72" y="15" font-family="'Inter Tight', 'Inter', sans-serif" font-size="12" font-weight="300" fill="#8FD14F">Sur</text>
+          <circle cx="4" cy="4" r="4" fill="#8FD14F"/>
+        </svg>
       </a>
     </div>
     <nav class="hidden items-center xl:flex">
