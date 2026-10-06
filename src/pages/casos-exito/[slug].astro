@@ -5,6 +5,8 @@ import { sanityClient } from "../../lib/sanity";
 import PortableText from "../../components/PortableText";
 import type { CasoExito } from "../../types/sanity";
 
+const calendlyUrl = import.meta.env.PUBLIC_CALENDLY_URL ?? '#';
+
 // Fallback data for when Sanity is offline
 const fallbackData: Record<string, CasoExito> = {
   "desarrollo-web-mobile": {
@@ -379,12 +381,20 @@ if (!caso) {
         <p data-ns-animate data-delay="0.2" class="text-white/60">
           Hablemos sobre cómo podemos ayudarte a lograr resultados como estos.
         </p>
-        <div data-ns-animate data-delay="0.3">
+        <div data-ns-animate data-delay="0.3" class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="#contact-form-panel"
-            class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent"
+            class="btn btn-primary btn-lg hover:btn-secondary dark:hover:btn-accent"
           >
             <span>Contactar</span>
+          </a>
+          <a
+            href={calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-lg btn-transparent border border-white/[0.15] text-white hover:border-accent-400 hover:text-accent-400 transition-colors"
+          >
+            <span>Agenda una llamada</span>
           </a>
         </div>
       </div>
