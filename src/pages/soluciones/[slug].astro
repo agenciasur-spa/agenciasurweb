@@ -1,28 +1,50 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactoFooter from '../../components/ContactoFooter.astro';
-import { sanityClient } from '../../lib/sanity';
+import { sanityClient, urlFor } from '../../lib/sanity';
 import PortableText from '../../components/PortableText';
 import type { Solucion } from '../../types/sanity';
+import SolucionIllustrations from '../../components/SolucionIllustrations.astro';
 
 const fallbackData: Record<string, Solucion> = {
   'sistema-de-compras': {
     title: 'Sistema de Compras',
     slug: 'sistema-de-compras',
     tagline: 'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento.',
+    bajada: 'Digitaliza el proceso de adquisiciones y reduce tiempos operativos con un sistema completo de gestión de compras.',
     features: ['Control de cumplimiento SLA', 'Reducción 100% papel', 'Tracking en tiempo real', 'Aprobaciones multinivel', 'Integración con ERP'],
+    featuresDescription: 'Cada módulo está pensado para resolver un problema específico de operación, no para agregar complejidad innecesaria.',
+    benefits: [
+      { metric: '60%', label: 'Reducción en tiempos operativos' },
+      { metric: '100%', label: 'Eliminación de papel' },
+      { metric: '3x', label: 'Más rápido en aprobaciones', description: 'Flujo de aprobación multinivel automatizado' },
+    ],
   },
   'gestion-personal-transitorio': {
     title: 'Gestión de Personal Transitorio',
     slug: 'gestion-personal-transitorio',
     tagline: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.',
+    bajada: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.',
     features: ['Solicitudes estandarizadas', 'Evaluación centralizada', 'Validación de documentación', 'Dashboard de seguimiento'],
+    featuresDescription: 'Cada módulo está pensado para resolver un problema específico de operación, no para agregar complejidad innecesaria.',
+    benefits: [
+      { metric: '80%', label: 'Menos tiempo en gestión manual' },
+      { metric: '100%', label: 'Documentación validada', description: 'Verificación automática de antecedentes y certificaciones' },
+      { metric: '2x', label: 'Más rápido en contratación' },
+    ],
   },
   'mesa-de-ayuda': {
     title: 'Mesa de Ayuda',
     slug: 'mesa-de-ayuda',
     tagline: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.',
+    bajada: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.',
     features: ['Canales unificados', 'Base de conocimiento IA', 'SLA automatizado', 'Reportes de satisfacción'],
+    featuresDescription: 'Cada módulo está pensado para resolver un problema específico de operación, no para agregar complejidad innecesaria.',
+    benefits: [
+      { metric: '90%', label: 'Resolución en primer contacto' },
+      { metric: '50%', label: 'Reducción de tickets repetitivos', description: 'Base de conocimiento con IA integrada' },
+      { metric: '24/7', label: 'Disponibilidad continua' },
+    ],
   },
 };
 
@@ -58,12 +80,13 @@ const { slug } = Astro.params;
 let solucion: Solucion | null = null;
 if (sanityClient) {
   try {
-    solucion = await sanityClient.fetch(
-      `*[_type == "solucion" && slug.current == $slug][0] {
-        _id, title, "slug": slug.current, tagline, description, features, icon, image
-      }`,
-      { slug }
-    );
+      solucion = await sanityClient.fetch(
+        `*[_type == "solucion" && slug.current == $slug][0] {
+          _id, title, "slug": slug.current, tagline, bajada, description, features, featuresDescription,
+          mainImage, benefits, galleryImages { image, alt }, icon, image
+        }`,
+        { slug }
+      );
   } catch {
     // Sanity query failed
   }
@@ -78,57 +101,37 @@ if (!solucion) {
 }
 ---
 
-<Layout title={`${solucion.title} | Agencia Sur`}>
-
-  <!-- Hero — Nexsas services-details hero padding -->
-  <section class="pt-32 pb-24 sm:pt-36 md:pt-42 md:pb-36 lg:pb-44 xl:pt-[180px] xl:pb-[200px]">
-    <div class="main-container">
-      <div class="space-y-5">
-        <a href="/soluciones" data-ns-animate data-delay="0.1" class="text-tagline-1 text-primary-500 font-medium hover:underline inline-block mb-2">
-          ← Volver a Soluciones
-        </a>
-        <span data-ns-animate data-delay="0.2" class="badge badge-primary">Solución</span>
-        <div class="space-y-3">
-          <h1 data-ns-animate data-delay="0.3" class="max-w-[878px]">
-            {solucion.title}
-          </h1>
-          <p data-ns-animate data-delay="0.4" class="max-w-[700px]">
-            {solucion.tagline}
-          </p>
-        </div>
-      </div>
-
-      <figure data-ns-animate data-delay="0.5" data-instant class="max-w-[1288px] overflow-hidden rounded-4xl mt-[70px]">
-        <img src={`https://picsum.photos/1288/520?random=${slug.length + 400}`} alt={solucion.title} class="size-full object-cover" loading="lazy" />
-      </figure>
-    </div>
-  </section>
-
+<Layout title={`${solucion.title} | Agencia Sur`}>            
   <!-- Content + TOC sidebar — Nexsas services-details/content.htm layout -->
-  <section class="overflow-hidden">
+  <section class="pb-24 sm:pt-36 md:pt-42 md:pb-36 lg:pb-44 xl:pt-[180px] xl:pb-[200px]">
     <div class="main-container">
       <div class="flex items-start lg:gap-[72px]">
         <div class="w-full max-w-full lg:max-w-[767px]">
           <div class="services-details-content mb-[72px]">
+            <div class="space-y-3 mb-8">
+              <h3 data-ns-animate data-delay="0.3" class="max-w-[878px] font-light text-white">
+                {solucion.title}
+              </h3>
+              <h5 data-ns-animate data-delay="0.4" class="max-w-[700px]">
+                 <span class="text-accent-400 block font-light">{solucion.tagline}</span>
+              </h5>
+              {solucion.bajada && (
+                <p data-ns-animate data-delay="0.5" class="text-white/60">
+                    <span class="text-xl">{solucion.bajada}</span>                                      
+                </p>
+              )}
+            </div>
+
             {solucion.description ? (
               <div class="details-body">
                 <PortableText client:load value={solucion.description} />
               </div>
-            ) : (
-              <div class="space-y-6">
-                <h2 data-ns-animate data-delay="0.1" id="descripcion" class="text-heading-3">Descripción</h2>
-                <p data-ns-animate data-delay="0.2">Este sistema está diseñado para {solucion.tagline?.toLowerCase()}</p>
-                <p data-ns-animate data-delay="0.3">Contáctanos para conocer más detalles sobre cómo este sistema puede adaptarse a tu operación.</p>
-              </div>
-            )}
+            ) : null}
 
-            <figure data-ns-animate data-delay="0.3" data-instant class="max-w-[767px] overflow-hidden rounded-xl">
-              <img src={`https://picsum.photos/767/420?random=${slug.length + 401}`} alt={`${solucion.title} vista previa`} class="size-full object-cover" loading="lazy" />
-            </figure>
-
-            <h2 data-ns-animate data-delay="0.2" id="caracteristicas">Características principales</h2>
-            <p data-ns-animate data-delay="0.3">
-              Cada módulo está pensado para resolver un problema específico de operación, no para agregar complejidad innecesaria.
+            <SolucionIllustrations slug={slug!} />
+            <h2 data-ns-animate data-delay="0.2" id="caracteristicas" class="font-light text-white">Características principales</h2>
+            <p data-ns-animate data-delay="0.3" class="text-white/60">
+              {solucion.featuresDescription || 'Cada módulo está pensado para resolver un problema específico de operación, no para agregar complejidad innecesaria.'}
             </p>
 
             <!-- Feature list — Nexsas content-list checkmark pattern -->
@@ -140,30 +143,45 @@ if (!solucion) {
                       <path d="M4.31661 6.75605L9.74905 1.42144C10.0836 1.0959 10.0836 0.569702 9.74905 0.244158C9.41446 -0.081386 8.87363 -0.081386 8.53904 0.244158L3.7116 4.99012L1.46096 2.78807C1.12636 2.46253 0.585538 2.46253 0.250945 2.78807C-0.0836483 3.11362 -0.0836483 3.63982 0.250945 3.96536L3.1066 6.75605C3.27347 6.91841 3.49253 7 3.7116 7C3.93067 7 4.14974 6.91841 4.31661 6.75605Z" />
                     </svg>
                   </span>
-                  <span class="text-tagline-1 font-normal text-secondary dark:text-accent">{feature}</span>
+                  <span class="font-normal text-white">{feature}</span>
                 </li>
               ))}
             </ul>
 
-            <figure data-ns-animate data-delay="0.4" data-instant class="max-w-[767px] overflow-hidden rounded-xl">
-              <img src={`https://picsum.photos/767/420?random=${slug.length + 402}`} alt={`${solucion.title} funcionalidades`} class="size-full object-cover" loading="lazy" />
-            </figure>
 
-            <h2 data-ns-animate data-delay="0.2" id="beneficios">Beneficios medibles</h2>
-            <p data-ns-animate data-delay="0.3">
-              Nuestros clientes reportan reducciones de hasta 60% en tiempos operativos y eliminación total de procesos manuales en papel.
+            <h2 data-ns-animate data-delay="0.2" id="beneficios" class="font-light text-white">Beneficios medibles</h2>
+            <p data-ns-animate data-delay="0.3" class="text-white/60">
+              Resultados concretos que nuestros clientes constatan tras implementar el sistema.
             </p>
+
+            {solucion.benefits && solucion.benefits.length > 0 ? (
+              <div data-ns-animate data-delay="0.4" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+                {solucion.benefits.map((benefit, i) => (
+                  <div data-ns-animate data-delay={String(0.1 + i * 0.1)} class="border-stroke-1 dark:border-stroke-7 bg-background-1 dark:bg-background-6 rounded-2xl border p-6 space-y-2">
+                    <p class="text-3xl font-bold text-accent-400">{benefit.metric}</p>
+                    <p class="font-medium text-secondary dark:text-accent">{benefit.label}</p>
+                    {benefit.description && (
+                      <p class="text-sm text-secondary/60 dark:text-accent/60">{benefit.description}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p data-ns-animate data-delay="0.4" class="text-white/60">
+                Nuestros clientes reportan reducciones de hasta 60% en tiempos operativos y eliminación total de procesos manuales en papel.
+              </p>
+            )}
           </div>
 
           <!-- Inline testimonial — Nexsas content.htm testimonial pattern -->
           <div class="mt-[70px] space-y-14" id="testimonios">
             <div class="space-y-3">
-              <h4 data-ns-animate data-delay="0.1" class="text-heading-2">Lo que dicen nuestros usuarios</h4>
-              <p data-ns-animate data-delay="0.2" class="text-tagline-1">
+              <h4 data-ns-animate data-delay="0.1" class="text-heading-2 font-light text-white">Lo que dicen nuestros usuarios</h4>
+              <p data-ns-animate data-delay="0.2" class="text-tagline-1 text-white/60">
                 "Agencia Sur entregó el sistema antes de lo prometido — ejecución impecable y verdadera partnership."
               </p>
             </div>
-            <div data-ns-animate data-delay="0.1" class="bg-secondary space-y-6 rounded-[20px] p-8">
+            <div data-ns-animate data-delay="0.1" class="bg-secondary dark:bg-background-8 space-y-6 rounded-[20px] p-8">
               <figure class="size-16 overflow-hidden rounded-full bg-linear-[180deg,#ffffff_0%,#83e7ee_100%]">
                 <img class="size-full object-cover" src="https://picsum.photos/64/64?random=500" alt="avatar" />
               </figure>
@@ -180,68 +198,71 @@ if (!solucion) {
           </div>
         </div>
 
-        <!-- Table of Contents sidebar — Nexsas sticky TOC pattern -->
+        <!-- Table of Contents sidebar -->
         <div class="table-of-contents hidden w-full lg:sticky lg:top-20 lg:block lg:max-w-[449px]" data-ns-animate data-delay="0.3">
-          <div class="bg-background-1 dark:bg-background-6 w-full space-y-4 rounded-[20px] p-11">
-            <h3 class="text-heading-5">Secciones</h3>
-            <ul class="table-of-list w-full">
-              <li>
-                <a href="#descripcion" class="lenis-scroll-to border-b-stroke-4 dark:border-b-stroke-7 flex items-center justify-between border-b py-4">
-                  <span class="text-secondary dark:text-accent text-lg leading-[27px] font-medium">Descripción</span>
-                  <span>
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
-                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <div class="w-full rounded-[20px] overflow-hidden border border-white/[0.07] shadow-2xl shadow-black/40" style="backdrop-filter: blur(16px); background: rgba(255,255,255,0.025);">
+
+            <!-- Nav content -->
+            <div class="p-8 space-y-1">
+              <p class="text-xs font-medium tracking-widest uppercase text-white/30 mb-4">Secciones</p>
+              <ul class="w-full">
+                <li>
+                  <a href="#descripcion" class="lenis-scroll-to group flex items-center justify-between border-b border-white/[0.06] py-3.5 transition-colors hover:text-accent-400">
+                    <span class="text-white/80 text-base leading-[1.6] font-light group-hover:text-accent-400 transition-colors">Descripción</span>
+                    <svg width="16" height="16" viewBox="0 0 24 25" fill="none" class="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <path d="M10 8.5L14 12.5L10 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#caracteristicas" class="lenis-scroll-to border-b-stroke-4 dark:border-b-stroke-7 flex items-center justify-between border-b py-4">
-                  <span class="text-secondary/60 dark:text-accent/60 text-lg leading-[27px] font-normal">Características</span>
-                  <span class="invisible">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
-                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </a>
+                </li>
+                <li>
+                  <a href="#caracteristicas" class="lenis-scroll-to group flex items-center justify-between border-b border-white/[0.06] py-3.5 transition-colors hover:text-accent-400">
+                    <span class="text-white/50 text-base leading-[1.6] font-light group-hover:text-accent-400 transition-colors">Características</span>
+                    <svg width="16" height="16" viewBox="0 0 24 25" fill="none" class="opacity-25 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <path d="M10 8.5L14 12.5L10 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#beneficios" class="lenis-scroll-to border-b-stroke-4 dark:border-b-stroke-7 flex items-center justify-between border-b py-4">
-                  <span class="text-secondary/60 dark:text-accent/60 text-lg leading-[27px] font-normal">Beneficios</span>
-                  <span class="invisible">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
-                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </a>
+                </li>
+                <li>
+                  <a href="#beneficios" class="lenis-scroll-to group flex items-center justify-between border-b border-white/[0.06] py-3.5 transition-colors hover:text-accent-400">
+                    <span class="text-white/50 text-base leading-[1.6] font-light group-hover:text-accent-400 transition-colors">Beneficios</span>
+                    <svg width="16" height="16" viewBox="0 0 24 25" fill="none" class="opacity-25 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <path d="M10 8.5L14 12.5L10 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                  </span>
-                </a>
-              </li>
-              <li>
-                <a href="#testimonios" class="lenis-scroll-to flex items-center justify-between py-4">
-                  <span class="text-secondary/60 dark:text-accent/60 text-lg leading-[27px] font-normal">Testimonios</span>
-                  <span class="invisible">
-                    <svg width="24" height="25" viewBox="0 0 24 25" fill="none">
-                      <path d="M10 8.5L14 12.5L10 16.5" class="stroke-secondary dark:stroke-accent" stroke-opacity="0.6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </a>
+                </li>
+                <li>
+                  <a href="#testimonios" class="lenis-scroll-to group flex items-center justify-between py-3.5 transition-colors hover:text-accent-400">
+                    <span class="text-white/50 text-base leading-[1.6] font-light group-hover:text-accent-400 transition-colors">Testimonios</span>
+                    <svg width="16" height="16" viewBox="0 0 24 25" fill="none" class="opacity-25 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                      <path d="M10 8.5L14 12.5L10 16.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
-                  </span>
-                </a>
-              </li>
-            </ul>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+
+
+
+
   <!-- CTA -->
   <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px]">
     <div class="main-container text-center">
       <div class="max-w-[600px] mx-auto space-y-5">
-        <h2 data-ns-animate data-delay="0.1">¿Te interesa este sistema?</h2>
-        <p data-ns-animate data-delay="0.2">
+        <h2 data-ns-animate data-delay="0.1" class="font-light text-white">¿Te interesa este sistema?</h2>
+        <p data-ns-animate data-delay="0.2" class="text-white/60">
           Agenda una demo personalizada y veamos cómo se adapta a tu operación.
         </p>
         <div data-ns-animate data-delay="0.3">
-          <a href="/contacto" class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent">
+          <a
+            href="#contact-form-panel"
+            class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent"
+          >
             <span>Solicitar Demo</span>
           </a>
         </div>

@@ -19,6 +19,8 @@
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { initMeshDriftShader } from './meshDriftShader';
+import { initLiveGradientShader } from './liveGradientShader';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -82,42 +84,22 @@ function initRevealElements() {
 // ── Header Scroll (all variants) ──────────────────────────────────────
 
 function initHeaderScroll() {
-  const scrollHandler = (selector: string, scrollClass: string, threshold = 100, topReset?: string) => {
-    const header = document.querySelector<HTMLElement>(selector);
-    if (!header) return;
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > threshold) {
-        header.style.transition = 'all 0.5s ease-in-out';
-        header.classList.add(scrollClass);
-      } else {
-        header.classList.remove(scrollClass);
-        if (topReset) header.style.top = topReset;
-      }
-    });
-  };
-
-  scrollHandler('.header-one', 'scroll-header');
-  scrollHandler('.header-three', 'header-three-scroll');
-  scrollHandler('.header-four', 'header-four-scroll');
-  scrollHandler('.header-five', 'header-five-scroll', 25);
-  scrollHandler('.header-six', 'header-six-scroll');
-  scrollHandler('.ai-voice-header', 'scroll-ai-voice-header');
-  scrollHandler('.financial-management-platform-header', 'financial-management-platform-header-scroll');
-
-  // headerTwo has special logic (top position changes)
+  // Only .header-two is used in this project (Navbar.astro); the other
+  // header variants (header-one/three/four/five/six, ai-voice, financial)
+  // were leftover from the ported template and were removed.
   const headerTwo = document.querySelector<HTMLElement>('.header-two');
-  if (headerTwo) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 150) {
-        headerTwo.style.transition = 'all 0.5s ease-in-out';
-        headerTwo.style.top = '20px';
-        headerTwo.classList.add('header-two-scroll');
-      } else {
-        headerTwo.classList.remove('header-two-scroll');
-        headerTwo.style.top = '50px';
-      }
-    });
-  }
+  if (!headerTwo) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 150) {
+      headerTwo.style.transition = 'all 0.5s ease-in-out';
+      headerTwo.style.top = '20px';
+      headerTwo.classList.add('header-two-scroll');
+    } else {
+      headerTwo.classList.remove('header-two-scroll');
+      headerTwo.style.top = '50px';
+    }
+  });
 }
 
 // ── Navigation Menu ──────────────────────────────────────────────────
@@ -388,38 +370,6 @@ const buttonV3 = {
   },
 };
 
-// ── Progress Bars ────────────────────────────────────────────────────
-
-function initProgressAnimation() {
-  const items = document.querySelectorAll<HTMLElement>('[data-progress-item]');
-  items.forEach((item, index) => {
-    const value = parseInt(item.getAttribute('data-progress-value') ?? '0', 10);
-    const bar = item.querySelector<HTMLElement>('[data-progress-bar]');
-    const text = item.querySelector<HTMLElement>('[data-progress-text]');
-    const duration = parseFloat(item.getAttribute('data-progress-duration') ?? '1.5');
-    if (!bar || !text) return;
-
-    gsap.set(bar, { width: '0%', opacity: 0.8 });
-    gsap.to(bar, {
-      width: `${value}%`, opacity: 1, duration, delay: 0.3 + index * 0.2, ease: 'power3.out',
-      scrollTrigger: { trigger: item, start: 'top 90%', end: 'bottom 15%' },
-    });
-
-    gsap.set(text, { opacity: 0 });
-    gsap.to(text, {
-      opacity: 1, y: 0, duration: 0.8, delay: 0.3 + index * 0.2, ease: 'power2.out',
-      scrollTrigger: { trigger: item, start: 'top 90%', end: 'bottom 15%' },
-    });
-
-    const counter = { val: 0 };
-    gsap.to(counter, {
-      val: value, duration: 2.5, ease: 'power2.out',
-      scrollTrigger: { trigger: item, start: 'top 90%', end: 'bottom 15%' },
-      onUpdate: () => { text.textContent = `${Math.floor(counter.val)}%`; },
-    });
-  });
-}
-
 // ── Number Counter (IntersectionObserver) ────────────────────────────
 
 function initCounterAnimation() {
@@ -455,32 +405,32 @@ function initCounterAnimation() {
   observers.push(observer);
 }
 
-// ── Step Line Animation (Process Steps) ──────────────────────────────
+// ── Step Line Animation (Process Steps, /servicios "Cómo trabajamos") ────
+// Línea horizontal única que conecta los 5 pasos (antes: un segmento
+// vertical animado en altura entre cada par de pasos, estilo zigzag).
+// Se anima en ancho, una sola vez, sincronizada con el scroll del bloque
+// completo — inspirado en el "How we work" de trionn.com.
 
 function initStepLineAnimation() {
-  const stepLines = document.querySelectorAll<HTMLElement>('.step-line');
+  const stepLines = document.querySelectorAll<HTMLElement>('.step-line-h');
   if (!stepLines.length) return;
 
-  stepLines.forEach((line, index) => {
-    // Each step-line sits inside a container with h-[320px] lg:h-[380px]
-    // Animate to fill the full parent height
-    const parent = line.parentElement;
-    if (!parent) return;
-    const targetHeight = parent.getBoundingClientRect().height;
+  stepLines.forEach((line) => {
+    const track = line.parentElement;
+    if (!track) return;
 
-    gsap.set(line, { height: '0px' });
+    gsap.set(line, { width: '0%' });
 
     gsap.to(line, {
-      height: targetHeight,
+      width: '100%',
       duration: 1.5,
       ease: 'power3.out',
       scrollTrigger: {
-        trigger: line,
-        start: 'top 75%',
-        end: 'top 15%',
+        trigger: track,
+        start: 'top 70%',
+        end: 'top 20%',
         toggleActions: 'play none none reverse',
       },
-      delay: index * 0.15,
     });
   });
 }
@@ -535,25 +485,6 @@ function initParallax() {
   });
 }
 
-// ── Price Switcher ──────────────────────────────────────────────────
-
-function initPriceSwitcher() {
-  const toggle = document.getElementById('priceCheck') as HTMLInputElement | null;
-  if (!toggle) return;
-
-  const update = () => {
-    document.querySelectorAll<HTMLElement>('.price-month').forEach((el) => {
-      el.style.display = toggle!.checked ? 'none' : 'block';
-    });
-    document.querySelectorAll<HTMLElement>('.price-year').forEach((el) => {
-      el.style.display = toggle!.checked ? 'block' : 'none';
-    });
-  };
-
-  toggle.addEventListener('click', update);
-  update();
-}
-
 // ── Divider Expand ──────────────────────────────────────────────────
 
 function initDividerExpand() {
@@ -564,6 +495,50 @@ function initDividerExpand() {
       width: '100%', duration: 1, delay: 0.7, ease: 'power2.out',
     });
   });
+}
+
+// ── Panel reveal (parallax de contenedor) ───────────────────────────
+// El panel (fondo propio, esquinas redondeadas) se "desliza" hacia
+// arriba, escala de 0.96 a 1 y gana sombra a medida que se hace scroll,
+// en vez de aparecer estático de golpe — sensacion de profundidad en el
+// contenedor completo, no solo en su contenido. Usado por #servicios
+// (ServiciosGrid.astro, entrada sobre el Hero) y por el panel del
+// formulario de contacto (ContactFormV2.astro) — mismos valores para
+// que ambos se sientan parte del mismo sistema visual.
+function initPanelReveal(panelId: string, triggerId: string) {
+  const panel = document.getElementById(panelId);
+  // Sentinel sin transform: el trigger del scroll NO puede ser el propio
+  // panel animado, porque GSAP mide su posicion con getBoundingClientRect
+  // y el transform que le vamos aplicando retroalimenta esa medicion y
+  // desincroniza el scrub.
+  const trigger = document.getElementById(triggerId);
+  if (!panel || !trigger) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) return;
+
+  gsap.set(panel, { transformOrigin: '50% 0%', willChange: 'transform, box-shadow' });
+
+  gsap.fromTo(
+    panel,
+    {
+      y: 140,
+      scale: 0.96,
+      boxShadow: '0 0px 0px 0px rgba(0,0,0,0)',
+    },
+    {
+      y: 0,
+      scale: 1,
+      boxShadow: '0 -40px 80px -40px rgba(0,0,0,0.35)',
+      ease: 'none',
+      scrollTrigger: {
+        trigger,
+        start: 'top bottom',
+        end: 'top 55%',
+        scrub: true,
+      },
+    }
+  );
 }
 
 // ── Theme Switcher ──────────────────────────────────────────────────
@@ -591,6 +566,46 @@ const themeSwitcher = {
   },
 };
 
+// ── Capability lines (paginas de servicios) ─────────────────────────
+// Cada bloque de "Capacidades" (servicios.astro, patron trionn.com) tiene
+// una linea horizontal entre items con scale-x-0 origin-left por CSS. Al
+// entrar en viewport, se anima scaleX 0 -> 1 con stagger, como si la
+// linea se "dibujara" de izquierda a derecha. once:true — no se repite al
+// volver a scrollear.
+
+function initCapabilityLines() {
+  const lists = document.querySelectorAll<HTMLElement>('.cap-list');
+  if (!lists.length) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  lists.forEach((list) => {
+    const lines = list.querySelectorAll<HTMLElement>('.cap-divider-line');
+    if (!lines.length) return;
+
+    if (reduceMotion) {
+      lines.forEach((line) => {
+        line.style.transform = 'scaleX(1)';
+      });
+      return;
+    }
+
+    ScrollTrigger.create({
+      trigger: list,
+      start: 'top 80%',
+      once: true,
+      onEnter: () => {
+        gsap.to(lines, {
+          scaleX: 1,
+          duration: 0.7,
+          ease: 'power2.out',
+          stagger: 0.12,
+        });
+      },
+    });
+  });
+}
+
 // ── Force Theme Switcher (landing pages) ────────────────────────────
 
 function initForceTheme() {
@@ -600,6 +615,105 @@ function initForceTheme() {
     html.classList.remove('dark', 'light');
     html.classList.add(forced);
   }
+}
+
+/**
+ * Phrase rotator — cicla la palabra/frase de acento marcada con
+ * [data-hero-rotate] (ej. H1 del Hero: "criticos" -> "manuales" ->
+ * "repetitivos"; H2 de "Sobre Agencia Sur": "flujos simples." ->
+ * "procesos claros." -> "resultados medibles.") con un crossfade +
+ * blur sutil, inspirado en el "Designed to mean ___." de trionn.com.
+ * Soporta varios rotadores independientes en la misma pagina — cada
+ * [data-hero-rotate] arranca su propio index/interval. Se detiene si
+ * el usuario prefiere menos movimiento.
+ */
+function initPhraseRotator() {
+  const els = document.querySelectorAll<HTMLElement>('[data-hero-rotate]');
+  if (!els.length) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const transitionMs = 450;
+  const holdMs = 2800;
+
+  els.forEach((el) => {
+    let words: string[] = [];
+    try {
+      words = JSON.parse(el.getAttribute('data-words') || '[]');
+    } catch {
+      words = [];
+    }
+    if (words.length < 2) return;
+
+    let index = 0;
+
+    el.style.display = 'inline-block';
+    el.style.transition = `opacity ${transitionMs}ms ease, filter ${transitionMs}ms ease`;
+    el.style.willChange = 'opacity, filter';
+
+    setInterval(() => {
+      index = (index + 1) % words.length;
+      el.style.opacity = '0';
+      el.style.filter = 'blur(8px)';
+      setTimeout(() => {
+        el.textContent = words[index];
+        el.style.opacity = '1';
+        el.style.filter = 'blur(0px)';
+      }, transitionMs);
+    }, holdMs + transitionMs);
+  });
+}
+
+/**
+ * Conecta los triggers de "contacto inmediato" (ej. Hero: "Hablemos de tu
+ * proyecto" / "Agenda una llamada", estilo trionn.com) con el DemoModal
+ * existente. Cada trigger declara su copy via data-attributes y se la pasa
+ * al modal como CustomEvent.detail, asi un mismo modal cubre ambos
+ * "intents" (obtener el lead / agendar una llamada) sin duplicar el
+ * componente. Ver DemoModal.astro para el lado que consume el detail.
+ */
+function initDemoModalTriggers() {
+  const triggers = document.querySelectorAll<HTMLElement>('[data-open-demo-modal]');
+  if (!triggers.length) return;
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', () => {
+      document.dispatchEvent(
+        new CustomEvent('open-demo-modal', {
+          detail: {
+            modalTitle: trigger.dataset.modalTitle,
+            ctaLabel: trigger.dataset.ctaLabel,
+            solucion: trigger.dataset.solucion,
+            description: trigger.dataset.description,
+          },
+        })
+      );
+    });
+  });
+}
+
+/**
+ * El boton "ver mas" del Hero es `position: fixed` (asi el margen inferior
+ * se calcula siempre sobre el 100vh real de la pantalla, sin depender de
+ * cuanto mida el Hero en cada breakpoint). Al ser fixed persiste mientras
+ * se scrollea el resto del sitio, asi que lo ocultamos apenas se avanza
+ * mas alla del propio Hero para que no quede flotando sobre las demas
+ * secciones.
+ */
+function initHeroScrollCue() {
+  const cue = document.getElementById('hero-scroll-cue');
+  if (!cue) return;
+
+  cue.style.transition = 'opacity 300ms ease';
+
+  function update() {
+    const past = window.scrollY > window.innerHeight * 0.6;
+    cue!.style.opacity = past ? '0' : '1';
+    cue!.style.pointerEvents = past ? 'none' : 'auto';
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
 }
 
 // ── Init ─────────────────────────────────────────────────────────────
@@ -613,12 +727,19 @@ export function initNexsasAnimations() {
     initRevealElements();
     initHeaderScroll();
     initSidebar();
-    initProgressAnimation();
     initCounterAnimation();
     initStepLineAnimation();
     initParallax();
-    initPriceSwitcher();
     initDividerExpand();
+    initPanelReveal('servicios', 'servicios-trigger');
+    initPanelReveal('detalle-servicios', 'detalle-servicios-trigger');
+    initPanelReveal('contact-form-panel', 'contact-form-trigger');
+    initCapabilityLines();
+    initMeshDriftShader();
+    initLiveGradientShader();
+    initPhraseRotator();
+    initDemoModalTriggers();
+    initHeroScrollCue();
     themeSwitcher.init();
     buttonV3.init();
 

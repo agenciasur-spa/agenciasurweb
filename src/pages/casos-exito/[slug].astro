@@ -1,20 +1,25 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import ContactoFooter from '../../components/ContactoFooter.astro';
-import { sanityClient } from '../../lib/sanity';
-import PortableText from '../../components/PortableText';
-import type { CasoExito } from '../../types/sanity';
+import Layout from "../../layouts/Layout.astro";
+import ContactoFooter from "../../components/ContactoFooter.astro";
+import { sanityClient } from "../../lib/sanity";
+import PortableText from "../../components/PortableText";
+import type { CasoExito } from "../../types/sanity";
+
+const calendlyUrl = import.meta.env.PUBLIC_CALENDLY_URL ?? '#';
 
 // Fallback data for when Sanity is offline
 const fallbackData: Record<string, CasoExito> = {
-  'desarrollo-web-mobile': {
-    title: 'Automatización de procesos de compra',
-    slug: 'desarrollo-web-mobile',
-    client: 'BancoEstado',
-    industry: 'Financiero',
+  "desarrollo-web-mobile": {
+    title: "Automatización de procesos de compra",
+    slug: "desarrollo-web-mobile",
+    client: "BancoEstado",
+    industry: "Financiero",
     challenge: undefined,
     solution: undefined,
-    results: ['60% reducción en tiempo de aprobación', '100% eliminación de papel'],
+    results: [
+      "60% reducción en tiempo de aprobación",
+      "100% eliminación de papel",
+    ],
     testimonial: undefined,
     testimonialAuthor: undefined,
   },
@@ -22,7 +27,7 @@ const fallbackData: Record<string, CasoExito> = {
 
 export async function getStaticPaths() {
   const fallbackData: Record<string, { slug: string }> = {
-    'desarrollo-web-mobile': { slug: 'desarrollo-web-mobile' },
+    "desarrollo-web-mobile": { slug: "desarrollo-web-mobile" },
   };
   const fallbackSlugs = Object.keys(fallbackData);
   const paths = fallbackSlugs.map((slug) => ({ params: { slug } }));
@@ -30,7 +35,7 @@ export async function getStaticPaths() {
   if (sanityClient) {
     try {
       const casos: CasoExito[] = await sanityClient.fetch(
-        `*[_type == "casoExito"] { "slug": slug.current }`
+        `*[_type == "casoExito"] { "slug": slug.current }`,
       );
       for (const caso of casos) {
         if (!fallbackSlugs.includes(caso.slug)) {
@@ -56,7 +61,7 @@ if (sanityClient) {
         _id, title, "slug": slug.current, client, industry,
         challenge, solution, results, testimonial, testimonialAuthor, image
       }`,
-      { slug }
+      { slug },
     );
   } catch {
     // Sanity query failed
@@ -69,207 +74,297 @@ if (!caso && slug && fallbackData[slug]) {
 }
 
 if (!caso) {
-  return Astro.redirect('/casos-exito');
+  return Astro.redirect("/casos-exito");
 }
 ---
 
 <Layout title={`${caso.title} | Agencia Sur`}>
-
   <!-- Hero -->
-  <section class="overflow-hidden pt-32 pb-24 sm:pt-36 md:pt-42 md:pb-28 lg:pb-32 xl:pt-[180px] xl:pb-[200px]">
+  <section
+    class="overflow-hidden pt-32 pb-24 sm:pt-36 md:pt-42 md:pb-28 lg:pb-32 xl:pt-[180px] xl:pb-[200px]"
+  >
     <div class="main-container">
       <div class="space-y-[70px]">
         <div class="space-y-5">
-          <a href="/casos-exito" class="text-tagline-1 text-primary-500 font-medium hover:underline inline-block mb-2">
+          <!--a href="/casos-exito" class="text-tagline-1 text-accent/60 dark:text-accent/60  font-medium hover:underline inline-block mb-2">
             ← Volver a Casos de Éxito
-          </a>
-          <span data-ns-animate data-delay="0.1" class="badge badge-green">{caso.client}</span>
-          <div class="space-y-3">
-            <h1 data-ns-animate data-delay="0.2" class="text-heading-3 max-w-[884px]">{caso.title}</h1>
-            {caso.industry && (
-              <p data-ns-animate data-delay="0.3" class="text-tagline-1 text-secondary/60 dark:text-accent/60">
-                Sector: {caso.industry}
-              </p>
-            )}
+          </a-->
+          <span data-ns-animate data-delay="0.1" class="badge badge-section"
+            >{caso.client}</span
+          >
+          <div class="space-y-4">
+            <h1
+              data-ns-animate
+              data-delay="0.2"
+              class="max-w-[884px] font-light text-white"
+            >
+              {caso.title}
+            </h1>
+            <dl data-ns-animate data-delay="0.3" class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60">
+              <div class="flex items-center gap-1.5">
+                <dt class="text-white/40">Empresa</dt>
+                <dd class="text-white/80 font-medium">{caso.client}</dd>
+              </div>
+              {caso.industry && (
+                <div class="flex items-center gap-1.5">
+                  <dt class="text-white/40">Sector</dt>
+                  <dd class="text-white/80 font-medium">{caso.industry}</dd>
+                </div>
+              )}
+            </dl>
           </div>
         </div>
 
-        <figure data-ns-animate data-delay="0.3" class="max-w-[1290px] overflow-hidden rounded-4xl">
-          <img src={`https://picsum.photos/1290/520?random=${slug.length + 700}`} alt={`${caso.title} vista general`} class="size-full object-cover" loading="lazy" />
+        <figure
+          data-ns-animate
+          data-delay="0.3"
+          class="max-w-[1290px] overflow-hidden rounded-4xl"
+        >
+          <img
+            src={`https://picsum.photos/1290/520?random=${slug.length + 700}`}
+            alt={`${caso.title} vista general`}
+            class="size-full object-cover"
+            loading="lazy"
+          />
         </figure>
 
-        <!-- Company info list -->
+        <div class="flex gap-4 flex-wrap">
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-accent-400 border border-white/[0.07]" style="background: rgba(143,209,79,0.06);">
+            <span class="size-2 rounded-full bg-accent-400 inline-block"></span>
+            Proyecto completado
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-accent-400 border border-white/[0.07]" style="background: rgba(143,209,79,0.06);">
+            <span class="size-2 rounded-full bg-accent-400 inline-block"></span>
+            Resultados medibles
+          </span>
+          {caso.industry && (
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-accent-400 border border-white/[0.07]" style="background: rgba(143,209,79,0.06);">
+              <span class="size-2 rounded-full bg-accent-400 inline-block"></span>
+              {caso.industry}
+            </span>
+          )}
+        </div>
+
         <div class="mx-auto max-w-[950px]">
           <div class="space-y-14">
-            <ul aria-label="Información del Cliente" class="space-y-2" data-ns-animate data-delay="0.4">
-              <li class="text-accent/60 dark:!text-accent/60">
-                <strong class="text-secondary dark:!text-accent">Empresa: </strong>
-                {caso.client}
-              </li>
-              <li class="text-accent/60 dark:!text-accent/60">
-                <strong class="text-secondary dark:!text-accent">Sector: </strong>
-                {caso.industry || 'No especificado'}
-              </li>
-              <li class="text-accent/60 dark:!text-accent/60">
-                <strong class="text-secondary dark:!text-accent">Proyecto: </strong>
-                {caso.title}
-              </li>
-            </ul>
 
-          <!-- Desafío — side-label pattern from customer-details-info.htm -->
-          <div class="flex flex-col justify-between gap-y-4 md:flex-row md:gap-x-16 lg:gap-x-10">
-            <div data-ns-animate data-delay="0.1">
-              <p class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28">El desafío</p>
-            </div>
-
-            <div class="space-y-8 lg:max-w-[808px]">
-              {caso.challenge && (
-                <div class="details-body">
-                  <PortableText client:load value={caso.challenge} />
-                </div>
-              )}
-              {!caso.challenge && (
-                <p data-ns-animate data-delay="0.2">
-                  {caso.client} enfrentaba el desafío de {caso.industry || 'su industria'}:
-                  optimizar procesos que limitaban su capacidad de crecer y escalar eficientemente.
+            <!-- Desafío — side-label pattern from customer-details-info.htm -->
+            <div
+              class="flex flex-col gap-y-4 md:flex-row md:gap-x-12"
+            >
+              <div data-ns-animate data-delay="0.1" class="md:w-44 md:shrink-0">
+                <p
+                  class="text-heading-5 text-white/50 sticky top-28"
+                >
+                  El desafío
                 </p>
-              )}
-            </div>
-          </div>
+              </div>
 
-          <!-- Solución — side-label pattern -->
-          <div class="flex flex-col justify-between gap-y-4 md:flex-row md:gap-x-16 lg:gap-x-10">
-            <div data-ns-animate data-delay="0.1">
-              <p class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28">La solución</p>
-            </div>
-
-            <div class="space-y-8 lg:max-w-[808px]">
-              {caso.solution && (
-                <div class="details-body">
-                  <PortableText client:load value={caso.solution} />
-                </div>
-              )}
-              {!caso.solution && (
-                <p data-ns-animate data-delay="0.2">
-                  Agencia Sur diseñó e implementó una plataforma a medida que permitió
-                  {caso.results?.[0]?.toLowerCase() || 'optimizar operaciones clave'},
-                  integrando tecnología moderna con los procesos existentes de {caso.client}.
-                </p>
-              )}
-
-              <!-- Solution bullet list — case-study-details.htm pattern -->
-              {caso.results && caso.results.length > 0 && (
-                <ul data-ns-animate data-delay="0.3" class="space-y-4">
-                  {caso.results.map((result, idx) => (
-                    <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
-                      <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
-                      {result}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
-
-          <!-- Resultados — side-label pattern + before/after table -->
-          <div class="flex flex-col justify-between gap-y-4 md:flex-row md:gap-x-16 lg:gap-x-10">
-            <div data-ns-animate data-delay="0.1">
-              <p class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28">Los resultados</p>
-            </div>
-
-            <div class="space-y-8 lg:max-w-[808px]">
-              <div data-ns-animate data-delay="0.2" class="grid grid-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-3">
-                <div class="[&>p]:border-b-stroke-4 dark:[&>p]:border-b-stroke-7 max-w-[306] [&>p]:border-b [&>p]:last:border-b-0">
-                  <p class="text-secondary dark:text-accent py-4 font-medium">Aspecto</p>
-                  <p class="py-4">Proceso manual</p>
-                  <p class="py-4">Tiempo de aprobación</p>
-                  <p class="py-4">Trazabilidad</p>
-                  <p class="py-4">Escalabilidad</p>
-                </div>
-                <div class="dark:bg-background-6 [&>p]:border-b-stroke-4 dark:[&>p]:border-b-stroke-7 max-w-[306] rounded-[20px] bg-white px-6 text-center [&>p]:border-b [&>p]:last:border-b-0">
-                  <p class="text-secondary dark:text-accent border-b py-4 font-medium">Antes</p>
-                  <p class="border-b py-4">Spreadsheets y correos</p>
-                  <p class="border-b py-4">Días o semanas</p>
-                  <p class="border-b py-4">Fragmentada</p>
-                  <p class="py-4">Limitada</p>
-                </div>
-                <div class="[&>p]:border-b-stroke-4 dark:[&>p]:border-b-stroke-7 dark:bg-background-6 max-w-[306] rounded-[20px] bg-white px-6 text-center [&>p]:border-b [&>p]:last:border-b-0">
-                  <p class="text-secondary dark:text-accent py-4 font-medium">Después</p>
-                  <p class="py-4">Plataforma unificada</p>
-                  <p class="py-4">Horas</p>
-                  <p class="py-4">En tiempo real</p>
-                  <p class="py-4">Ilimitada</p>
-                </div>
+              <div class="space-y-8 lg:max-w-[808px]">
+                {
+                  caso.challenge && (
+                    <div class="details-body">
+                      <PortableText client:load value={caso.challenge} />
+                    </div>
+                  )
+                }
+                {
+                  !caso.challenge && (
+                    <p data-ns-animate data-delay="0.2" class="text-white/60">
+                      {caso.client} enfrentaba el desafío de{" "}
+                      {caso.industry || "su industria"}: optimizar procesos que
+                      limitaban su capacidad de crecer y escalar eficientemente.
+                    </p>
+                  )
+                }
               </div>
             </div>
-          </div>
 
-          <!-- Testimonio — side-label pattern with testimonial card -->
-          <div class="flex flex-col justify-between gap-y-4 md:flex-row md:gap-x-16 lg:gap-x-10">
-            <div data-ns-animate data-delay="0.1">
-              <p class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28">Testimonio</p>
-            </div>
-
-            <div class="space-y-8 lg:max-w-[808px]">
-              {caso.testimonial ? (
-                <article
-                  data-ns-animate
-                  data-delay="0.3"
-                  class="bg-secondary dark:bg-background-6 max-w-[950px] space-y-6 rounded-[20px] p-8"
+            <!-- Solución — side-label pattern -->
+            <div
+              class="flex flex-col gap-y-4 md:flex-row md:gap-x-12"
+            >
+              <div data-ns-animate data-delay="0.1" class="md:w-44 md:shrink-0">
+                <p
+                  class="text-heading-5 text-white/50 sticky top-28"
                 >
-                  <figure class="size-14 overflow-hidden rounded-full bg-(image:--color-gradient-7)">
-                    <img class="size-full object-cover" src={`https://picsum.photos/56/56?random=${slug.length + 701}`} alt="avatar" />
-                  </figure>
-                  <blockquote>
-                    <p class="dark:text-accent/60 text-white">"{caso.testimonial}"</p>
-                  </blockquote>
-                  {caso.testimonialAuthor && (
-                    <div class="pb-4">
-                      <h4 class="text-lg leading-[150%] font-medium text-white">{caso.testimonialAuthor}</h4>
-                      <p class="text-tagline-2 text-accent/60">{caso.client}</p>
-                    </div>
-                  )}
-                </article>
-              ) : (
-                <p data-ns-animate data-delay="0.2" class="text-secondary/60 dark:text-accent/60">
-                  Próximamente compartiremos el testimonio de {caso.client}.
+                  La solución
                 </p>
-              )}
-            </div>
-          </div>
+              </div>
 
-          <!-- Características implementadas — side-label pattern -->
-          <div class="flex flex-col justify-between gap-y-4 md:flex-row md:gap-x-16 lg:gap-x-10">
-            <div data-ns-animate data-delay="0.1">
-              <p class="text-heading-4 md:text-heading-5 text-secondary dark:text-accent sticky top-28">Características</p>
+              <div class="space-y-8 lg:max-w-[808px]">
+                {
+                  caso.solution && (
+                    <div class="details-body">
+                      <PortableText client:load value={caso.solution} />
+                    </div>
+                  )
+                }
+                {
+                  !caso.solution && (
+                    <p data-ns-animate data-delay="0.2" class="text-white/60">
+                      Agencia Sur diseñó e implementó una plataforma a medida
+                      que permitió
+                      {caso.results?.[0]?.toLowerCase() ||
+                        "optimizar operaciones clave"}
+                      , integrando tecnología moderna con los procesos
+                      existentes de {caso.client}.
+                    </p>
+                  )
+                }
+
+                <!-- Solution bullet list — case-study-details.htm pattern -->
+                {
+                  caso.results && caso.results.length > 0 && (
+                    <ul data-ns-animate data-delay="0.3" class="space-y-4">
+                      {caso.results.map((result, idx) => (
+                        <li class="text-white/60 flex items-center justify-start gap-x-3">
+                          <span class="bg-white size-2 rounded-full" />
+                          {result}
+                        </li>
+                      ))}
+                    </ul>
+                  )
+                }
+              </div>
             </div>
 
-            <div data-ns-animate data-delay="0.2" class="space-y-6 lg:max-w-[808px]">
-              <h5 class="text-heading-4" id="caracteristicas-clave">Características implementadas</h5>
-              <ul class="space-y-4">
-                <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
-                  <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
-                  Dashboards de analytics en tiempo real
-                </li>
-                <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
-                  <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
-                  Report builder personalizado
-                </li>
-                <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
-                  <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
-                  Automatización y scheduling de tareas
-                </li>
-                <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
-                  <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
-                  Integraciones multi-fuente
-                </li>
-                <li class="text-secondary/60 dark:!text-accent/60 flex items-center justify-start gap-x-3">
-                  <span class="bg-secondary dark:bg-accent size-2 rounded-full"></span>
-                  Permisos basados en roles
-                </li>
-              </ul>
+            <!-- Resultados — side-label pattern + before/after table -->
+            <div
+              class="flex flex-col gap-y-4 md:flex-row md:gap-x-12"
+            >
+              <div data-ns-animate data-delay="0.1" class="md:w-44 md:shrink-0">
+                <p
+                  class="text-heading-5 text-white/50 sticky top-28"
+                >
+                  Los resultados
+                </p>
+              </div>
+
+              <div class="space-y-8 lg:max-w-[808px]">
+                {
+                  caso.results && caso.results.length > 0 ? (
+                    <div
+                      data-ns-animate
+                      data-delay="0.2"
+                      class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                    >
+                      {caso.results.map((result, idx) => (
+                        <div class="rounded-2xl border border-white/[0.07] p-6 space-y-2" style="background-color: rgba(255,255,255,0.04);">
+                          <p class="text-2xl font-bold text-accent-400">
+                            {result.split(/(\d+%|\d+x)/)[1] || "✓"}
+                          </p>
+                          <p class="font-medium text-white/70">
+                            {result}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p
+                      data-ns-animate
+                      data-delay="0.2"
+                      class="text-white/60"
+                    >
+                      Próximamente compartiremos los resultados cuantificables
+                      de este proyecto.
+                    </p>
+                  )
+                }
+              </div>
             </div>
-          </div>
+
+            <!-- Testimonio — side-label pattern with testimonial card -->
+            <div
+              class="flex flex-col gap-y-4 md:flex-row md:gap-x-12"
+            >
+              <div data-ns-animate data-delay="0.1" class="md:w-44 md:shrink-0">
+                <p
+                  class="text-heading-5 text-white/50 sticky top-28"
+                >
+                  Testimonio
+                </p>
+              </div>
+
+              <div class="space-y-8 lg:max-w-[808px]">
+                {
+                  caso.testimonial ? (
+                    <article
+                      data-ns-animate
+                      data-delay="0.3"
+                      class="max-w-[950px] space-y-6 rounded-[20px] p-8 border border-white/[0.07]"
+                      style="background-color: rgba(255,255,255,0.03);"
+                    >
+                      <figure class="size-14 overflow-hidden rounded-full bg-(image:--color-gradient-7)">
+                        <img
+                          class="size-full object-cover"
+                          src={`https://picsum.photos/56/56?random=${slug.length + 701}`}
+                          alt="avatar"
+                        />
+                      </figure>
+                      <blockquote>
+                        <p class="text-white/80">
+                          "{caso.testimonial}"
+                        </p>
+                      </blockquote>
+                      {caso.testimonialAuthor && (
+                        <div class="pb-4">
+                          <h4 class="text-lg leading-[150%] font-medium text-white">
+                            {caso.testimonialAuthor}
+                          </h4>
+                          <p class="text-tagline-2 text-accent/60">
+                            {caso.client}
+                          </p>
+                        </div>
+                      )}
+                    </article>
+                  ) : (
+                    <p
+                      data-ns-animate
+                      data-delay="0.2"
+                      class="text-white/60"
+                    >
+                      Próximamente compartiremos el testimonio de {caso.client}.
+                    </p>
+                  )
+                }
+              </div>
+            </div>
+
+            <!-- Características implementadas — side-label pattern -->
+            <div
+              class="flex flex-col gap-y-4 md:flex-row md:gap-x-12"
+            >
+              <div data-ns-animate data-delay="0.1" class="md:w-44 md:shrink-0">
+                <p
+                  class="text-heading-5 text-white/50 sticky top-28"
+                >
+                  Características
+                </p>
+              </div>
+
+              <div
+                data-ns-animate
+                data-delay="0.2"
+                class="space-y-6 lg:max-w-[808px]"
+              >
+                {caso.results && caso.results.length > 0 ? (
+                  <ul class="space-y-4">
+                    {caso.results.map((result) => (
+                      <li class="text-white/60 flex items-center justify-start gap-x-3">
+                        <span class="bg-accent-400 size-2 rounded-full shrink-0" />
+                        {result}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="text-white/60">
+                    Próximamente compartiremos las características técnicas
+                    implementadas en este proyecto.
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -280,13 +375,26 @@ if (!caso) {
   <section class="py-14 md:py-16 lg:py-[88px] xl:py-[100px]">
     <div class="main-container text-center">
       <div class="max-w-[600px] mx-auto space-y-5">
-        <h2 data-ns-animate data-delay="0.1">¿Tu empresa tiene un desafío similar?</h2>
-        <p data-ns-animate data-delay="0.2">
+        <h2 data-ns-animate data-delay="0.1" class="font-light text-white">
+          ¿Tu empresa tiene un desafío similar?
+        </h2>
+        <p data-ns-animate data-delay="0.2" class="text-white/60">
           Hablemos sobre cómo podemos ayudarte a lograr resultados como estos.
         </p>
-        <div data-ns-animate data-delay="0.3">
-          <a href="/contacto" class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent">
+        <div data-ns-animate data-delay="0.3" class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="#contact-form-panel"
+            class="btn btn-primary btn-lg hover:btn-secondary dark:hover:btn-accent"
+          >
             <span>Contactar</span>
+          </a>
+          <a
+            href={calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-lg btn-transparent border border-white/[0.15] text-white hover:border-accent-400 hover:text-accent-400 transition-colors"
+          >
+            <span>Agenda una llamada</span>
           </a>
         </div>
       </div>
@@ -295,3 +403,9 @@ if (!caso) {
 
   <ContactoFooter />
 </Layout>
+
+<style>
+  .details-body p {
+    padding-bottom: 0.25rem;
+  }
+</style>

@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContactForm from '../components/ContactForm.astro';
 import Footer from '../components/Footer.astro';
 ---
 
@@ -12,9 +11,9 @@ import Footer from '../components/Footer.astro';
       <div class="space-y-[70px]">
         <!-- heading -->
         <div class="mx-auto max-w-[680px] space-y-3 text-center">
-          <h2 data-ns-animate data-delay="0.2">¿Tienes un proyecto?</h2>
-          <p data-ns-animate data-delay="0.3">
-            Contanos qué necesitás. Te ayudamos a definir el camino desde la idea hasta la implementación.
+          <h2 data-ns-animate data-delay="0.2" class="font-light text-white">¿Tienes un <span class="text-accent-400">proyecto</span>?</h2>
+          <p data-ns-animate data-delay="0.3" class="text-white/60">
+            Cuéntanos qué necesitas. Te ayudamos a definir el camino desde la idea hasta la implementación.
             Estamos disponibles para responder consultas técnicas, cotizaciones o simplemente charlar sobre tu operación.
           </p>
         </div>
@@ -25,10 +24,31 @@ import Footer from '../components/Footer.astro';
             <!-- contact info one — Dirección -->
             <div class="bg-secondary dark:bg-background-6 relative w-full space-y-6 overflow-hidden rounded-[20px] p-11 text-center md:max-w-[371px]">
               <figure class="pointer-events-none absolute top-[-187px] left-[174px] size-[350px] -rotate-[78deg] overflow-hidden select-none">
-                <img src="https://picsum.photos/350/350?random=800" alt="" class="size-full object-cover opacity-40" aria-hidden="true" />
+                <svg class="size-full" viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg" fill="none" opacity="0.45" aria-hidden="true">
+                  <line x1="0" y1="50" x2="350" y2="50" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="0" y1="100" x2="350" y2="100" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="0" y1="150" x2="350" y2="150" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="0" y1="200" x2="350" y2="200" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="0" y1="250" x2="350" y2="250" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="0" y1="300" x2="350" y2="300" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="50" y1="0" x2="50" y2="350" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="100" y1="0" x2="100" y2="350" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="150" y1="0" x2="150" y2="350" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="200" y1="0" x2="200" y2="350" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="250" y1="0" x2="250" y2="350" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <line x1="300" y1="0" x2="300" y2="350" stroke="rgba(143,209,79,0.35)" stroke-width="0.6"/>
+                  <circle cx="100" cy="100" r="2.5" fill="rgba(143,209,79,0.6)"/>
+                  <circle cx="200" cy="150" r="2.5" fill="rgba(143,209,79,0.6)"/>
+                  <circle cx="150" cy="250" r="2.5" fill="rgba(143,209,79,0.6)"/>
+                  <circle cx="250" cy="200" r="2.5" fill="rgba(143,209,79,0.5)"/>
+                  <circle cx="175" cy="165" r="22" stroke="rgba(143,209,79,0.8)" stroke-width="2"/>
+                  <circle cx="175" cy="165" r="7" fill="rgba(143,209,79,0.9)"/>
+                  <line x1="175" y1="187" x2="175" y2="220" stroke="rgba(143,209,79,0.7)" stroke-width="2.5" stroke-linecap="round"/>
+                  <circle cx="175" cy="165" r="40" stroke="rgba(143,209,79,0.2)" stroke-width="1" stroke-dasharray="4 3"/>
+                </svg>
               </figure>
-              <figure class="mx-auto size-10 overflow-hidden">
-                <svg class="size-full text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <figure class="mx-auto size-10 overflow-hidden rounded-full bg-accent-400/10 p-2 ring-1 ring-accent-400/30">
+                <svg class="size-full text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
               </figure>
               <div class="space-y-2.5">
                 <p class="text-heading-6 text-accent">Dirección</p>
@@ -39,11 +59,28 @@ import Footer from '../components/Footer.astro';
             <!-- contact info two — Email -->
             <div class="bg-secondary dark:bg-background-6 relative w-full overflow-hidden rounded-[20px] p-11 text-center md:max-w-[371px]">
               <figure class="pointer-events-none absolute top-[-206px] left-[-36px] size-[350px] rotate-[62deg] overflow-hidden select-none">
-                <img src="https://picsum.photos/350/350?random=801" alt="" class="size-full object-cover opacity-40" aria-hidden="true" />
+                <svg class="size-full" viewBox="0 0 350 350" xmlns="http://www.w3.org/2000/svg" fill="none" opacity="0.45" aria-hidden="true">
+                  <circle cx="175" cy="175" r="22" stroke="rgba(143,209,79,0.7)" stroke-width="2"/>
+                  <circle cx="175" cy="175" r="8" fill="rgba(143,209,79,0.6)"/>
+                  <circle cx="65" cy="75" r="13" stroke="rgba(143,209,79,0.5)" stroke-width="1.5"/>
+                  <circle cx="65" cy="75" r="5" fill="rgba(143,209,79,0.4)"/>
+                  <line x1="78" y1="88" x2="157" y2="158" stroke="rgba(143,209,79,0.3)" stroke-width="1" stroke-dasharray="6 4"/>
+                  <circle cx="118" cy="130" r="3.5" fill="rgba(143,209,79,0.7)"/>
+                  <circle cx="285" cy="85" r="11" stroke="rgba(143,209,79,0.45)" stroke-width="1.5"/>
+                  <circle cx="285" cy="85" r="4" fill="rgba(143,209,79,0.35)"/>
+                  <line x1="274" y1="96" x2="194" y2="162" stroke="rgba(143,209,79,0.28)" stroke-width="1" stroke-dasharray="6 4"/>
+                  <circle cx="230" cy="135" r="3.5" fill="rgba(143,209,79,0.6)"/>
+                  <circle cx="55" cy="270" r="10" stroke="rgba(143,209,79,0.4)" stroke-width="1.5"/>
+                  <line x1="65" y1="260" x2="157" y2="193" stroke="rgba(143,209,79,0.22)" stroke-width="1" stroke-dasharray="6 4"/>
+                  <circle cx="295" cy="275" r="11" stroke="rgba(143,209,79,0.38)" stroke-width="1.5"/>
+                  <line x1="284" y1="264" x2="194" y2="192" stroke="rgba(143,209,79,0.22)" stroke-width="1" stroke-dasharray="6 4"/>
+                  <circle cx="240" cy="225" r="3.5" fill="rgba(143,209,79,0.5)"/>
+                  <circle cx="108" cy="218" r="3.5" fill="rgba(143,209,79,0.45)"/>
+                </svg>
               </figure>
               <div class="space-y-6">
-                <figure class="mx-auto size-10 overflow-hidden">
-                  <svg class="size-full text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <figure class="mx-auto size-10 overflow-hidden rounded-full bg-accent-400/10 p-2 ring-1 ring-accent-400/30">
+                  <svg class="size-full text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 </figure>
                 <div class="space-y-2.5">
                   <p class="text-heading-6 text-accent">Email</p>
@@ -57,11 +94,24 @@ import Footer from '../components/Footer.astro';
             <!-- contact info three — Teléfono -->
             <div class="bg-secondary dark:bg-background-6 relative w-full overflow-hidden rounded-[20px] p-11 text-center md:max-w-[371px]">
               <figure class="pointer-events-none absolute top-[-264px] left-[-255px] size-[450px] select-none">
-                <img src="https://picsum.photos/450/450?random=802" alt="" class="opacity-40" aria-hidden="true" />
+                <svg class="size-full" viewBox="0 0 450 450" xmlns="http://www.w3.org/2000/svg" fill="none" opacity="0.45" aria-hidden="true">
+                  <circle cx="225" cy="225" r="14" fill="rgba(143,209,79,0.7)"/>
+                  <circle cx="225" cy="225" r="35" stroke="rgba(143,209,79,0.7)" stroke-width="2"/>
+                  <circle cx="225" cy="225" r="75" stroke="rgba(143,209,79,0.5)" stroke-width="1.5"/>
+                  <circle cx="225" cy="225" r="120" stroke="rgba(143,209,79,0.32)" stroke-width="1"/>
+                  <circle cx="225" cy="225" r="170" stroke="rgba(143,209,79,0.2)" stroke-width="1"/>
+                  <circle cx="225" cy="225" r="222" stroke="rgba(143,209,79,0.1)" stroke-width="0.5"/>
+                  <line x1="225" y1="3" x2="225" y2="447" stroke="rgba(143,209,79,0.08)" stroke-width="0.5"/>
+                  <line x1="3" y1="225" x2="447" y2="225" stroke="rgba(143,209,79,0.08)" stroke-width="0.5"/>
+                  <circle cx="225" cy="105" r="4" fill="rgba(143,209,79,0.5)"/>
+                  <circle cx="345" cy="225" r="4" fill="rgba(143,209,79,0.4)"/>
+                  <circle cx="225" cy="345" r="4" fill="rgba(143,209,79,0.35)"/>
+                  <circle cx="105" cy="225" r="4" fill="rgba(143,209,79,0.4)"/>
+                </svg>
               </figure>
               <div class="space-y-6">
-                <figure class="mx-auto size-10 overflow-hidden">
-                  <svg class="size-full text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <figure class="mx-auto size-10 overflow-hidden rounded-full bg-accent-400/10 p-2 ring-1 ring-accent-400/30">
+                  <svg class="size-full text-accent-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </figure>
                 <div class="space-y-2.5">
                   <p class="text-heading-6 text-accent">Teléfono</p>
@@ -73,14 +123,171 @@ import Footer from '../components/Footer.astro';
             </div>
           </div>
 
-          <!-- Mad-libs form — using ContactForm component -->
+          <!-- CTA card -->
           <div
             data-ns-animate
             data-delay="0.3"
-            class="dark:bg-background-6 mx-auto w-full max-w-[847px] rounded-4xl bg-white p-6 md:p-8 lg:p-11"
+            class="mx-auto w-full max-w-[540px] lg:max-w-none lg:flex-1 rounded-[20px] overflow-hidden border border-white/[0.07]"
+            style="background-color: #0b0d10;"
           >
-            <ContactForm />
+            <!-- Dot grid decoration -->
+            <div class="relative w-full" aria-hidden="true">
+              <svg viewBox="0 0 540 180" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto block">
+                <defs>
+                  <pattern id="ctc-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+                    <circle cx="0.5" cy="0.5" r="0.8" fill="rgba(143,209,79,0.08)"/>
+                  </pattern>
+                  <radialGradient id="ctc-fade" cx="50%" cy="100%" r="70%">
+                    <stop offset="0%" stop-color="#0b0d10" stop-opacity="0"/>
+                    <stop offset="100%" stop-color="#0b0d10" stop-opacity="1"/>
+                  </radialGradient>
+                </defs>
+                <rect width="540" height="180" fill="url(#ctc-dots)"/>
+                <!-- Central hub -->
+                <circle cx="270" cy="90" r="52" fill="rgba(143,209,79,0.04)" stroke="rgba(143,209,79,0.12)" stroke-width="1"/>
+                <circle cx="270" cy="90" r="36" fill="rgba(143,209,79,0.06)" stroke="rgba(143,209,79,0.2)" stroke-width="1">
+                  <animateTransform attributeName="transform" type="rotate" from="0 270 90" to="360 270 90" dur="20s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="270" cy="90" r="18" fill="rgba(143,209,79,0.18)" stroke="#8FD14F" stroke-width="1.5"/>
+                <circle cx="270" cy="90" r="7" fill="#8FD14F">
+                  <animate attributeName="opacity" values="1;0.5;1" dur="2.2s" repeatCount="indefinite"/>
+                </circle>
+                <!-- Spokes -->
+                <line x1="270" y1="90" x2="80" y2="48" stroke="rgba(143,209,79,0.2)" stroke-width="1" stroke-dasharray="4 8">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1.6s" repeatCount="indefinite"/>
+                </line>
+                <line x1="270" y1="90" x2="80" y2="132" stroke="rgba(143,209,79,0.2)" stroke-width="1" stroke-dasharray="4 8">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/>
+                </line>
+                <line x1="270" y1="90" x2="460" y2="48" stroke="rgba(143,209,79,0.2)" stroke-width="1" stroke-dasharray="4 8">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1.8s" repeatCount="indefinite"/>
+                </line>
+                <line x1="270" y1="90" x2="460" y2="132" stroke="rgba(143,209,79,0.2)" stroke-width="1" stroke-dasharray="4 8">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1.4s" repeatCount="indefinite"/>
+                </line>
+                <!-- Outer nodes -->
+                <circle cx="80" cy="48" r="12" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <circle cx="80" cy="48" r="4" fill="rgba(143,209,79,0.5)"/>
+                <circle cx="80" cy="132" r="12" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <circle cx="80" cy="132" r="4" fill="rgba(143,209,79,0.5)"/>
+                <circle cx="460" cy="48" r="12" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <circle cx="460" cy="48" r="4" fill="rgba(143,209,79,0.5)"/>
+                <circle cx="460" cy="132" r="12" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <circle cx="460" cy="132" r="4" fill="rgba(143,209,79,0.5)"/>
+                <!-- Fade to bottom -->
+                <rect width="540" height="180" fill="url(#ctc-fade)"/>
+              </svg>
+            </div>
+
+            <!-- Form -->
+            <div class="px-8 pb-10 md:px-12 md:pb-12">
+              <div class="space-y-2 mb-7">
+                <p class="text-xs font-medium tracking-widest uppercase text-accent-400/60">Contacto</p>
+                <h3 class="text-white font-light leading-[1.2]">
+                  Cuéntanos qué necesitas.
+                  <span class="text-accent-400 block">Te ayudamos a definir el camino.</span>
+                </h3>
+              </div>
+
+              <form id="cc-form" class="space-y-4" novalidate>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div class="space-y-1.5">
+                    <label for="cc-nombre" class="text-sm font-medium text-white">Nombre <span class="text-accent-400">*</span></label>
+                    <input type="text" id="cc-nombre" name="nombre" required aria-required="true" placeholder="Tu nombre"
+                      class="cc-input w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"/>
+                  </div>
+                  <div class="space-y-1.5">
+                    <label for="cc-email" class="text-sm font-medium text-white">Email <span class="text-accent-400">*</span></label>
+                    <input type="email" id="cc-email" name="email" required aria-required="true" placeholder="tu@empresa.com"
+                      class="cc-input w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"/>
+                  </div>
+                </div>
+                <div class="space-y-1.5">
+                  <label for="cc-empresa" class="text-sm font-medium text-white">Empresa</label>
+                  <input type="text" id="cc-empresa" name="empresa" placeholder="Nombre de tu empresa"
+                    class="cc-input w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"/>
+                </div>
+                <div class="space-y-1.5">
+                  <label for="cc-mensaje" class="text-sm font-medium text-white">Mensaje <span class="text-white/40">(opcional)</span></label>
+                  <textarea id="cc-mensaje" name="mensaje" rows="3" placeholder="Cuéntanos brevemente en qué podemos ayudarte…"
+                    class="cc-input w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors resize-none"></textarea>
+                </div>
+                <div id="cc-error" role="alert" class="hidden text-sm text-red-400"></div>
+                <button type="submit" id="cc-submit" class="btn btn-green hover:btn-white btn-lg border-0 w-full">
+                  <span>Enviar mensaje</span>
+                </button>
+              </form>
+
+              <div id="cc-success" class="hidden py-10 text-center space-y-4">
+                <div class="mx-auto flex size-14 items-center justify-center rounded-full bg-accent-400/20">
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent-400"><path d="M20 6 9 17l-5-5"/></svg>
+                </div>
+                <div>
+                  <h4 class="text-white font-light">¡Mensaje enviado!</h4>
+                  <p class="text-white/60 mt-1">Te contactamos en las próximas 24 horas hábiles.</p>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <script>
+            (() => {
+              const form = document.getElementById('cc-form') as HTMLFormElement | null;
+              const submitBtn = document.getElementById('cc-submit') as HTMLButtonElement | null;
+              const errorDiv = document.getElementById('cc-error') as HTMLDivElement | null;
+              const successDiv = document.getElementById('cc-success') as HTMLDivElement | null;
+              if (!form || !errorDiv || !submitBtn || !successDiv) return;
+
+              function validateForm(): boolean {
+                const fields = form!.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]');
+                let firstInvalid: HTMLElement | null = null;
+                fields.forEach(field => {
+                  const valid = field.checkValidity();
+                  field.setAttribute('aria-invalid', valid ? 'false' : 'true');
+                  if (!valid && !firstInvalid) firstInvalid = field;
+                });
+                if (firstInvalid) {
+                  (firstInvalid as HTMLElement).focus();
+                  return false;
+                }
+                return true;
+              }
+
+              form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                if (!validateForm()) {
+                  errorDiv!.textContent = 'Completá los campos obligatorios.';
+                  errorDiv!.classList.remove('hidden');
+                  return;
+                }
+
+                errorDiv!.classList.add('hidden');
+                submitBtn!.disabled = true;
+                submitBtn!.innerHTML = '<svg class="animate-spin size-4 mr-2 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><span>Enviando…</span>';
+
+                try {
+                  const res = await fetch('/api/demo', { method: 'POST', body: new FormData(form!) });
+                  if (!res.ok) throw new Error();
+                  form!.classList.add('hidden');
+                  successDiv!.classList.remove('hidden');
+                } catch {
+                  errorDiv!.textContent = 'Hubo un error. Intentá nuevamente.';
+                  errorDiv!.classList.remove('hidden');
+                  submitBtn!.disabled = false;
+                  submitBtn!.innerHTML = '<span>Enviar mensaje</span>';
+                }
+              });
+            })();
+          </script>
+
+          <style>
+            .cc-input:user-invalid,
+            .cc-input[aria-invalid="true"] {
+              border-color: #f87171;
+              box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.15);
+            }
+          </style>
         </div>
       </div>
     </div>

@@ -1,0 +1,13 @@
+---
+interface Props {
+  text: string;
+  delay?: number;
+  class?: string;
+}
+
+const { text, delay = 0.1, class: className } = Astro.props;
+---
+
+<span data-ns-animate data-delay={delay} class:list={["badge-section", className]}>
+  {text}
+</span>

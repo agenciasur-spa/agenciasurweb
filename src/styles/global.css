@@ -15,30 +15,19 @@
 @theme {
   /* === Fuentes === */
   --font-inter-tight: "Inter Tight", sans-serif;
-
-  /* === Primario — Azul Agencia Sur === */
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  --font-mono:    ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, monospace;
 
   /* === Secundario === */
   --color-secondary: #1a1a1c;
   --color-accent: #fcfcfc;
   --color-split-text: #1a1a1c;
 
-  /* === Acento — Verde Eléctrico === */
-  --color-accent-300: #66ffb2;
-  --color-accent-400: #22ff88;
-  --color-accent-500: #00e676;
-  --color-accent-600: #00c853;
-  --color-accent-700: #009624;
+  /* === Acento — Verde AgenciaSur (evolucionado del verde de marca #8BC841) === */
+  --color-accent-300: #b4e86b;
+  --color-accent-400: #8fd14f;
+  --color-accent-500: #6fb52e;
+  --color-accent-600: #578f22;
+  --color-accent-700: #3e6b18;
 
   /* === Fondos — Escala dark-first === */
   --color-background-1: #fcfcfd;
@@ -62,14 +51,15 @@
   --color-stroke-5: #1b232f;
   --color-stroke-6: #202731;
   --color-stroke-7: #2a333e;
-  --color-stroke-8: #303b49;
   --color-stroke-9: #070b10;
-  --color-stroke-10: #dfd1c5;
+  /* stroke-8 y stroke-10 se removieron: definidos pero nunca usados. */
 
-  /* === Neutros especiales === */
+  /* === Neutros especiales ===
+     (ns-red was the only genuinely unused one and was removed; the rest
+     are still referenced by badge-cyan/badge-yellow and unused-but-compiled
+     utilities in nexsas-missing.css, so Tailwind needs them defined even
+     though none of those badges are used on a live page yet.) */
   --color-ns-yellow: #f9eb57;
-  --color-ns-green: #c6f56f;
-  --color-ns-red: #ffb9a2;
   --color-ns-cyan: #83e7ee;
   --color-ns-green-light: #e8fbc6;
   --color-ns-cyan-light: #cdf5f8;
@@ -78,19 +68,10 @@
   --color-ns-linen: #beab9a;
 
   /* === Gradients === */
-  --color-gradient-1: linear-gradient(135deg, #60a5fa 0%, #22ff88 100%);
-  --color-gradient-2: linear-gradient(135deg, #f9eb57 0%, #f99988 100%);
-  --color-gradient-3: linear-gradient(135deg, #83e7ee 0%, #f9eb57 100%);
-  --color-gradient-4: linear-gradient(135deg, #3b82f6 0%, #22ff88 100%);
-  --color-gradient-5: linear-gradient(165deg, rgba(255, 255, 255, 0.5) 0.51%, rgba(255, 255, 255, 0) 64.43%);
-  --color-gradient-6: linear-gradient(#83e7ee 0%, #c6f56f 100%);
+  /* Only gradient-7 is actually used (casos-exito/[slug].astro); the rest
+     (yellow/cyan/pink off-brand gradients) were unused template leftovers
+     and were removed. */
   --color-gradient-7: linear-gradient(#fff 0%, #83e7ee 100%);
-  --color-gradient-8: linear-gradient(156deg, #fff 32.92%, #60a5fa 91%);
-  --color-gradient-9: linear-gradient(156deg, #dfb0ff 32.92%, #fdbedc 91%);
-  --color-gradient-10: linear-gradient(135deg, #83e7ee 0%, #c6f56f 100%);
-  --color-gradient-11: linear-gradient(179deg, rgba(255,255,255,0) 0.68%, #fff 79.47%);
-  --color-gradient-12: radial-gradient(73.01% 80.77% at 19.23% 47.79%, #83e7ee 0%, rgba(59,130,246,0) 100%);
-  --color-gradient-13: linear-gradient(156deg, #fff 32.92%, #ecc5a2 91%);
 
   /* === Tipografía === */
   --text-heading-1: 4.25rem;
@@ -112,31 +93,60 @@
   --text-tagline-3: 0.75rem;
   --text-tagline-3--line-height: 150%;
 
-  /* === Sombras === */
+  /* === Sombras ===
+     Solo quedan las 3 que realmente se usan en el sitio (botones,
+     tarjetas de Nosotros/Casos de Éxito); las otras 12 eran valores
+     sin usar heredados del template. */
   --shadow-1: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
   --shadow-2: 0px 10px 20px -5px rgba(28, 34, 43, 0.05), 0px 20px 65px -5px rgba(28, 34, 43, 0.05);
-  --shadow-3: 0px 25px 80px -12px rgba(28, 34, 43, 0.1);
-  --shadow-4: 0px 10px 20px -5px rgba(28, 34, 43, 0.05), 0px 20px 65px -5px rgba(28, 34, 43, 0.05);
   --shadow-5: 0px 25px 80px -12px rgba(28, 34, 43, 0.1);
-  --shadow-6: 0px 44px 64px 0px rgba(29, 32, 35, 0.16);
-  --shadow-7: 0px 4px 6px -1px rgba(28, 34, 43, 0.1), 0px 2px 4px -1px rgba(28, 34, 43, 0.05);
-  --shadow-8: 0px 12.5px 40px -6px rgba(28, 34, 43, 0.1);
-  --shadow-9: 0px 1px 2px 0px rgba(28, 34, 43, 0.05);
-  --shadow-10: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  --shadow-11: 0px 12px 20px rgba(185, 166, 241, 0.16);
-  --shadow-12: 0px 1px 2px 0px rgba(16, 24, 40, 0.26);
-  --shadow-13: 0 7.818px 15.637px -3.909px rgba(28, 34, 43, 0.05), 0 15.637px 50.819px -3.909px rgba(28, 34, 43, 0.05);
-  --shadow-14: 0 1px 2px 0 rgba(16, 24, 40, 0.06);
-  --shadow-15: 40px 28px 80px 0 rgba(0, 0, 0, 0.08);
 
   /* === Blur === */
   --blur-ns-badge-blur: 17.228288650512695px;
 
   /* === Container === */
   --breakpoint-lp: 1440px;
+
+  /* === Layout containers === */
+  --container-main: 1290px;
+  --container-xl: 1440px;
+
+  /* === Section spacings === */
+  --spacing-section-sm: 88px;
+  --spacing-section-md: 100px;
+  --spacing-section-lg: 120px;
+
 }
 
 .dark {
+  --color-split-text: #fcfcfc;
+  --color-secondary: #fcfcfc;
+  --color-accent: #fcfcfc;
+}
+
+/* === Section-light ===
+   Bloques que rompen el ritmo de negro continuo del dark mode: fuerzan
+   los tokens de texto de vuelta a sus valores claros (los mismos que
+   usaría light mode) sin importar que .dark siga activo en <html>.
+   El fondo y los bordes de la sección que use esta clase deben
+   fijarse aparte (bg-background-2, border-stroke-1, etc.) ya que esos
+   tokens no son theme-aware. */
+.section-light {
+  --color-split-text: #1a1a1c;
+  --color-secondary: #1a1a1c;
+  --color-accent: #1a1a1c;
+}
+
+/* === Section-dark ===
+   Contraparte de section-light: fuerza los tokens de texto a sus
+   valores de dark mode (blanco) sin importar que .dark NO este activo
+   en <html>. El fondo y los bordes de la seccion que use esta clase
+   deben fijarse aparte (bg-background-6, border-stroke-7, etc.) ya
+   que esos tokens no son theme-aware. Cualquier elemento que use
+   bg-secondary (no solo texto) tambien se vera afectado, porque
+   --color-secondary se reutiliza para fondos ademas de texto — revisar
+   ese caso puntual dentro de la seccion antes de aplicar esta clase. */
+.section-dark {
   --color-split-text: #fcfcfc;
   --color-secondary: #fcfcfc;
   --color-accent: #fcfcfc;
@@ -149,6 +159,10 @@
 /* === Container === */
 @utility main-container {
   @apply mx-auto max-w-[1290px] px-5 lp:px-0;
+}
+
+@utility main-container-xl {
+  @apply 2xl:max-w-[1440px] max-w-[1290px] mx-5 xl:mx-auto;
 }
 
 /* === Botones — Sistema btn v1 === */
@@ -175,9 +189,9 @@
 }
 
 @utility btn-primary {
-  @apply bg-primary-500 shadow-1 border-primary-600 text-white;
+  @apply bg-accent-500 shadow-1 border-accent-600 text-secondary;
   &::before {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='white' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='%231a1a1c' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
   }
 }
 
@@ -245,13 +259,85 @@
   &:hover::before { @apply size-3 -translate-x-4 opacity-100; }
 }
 
+/* =============================================
+   COMPOSED BUTTONS — Semantic shortcuts
+   ============================================= */
+
+/* === CTA Verde — Acción principal de cada página === */
+@utility btn-cta {
+  @apply btn btn-green btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent;
+}
+
+/* === CTA Azul — Acción importante secundaria (modales, forms) === */
+@utility btn-action {
+  @apply btn btn-primary btn-md hover:btn-secondary dark:hover:btn-accent;
+}
+
+/* === Card — Botones dentro de cards y listados === */
+@utility btn-card {
+  @apply btn btn-white dark:btn-transparent btn-md hover:btn-primary;
+}
+
+/* === Ghost — Bajo énfasis (navbar, filtros) === */
+@utility btn-ghost {
+  @apply btn btn-white-dark dark:btn-white dark:text-black text-sm hover:btn-green dark:hover:btn-green dark:hover:text-black;
+  padding: 0.375rem 1.25rem;
+  &::before {
+    content: '' !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='%231a1a1c' viewBox='0 0 256 256'%3E%3Cpath d='M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    @apply absolute top-1/2 right-0 w-0 h-0 -translate-y-1/2 opacity-0 transition-all duration-300;
+  }
+  &:hover::before {
+    @apply size-2.5 -translate-x-3.5 opacity-100;
+  }
+}
+
+/* =============================================
+   COMPOSED BADGES — Semantic shortcuts
+   ============================================= */
+
+/* === Section label — Etiqueta de sección (verde suave, el más usado) === */
+@utility badge-section {
+  @apply badge badge-green dark:text-accent-400 dark:bg-accent/10;
+    font-family: var(--font-mono);
+    font-size: 12px;
+}
+
+@utility feature-list-item {
+  @apply flex items-center gap-4 py-2; 
+
+  .feature-icon {
+    @apply flex  items-center justify-center;
+    
+    svg {
+      stroke: var(--color-accent-400); /* Heredando variable del tema */
+    }
+  }
+
+  .feature-text {
+    font-family: var(--font-mono); /* Heredando la fuente del sitio */
+    font-size: 12px;
+    color: var(--color-accent-400); /* Heredando variable del tema */
+  }
+}
+
+
+
+
+/* === Tag — Tag de categoría/cliente === */
+@utility badge-tag {
+  @apply badge badge-primary;
+}
+
 /* === Badges === */
 @utility badge {
-  @apply text-tagline-2 text-secondary backdrop-blur-ns-badge-blur inline-block rounded-full px-5 py-1.5 font-normal text-nowrap lowercase first-letter:uppercase;
+  @apply text-tagline-2 backdrop-blur-ns-badge-blur inline-block rounded-full px-5 py-1.5 font-normal text-nowrap lowercase first-letter:uppercase;
 }
 
 @utility badge-green {
-  @apply bg-accent-400/20 text-accent-500;
+  @apply bg-accent-400 text-black;
 }
 
 @utility badge-cyan {
@@ -267,7 +353,7 @@
 }
 
 @utility badge-primary {
-  @apply bg-primary-100 text-primary-600 dark:bg-accent/10 dark:text-accent-400;
+  @apply bg-accent-300/25 text-accent-700 dark:bg-accent/10 dark:text-accent-400;
 }
 
 @utility badge-white {
@@ -275,38 +361,55 @@
 }
 
 @utility badge-blur {
-  @apply bg-accent/10 text-primary-50;
+  @apply bg-accent/10 text-accent-300;
 }
 
 @utility badge-metal {
   @apply bg-accent/10 text-accent/60;
 }
 
-/* === Hero text gradient animation === */
-.hero-text-gradient {
-  animation: textAnimate 5s linear infinite;
-  background-size: 200%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  display: inline-block;
-  background-repeat: no-repeat;
+
+/* Nota: case-item/case-label estaban dentro de un bloque "@layer
+   components" usando la sintaxis inexistente "@component nombre { }"
+   (no es una regla valida de CSS ni de Tailwind v4) — el navegador la
+   ignoraba en silencio y nunca se aplicaba ningun estilo (incluido el
+   fondo rojo de debug que tenia feature-list-item ahi mismo, que en
+   realidad tampoco se veia). feature-list-item/feature-icon/
+   feature-text ya se definieron arriba, junto a badge-section, con
+   nesting real; aqui solo quedan case-item/case-label, movidas a
+   @utility a nivel raiz (Tailwind v4 no permite @utility anidado
+   dentro de @layer). */
+
+/* Para el contenedor de la lista (labels "Empresa:"/"Sector:"/"Proyecto:" en casos-exito/[slug].astro) */
+@utility case-item {
+  @apply text-black/60 dark:text-white/60;
 }
 
-.hero-text-color-1 {
-  background-image: linear-gradient(45deg, #60a5fa, #22ff88, #60a5fa);
+/* Para el label/titulo */
+@utility case-label {
+  @apply text-secondary dark:text-accent! text-sm font-medium;
 }
 
-.hero-text-color-2 {
-  background-image: linear-gradient(45deg, #83e7ee, #f9eb57, #83e7ee);
+/* === Scroll cue — boton "ver mas" al pie del Hero === */
+@keyframes scroll-cue-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 }
 
-@keyframes textAnimate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@utility scroll-cue {
+  @apply items-center justify-center size-10 rounded-full border border-white/20 text-white/70 transition-colors duration-300;
+  animation: scroll-cue-bounce 2s ease-in-out infinite;
+
+  &:hover {
+    @apply border-accent-400 text-accent-400;
+  }
+
+  svg {
+    @apply size-4;
+  }
 }
+
+
 
 /* === Gradient lines animation === */
 @keyframes top-to-bottom {
@@ -404,29 +507,33 @@ body {
 }
 
 /* === Tipografía === */
-h1, h2, h3, h4, h5, h6 {
-  @apply font-inter-tight text-secondary dark:text-accent;
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-inter-tight text-secondary dark:text-accent;
+  }
+
+  h1 {
+    @apply text-heading-4 sm:text-heading-3 md:text-heading-2 xl:text-heading-1 font-medium;
+  }
+
+  h2 {
+    @apply text-heading-5 sm:text-heading-4 md:text-heading-3 xl:text-heading-2 font-medium;
+  }
+
+  h3 {
+    @apply text-heading-5 md:text-heading-4 xl:text-heading-3;
+  }
+
+  h4 { @apply text-heading-4; }
+  h5 { @apply text-heading-5; }
+  h6 { @apply text-heading-6; }
+
+  p {
+    @apply text-tagline-2 sm:text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal;
+  }
 }
 
-h1 {
-  @apply text-heading-4 sm:text-heading-3 md:text-heading-2 xl:text-heading-1 font-medium;
-}
 
-h2 {
-  @apply text-heading-5 sm:text-heading-4 md:text-heading-3 xl:text-heading-2 font-medium;
-}
-
-h3 {
-  @apply text-heading-5 md:text-heading-4 xl:text-heading-3;
-}
-
-h4 { @apply text-heading-4; }
-h5 { @apply text-heading-5; }
-h6 { @apply text-heading-6; }
-
-p {
-  @apply text-tagline-2 sm:text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal;
-}
 
 /* === Animaciones scroll === */
 [data-ns-animate] {
@@ -462,14 +569,6 @@ p {
 }
 .modal-close {
   display: none;
-}
-
-/* === Stack Cards === */
-.stack-cards {
-  --stack-cards-gap: 24px;
-}
-.stack-cards__item {
-  @apply sticky top-28 origin-top overflow-hidden;
 }
 
 /* === Footer links === */
@@ -517,80 +616,14 @@ p {
   clip-path: inset(0 50% 0 0);
 }
 
+/* === Accent color utilities === */
+.text-accent-300 { color: var(--color-accent-300); }
+.text-accent-400 { color: var(--color-accent-400); }
+.text-accent-500 { color: var(--color-accent-500); }
+.text-accent-600 { color: var(--color-accent-600); }
+.text-accent-700 { color: var(--color-accent-700); }
 
-.bg-background-3{ background-color: var(--color-accent-700); }
-.border-stroke-7{ border-color: var(--color-stroke-7); }    
-.border-stroke-7:hover{ border-color: var(--color-accent-700); }    
-p.text-white , .demo-text{ color:#FFF!important; }
-
-dark:border-background-7{ background-color: var(--color-accent-400)!important; }
-border-background-7{ background-color: var(--color-accent-400)!important; }
-
-
-  .badge-hero.text-tagline-2 {
-    color:var(--color-accent-300);
-  }
-
-  .text-accent-300 {
-    color: var(--color-accent-300);
-  }
-  .text-accent-400 {
-    color: var(--color-accent-400);
-  }
-  .text-accent-500 {
-    color: var(--color-accent-500);
-  }
-  .text-accent-600 {
-    color: var(--color-accent-600);
-  }
-  .text-accent-700 {
-    color: var(--color-accent-700);
-  }
-
-.badge.badge-green-v2{
-    background-color: var(--color-accent-400);
-    color: black;
-} 
-
-
-
- .fw-300{
-    font-weight: 300!important;
-}
-
-
-
-a:hover {
- color:var(--color-accent-400);
-}   
-/*
-  class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto sm:mx-0 block md:inline-block w-[90%] md:w-auto btn-lg md:btn-xl border-0"
-  */
-
-  .gradient-1 {
-  background-image: linear-gradient(45deg, #60a5fa, #22ff88, #60a5fa);
-}
-
-.gradient-2 {
-  background-image: linear-gradient(45deg, #83e7ee, #f9eb57, #83e7ee);
-}
-
-
-.text-white {
-  color: var(--color-accent) !important;
-}
-
-.text-tagline-1 {
-color: var(--color-accent) !important;
-  font-size: var(--text-tagline-1);
-  line-height: var(--text-tagline-1--line-height);
-}
-
-.text-tagline-2 {
-  color: #9a9a9a!important;
-  
-  
-}
+.text-green { color: var(--color-accent-500); }
 
 /* =========================
    Marquee Animations
@@ -667,3 +700,12 @@ color: var(--color-accent) !important;
   0% { transform: translateX(-50%); }
   100% { transform: translateX(0); }
 }
+
+.as-green {
+  color: var(--color-accent-300);
+}
+
+
+
+
+

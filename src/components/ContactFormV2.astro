@@ -1,0 +1,649 @@
+---
+/**
+ * ContactFormV2.astro
+ *
+ * 3-step wizard contact form styled to match the Agencia Sur design system.
+ * Dark full-container layout (same pattern as SistemasGrid).
+ * Submits to /api/contacto via fetch (Resend-backed).
+ *
+ * Fields align with the API contract:
+ *   nombre, email, sector, necesidad, objetivo, plazo, extra
+ *
+ * Usage:
+ *   import ContactForm from '../components/ContactFormV2.astro';
+ *   <ContactForm />
+ */
+
+import BadgeSection from './blocks/BadgeSection.astro';
+---
+
+<!-- Sentinel: marca la posicion "natural" (sin transform) del borde
+     superior del panel, para que el ScrollTrigger del reveal
+     (initPanelReveal en animations.ts) no mida un elemento que el mismo
+     esta transformando (eso desincroniza el scrub). Mismo patron que
+     #servicios-trigger en ServiciosGrid.astro. -->
+<div id="contact-form-trigger" aria-hidden="true" class="h-0 w-full"></div>
+
+<section
+  class="bg-background-2 dark:bg-background-6 pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px]"
+>
+  <div
+    id="contact-form-panel"
+    data-od-id="form"
+    class="main-container-xl rounded-4xl bg-secondary dark:bg-background-8 overflow-hidden relative py-8 lg:py-12 px-6 md:px-10"
+  >
+      <div class="max-w-[80%] mx-auto">
+      <!-- Header -->
+      <header data-od-id="form-head" class="text-center mb-10">
+      <BadgeSection text="Empecemos" delay={0.1} />
+      <h4
+        data-ns-animate
+        data-delay="0.2"
+        class="mt-4 font-light text-white"
+      >
+        Cuéntanos qué necesitas.
+        <span class="text-accent-400 block">
+          Te ayudamos a definir el camino.
+        </span>
+      </h4>
+      <p
+        data-ns-animate
+        data-delay="0.3"
+        class="mt-3 text-white/60 max-w-[52ch] mx-auto text-tagline-1"
+      >
+        Desde la idea hasta la implementación — definimos juntos el camino.
+      </p>
+    </header>
+
+    <!-- Stepper -->
+    <ol
+      data-od-id="stepper"
+      data-ns-animate
+      data-delay="0.3"
+      aria-label="Pasos del formulario"
+      class="flex list-none p-0 m-0 mb-10 border-t border-b border-stroke-7"
+    >
+      <li
+        class="cf-stepper-item is-active flex-1 flex items-center gap-2.5 px-3 py-4 text-white/50 text-tagline-2 relative"
+        data-step="1"
+      >
+        <span class="cf-stepper-num inline-grid place-items-center size-[26px] rounded-full border border-stroke-7 font-mono text-xs font-medium shrink-0 transition-all duration-150">
+          <span class="cf-stepper-num-text">1</span>
+          <span class="cf-stepper-num-check hidden text-sm leading-none">✓</span>
+        </span>
+        <span class="cf-stepper-label font-medium max-sm:hidden">Identidad</span>
+      </li>
+      <li
+        class="cf-stepper-item flex-1 flex items-center gap-2.5 px-3 py-4 text-white/50 text-tagline-2 relative"
+        data-step="2"
+      >
+        <span class="cf-stepper-num inline-grid place-items-center size-[26px] rounded-full border border-stroke-7 font-mono text-xs font-medium shrink-0 transition-all duration-150">
+          <span class="cf-stepper-num-text">2</span>
+          <span class="cf-stepper-num-check hidden text-sm leading-none">✓</span>
+        </span>
+        <span class="cf-stepper-label font-medium max-sm:hidden">Necesidades</span>
+      </li>
+      <li
+        class="cf-stepper-item flex-1 flex items-center gap-2.5 px-3 py-4 text-white/50 text-tagline-2 relative"
+        data-step="3"
+      >
+        <span class="cf-stepper-num inline-grid place-items-center size-[26px] rounded-full border border-stroke-7 font-mono text-xs font-medium shrink-0 transition-all duration-150">
+          <span class="cf-stepper-num-text">3</span>
+          <span class="cf-stepper-num-check hidden text-sm leading-none">✓</span>
+        </span>
+        <span class="cf-stepper-label font-medium max-sm:hidden">Resumen</span>
+      </li>
+    </ol>
+
+    <!-- Wizard Form -->
+    <form id="cf-form" class="cf-wizard" novalidate>
+
+      <!-- Step 1: Identidad -->
+      <fieldset class="cf-step is-active" data-step="1" data-od-id="step-1">
+        <legend class="text-heading-5 sm:text-heading-4 font-light text-white mb-1.5">
+          Primero, ¿quién eres?
+        </legend>
+        <p class="text-tagline-1 text-white/50 mb-8">
+          Tres datos para que sepamos a quién le escribimos.
+        </p>
+
+        <div class="mb-5 flex flex-col gap-1.5">
+          <label class="text-tagline-2 text-white font-medium" for="cf-nombre">
+            ¿Cómo te llamas?<span class="text-accent-400 font-mono text-[0.8em] ml-0.5 select-none">*</span>
+          </label>
+          <input
+            class="cf-input w-full px-3.5 py-2.5 rounded-[10px] border border-stroke-7 bg-background-6 text-white text-tagline-1 placeholder:text-white/30 transition-colors duration-150 focus:outline-none focus:border-accent-400 focus:ring-2 focus:ring-accent-400/20"
+            type="text" id="cf-nombre" name="nombre"
+            required aria-required="true" autocomplete="name"
+            placeholder="Tu nombre"
+          />
+        </div>
+
+        <div class="mb-5 flex flex-col gap-1.5">
+          <label class="text-tagline-2 text-white font-medium" for="cf-email">
+            ¿A qué correo te escribimos?<span class="text-accent-400 font-mono text-[0.8em] ml-0.5 select-none">*</span>
+          </label>
+          <input
+            class="cf-input w-full px-3.5 py-2.5 rounded-[10px] border border-stroke-7 bg-background-6 text-white text-tagline-1 placeholder:text-white/30 transition-colors duration-150 focus:outline-none focus:border-accent-400 focus:ring-2 focus:ring-accent-400/20"
+            type="email" id="cf-email" name="email"
+            required aria-required="true" autocomplete="email"
+            placeholder="tu@correo.com"
+          />
+        </div>
+
+        <div class="mb-5 flex flex-col gap-1.5">
+          <label class="text-tagline-2 text-white font-medium" for="cf-sector">
+            ¿En qué sector trabaja tu empresa?<span class="text-accent-400 font-mono text-[0.8em] ml-0.5 select-none">*</span>
+          </label>
+          <input
+            class="cf-input w-full px-3.5 py-2.5 rounded-[10px] border border-stroke-7 bg-background-6 text-white text-tagline-1 placeholder:text-white/30 transition-colors duration-150 focus:outline-none focus:border-accent-400 focus:ring-2 focus:ring-accent-400/20"
+            type="text" id="cf-sector" name="sector"
+            required aria-required="true"
+            placeholder="Tecnología, retail, salud…"
+          />
+        </div>
+
+        <p class="text-[12px] text-accent-400/60 font-mono mt-8">* Campos obligatorios</p>
+
+        <div class="flex items-center justify-between gap-5 mt-8 flex-wrap">
+          <span></span>
+          <button
+            type="button"
+            class="cf-btn cf-btn-primary inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-accent-400 text-secondary font-medium text-tagline-1 cursor-pointer transition-all duration-150 hover:bg-accent-300 active:translate-y-px"
+            data-action="next"
+          >
+            Siguiente
+            <span class="cf-btn-arrow-icon transition-transform duration-150 group-hover:translate-x-0.5">→</span>
+          </button>
+        </div>
+      </fieldset>
+
+      <!-- Step 2: Necesidades -->
+      <fieldset class="cf-step" data-step="2" data-od-id="step-2" hidden>
+        <legend class="text-heading-5 sm:text-heading-4 font-light text-white mb-1.5">
+          ¿Qué necesitas?
+        </legend>
+        <p class="text-tagline-1 text-white/50 mb-8">
+          Tres respuestas para entender el proyecto.
+        </p>
+
+        <div class="mb-5 flex flex-col gap-1.5">
+          <label class="text-tagline-2 text-white font-medium" for="cf-necesidad">
+            ¿Qué necesitan hoy?<span class="text-accent-400 font-mono text-[0.8em] ml-0.5 select-none">*</span>
+          </label>
+          <input
+            class="cf-input w-full px-3.5 py-2.5 rounded-[10px] border border-stroke-7 bg-background-6 text-white text-tagline-1 placeholder:text-white/30 transition-colors duration-150 focus:outline-none focus:border-accent-400 focus:ring-2 focus:ring-accent-400/20"
+            type="text" id="cf-necesidad" name="necesidad"
+            required aria-required="true"
+            placeholder="Una landing, un MVP, un rediseño…"
+          />
+        </div>
+
+        <div class="mb-5 flex flex-col gap-1.5">
+          <label class="text-tagline-2 text-white font-medium" for="cf-objetivo">
+            ¿Qué quieren lograr?<span class="text-accent-400 font-mono text-[0.8em] ml-0.5 select-none">*</span>
+          </label>
+          <input
+            class="cf-input w-full px-3.5 py-2.5 rounded-[10px] border border-stroke-7 bg-background-6 text-white text-tagline-1 placeholder:text-white/30 transition-colors duration-150 focus:outline-none focus:border-accent-400 focus:ring-2 focus:ring-accent-400/20"
+            type="text" id="cf-objetivo" name="objetivo"
+            required aria-required="true"
+            placeholder="Validar, lanzar, escalar…"
+          />
+        </div>
+
+        <div class="mb-5 flex flex-col gap-1.5">
+          <label class="text-tagline-2 text-white font-medium" for="cf-plazo">
+            ¿Con qué plazo?<span class="text-accent-400 font-mono text-[0.8em] ml-0.5 select-none">*</span>
+          </label>
+          <input
+            class="cf-input w-full px-3.5 py-2.5 rounded-[10px] border border-stroke-7 bg-background-6 text-white text-tagline-1 placeholder:text-white/30 transition-colors duration-150 focus:outline-none focus:border-accent-400 focus:ring-2 focus:ring-accent-400/20"
+            type="text" id="cf-plazo" name="plazo"
+            required aria-required="true"
+            placeholder="La semana que viene, en tres meses…"
+          />
+        </div>
+
+        <p class="text-[12px] text-accent-400/60 font-mono mt-8">* Campos obligatorios</p>
+
+        <div class="flex items-center justify-between gap-5 mt-8 flex-wrap">
+          <button
+            type="button"
+            class="cf-btn cf-btn-ghost inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-stroke-7 text-white/60 font-medium text-tagline-1 cursor-pointer transition-colors duration-150 hover:border-accent-400 hover:text-accent-400"
+            data-action="back"
+          >
+            ← Atrás
+          </button>
+          <button
+            type="button"
+            class="cf-btn cf-btn-primary inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-accent-400 text-secondary font-medium text-tagline-1 cursor-pointer transition-all duration-150 hover:bg-accent-300 active:translate-y-px"
+            data-action="next"
+          >
+            Siguiente
+            <span>→</span>
+          </button>
+        </div>
+      </fieldset>
+
+      <!-- Step 3: Resumen -->
+      <fieldset class="cf-step" data-step="3" data-od-id="step-3" hidden>
+        <legend class="text-heading-5 sm:text-heading-4 font-light text-white mb-1.5">
+          Esto es lo que nos contaste
+        </legend>
+        <p class="text-tagline-1 text-white/50 mb-8">
+          Revisa que esté bien. Si quieres cambiar algo, edita el paso correspondiente.
+        </p>
+
+        <!-- Summary readback -->
+        <div
+          id="cf-summary"
+          data-od-id="summary"
+          aria-live="polite"
+          class="cf-summary bg-background-6 border border-stroke-7 rounded-2xl p-6 mb-8 text-white"
+        >
+          <!-- JS fills this on entering step 3 -->
+        </div>
+
+        <div class="mb-5 flex flex-col gap-1.5">
+          <label class="text-tagline-2 text-white font-medium" for="cf-extra">
+            ¿Algo más que quieras agregar?
+          </label>
+          <textarea
+            class="cf-input w-full px-3.5 py-2.5 rounded-[10px] border border-stroke-7 bg-background-6 text-white text-tagline-1 placeholder:text-white/30 transition-colors duration-150 focus:outline-none focus:border-accent-400 focus:ring-2 focus:ring-accent-400/20 min-h-[96px] resize-y leading-relaxed"
+            id="cf-extra" name="extra" rows="3"
+            placeholder="Contexto, referencias, una idea loca…"
+            aria-describedby="cf-extra-help"
+          ></textarea>
+          <span id="cf-extra-help" class="text-[13px] text-white/40">
+            Opcional — links, deadlines, contexto extra.
+          </span>
+        </div>
+
+        <!-- Error message -->
+        <div id="cf-error" class="hidden mb-4 px-4 py-3 rounded-[10px] bg-red-500/10 border border-red-500/30 text-red-300 text-tagline-2" role="alert"></div>
+
+        <div class="flex items-center justify-between gap-5 mt-8 flex-wrap">
+          <button
+            type="button"
+            class="cf-btn cf-btn-ghost inline-flex items-center justify-center px-4 py-2.5 rounded-full border border-stroke-7 text-white/60 font-medium text-tagline-1 cursor-pointer transition-colors duration-150 hover:border-accent-400 hover:text-accent-400"
+            data-action="back"
+          >
+            ← Atrás
+          </button>
+          <button
+            type="submit"
+            id="cf-submit"
+            class="cf-btn cf-btn-primary inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-accent-400 text-secondary font-medium text-tagline-1 cursor-pointer transition-all duration-150 hover:bg-accent-300 active:translate-y-px disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span id="cf-submit-text">Enviar</span>
+            <svg id="cf-submit-spinner" class="hidden animate-spin size-4" viewBox="0 0 24 24" fill="none">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+            </svg>
+          </button>
+        </div>
+      </fieldset>
+    </form>
+
+    <!-- Thanks (final state) -->
+    <section class="cf-thanks" id="cf-thanks" aria-live="polite" data-od-id="thanks" hidden>
+      <div class="text-center">
+        <p class="inline-flex items-center gap-2 font-mono text-[12px] tracking-wider uppercase text-white/50 mb-5">
+          <span class="inline-block size-1.5 rounded-full bg-accent-400"></span>
+          Recibido
+        </p>
+        <h2 class="text-heading-4 sm:text-heading-3 font-semibold text-white mb-5">
+          Gracias, <em data-thanks="nombre" class="not-italic font-semibold">amigo</em>.
+        </h2>
+        <p class="cf-thanks-letter text-tagline-1 text-white/70 max-w-[60ch] mx-auto leading-relaxed mb-8" data-thanks-letter></p>
+        <button
+          type="button"
+          id="cf-reset"
+          class="inline-flex items-center justify-center px-5 py-2.5 rounded-full border border-stroke-7 text-white/60 font-medium text-tagline-1 cursor-pointer transition-all duration-150 hover:border-accent-400 hover:text-accent-400"
+        >
+          Volver a empezar
+        </button>
+      </div>
+    </section>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ─── Stepper states (dark theme) ─────────────────────────── */
+  .cf-stepper-item.is-active {
+    color: #fff;
+  }
+  .cf-stepper-item.is-active .cf-stepper-num {
+    background: #fff;
+    border-color: #fff;
+    color: #1a1a1c;
+  }
+  .cf-stepper-item.is-done .cf-stepper-num {
+    background: rgba(143, 209, 79, 0.15);
+    border-color: rgba(143, 209, 79, 0.3);
+    color: #8fd14f;
+  }
+  .cf-stepper-item.is-done .cf-stepper-num-text { display: none; }
+  .cf-stepper-item.is-done .cf-stepper-num-check { display: inline; }
+
+  /* ─── Step transitions ────────────────────────────────────── */
+  .cf-step {
+    border: 0; padding: 0; margin: 0;
+    display: none;
+  }
+  .cf-step.is-active {
+    display: block;
+    animation: cf-step-in 600ms cubic-bezier(0.2, 0, 0, 1) both;
+  }
+  @keyframes cf-step-in {
+    /* Mismo lenguaje de reveal que el resto del sitio (data-ns-animate):
+       blur + slide-up + fade, no solo un fade sutil. */
+    from { opacity: 0; filter: blur(16px); transform: translateY(60px); }
+    to   { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+
+  /* ─── Input validation ────────────────────────────────────── */
+  .cf-input:user-invalid {
+    border-color: #f87171;
+  }
+
+  /* ─── Summary marks ───────────────────────────────────────── */
+  /* .cf-summary-letter / mark / .cf-missing are injected client-side via
+     innerHTML (renderSummary/renderThanks), so they never receive Astro's
+     scoped data-astro-cid attribute — their rules live in the is:global
+     block below instead, or these scoped copies would silently no-op. */
+  .cf-summary-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .cf-summary-actions button {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 16px;
+    color: rgba(255, 255, 255, 0.6);
+    font: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 9999px;
+    transition: all 150ms ease;
+  }
+  .cf-summary-actions button:hover {
+    color: #8fd14f;
+    border-color: #8fd14f;
+    background: rgba(143, 209, 79, 0.05);
+  }
+
+  /* ─── Thanks animation ────────────────────────────────────── */
+  .cf-thanks {
+    animation: cf-thanks-in 320ms cubic-bezier(0.2, 0, 0, 1) both;
+  }
+  .cf-thanks[hidden] { display: none; }
+  @keyframes cf-thanks-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─── Responsive ──────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .cf-wizard fieldset > div:last-child {
+      flex-direction: column-reverse;
+      align-items: stretch;
+    }
+  }
+
+  /* ─── Motion reduce ───────────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+
+<!-- Estilos para el contenido de #cf-summary / #cf-thanks inyectado por JS
+     (innerHTML): Astro no puede aplicarles el scoping de <style> normal,
+     por eso van en un bloque is:global aparte. -->
+<style is:global>
+  .cf-summary-letter {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #fff !important;
+    margin: 0;
+  }
+  .cf-summary-letter mark,
+  .cf-thanks-letter mark {
+    background: rgba(143, 209, 79, 0.15) !important;
+    color: #8fd14f !important;
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(143, 209, 79, 0.3);
+    font-weight: 500;
+  }
+  .cf-summary-letter .cf-missing,
+  .cf-thanks-letter .cf-missing {
+    color: rgba(255, 255, 255, 0.3) !important;
+    font-style: italic;
+  }
+</style>
+
+<script>
+  (() => {
+    'use strict';
+
+    const form       = document.getElementById('cf-form') as HTMLFormElement | null;
+    const stepper    = document.querySelector('[data-od-id="stepper"]') as HTMLElement | null;
+    const steps      = Array.from(document.querySelectorAll<HTMLElement>('.cf-step'));
+    const summary    = document.getElementById('cf-summary') as HTMLElement | null;
+    const thanks     = document.getElementById('cf-thanks') as HTMLElement | null;
+    const resetBtn   = document.getElementById('cf-reset') as HTMLButtonElement | null;
+    const submitBtn  = document.getElementById('cf-submit') as HTMLButtonElement | null;
+    const submitText = document.getElementById('cf-submit-text') as HTMLElement | null;
+    const submitSpin = document.getElementById('cf-submit-spinner') as HTMLElement | null;
+    const errorBox   = document.getElementById('cf-error') as HTMLElement | null;
+    if (!form || !thanks || !stepper) return;
+
+    const escape = (s: string): string => String(s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+    const mark = (value: string | undefined, fallback?: string): string => {
+      const v = (value || '').trim();
+      return v
+        ? `<mark>${escape(v)}</mark>`
+        : `<mark class="cf-missing">${escape(fallback || '—')}</mark>`;
+    };
+
+    const setStep = (n: number): void => {
+      steps.forEach((s) => {
+        const stepNum = parseInt(s.dataset.step!, 10);
+        const isActive = stepNum === n;
+        s.classList.toggle('is-active', isActive);
+        s.hidden = !isActive;
+      });
+      stepper.querySelectorAll<HTMLElement>('.cf-stepper-item').forEach((item) => {
+        const stepNum = parseInt(item.dataset.step!, 10);
+        item.classList.toggle('is-active', stepNum === n);
+        item.classList.toggle('is-done', stepNum < n);
+      });
+    };
+
+    const validateStep = (n: number): boolean => {
+      const step = form.querySelector(`.cf-step[data-step="${n}"]`);
+      if (!step) return true;
+      const fields = Array.from(step.querySelectorAll('input[required], textarea[required]')) as Array<HTMLInputElement | HTMLTextAreaElement>;
+      let firstInvalid: (HTMLInputElement | HTMLTextAreaElement) | null = null;
+      for (const f of fields) {
+        if (!f.checkValidity() && !firstInvalid) {
+          firstInvalid = f;
+        }
+      }
+      if (firstInvalid) firstInvalid.focus();
+      return !firstInvalid;
+    };
+
+    const showError = (msg: string): void => {
+      if (!errorBox) return;
+      errorBox.textContent = msg;
+      errorBox.classList.remove('hidden');
+    };
+
+    const hideError = (): void => {
+      if (!errorBox) return;
+      errorBox.classList.add('hidden');
+      errorBox.textContent = '';
+    };
+
+    const setLoading = (loading: boolean): void => {
+      if (!submitBtn || !submitText || !submitSpin) return;
+      submitBtn.disabled = loading;
+      submitText.textContent = loading ? 'Enviando…' : 'Enviar';
+      submitSpin.classList.toggle('hidden', !loading);
+    };
+
+    const renderSummary = (): void => {
+      if (!summary) return;
+      const data = Object.fromEntries(new FormData(form).entries()) as Record<string, string>;
+      const html = [
+        '<p class="cf-summary-letter">',
+        'Hola, me llamo ' + mark(data.nombre) + ' y mi correo es ' + mark(data.email) + '.',
+        '<br />',
+        'Trabajo en el sector ' + mark(data.sector) + '.',
+        '<br /><br />',
+        'Actualmente necesitamos ' + mark(data.necesidad) + ' y queremos lograr ' + mark(data.objetivo) + '.',
+        '<br />',
+        'Nos gustaría empezar ' + mark(data.plazo) + '.',
+        '</p>',
+        '<div class="cf-summary-actions">',
+        '<button type="button" data-edit-step="1">Editar identidad</button>',
+        '<button type="button" data-edit-step="2">Editar necesidades</button>',
+        '</div>'
+      ].join('');
+      summary.innerHTML = html;
+      summary.querySelectorAll<HTMLButtonElement>('[data-edit-step]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const target = parseInt(btn.dataset.editStep!, 10);
+          setStep(target);
+          const firstField = form.querySelector<HTMLInputElement>(`.cf-step[data-step="${target}"] input`);
+          if (firstField) firstField.focus();
+        });
+      });
+    };
+
+    // ─── Navigation (event delegation) ─────────────────────────
+    form.addEventListener('click', (event: MouseEvent) => {
+      const trigger = (event.target as HTMLElement)?.closest?.('[data-action]') as HTMLElement | null;
+      if (!trigger) return;
+      const action = trigger.dataset.action;
+      const activeStep = form.querySelector<HTMLElement>('.cf-step.is-active');
+      if (!activeStep) return;
+      const currentStep = parseInt(activeStep.dataset.step!, 10);
+      if (action === 'next') {
+        if (!validateStep(currentStep)) return;
+        const nextStep = currentStep + 1;
+        if (nextStep > steps.length) return;
+        if (nextStep === 3) renderSummary();
+        setStep(nextStep);
+        const focusTarget = form.querySelector<HTMLInputElement | HTMLTextAreaElement>(
+          `.cf-step[data-step="${nextStep}"] input, .cf-step[data-step="${nextStep}"] textarea`
+        );
+        if (focusTarget) focusTarget.focus();
+      } else if (action === 'back') {
+        setStep(currentStep - 1);
+      }
+    });
+
+    // ─── Submit via fetch ──────────────────────────────────────
+    form.addEventListener('submit', async (event: SubmitEvent) => {
+      event.preventDefault();
+      hideError();
+
+      // Validate all steps before submitting
+      for (let i = 1; i <= 2; i++) {
+        if (!validateStep(i)) {
+          setStep(i);
+          return;
+        }
+      }
+
+      setLoading(true);
+
+      try {
+        const formData = new FormData(form);
+        const response = await fetch('/api/contacto', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json() as { success?: boolean; error?: string; message?: string };
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Error al enviar el formulario.');
+        }
+
+        // Success — show thanks
+        const data = Object.fromEntries(formData.entries()) as Record<string, string>;
+        const letterEl = thanks.querySelector<HTMLElement>('[data-thanks-letter]');
+        const nameEl   = thanks.querySelector<HTMLElement>('[data-thanks="nombre"]');
+        if (nameEl) nameEl.textContent = (data.nombre || '').trim() || 'amigo';
+        if (letterEl) {
+          letterEl.innerHTML =
+            'Te escribimos a ' + mark(data.email) + '.' +
+            '<br /><br />' +
+            'Trabajan en el sector ' + mark(data.sector) + '. ' +
+            'Lo que necesitan hoy es ' + mark(data.necesidad) + ' ' +
+            'y lo que quieren lograr es ' + mark(data.objetivo) + '. ' +
+            'El plazo es ' + mark(data.plazo) + '.';
+          const extra = (data.extra || '').trim();
+          if (extra) {
+            letterEl.innerHTML +=
+              '<br /><br /><span class="text-white/40 text-[13px]">Y por último: "' + escape(extra) + '"</span>';
+          }
+        }
+
+        form.style.display = 'none';
+        stepper.style.display = 'none';
+        thanks.hidden = false;
+
+        window.setTimeout(() => {
+          const top = thanks.getBoundingClientRect().top + window.scrollY - 40;
+          window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+        }, 60);
+
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : 'Hubo un error. Intenta nuevamente.';
+        showError(message);
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    // ─── Clear validation on input ─────────────────────────────
+    form.addEventListener('input', (event: Event) => {
+      const t = event.target as HTMLInputElement | HTMLTextAreaElement | null;
+      if (t && t.matches('input, textarea') && t.checkValidity()) {
+        t.removeAttribute('aria-invalid');
+      }
+      hideError();
+    });
+
+    // ─── Reset ─────────────────────────────────────────────────
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        thanks.hidden = true;
+        form.style.display = '';
+        stepper!.style.display = '';
+        form.reset();
+        hideError();
+        setStep(1);
+        const firstField = form.querySelector<HTMLInputElement>('.cf-step[data-step="1"] input');
+        if (firstField) firstField.focus();
+      });
+    }
+
+    setStep(1);
+  })();
+</script>

@@ -43,7 +43,7 @@ const menuItems = [
   <!-- Dropdown -->
   <div
     id={Uii}
-    class="dropdown-menu bg-background-6 border-stroke-1 pointer-events-none fixed top-full left-1/2 z-50 mt-2 flex w-full -translate-x-1/2 items-start gap-y-6 rounded-[20px] border p-4 opacity-0 transition-all duration-300 md:gap-x-6 lg:w-[946px] dark:border-white/10"
+    class="dropdown-menu bg-background-6 border-stroke-1 pointer-events-none fixed top-full left-1/2 z-50 mt-2 flex w-full -translate-x-1/2 items-start gap-y-6 rounded-[20px] border p-4 opacity-0 transition-all duration-300 md:gap-x-6 lg:w-[946px] dark:border-stroke-7"
   >
     {menuItems.map((item) => (
       <div class="flex-1 space-y-3">
@@ -52,14 +52,14 @@ const menuItems = [
             <a href={item.href} class="group relative flex items-start gap-2 p-3">
               <!-- Hover overlay -->
               <div
-                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-background-3 dark:bg-background-7 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
+                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/5 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
               ></div>
 
               <!-- Icono -->
               <div
-                class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border border-white/50 p-1 dark:border-white/10"
+                class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border border-stroke-3 p-1 dark:border-stroke-7"
               >
-                <item.icon color="#22ff88" size={48} stroke-width={1} />
+                <item.icon color="currentColor" size={48} stroke-width={1} class="text-accent-400" />
               </div>
 
               <!-- Texto -->

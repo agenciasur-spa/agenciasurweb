@@ -1,8 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactoFooter from '../components/ContactoFooter.astro';
+import Footer from '../components/Footer.astro';
+import DemoModal from '../components/DemoModal.astro';
 import { UserCog, Workflow, Code, Cloud, ShieldCheck, Rocket, CheckCircle, Smartphone, Accessibility, Monitor, Server, Database, Container, Globe, GitBranch, Zap, Webhook } from '@lucide/astro';
 import StackIcon from 'tech-stack-icons';
+
+
 
 const procesoSteps = [
   {
@@ -42,13 +46,126 @@ const procesoSteps = [
   },
 ];
 
+const servicios = [
+  {
+    icon: UserCog,
+    slug: 'consultoria',
+    title: 'Consultoría',
+    description: 'Asesoría tecnológica estratégica para tu negocio.',
+    detalle:
+      'Diagnosticamos tu operación antes de proponer una sola herramienta. Identificamos cuellos de botella reales, priorizamos por impacto y definimos una hoja de ruta técnica que tu equipo puede ejecutar con o sin nosotros.',
+    capacidades: [
+      'Diagnóstico de procesos y sistemas',
+      'Arquitectura de solución',
+      'Priorización por impacto',
+      'Roadmap técnico',
+      'Acompañamiento a equipos internos',
+      'Auditoría de infraestructura existente',
+    ],
+  },
+  {
+    icon: Workflow,
+    slug: 'automatizacion',
+    title: 'Automatización',
+    description: 'Optimizamos procesos críticos con tecnología inteligente.',
+    detalle:
+      'Conectamos tus sistemas y eliminamos tareas manuales repetitivas. Diseñamos flujos que se adaptan a cómo opera tu negocio, no al revés.',
+    capacidades: [
+      'Automatización de flujos de trabajo',
+      'Integraciones entre sistemas (APIs)',
+      'Bots y agentes para tareas repetitivas',
+      'Orquestación de procesos (n8n y similares)',
+      'Notificaciones y alertas automatizadas',
+      'Reducción de errores operativos',
+    ],
+  },
+  {
+    icon: Code,
+    slug: 'desarrollo-web',
+    title: 'Desarrollo Web',
+    description: 'Sistemas robustos sobre arquitecturas modernas.',
+    detalle:
+      'Construimos plataformas y sistemas web sobre arquitecturas modernas, pensadas para crecer sin reescribirse cada dos años.',
+    capacidades: [
+      'Frontend & backend a medida',
+      'Integraciones con CMS headless',
+      'APIs y arquitectura de datos',
+      'Aplicaciones web responsivas',
+      'Performance y accesibilidad',
+      'Mantenimiento y evolución continua',
+    ],
+  },
+  {
+    icon: Cloud,
+    slug: 'infraestructura-cloud',
+    title: 'Infraestructura y Cloud',
+    description: 'Infraestructura escalable y gestión en la nube.',
+    detalle:
+      'Diseñamos infraestructura que escala con tu operación, con foco en disponibilidad, seguridad y costos predecibles.',
+    capacidades: [
+      'Arquitectura cloud (AWS, GCP, Azure)',
+      'Despliegues y CI/CD',
+      'Monitoreo y observabilidad',
+      'Seguridad desde el diseño',
+      'Optimización de costos',
+      'Migración y modernización',
+    ],
+  },
+];
+
+
 const tecnologias = [
-  { name: 'Astro / Next.js', category: 'Frontend' },
-  { name: 'React / Vue', category: 'Frontend' },
-  { name: 'Node.js / Python', category: 'Backend' },
-  { name: 'PostgreSQL / MongoDB', category: 'Base de Datos' },
-  { name: 'AWS / Vercel', category: 'Infraestructura' },
-  { name: 'Docker / Kubernetes', category: 'DevOps' },
+  { name: 'symfony' },
+  { name: 'astro' },
+  { name: 'nextjs2' },
+  { name: 'nestjs' },
+  { name: 'react' },
+  { name: 'vuejs' },
+  { name: 'angular' },
+  { name: 'nodejs' },
+    { name: 'python' },
+    { name: 'django' },
+    { name: 'flask' },
+    { name: 'js' },
+    { name: 'php' },
+    { name: 'laravel' },
+    { name: 'mysql' },
+    { name: 'postgresql' },
+    { name: 'mongodb' },
+    { name: 'redis' },
+    { name: 'docker' },
+    { name: 'kubernetes' },
+    { name: 'aws' },
+    { name: 'azure' },
+    { name: 'supabase' },
+    { name: 'heroku' },
+    { name: 'digitalocean' },
+    { name: 'netlify' },
+    { name: 'vercel' },
+    
+];
+
+const stackCategorias = [
+  {
+    titulo: 'Frontend',
+    items: ['React', 'Vue.js', 'Angular', 'Next.js', 'Astro', 'JavaScript'],
+  },
+  {
+    titulo: 'Backend',
+    items: ['Node.js', 'Symfony', 'NestJS', 'Python', 'Django', 'Flask', 'Laravel', 'PHP'],
+  },
+  {
+    titulo: 'Bases de datos',
+    items: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis'],
+  },
+  {
+    titulo: 'Cloud & Hosting',
+    items: ['AWS', 'Azure', 'DigitalOcean', 'Supabase', 'Heroku', 'Vercel', 'Netlify'],
+  },
+  {
+    titulo: 'DevOps',
+    items: ['Docker', 'Kubernetes'],
+  },
 ];
 
 const diferenciadores = [
@@ -62,99 +179,763 @@ const diferenciadores = [
 
 
 
-  <!-- Hero — Nexsas services.htm pattern -->
-  <section class="pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px] xl:pt-[180px] md:pt-42 sm:pt-36 pt-32">
+  <!-- Hero — Qué hacemos (los 4 servicios reales, antes solo vivían en el mega-menu) -->
+  <section class="relative overflow-hidden min-h-screen min-h-dvh flex items-center" style="background-color: #0b0d10;">
+    <!-- Background SVG — 4-arm diamond, diferente al home hub-and-spoke radial -->
+    <svg style="filter: blur(2px);" class="pointer-events-none absolute inset-0 z-0 h-full w-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" fill="none" aria-hidden="true">
+      <defs>
+        <pattern id="srv-dots" x="0" y="0" width="36" height="36" patternUnits="userSpaceOnUse">
+          <circle cx="0.5" cy="0.5" r="0.9" fill="rgba(143,209,79,0.08)"/>
+        </pattern>
+        <radialGradient id="srv-fade" cx="50%" cy="50%" r="55%">
+          <stop offset="25%" stop-color="white" stop-opacity="1"/>
+          <stop offset="100%" stop-color="white" stop-opacity="0"/>
+        </radialGradient>
+        <mask id="srv-mask">
+          <rect width="1440" height="900" fill="url(#srv-fade)"/>
+        </mask>
+      </defs>
+
+      <!-- Dot grid with radial fade -->
+      <rect width="1440" height="900" fill="url(#srv-dots)" mask="url(#srv-mask)"/>
+
+      <!-- ── 4 diagonal arms (NE / NW / SE / SW) ── -->
+      <!-- NE: hub→mid (805,365) →tip (876,294) -->
+      <path id="s-ne1" d="M 720 450 L 805 365" stroke="rgba(143,209,79,0.32)" stroke-width="1.2" stroke-dasharray="6 14"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.7s" repeatCount="indefinite"/></path>
+      <path id="s-ne2" d="M 805 365 L 876 294" stroke="rgba(143,209,79,0.26)" stroke-width="1" stroke-dasharray="5 12"><animate attributeName="stroke-dashoffset" from="0" to="-17" dur="2.0s" repeatCount="indefinite"/></path>
+      <!-- NW: hub→mid (635,365) →tip (564,294) -->
+      <path id="s-nw1" d="M 720 450 L 635 365" stroke="rgba(143,209,79,0.32)" stroke-width="1.2" stroke-dasharray="6 14"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.5s" repeatCount="indefinite"/></path>
+      <path id="s-nw2" d="M 635 365 L 564 294" stroke="rgba(143,209,79,0.26)" stroke-width="1" stroke-dasharray="5 12"><animate attributeName="stroke-dashoffset" from="0" to="-17" dur="2.2s" repeatCount="indefinite"/></path>
+      <!-- SE: hub→mid (805,535) →tip (876,606) -->
+      <path id="s-se1" d="M 720 450 L 805 535" stroke="rgba(143,209,79,0.32)" stroke-width="1.2" stroke-dasharray="6 14"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.9s" repeatCount="indefinite"/></path>
+      <path id="s-se2" d="M 805 535 L 876 606" stroke="rgba(143,209,79,0.26)" stroke-width="1" stroke-dasharray="5 12"><animate attributeName="stroke-dashoffset" from="0" to="-17" dur="1.6s" repeatCount="indefinite"/></path>
+      <!-- SW: hub→mid (635,535) →tip (564,606) -->
+      <path id="s-sw1" d="M 720 450 L 635 535" stroke="rgba(143,209,79,0.32)" stroke-width="1.2" stroke-dasharray="6 14"><animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.4s" repeatCount="indefinite"/></path>
+      <path id="s-sw2" d="M 635 535 L 564 606" stroke="rgba(143,209,79,0.26)" stroke-width="1" stroke-dasharray="5 12"><animate attributeName="stroke-dashoffset" from="0" to="-17" dur="2.1s" repeatCount="indefinite"/></path>
+
+      <!-- ── Quadratic arcs connecting outer tips ── -->
+      <path d="M 876 294 Q 720 148 564 294" stroke="rgba(143,209,79,0.16)" stroke-width="1" stroke-dasharray="5 10"><animate attributeName="stroke-dashoffset" from="0" to="-15" dur="3.2s" repeatCount="indefinite"/></path>
+      <path d="M 876 606 Q 720 752 564 606" stroke="rgba(143,209,79,0.16)" stroke-width="1" stroke-dasharray="5 10"><animate attributeName="stroke-dashoffset" from="0" to="-15" dur="3.6s" repeatCount="indefinite"/></path>
+      <path d="M 876 294 Q 1022 450 876 606" stroke="rgba(143,209,79,0.16)" stroke-width="1" stroke-dasharray="5 10"><animate attributeName="stroke-dashoffset" from="0" to="-15" dur="2.8s" repeatCount="indefinite"/></path>
+      <path d="M 564 294 Q 418 450 564 606" stroke="rgba(143,209,79,0.16)" stroke-width="1" stroke-dasharray="5 10"><animate attributeName="stroke-dashoffset" from="0" to="-15" dur="3.0s" repeatCount="indefinite"/></path>
+
+      <!-- ── Faint long lines to periphery ── -->
+      <line x1="876" y1="294" x2="1240" y2="95"  stroke="rgba(143,209,79,0.07)" stroke-width="0.8"/>
+      <line x1="876" y1="294" x2="1330" y2="370" stroke="rgba(143,209,79,0.06)" stroke-width="0.8"/>
+      <line x1="564" y1="294" x2="200"  y2="95"  stroke="rgba(143,209,79,0.07)" stroke-width="0.8"/>
+      <line x1="564" y1="294" x2="110"  y2="370" stroke="rgba(143,209,79,0.06)" stroke-width="0.8"/>
+      <line x1="876" y1="606" x2="1240" y2="805" stroke="rgba(143,209,79,0.07)" stroke-width="0.8"/>
+      <line x1="876" y1="606" x2="1330" y2="530" stroke="rgba(143,209,79,0.06)" stroke-width="0.8"/>
+      <line x1="564" y1="606" x2="200"  y2="805" stroke="rgba(143,209,79,0.07)" stroke-width="0.8"/>
+      <line x1="564" y1="606" x2="110"  y2="530" stroke="rgba(143,209,79,0.06)" stroke-width="0.8"/>
+
+      <!-- ── Data packets ── -->
+      <circle r="3.5" fill="rgba(143,209,79,0.9)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0s"><mpath href="#s-ne1"/></animateMotion></circle>
+      <circle r="2"   fill="rgba(143,209,79,0.6)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s"><mpath href="#s-ne1"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.75)"><animateMotion dur="2.8s" repeatCount="indefinite" begin="0.3s"><mpath href="#s-ne2"/></animateMotion></circle>
+      <circle r="3.5" fill="rgba(143,209,79,0.9)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.6s"><mpath href="#s-nw1"/></animateMotion></circle>
+      <circle r="2"   fill="rgba(143,209,79,0.6)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="1.4s"><mpath href="#s-nw1"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.75)"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.1s"><mpath href="#s-nw2"/></animateMotion></circle>
+      <circle r="3.5" fill="rgba(143,209,79,0.9)"><animateMotion dur="2.0s" repeatCount="indefinite" begin="0.9s"><mpath href="#s-se1"/></animateMotion></circle>
+      <circle r="2"   fill="rgba(143,209,79,0.6)"><animateMotion dur="2.0s" repeatCount="indefinite" begin="0.5s"><mpath href="#s-se1"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.75)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0.4s"><mpath href="#s-se2"/></animateMotion></circle>
+      <circle r="3.5" fill="rgba(143,209,79,0.9)"><animateMotion dur="2.6s" repeatCount="indefinite" begin="1.4s"><mpath href="#s-sw1"/></animateMotion></circle>
+      <circle r="2"   fill="rgba(143,209,79,0.6)"><animateMotion dur="2.6s" repeatCount="indefinite" begin="0.2s"><mpath href="#s-sw1"/></animateMotion></circle>
+      <circle r="2.5" fill="rgba(143,209,79,0.75)"><animateMotion dur="2.2s" repeatCount="indefinite" begin="0.7s"><mpath href="#s-sw2"/></animateMotion></circle>
+
+      <!-- ── Peripheral micro-nodes ── -->
+      <circle cx="1240" cy="95"  r="7" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/><circle cx="1240" cy="95"  r="3" fill="rgba(143,209,79,0.4)"/>
+      <circle cx="200"  cy="95"  r="7" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/><circle cx="200"  cy="95"  r="3" fill="rgba(143,209,79,0.4)"/>
+      <circle cx="1240" cy="805" r="7" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/><circle cx="1240" cy="805" r="3" fill="rgba(143,209,79,0.4)"/>
+      <circle cx="200"  cy="805" r="7" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/><circle cx="200"  cy="805" r="3" fill="rgba(143,209,79,0.4)"/>
+      <circle cx="1330" cy="370" r="4" fill="rgba(143,209,79,0.2)" stroke="rgba(143,209,79,0.3)"  stroke-width="0.8"/>
+      <circle cx="110"  cy="370" r="4" fill="rgba(143,209,79,0.2)" stroke="rgba(143,209,79,0.3)"  stroke-width="0.8"/>
+      <circle cx="1330" cy="530" r="4" fill="rgba(143,209,79,0.18)" stroke="rgba(143,209,79,0.28)" stroke-width="0.8"/>
+      <circle cx="110"  cy="530" r="4" fill="rgba(143,209,79,0.18)" stroke="rgba(143,209,79,0.28)" stroke-width="0.8"/>
+
+      <!-- ── Mid-arm nodes (ring 1) ── -->
+      <circle cx="805" cy="365" r="15" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.3)" stroke-width="1.2"/><circle cx="805" cy="365" r="6" fill="rgba(143,209,79,0.45)"/>
+      <circle cx="635" cy="365" r="15" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.3)" stroke-width="1.2"/><circle cx="635" cy="365" r="6" fill="rgba(143,209,79,0.45)"/>
+      <circle cx="805" cy="535" r="15" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.3)" stroke-width="1.2"/><circle cx="805" cy="535" r="6" fill="rgba(143,209,79,0.45)"/>
+      <circle cx="635" cy="535" r="15" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.3)" stroke-width="1.2"/><circle cx="635" cy="535" r="6" fill="rgba(143,209,79,0.45)"/>
+
+      <!-- ── Tip nodes (ring 2) ── -->
+      <circle cx="876" cy="294" r="19" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.38)" stroke-width="1.5"/><circle cx="876" cy="294" r="8" fill="rgba(143,209,79,0.5)"/>
+      <circle cx="564" cy="294" r="19" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.38)" stroke-width="1.5"/><circle cx="564" cy="294" r="8" fill="rgba(143,209,79,0.5)"/>
+      <circle cx="876" cy="606" r="19" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.38)" stroke-width="1.5"/><circle cx="876" cy="606" r="8" fill="rgba(143,209,79,0.5)"/>
+      <circle cx="564" cy="606" r="19" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.38)" stroke-width="1.5"/><circle cx="564" cy="606" r="8" fill="rgba(143,209,79,0.5)"/>
+
+      <!-- ── Central Hub (counter-clockwise ring, distinto al home) ── -->
+      <circle cx="720" cy="450" r="70" stroke="rgba(143,209,79,0.18)" stroke-width="1" stroke-dasharray="4 9" fill="transparent">
+        <animateTransform attributeName="transform" type="rotate" from="360 720 450" to="0 720 450" dur="22s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="720" cy="450" r="54" fill="rgba(143,209,79,0.06)" stroke="rgba(143,209,79,0.38)" stroke-width="1.5"/>
+      <circle cx="720" cy="450" r="38" fill="rgba(143,209,79,0.04)" stroke="rgba(143,209,79,0.18)" stroke-width="1"/>
+      <circle cx="720" cy="450" r="10" fill="rgba(143,209,79,0.9)">
+        <animate attributeName="r"       values="10;15;10" dur="3.0s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="1;0.4;1"  dur="3.0s" repeatCount="indefinite"/>
+      </circle>
+    </svg>
+    <div class="main-container relative z-10 py-32">
+      <div class="text-center space-y-5">
+        <span data-ns-animate data-delay="0.1" class="badge badge-section">Qué hacemos</span>
+        <div class="space-y-3">
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light text-white">
+            Servicios pensados para tu operación
+          </h2>
+          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto text-white/60">
+            Cuatro frentes de trabajo, un mismo objetivo: que la tecnología deje de ser un
+            problema y empiece a ser una ventaja.
+          </p>
+        </div>
+
+        <!-- Mismos CTAs (texto + accion) que el Hero del home: abren el
+             DemoModal via data-open-demo-modal / initDemoModalTriggers en
+             animations.ts, con el mismo texto/props por boton. -->
+        <ul class="mt-8 flex flex-col items-center gap-y-4 sm:flex-row sm:justify-center sm:gap-x-4">
+          <li
+            data-ns-animate
+            data-delay="0.5"
+            data-direction="up"
+            data-offset="30"
+            class="w-full sm:w-auto"
+          >
+            <button
+              type="button"
+              data-open-demo-modal
+              data-modal-title="Hablemos de tu proyecto"
+              data-cta-label="Enviar mensaje"
+              data-solucion="Consulta general"
+              data-description="Cuéntanos brevemente en qué podemos ayudarte y te contactamos a la brevedad."
+              class="btn btn-green hover:btn-white dark:hover:btn-accent mx-auto sm:mx-0 block md:inline-block w-[90%] md:w-auto btn-lg md:btn-xl border-0"
+            >
+              <span>Hablemos de tu proyecto</span>
+            </button>
+          </li>
+          <li
+            data-ns-animate
+            data-delay="0.6"
+            data-direction="up"
+            data-offset="30"
+            class="w-full sm:w-auto"
+          >
+            <button
+              type="button"
+              data-open-demo-modal
+              data-modal-title="Agenda una llamada"
+              data-cta-label="Solicitar llamada"
+              data-solucion="Llamada agendada"
+              data-description="Déjanos tus datos y coordinamos un horario que te acomode."
+              class="btn btn-lg md:btn-xl dark:btn-transparent dark:border btn-dark bg-accent/20 mx-auto block w-[90%] sm:mx-0 sm:w-auto md:inline-block hover:btn-accent"
+            >
+              <span>Agenda una llamada</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Scroll cue: mismo patron que Hero.astro (home) — fixed (no
+         absolute) para que el margen quede calculado siempre sobre el
+         100vh real de la pantalla, sin depender de cuanto mida el Hero
+         en cada breakpoint. Fuera del sistema data-ns-animate a
+         proposito, su fade lo maneja initHeroScrollCue en
+         animations.ts (ya wireado de forma generica por id) segun la
+         posicion de scroll. -->
+    <a
+      id="hero-scroll-cue"
+      href="#marquee-servicios"
+      aria-label="Ver más contenido"
+      class="scroll-cue fixed bottom-6 left-1/2 z-30 hidden -translate-x-1/2 md:flex"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M5 12l7 7 7-7" />
+      </svg>
+    </a>
+  </section>
+
+
+  <!-- Marquee tipografico de servicios — patron "BRANDING + A.I. +
+       DESIGN + DEVELOPMENT" de trionn.com/services: los 4 servicios en
+       loop horizontal con tipografia gigante. Sin WebGL — solo CSS +
+       vanilla-infinite-marquee (misma lib que el stack tecnologico mas
+       abajo, ver initMarquees()). -->
+  <section id="marquee-servicios" class="relative overflow-hidden bg-background-6 py-16 md:py-20 lg:py-24">
+    <div class="absolute left-0 top-0 h-full w-[80px] md:w-[140px] bg-gradient-to-r from-background-6 to-transparent z-10"></div>
+    <div class="absolute right-0 top-0 h-full w-[80px] md:w-[140px] bg-gradient-to-l from-background-6 to-transparent z-10"></div>
+
+    <div class="disciplines-marquee-container flex items-center whitespace-nowrap">
+      {servicios.map(({ title }) => (
+        <div class="flex items-center gap-8 md:gap-12 px-4">
+          <span class="text-[2.75rem] sm:text-[4.25rem] lg:text-[5.5rem] font-light uppercase tracking-tight text-white">
+            {title}
+          </span>
+          <span class="text-accent-400 text-[1.75rem] sm:text-[2.5rem] lg:text-[3rem]" aria-hidden="true">+</span>
+        </div>
+      ))}
+    </div>
+
+    <p data-ns-animate data-delay="0.2" class="text-center mt-10 md:mt-14 text-white/50">
+      ✦ Capacidades pensadas para escalar con tu operación.
+    </p>
+  </section>
+
+  <!-- Sentinel: misma logica que #servicios-trigger en ServiciosGrid.astro
+       (mismo efecto de entrada pedido para esta seccion) — marca la
+       posicion "natural" del borde superior del panel para que el
+       ScrollTrigger de initPanelReveal no mida un elemento que el mismo
+       esta transformando. Vive fuera de la seccion a proposito. -->
+  <div id="detalle-servicios-trigger" aria-hidden="true" class="h-0 w-full"></div>
+
+  <!-- Detalle por servicio — patron "Our Core Capabilities" de
+       trionn.com/services: imagen + titulo + descripcion + lista de
+       capacidades, con una linea que se dibuja (scaleX 0 -> 1) al hacer
+       scroll via initCapabilityLines en animations.ts. La imagen es un
+       placeholder con gradiente de marca hasta que se suba la foto real a
+       /public/images/servicios/{slug}.jpg (ver data-service-image de cada
+       bloque) — si el archivo no existe, el layer de gradiente de fondo
+       queda visible sin icono de imagen rota. Panel con el mismo efecto
+       de entrada que #servicios en el home (initPanelReveal en
+       animations.ts): se desliza hacia arriba, escala de 0.96 a 1 y gana
+       sombra al hacer scroll, con esquinas redondeadas sobre el marquee. -->
+  <section id="detalle-servicios" class="relative z-10 -mt-8 rounded-t-[28px] md:-mt-12 md:rounded-t-[36px] bg-background-1 dark:bg-background-6">
+    {servicios.map(({ title, detalle, capacidades, slug }, index) => {
+      const reversed = index % 2 === 1;
+      return (
+      <div class={`main-container py-20 md:py-24 lg:py-28 ${index !== 0 ? 'border-t border-stroke-1 dark:border-stroke-7' : ''}`}>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-8 items-center">
+          <div class={`lg:col-span-5 lg:row-start-1 ${reversed ? 'lg:col-start-8' : ''}`}>
+            <div data-ns-animate data-delay="0.1" class="mb-16 lg:mb-20">
+              <h2 class="text-heading-3 font-light -tracking-[0.02em] mb-6">{title}</h2>
+              <p class="max-w-md">{detalle}</p>
+            </div>
+            <div data-ns-animate data-delay="0.2" class="max-w-md">
+              <span class="text-tagline-2 uppercase tracking-widest text-secondary/50 dark:text-accent/40 block mb-6">
+                Capacidades
+              </span>
+              <div class="cap-list" id={`cap-list-${slug}`}>
+                {capacidades.map((cap, i) => (
+                  <Fragment>
+                    <div class="py-4">
+                      <p class="text-secondary dark:text-accent">{cap}</p>
+                    </div>
+                    {i < capacidades.length - 1 && (
+                      <div class="relative h-px">
+                        <div class="cap-divider-line absolute inset-0 origin-left scale-x-0 bg-stroke-2 dark:bg-stroke-6"></div>
+                      </div>
+                    )}
+                  </Fragment>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Ilustración SVG conceptual por servicio -->
+          <div
+            data-ns-animate
+            data-direction="up"
+            data-offset="30"
+            data-delay="0.3"
+            class={`lg:col-span-6 lg:row-start-1 ${reversed ? 'lg:col-start-1 lg:self-start' : 'lg:col-start-7'} aspect-4/3 rounded-[20px] border border-stroke-7 overflow-hidden`}
+            style="background-color: #0b0d10;"
+          >
+            {slug === 'consultoria' && (
+              <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Header -->
+                <text x="28" y="42" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif" letter-spacing="1">DIAGNÓSTICO OPERACIONAL</text>
+                <text x="428" y="42" text-anchor="end" fill="rgba(143,209,79,0.4)" font-size="9" font-family="system-ui, sans-serif">Oct 2024</text>
+                <line x1="28" y1="50" x2="452" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Stakeholder nodes (left cluster) -->
+                <text x="28" y="78" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">STAKEHOLDERS</text>
+                <!-- CEO -->
+                <circle cx="58" cy="118" r="20" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.35)" stroke-width="1.5"/>
+                <text x="58" y="122" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="9" font-family="system-ui, sans-serif">CEO</text>
+                <!-- Ops -->
+                <circle cx="58" cy="178" r="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+                <text x="58" y="182" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="system-ui, sans-serif">Ops</text>
+                <!-- IT -->
+                <circle cx="58" cy="238" r="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+                <text x="58" y="242" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="9" font-family="system-ui, sans-serif">IT</text>
+                <!-- Finance -->
+                <circle cx="58" cy="298" r="20" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)" stroke-width="1"/>
+                <text x="58" y="302" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="8" font-family="system-ui, sans-serif">Fin.</text>
+
+                <!-- Process flow (center) -->
+                <text x="165" y="78" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">FLUJO ACTUAL</text>
+                <!-- Step 1 (ok) -->
+                <rect x="115" y="96" width="88" height="36" rx="7" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="159" y="116" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9" font-family="system-ui, sans-serif">Solicitud</text>
+                <text x="159" y="128" text-anchor="middle" fill="rgba(143,209,79,0.5)" font-size="7" font-family="system-ui, sans-serif">entrada</text>
+
+                <!-- Arrow down -->
+                <path d="M159 132 L159 152" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-dasharray="3 2">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1.5s" repeatCount="indefinite"/>
+                </path>
+                <path d="M155 149 L159 154 L163 149" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 2 (bottleneck) -->
+                <rect x="115" y="155" width="88" height="36" rx="7" fill="rgba(255,120,60,0.1)" stroke="rgba(255,120,60,0.5)" stroke-width="1.5"/>
+                <rect x="112" y="152" width="94" height="42" rx="10" fill="none" stroke="rgba(255,120,60,0.4)" stroke-width="1.5">
+                  <animate attributeName="stroke-opacity" values="0.15;0.7;0.15" dur="2.2s" repeatCount="indefinite"/>
+                  <animate attributeName="stroke-width" values="1;3;1" dur="2.2s" repeatCount="indefinite"/>
+                </rect>
+                <text x="159" y="172" text-anchor="middle" fill="rgba(255,180,100,0.9)" font-size="9" font-family="system-ui, sans-serif">Aprobación</text>
+                <text x="159" y="184" text-anchor="middle" fill="rgba(255,120,60,0.7)" font-size="7" font-family="system-ui, sans-serif">⚠ cuello botella</text>
+
+                <!-- Arrow down -->
+                <path d="M159 191 L159 211" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-dasharray="3 2">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1.5s" repeatCount="indefinite"/>
+                </path>
+                <path d="M155 208 L159 213 L163 208" stroke="rgba(255,255,255,0.12)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 3 (manual, slow) -->
+                <rect x="115" y="214" width="88" height="36" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="159" y="231" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="9" font-family="system-ui, sans-serif">Procesado</text>
+                <text x="159" y="243" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="system-ui, sans-serif">manual · 3 días</text>
+
+                <!-- Arrow: flow to recommendation -->
+                <path d="M203 175 L240 175" stroke="rgba(143,209,79,0.25)" stroke-width="1.5" stroke-dasharray="4 3">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.8s" repeatCount="indefinite"/>
+                </path>
+                <path d="M237 171 L242 175 L237 179" stroke="rgba(143,209,79,0.25)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Connector from stakeholders to flow -->
+                <line x1="78" y1="118" x2="115" y2="118" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="78" y1="178" x2="115" y2="173" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="78" y1="238" x2="115" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 2"/>
+
+                <!-- Recommendations panel (right) -->
+                <text x="248" y="78" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">RECOMENDACIONES</text>
+                <rect x="242" y="88" width="210" height="180" rx="10" fill="rgba(143,209,79,0.05)" stroke="rgba(143,209,79,0.18)" stroke-width="1"/>
+
+                <!-- Rec 1 (high priority) -->
+                <rect x="255" y="102" width="6" height="6" rx="1.5" fill="#8FD14F"/>
+                <text x="267" y="111" fill="rgba(255,255,255,0.8)" font-size="9" font-family="system-ui, sans-serif">Automatizar aprobaciones</text>
+                <rect x="255" y="118" width="185" height="3" rx="1.5" fill="rgba(255,255,255,0.04)"/>
+                <rect x="255" y="118" height="3" rx="1.5" fill="rgba(143,209,79,0.45)" width="148">
+                  <animate attributeName="width" from="0" to="148" dur="2s" fill="freeze" begin="0.3s"/>
+                </rect>
+                <text x="255" y="132" fill="rgba(143,209,79,0.5)" font-size="8" font-family="system-ui, sans-serif">Impacto: alto · Urgente</text>
+
+                <!-- Divider -->
+                <line x1="255" y1="142" x2="438" y2="142" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Rec 2 -->
+                <rect x="255" y="152" width="6" height="6" rx="1.5" fill="rgba(143,209,79,0.5)"/>
+                <text x="267" y="161" fill="rgba(255,255,255,0.6)" font-size="9" font-family="system-ui, sans-serif">Integrar ERP con CRM</text>
+                <rect x="255" y="168" width="185" height="3" rx="1.5" fill="rgba(255,255,255,0.04)"/>
+                <rect x="255" y="168" height="3" rx="1.5" fill="rgba(143,209,79,0.3)" width="100">
+                  <animate attributeName="width" from="0" to="100" dur="2s" fill="freeze" begin="0.6s"/>
+                </rect>
+                <text x="255" y="182" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Impacto: medio · Q1</text>
+
+                <!-- Divider -->
+                <line x1="255" y1="192" x2="438" y2="192" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Rec 3 -->
+                <rect x="255" y="202" width="6" height="6" rx="1.5" fill="rgba(143,209,79,0.25)"/>
+                <text x="267" y="211" fill="rgba(255,255,255,0.45)" font-size="9" font-family="system-ui, sans-serif">Migrar base de datos legacy</text>
+                <rect x="255" y="218" width="185" height="3" rx="1.5" fill="rgba(255,255,255,0.04)"/>
+                <rect x="255" y="218" height="3" rx="1.5" fill="rgba(143,209,79,0.2)" width="62">
+                  <animate attributeName="width" from="0" to="62" dur="2s" fill="freeze" begin="0.9s"/>
+                </rect>
+                <text x="255" y="232" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif">Impacto: medio · Q2</text>
+
+                <!-- Bottom stat cards -->
+                <rect x="28" y="318" width="130" height="30" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <text x="44" y="332" fill="rgba(255,255,255,0.3)" font-size="8" font-family="system-ui, sans-serif">Procesos mapeados</text>
+                <text x="44" y="344" fill="rgba(143,209,79,0.7)" font-size="9" font-weight="600" font-family="system-ui, sans-serif">12</text>
+
+                <rect x="170" y="318" width="130" height="30" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <text x="186" y="332" fill="rgba(255,255,255,0.3)" font-size="8" font-family="system-ui, sans-serif">Cuellos detectados</text>
+                <text x="186" y="344" fill="rgba(255,120,60,0.7)" font-size="9" font-weight="600" font-family="system-ui, sans-serif">3</text>
+
+                <rect x="312" y="318" width="140" height="30" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <text x="328" y="332" fill="rgba(255,255,255,0.3)" font-size="8" font-family="system-ui, sans-serif">Ahorro estimado</text>
+                <text x="328" y="344" fill="rgba(143,209,79,0.7)" font-size="9" font-weight="600" font-family="system-ui, sans-serif">40% tiempo</text>
+              </svg>
+            )}
+
+            {slug === 'automatizacion' && (
+              <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Header -->
+                <text x="28" y="42" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif" letter-spacing="1">FLUJO AUTOMATIZADO</text>
+                <rect x="350" y="28" width="102" height="18" rx="9" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.3)" stroke-width="1"/>
+                <circle cx="363" cy="37" r="3" fill="none" stroke="#8FD14F" stroke-width="1">
+                  <animate attributeName="r" from="4" to="12" dur="1.8s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" from="0.5" to="0" dur="1.8s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="363" cy="37" r="3" fill="#8FD14F"/>
+                <text x="390" y="41" text-anchor="middle" fill="rgba(143,209,79,0.8)" font-size="8" font-family="system-ui, sans-serif">en ejecución</text>
+                <line x1="28" y1="50" x2="452" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Animated flow packets -->
+                <path id="svc-auto-flow" d="M64 118 L384 118" fill="none" stroke="none"/>
+                <circle r="3.5" fill="#8FD14F">
+                  <animateMotion dur="4.5s" repeatCount="indefinite" begin="0s">
+                    <mpath href="#svc-auto-flow"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.4;0.9;1" dur="4.5s" repeatCount="indefinite" begin="0s"/>
+                </circle>
+                <circle r="3.5" fill="rgba(143,209,79,0.65)">
+                  <animateMotion dur="4.5s" repeatCount="indefinite" begin="2.25s">
+                    <mpath href="#svc-auto-flow"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;1;0" keyTimes="0;0.05;0.4;0.9;1" dur="4.5s" repeatCount="indefinite" begin="2.25s"/>
+                </circle>
+
+                <!-- Trigger node -->
+                <text x="28" y="80" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">TRIGGER</text>
+                <rect x="28" y="90" width="72" height="56" rx="10" fill="rgba(143,209,79,0.12)" stroke="#8FD14F" stroke-width="1.5"/>
+                <circle cx="64" cy="108" r="10" fill="rgba(143,209,79,0.2)"/>
+                <path d="M60 108 L64 104 L68 108 L64 112 Z" fill="#8FD14F"/>
+                <text x="64" y="138" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="system-ui, sans-serif">Evento</text>
+
+                <!-- Arrow -->
+                <path d="M100 118 L124 118" stroke="rgba(143,209,79,0.4)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <circle cx="118" cy="118" r="4" fill="#8FD14F" opacity="0.8"/>
+                <path d="M121 114 L126 118 L121 122" stroke="rgba(143,209,79,0.5)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 1: Filter -->
+                <text x="128" y="80" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">FILTRO</text>
+                <rect x="128" y="90" width="80" height="56" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <path d="M152 110 L164 110 L160 118 L156 118 Z" stroke="rgba(143,209,79,0.6)" stroke-width="1.5" stroke-linejoin="round" fill="rgba(143,209,79,0.1)"/>
+                <text x="168" y="122" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">Reglas</text>
+                <text x="168" y="134" fill="rgba(143,209,79,0.4)" font-size="7" font-family="system-ui, sans-serif">3 condiciones</text>
+
+                <!-- Arrow + packet -->
+                <path d="M208 118 L232 118" stroke="rgba(143,209,79,0.35)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <circle cx="226" cy="118" r="4" fill="#8FD14F" opacity="0.75"/>
+                <path d="M229 114 L234 118 L229 122" stroke="rgba(143,209,79,0.45)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 2: Transform -->
+                <text x="236" y="80" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">TRANSFORMAR</text>
+                <rect x="236" y="90" width="80" height="56" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <rect x="252" y="106" width="14" height="14" rx="3" fill="rgba(143,209,79,0.15)" stroke="rgba(143,209,79,0.4)" stroke-width="1"/>
+                <path d="M256 113 L258 111 L260 113 L258 115 Z" fill="rgba(143,209,79,0.7)"/>
+                <text x="274" y="116" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">Mapeo</text>
+                <text x="274" y="128" fill="rgba(143,209,79,0.4)" font-size="7" font-family="system-ui, sans-serif">JSON → DB</text>
+
+                <!-- Arrow + packet -->
+                <path d="M316 118 L340 118" stroke="rgba(143,209,79,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <circle cx="334" cy="118" r="4" fill="#8FD14F" opacity="0.65"/>
+                <path d="M337 114 L342 118 L337 122" stroke="rgba(143,209,79,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 3: Action -->
+                <text x="344" y="80" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">ACCIÓN</text>
+                <rect x="344" y="90" width="80" height="56" rx="10" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <circle cx="372" cy="112" r="8" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.4)" stroke-width="1"/>
+                <path d="M369 112 L372 109 L375 112 L372 115 Z" fill="rgba(143,209,79,0.7)"/>
+                <text x="386" y="116" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">Envío</text>
+                <text x="386" y="128" fill="rgba(143,209,79,0.4)" font-size="7" font-family="system-ui, sans-serif">Email + DB</text>
+
+                <!-- Branch lines (below main flow) -->
+                <line x1="64" y1="146" x2="64" y2="190" stroke="rgba(143,209,79,0.12)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="168" y1="146" x2="168" y2="190" stroke="rgba(143,209,79,0.12)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="276" y1="146" x2="276" y2="190" stroke="rgba(143,209,79,0.12)" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="384" y1="146" x2="384" y2="190" stroke="rgba(143,209,79,0.12)" stroke-width="1" stroke-dasharray="3 2"/>
+
+                <!-- Sub-nodes row -->
+                <rect x="28" y="190" width="72" height="30" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="64" y="208" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Webhook</text>
+                <rect x="128" y="190" width="80" height="30" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="168" y="208" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">API externa</text>
+                <rect x="236" y="190" width="80" height="30" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="276" y="208" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Validación</text>
+                <rect x="344" y="190" width="80" height="30" rx="6" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="384" y="208" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Slack / SMS</text>
+
+                <!-- Log panel -->
+                <rect x="28" y="238" width="424" height="88" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                <text x="42" y="256" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">EJECUCIONES RECIENTES</text>
+                <!-- Log rows -->
+                <circle cx="42" cy="272" r="3" fill="#8FD14F"/>
+                <text x="52" y="276" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">Solicitud #4821 — procesada en 0.3s</text>
+                <text x="400" y="276" text-anchor="end" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif">hace 2 min</text>
+
+                <circle cx="42" cy="289" r="3" fill="#8FD14F"/>
+                <text x="52" y="293" fill="rgba(255,255,255,0.35)" font-size="8" font-family="system-ui, sans-serif">Solicitud #4820 — procesada en 0.2s</text>
+                <text x="400" y="293" text-anchor="end" fill="rgba(255,255,255,0.15)" font-size="8" font-family="system-ui, sans-serif">hace 8 min</text>
+
+                <circle cx="42" cy="306" r="3" fill="rgba(143,209,79,0.4)"/>
+                <text x="52" y="310" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif">Solicitud #4819 — procesada en 0.4s</text>
+                <text x="400" y="310" text-anchor="end" fill="rgba(255,255,255,0.12)" font-size="8" font-family="system-ui, sans-serif">hace 15 min</text>
+
+                <!-- Bottom stat -->
+                <text x="28" y="344" fill="rgba(143,209,79,0.5)" font-size="9" font-weight="600" font-family="system-ui, sans-serif">4h / día</text>
+                <text x="82" y="344" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif">ahorradas en operaciones manuales</text>
+              </svg>
+            )}
+
+            {slug === 'desarrollo-web' && (
+              <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Header -->
+                <text x="28" y="42" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif" letter-spacing="1">ARQUITECTURA DEL SISTEMA</text>
+                <text x="452" y="42" text-anchor="end" fill="rgba(143,209,79,0.4)" font-size="9" font-family="system-ui, sans-serif">v2.4.1</text>
+                <line x1="28" y1="50" x2="452" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Layer labels (left) -->
+                <text x="28" y="98" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">FRONTEND</text>
+                <text x="28" y="188" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">API / LÓGICA</text>
+                <text x="28" y="278" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">DATOS</text>
+
+                <!-- Layer 1: Frontend -->
+                <rect x="88" y="62" width="364" height="64" rx="10" fill="rgba(143,209,79,0.05)" stroke="rgba(143,209,79,0.2)" stroke-width="1"/>
+                <!-- Component boxes inside -->
+                <rect x="100" y="74" width="72" height="40" rx="6" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.3)" stroke-width="1"/>
+                <text x="136" y="91" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="system-ui, sans-serif">Next.js</text>
+                <text x="136" y="104" text-anchor="middle" fill="rgba(143,209,79,0.5)" font-size="7" font-family="system-ui, sans-serif">SSR / SSG</text>
+
+                <rect x="182" y="74" width="72" height="40" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="218" y="91" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">React</text>
+                <text x="218" y="104" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">componentes</text>
+
+                <rect x="264" y="74" width="72" height="40" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="300" y="91" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">CMS</text>
+                <text x="300" y="104" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">Sanity / Strapi</text>
+
+                <rect x="346" y="74" width="94" height="40" rx="6" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="393" y="91" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">CDN + Assets</text>
+                <text x="393" y="104" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">Vercel / CF</text>
+
+                <!-- Arrow layer 1→2 -->
+                <path d="M270 126 L270 150" stroke="rgba(143,209,79,0.2)" stroke-width="1.5" stroke-dasharray="3 2">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1.4s" repeatCount="indefinite"/>
+                </path>
+                <path d="M266 147 L270 152 L274 147" stroke="rgba(143,209,79,0.2)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="270" cy="138" r="3.5" fill="#8FD14F" opacity="0.65"/>
+
+                <!-- Layer 2: API -->
+                <rect x="88" y="152" width="364" height="64" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <rect x="100" y="164" width="82" height="40" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="141" y="181" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">API Gateway</text>
+                <text x="141" y="194" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">REST / GraphQL</text>
+
+                <rect x="192" y="164" width="82" height="40" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="233" y="181" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">Auth / Sesión</text>
+                <text x="233" y="194" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">JWT / OAuth</text>
+
+                <rect x="284" y="164" width="76" height="40" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="322" y="181" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">Workers</text>
+                <text x="322" y="194" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">colas / jobs</text>
+
+                <rect x="370" y="164" width="70" height="40" rx="6" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="405" y="181" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">Webhooks</text>
+                <text x="405" y="194" text-anchor="middle" fill="rgba(255,255,255,0.3)" font-size="7" font-family="system-ui, sans-serif">integraciones</text>
+
+                <!-- Arrow layer 2→3 -->
+                <path d="M270 216 L270 240" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="3 2">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1.4s" repeatCount="indefinite" begin="0.5s"/>
+                </path>
+                <path d="M266 237 L270 242 L274 237" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="270" cy="228" r="3.5" fill="rgba(143,209,79,0.5)"/>
+
+                <!-- Layer 3: Data -->
+                <rect x="88" y="242" width="364" height="64" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <rect x="100" y="254" width="90" height="40" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <text x="145" y="271" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">PostgreSQL</text>
+                <text x="145" y="284" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">datos principal</text>
+
+                <rect x="200" y="254" width="80" height="40" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <text x="240" y="271" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">Redis</text>
+                <text x="240" y="284" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">caché / sesión</text>
+
+                <rect x="290" y="254" width="80" height="40" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <text x="330" y="271" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">S3 / Storage</text>
+                <text x="330" y="284" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">archivos / media</text>
+
+                <rect x="380" y="254" width="60" height="40" rx="6" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+                <text x="410" y="271" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-size="8" font-family="system-ui, sans-serif">Backups</text>
+                <text x="410" y="284" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">diarios</text>
+
+                <!-- Status indicators -->
+                <circle cx="450" cy="94" r="4" fill="none" stroke="#8FD14F" stroke-width="1">
+                  <animate attributeName="r" from="5" to="13" dur="2s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" from="0.6" to="0" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="450" cy="94" r="4" fill="#8FD14F" opacity="0.8"/>
+                <circle cx="450" cy="184" r="4" fill="none" stroke="#8FD14F" stroke-width="1">
+                  <animate attributeName="r" from="5" to="13" dur="2s" repeatCount="indefinite" begin="0.7s"/>
+                  <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="indefinite" begin="0.7s"/>
+                </circle>
+                <circle cx="450" cy="184" r="4" fill="#8FD14F" opacity="0.7"/>
+                <circle cx="450" cy="274" r="4" fill="none" stroke="rgba(143,209,79,0.6)" stroke-width="1">
+                  <animate attributeName="r" from="5" to="13" dur="2.5s" repeatCount="indefinite" begin="1.4s"/>
+                  <animate attributeName="opacity" from="0.4" to="0" dur="2.5s" repeatCount="indefinite" begin="1.4s"/>
+                </circle>
+                <circle cx="450" cy="274" r="4" fill="rgba(143,209,79,0.5)"/>
+
+                <!-- Version label -->
+                <text x="270" y="344" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-size="8" font-family="system-ui, sans-serif">Arquitectura escalable · mantenible · sin deuda técnica</text>
+              </svg>
+            )}
+
+            {slug === 'infraestructura-cloud' && (
+              <svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Header -->
+                <text x="28" y="42" fill="rgba(255,255,255,0.25)" font-size="9" font-family="system-ui, sans-serif" letter-spacing="1">INFRAESTRUCTURA ALTA DISPONIBILIDAD</text>
+                <rect x="390" y="28" width="62" height="18" rx="9" fill="rgba(143,209,79,0.1)" stroke="rgba(143,209,79,0.3)" stroke-width="1"/>
+                <circle cx="402" cy="37" r="3" fill="none" stroke="#8FD14F" stroke-width="1">
+                  <animate attributeName="r" from="4" to="12" dur="1.8s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" from="0.5" to="0" dur="1.8s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="402" cy="37" r="3" fill="#8FD14F"/>
+                <text x="428" y="41" text-anchor="middle" fill="rgba(143,209,79,0.7)" font-size="8" font-family="system-ui, sans-serif">99.9%</text>
+                <line x1="28" y1="50" x2="452" y2="50" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+                <!-- Internet / Users -->
+                <circle cx="64" cy="140" r="28" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                <text x="64" y="136" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8" font-family="system-ui, sans-serif">Internet</text>
+                <text x="64" y="148" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="system-ui, sans-serif">usuarios</text>
+
+                <!-- Arrow to LB -->
+                <path d="M92 140 L128 140" stroke="rgba(143,209,79,0.3)" stroke-width="1.5"/>
+                <circle cx="110" cy="140" r="3.5" fill="#8FD14F" opacity="0.7"/>
+                <path d="M125 136 L130 140 L125 144" stroke="rgba(143,209,79,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Load Balancer -->
+                <circle cx="168" cy="140" r="36" fill="none" stroke="rgba(143,209,79,0.3)" stroke-width="1">
+                  <animate attributeName="r" from="36" to="52" dur="3s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" from="0.4" to="0" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <rect x="130" y="112" width="76" height="56" rx="10" fill="rgba(143,209,79,0.08)" stroke="rgba(143,209,79,0.3)" stroke-width="1.5"/>
+                <text x="168" y="134" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="system-ui, sans-serif">Load</text>
+                <text x="168" y="146" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-size="8" font-family="system-ui, sans-serif">Balancer</text>
+                <text x="168" y="160" text-anchor="middle" fill="rgba(143,209,79,0.5)" font-size="7" font-family="system-ui, sans-serif">auto-scale</text>
+
+                <!-- Traffic packet: Internet → LB -->
+                <path id="svc-infra-to-lb" d="M92 140 L128 140" fill="none" stroke="none"/>
+                <circle r="3.5" fill="#8FD14F">
+                  <animateMotion dur="2s" repeatCount="indefinite">
+                    <mpath href="#svc-infra-to-lb"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.8;1" dur="2s" repeatCount="indefinite"/>
+                </circle>
+
+                <!-- Arrows LB → App servers -->
+                <path d="M206 126 L240 100" stroke="rgba(143,209,79,0.25)" stroke-width="1.5"/>
+                <path d="M206 154 L240 180" stroke="rgba(143,209,79,0.25)" stroke-width="1.5"/>
+
+                <!-- AZ1 label -->
+                <text x="248" y="68" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">ZONA A</text>
+                <!-- App server 1 -->
+                <rect x="242" y="74" width="82" height="48" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="283" y="93" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">App Server</text>
+                <rect x="254" y="100" width="22" height="4" rx="2" fill="rgba(143,209,79,0.5)"/>
+                <rect x="280" y="100" width="16" height="4" rx="2" fill="rgba(143,209,79,0.3)"/>
+                <rect x="300" y="100" width="16" height="4" rx="2" fill="rgba(143,209,79,0.2)"/>
+                <circle cx="314" cy="83" r="4" fill="#8FD14F" opacity="0.7"/>
+
+                <!-- AZ2 label -->
+                <text x="248" y="158" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">ZONA B</text>
+                <!-- App server 2 -->
+                <rect x="242" y="164" width="82" height="48" rx="8" fill="rgba(255,255,255,0.04)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="283" y="183" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-size="8" font-family="system-ui, sans-serif">App Server</text>
+                <rect x="254" y="190" width="18" height="4" rx="2" fill="rgba(143,209,79,0.5)"/>
+                <rect x="276" y="190" width="22" height="4" rx="2" fill="rgba(143,209,79,0.3)"/>
+                <rect x="302" y="190" width="14" height="4" rx="2" fill="rgba(143,209,79,0.2)"/>
+                <circle cx="314" cy="173" r="4" fill="#8FD14F" opacity="0.7"/>
+
+                <!-- Arrows app servers → DB -->
+                <path d="M324 98 L358 120" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+                <path d="M324 188 L358 166" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+
+                <!-- Shared DB -->
+                <rect x="360" y="112" width="72" height="56" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                <text x="396" y="132" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="8" font-family="system-ui, sans-serif">Database</text>
+                <text x="396" y="144" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7" font-family="system-ui, sans-serif">PostgreSQL</text>
+                <text x="396" y="158" text-anchor="middle" fill="rgba(143,209,79,0.4)" font-size="7" font-family="system-ui, sans-serif">primary + replica</text>
+
+                <!-- Cache (below DB) -->
+                <path d="M396 168 L396 194" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="3 2"/>
+                <rect x="360" y="194" width="72" height="36" rx="8" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="396" y="210" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="8" font-family="system-ui, sans-serif">Redis</text>
+                <text x="396" y="222" text-anchor="middle" fill="rgba(255,255,255,0.22)" font-size="7" font-family="system-ui, sans-serif">caché + sesión</text>
+
+                <!-- Monitoring panel bottom -->
+                <rect x="28" y="258" width="424" height="80" rx="10" fill="rgba(255,255,255,0.02)" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+                <text x="42" y="276" fill="rgba(255,255,255,0.2)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">MONITOREO 24/7</text>
+
+                <!-- Metric cols -->
+                <text x="60" y="298" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="system-ui, sans-serif">Uptime</text>
+                <text x="60" y="314" text-anchor="middle" fill="#8FD14F" font-size="10" font-weight="600" font-family="system-ui, sans-serif">99.9%</text>
+
+                <line x1="108" y1="282" x2="108" y2="330" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+                <text x="155" y="298" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="system-ui, sans-serif">Latencia p95</text>
+                <text x="155" y="314" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="10" font-family="system-ui, sans-serif">68ms</text>
+
+                <line x1="210" y1="282" x2="210" y2="330" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+                <text x="258" y="298" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="8" font-family="system-ui, sans-serif">Alertas</text>
+                <text x="258" y="314" text-anchor="middle" fill="#8FD14F" font-size="10" font-weight="600" font-family="system-ui, sans-serif">0</text>
+
+                <line x1="312" y1="282" x2="312" y2="330" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+
+                <!-- Mini sparkline -->
+                <text x="344" y="288" fill="rgba(255,255,255,0.2)" font-size="7" font-family="system-ui, sans-serif">Tráfico</text>
+                <path d="M336 320 L348 314 L360 317 L372 310 L384 313 L396 307 L408 310 L420 304 L432 308 L444 302" stroke="rgba(143,209,79,0.4)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="336" y1="296" x2="336" y2="326" stroke="rgba(143,209,79,0.7)" stroke-width="1.5">
+                  <animate attributeName="x1" from="336" to="444" dur="4s" repeatCount="indefinite"/>
+                  <animate attributeName="x2" from="336" to="444" dur="4s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.05;0.85;1" dur="4s" repeatCount="indefinite"/>
+                </line>
+              </svg>
+            )}
+          </div>
+        </div>
+      </div>
+      );
+    })}
+  </section>
+
+  <!-- Nuestro Método — Nexsas services.htm pattern, ahora horizontal estilo trionn.com -->
+  <section class="relative section-dark bg-background-6 pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px]">
     <div class="main-container">
       <div class="text-center space-y-5 mb-[70px]">
-    
-        <span data-ns-animate data-delay="0.1" class="badge badge-green-v2">Nuestro Método</span>
+        <span data-ns-animate data-delay="0.1" class="badge badge-section">Nuestro Método</span>
         <div class="space-y-3">
-          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto fw-300">
+          <h2 data-ns-animate data-delay="0.2" class="max-w-[878px] mx-auto font-light">
             Cómo trabajamos
           </h2>
-          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto">
+          <p data-ns-animate data-delay="0.3" class="max-w-[700px] mx-auto text-secondary/60 dark:text-accent/60">
             No vendemos horas. Entregamos soluciones que resuelven problemas reales.
             Nuestro proceso existe para garantizar que cada proyecto tenga impacto medible.
           </p>
         </div>
       </div>
 
-    
-  <div data-ns-animate data-delay="0.4" class="process-steps">
-      <div class="max-w-[870px] mx-auto mb-[100px]">
-        {procesoSteps.map((item, i) => {
-          const isLast = i === procesoSteps.length - 1;
-          const isLeft = i % 2 === 0;
-          return (
-            <div class="relative">
-              <div>
-                <!-- Step circle -->
-                <div
-                  class="size-[34px] flex items-center justify-center mx-auto rounded-full bg-black drop-shadow-2xl dark:bg-black "
-                >
-                  <span class="text-black text-accent-300">{item.step}</span>
-                </div>
-                {/* Gradient line — only if NOT the last step */}
-                {!isLast && (
-                  <div class="h-[150px] lg:h-[200px] w-1 mx-auto bg-stroke-2 dark:bg-stroke-6 overflow-hidden">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="step-line w-full"
-                      style="height: 0px;"
-                      viewBox="0 0 2 222"
-                      preserveAspectRatio="none"
-                      fill="none"
-                    >
-                      <path
-                        d="M1 1L0.99999 221"
-                        stroke={`url(#step-gradient-${i})`}
-                        stroke-width="2"
-                        stroke-linecap="round"
-                      />
-                      <defs>
-                        <linearGradient
-                          id={`step-gradient-${i}`}
-                          x1="0.5"
-                          y1="1"
-                          x2="0.49999"
-                          y2="221"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop offset="0" stop-color="#66ffb2" />
-                          <stop offset="0.25" stop-color="#00e676" />
-                          <stop offset="0.5" stop-color="#00e676" />
-                          <stop offset="1" stop-color="#66ffb2" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
-                )}
+      <!-- Steps en una sola fila conectada (antes: zigzag vertical con
+           gradiente neón). Inspirado en el "How we work" de trionn.com:
+           una sola línea que atraviesa todos los pasos, revelados al
+           hacer scroll con el sistema [data-ns-animate] existente. -->
+      <div class="process-steps relative">
+        <!-- Línea conectora horizontal (solo desktop, donde los 5 pasos
+             quedan en una sola fila). El tramo base va gris; step-line-h
+             se rellena de verde vía initStepLineAnimation al hacer scroll. -->
+        <div class="hidden lg:block absolute inset-x-0 top-[17px] h-px bg-stroke-6 overflow-hidden">
+          <div
+            class="step-line-h h-full bg-gradient-to-r from-accent-300 via-accent-400 to-accent-300"
+            style="width: 0%;"
+          ></div>
+        </div>
+
+        <div class="relative z-10 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-8 lg:grid-cols-5 lg:gap-x-6">
+          {procesoSteps.map((item, i) => (
+            <div data-ns-animate data-delay={0.3 + i * 0.1} class="text-center lg:text-left">
+              <div class="size-[34px] flex items-center justify-center mx-auto lg:mx-0 rounded-full bg-background-8 drop-shadow-2xl">
+                <span class="text-accent-300">{item.step}</span>
               </div>
-              <!-- Step card — alternating left/right on desktop -->
-              <div
-                data-ns-animate
-                data-delay={0.3 + i * 0.1}
-                class:list={[
-                  'card-item absolute max-w-[370px] w-full space-y-3',
-                  isLeft
-                    ? 'lg:left-0 lg:top-0 left-1/2 lg:translate-x-0 -translate-x-1/2 top-1/2 lg:translate-y-0 -translate-y-1/2'
-                    : 'lg:right-0 lg:top-0 right-1/2 lg:translate-x-0 translate-x-1/2 top-1/2 -translate-y-1/2',
-                  isLast && 'top-16',
-                  'lg:bg-none dark:bg-background-6 lg:dark:bg-transparent lg:p-0 lg:rounded-none p-6 rounded-[20px] max-sm:bg-background-4',
-                ]}
-              >
-                <p class="text-accent-600">PASO {item.step}</p>
-                <div class="space-y-2">
-                  <h5 class="text-heading-6 lg:text-heading-5 dark:text-accent-400">{item.title}</h5>
-                  <small class="dark:text-white/50">{item.description}</small>
-                </div>
+              <div class="mt-6 space-y-2 max-w-[280px] mx-auto lg:mx-0">
+                <p class="text-accent-400 text-tagline-2 font-medium">PASO {item.step}</p>
+                <h5 class="text-heading-6 text-secondary dark:text-accent">{item.title}</h5>
+                <small class="text-secondary/60 dark:text-accent/60">{item.description}</small>
               </div>
             </div>
-          );
-        })}
+          ))}
+        </div>
       </div>
-    </div>
-
     </div>
   </section>
 
@@ -169,13 +950,13 @@ const diferenciadores = [
 
 
   <!-- Diferenciadores — Nexsas feature.htm two-column pattern -->
-  <section class="relative pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px] overflow-hidden hidden">
+  <section class="relative bg-background-2 dark:bg-background-6 pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-24 md:pb-36 lg:pb-40 xl:pb-[200px] overflow-hidden">
     <div class="main-container">
       <div class="flex items-center flex-wrap lg:flex-nowrap gap-y-8 lg:gap-4 xl:gap-8">
         <div class="w-full lg:w-1/2">
           <div class="text-center lg:text-left">
-            <span data-ns-animate data-delay="0.1" class="badge badge-green-v2 mb-5">Diferenciadores</span>
-            <h2 data-ns-animate data-delay="0.2" class="mb-8 max-w-[520px] mx-auto lg:mx-0">
+            <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">Diferenciadores</span>
+            <h2 data-ns-animate data-delay="0.2" class="mb-8 max-w-[520px] mx-auto lg:mx-0 font-light">
               Diseñado para entregar resultados tangibles
             </h2>
             <p data-ns-animate data-delay="0.3" class="mb-8 max-w-[520px] mx-auto lg:mx-0">
@@ -204,15 +985,15 @@ const diferenciadores = [
                       height="18"
                       rx="9"
                       fill=""
-                      class="fill-secondary/10 dark:fill-accent/10"
+                      class="fill-accent-400/15"
                     />
                     <path
                       d="M8.31661 12.7561L13.7491 7.42144C14.0836 7.0959 14.0836 6.5697 13.7491 6.24416C13.4145 5.91861 12.8736 5.91861 12.539 6.24416L7.7116 10.9901L5.46096 8.78807C5.12636 8.46253 4.58554 8.46253 4.25095 8.78807C3.91635 9.11362 3.91635 9.63982 4.25095 9.96536L7.1066 12.7561C7.27347 12.9184 7.49253 13 7.7116 13C7.93067 13 8.14974 12.9184 8.31661 12.7561Z"
                       fill=""
-                      class="fill-secondary/80 dark:fill-accent/80"
+                      class="fill-accent-400"
                     />
                   </svg>
-                  <span class="text-secondary/40 dark:text-accent/60">{d}</span>
+                  <span class="text-secondary/70 dark:text-accent/60">{d}</span>
                 </li>
               ))}
             </ul>
@@ -224,47 +1005,80 @@ const diferenciadores = [
           </div>
         </div>
         <div data-ns-animate data-delay="0.3" class="w-full max-w-max mx-auto lg:mx-0 lg:w-1/2">
-          <div class="rounded-[20px] bg-background-3 dark:bg-background-5 p-5 lg:p-8 relative overflow-hidden">
-            <div class="flex gap-4 sm:gap-2.5 flex-wrap sm:flex-nowrap">
-              <div class="bg-white dark:bg-background-8 p-6 rounded-2xl w-full sm:w-[55%]">
-                <h5 class="mb-4">
-                  Proceso <br class="hidden lg:block" />
-                  validado
-                </h5>
-                <div class="w-full h-[1px] bg-secondary/10 dark:bg-accent/10 mb-7"></div>
-                <div class="flex items-center justify-between">
-                  <p class="text-secondary/60 dark:text-accent/60 text-tagline-2 font-medium">
-                    5 etapas probadas
-                  </p>
-                  <svg
-                    width="18"
-                    height="16"
-                    viewBox="0 0 18 16"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9.34462 13.401L13.2849 15.8974C13.7886 16.2165 14.4139 15.7419 14.2644 15.154L13.126 10.6756C13.0939 10.5509 13.0977 10.4197 13.137 10.297C13.1762 10.1743 13.2492 10.0652 13.3477 9.98222L16.8811 7.04132C17.3453 6.6549 17.1057 5.88439 16.5092 5.84567L11.8949 5.5462C11.7706 5.53732 11.6514 5.49332 11.5511 5.41931C11.4509 5.34531 11.3737 5.24435 11.3286 5.12819L9.60765 0.794357C9.56087 0.671064 9.47769 0.564919 9.36915 0.490017C9.26062 0.415115 9.13187 0.375 9 0.375C8.86813 0.375 8.73938 0.415115 8.63085 0.490017C8.52232 0.564919 8.43914 0.671064 8.39236 0.794357L6.6714 5.12819C6.6263 5.24435 6.54914 5.34531 6.4489 5.41931C6.34865 5.49332 6.22944 5.53732 6.10515 5.5462L1.49078 5.84567C0.894294 5.88439 0.654664 6.6549 1.11894 7.04132L4.65232 9.98222C4.75079 10.0652 4.82383 10.1743 4.86305 10.297C4.90226 10.4197 4.90606 10.5509 4.874 10.6756L3.81824 14.8288C3.63889 15.5343 4.38929 16.1038 4.99369 15.7209L8.65539 13.401C8.75837 13.3354 8.87792 13.3006 9 13.3006C9.12208 13.3006 9.24163 13.3354 9.34462 13.401Z"
-                      fill=""
-                      class="fill-secondary dark:fill-accent"
-                    />
-                  </svg>
-                </div>
+          <div class="rounded-[20px] p-5 lg:p-6 relative overflow-hidden border border-white/[0.07]" style="background-color: #0b0d10;">
+            <div class="flex gap-3 flex-wrap sm:flex-nowrap">
+
+              <!-- Card: Proceso validado -->
+              <div class="p-5 rounded-[14px] w-full sm:w-[55%] border border-white/[0.06]" style="background: rgba(255,255,255,0.025);">
+                <p class="text-[10px] font-medium tracking-widest uppercase text-white/30 mb-4">Proceso validado</p>
+                <svg viewBox="0 0 190 64" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-full mb-4">
+                  <!-- Stage 1 -->
+                  <circle cx="19" cy="28" r="9" fill="rgba(143,209,79,0.15)" stroke="#8FD14F" stroke-width="1.5"/>
+                  <circle cx="19" cy="28" r="9" fill="none" stroke="rgba(143,209,79,0.3)" stroke-width="1.5">
+                    <animate attributeName="r" from="10" to="16" dur="2.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" from="0.5" to="0" dur="2.5s" repeatCount="indefinite"/>
+                  </circle>
+                  <text x="19" y="32" text-anchor="middle" fill="#8FD14F" font-size="8" font-family="system-ui, sans-serif" font-weight="600">1</text>
+                  <!-- Connector 1→2 -->
+                  <path d="M28 28 L47 28" stroke="rgba(143,209,79,0.4)" stroke-width="1" stroke-dasharray="3 2">
+                    <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1.4s" repeatCount="indefinite"/>
+                  </path>
+                  <!-- Stage 2 -->
+                  <circle cx="56" cy="28" r="9" fill="rgba(143,209,79,0.09)" stroke="rgba(143,209,79,0.45)" stroke-width="1"/>
+                  <text x="56" y="32" text-anchor="middle" fill="rgba(143,209,79,0.7)" font-size="8" font-family="system-ui, sans-serif">2</text>
+                  <!-- Connector 2→3 -->
+                  <path d="M65 28 L84 28" stroke="rgba(143,209,79,0.3)" stroke-width="1" stroke-dasharray="3 2">
+                    <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1.4s" repeatCount="indefinite" begin="0.35s"/>
+                  </path>
+                  <!-- Stage 3 -->
+                  <circle cx="93" cy="28" r="9" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.35)" stroke-width="1"/>
+                  <text x="93" y="32" text-anchor="middle" fill="rgba(143,209,79,0.55)" font-size="8" font-family="system-ui, sans-serif">3</text>
+                  <!-- Connector 3→4 -->
+                  <path d="M102 28 L121 28" stroke="rgba(143,209,79,0.22)" stroke-width="1" stroke-dasharray="3 2">
+                    <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1.4s" repeatCount="indefinite" begin="0.7s"/>
+                  </path>
+                  <!-- Stage 4 -->
+                  <circle cx="130" cy="28" r="9" fill="rgba(143,209,79,0.05)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
+                  <text x="130" y="32" text-anchor="middle" fill="rgba(143,209,79,0.45)" font-size="8" font-family="system-ui, sans-serif">4</text>
+                  <!-- Connector 4→5 -->
+                  <path d="M139 28 L158 28" stroke="rgba(143,209,79,0.18)" stroke-width="1" stroke-dasharray="3 2">
+                    <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1.4s" repeatCount="indefinite" begin="1.05s"/>
+                  </path>
+                  <!-- Stage 5 -->
+                  <circle cx="167" cy="28" r="9" fill="rgba(143,209,79,0.04)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                  <text x="167" y="32" text-anchor="middle" fill="rgba(143,209,79,0.35)" font-size="8" font-family="system-ui, sans-serif">5</text>
+                  <!-- Labels -->
+                  <text x="19" y="52" text-anchor="middle" fill="rgba(255,255,255,0.28)" font-size="6.5" font-family="system-ui, sans-serif">Diagnós.</text>
+                  <text x="56" y="52" text-anchor="middle" fill="rgba(255,255,255,0.2)" font-size="6.5" font-family="system-ui, sans-serif">Diseño</text>
+                  <text x="93" y="52" text-anchor="middle" fill="rgba(255,255,255,0.16)" font-size="6.5" font-family="system-ui, sans-serif">Dev</text>
+                  <text x="130" y="52" text-anchor="middle" fill="rgba(255,255,255,0.14)" font-size="6.5" font-family="system-ui, sans-serif">QA</text>
+                  <text x="167" y="52" text-anchor="middle" fill="rgba(255,255,255,0.12)" font-size="6.5" font-family="system-ui, sans-serif">Deploy</text>
+                </svg>
+                <p class="text-white/35 text-[10px] tracking-widest uppercase">5 etapas probadas</p>
               </div>
 
-              <div class="bg-white dark:bg-background-8 p-6 rounded-2xl w-full sm:w-[45%]">
-                <h5 class="mb-4">Resultados</h5>
-                <div class="space-y-3">
-                  <div class="flex items-center gap-2">
-                    <span class="text-heading-4 text-secondary dark:text-accent font-medium">100%</span>
-                    <span class="text-secondary/60 dark:text-accent/60 text-tagline-2">entes satisfechos</span>
-                  </div>
-                  <div class="w-full h-[1px] bg-secondary/10 dark:bg-accent/10"></div>
-                  <p class="text-secondary/60 dark:text-accent/60 text-tagline-2">
-                    Proyectos entregados a tiempo y dentro de presupuesto
-                  </p>
-                </div>
+              <!-- Card: Resultados -->
+              <div class="p-5 rounded-[14px] w-full sm:w-[45%] border border-white/[0.06] flex flex-col items-center justify-center text-center gap-3" style="background: rgba(255,255,255,0.025);">
+                <svg viewBox="0 0 88 88" xmlns="http://www.w3.org/2000/svg" fill="none" class="w-20 h-20 shrink-0">
+                  <!-- Track -->
+                  <circle cx="44" cy="44" r="34" stroke="rgba(255,255,255,0.06)" stroke-width="7"/>
+                  <!-- Fill ring -->
+                  <circle cx="44" cy="44" r="34" stroke="#8FD14F" stroke-width="7" stroke-linecap="round"
+                    stroke-dasharray="214" stroke-dashoffset="214" transform="rotate(-90 44 44)">
+                    <animate attributeName="stroke-dashoffset" from="214" to="0" dur="2s" fill="freeze" begin="0.5s"/>
+                  </circle>
+                  <!-- Glow dot at 100% position (top, after rotation) -->
+                  <circle cx="44" cy="10" r="4" fill="#8FD14F" opacity="0">
+                    <animate attributeName="opacity" values="0;0;0.9;0.9" keyTimes="0;0.9;0.95;1" dur="2.5s" fill="freeze" begin="0.5s"/>
+                    <animate attributeName="r" from="4" to="7" dur="1.5s" repeatCount="indefinite" begin="3s"/>
+                    <animate attributeName="opacity" values="0.9;0.4;0.9" dur="1.5s" repeatCount="indefinite" begin="3s"/>
+                  </circle>
+                  <text x="44" y="40" text-anchor="middle" fill="white" font-size="16" font-weight="700" font-family="system-ui, sans-serif">100%</text>
+                  <text x="44" y="55" text-anchor="middle" fill="rgba(255,255,255,0.35)" font-size="7.5" font-family="system-ui, sans-serif">satisfechos</text>
+                </svg>
+                <p class="text-white/35 text-[11px] leading-relaxed">Proyectos entregados a tiempo y dentro de presupuesto</p>
               </div>
+
             </div>
           </div>
         </div>
@@ -284,8 +1098,8 @@ Tech Stack Marquee
   aria-label="Stack Tecnológico"
 >
   <div class="max-w-[1028px] text-center w-full mx-auto mb-14">
-    <span data-ns-animate data-delay="0.1" class="badge badge-green-v2 mb-5">Stack flexible</span>
-    <h2 data-ns-animate data-delay="0.2" class="mb-3">Stack Tecnológico</h2>
+    <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">Stack flexible</span>
+    <h2 data-ns-animate data-delay="0.2" class="mb-3 font-light">Stack Tecnológico</h2>
     <p data-ns-animate data-delay="0.3" class="max-w-[582px] mx-auto w-full">
       Adaptamos el stack a tu infraestructura existente. No forzamos una tecnología si no encaja.
     </p>
@@ -296,147 +1110,161 @@ Tech Stack Marquee
     <div data-ns-animate data-delay="0.4" class="relative">
       <div class="absolute left-0 top-0 h-full w-[100px] bg-gradient-to-r from-background-1 to-transparent dark:from-background-6 z-40"></div>
       <div class="absolute right-0 top-0 h-full w-[100px] bg-gradient-to-l from-background-1 to-transparent dark:from-background-6 z-40"></div>
-      <div class="logos-marquee-container">
-        <div class="marquee-track">
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Code size={18} stroke-width={1.5} /> Astro</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Smartphone size={18} stroke-width={1.5} /> React</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Accessibility size={18} stroke-width={1.5} /> Next.js</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Monitor size={18} stroke-width={1.5} /> Vue</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Server size={18} stroke-width={1.5} /> Node.js</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Database size={18} stroke-width={1.5} /> PostgreSQL</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Cloud size={18} stroke-width={1.5} /> AWS</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Container size={18} stroke-width={1.5} /> Docker</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Globe size={18} stroke-width={1.5} /> TypeScript</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><GitBranch size={18} stroke-width={1.5} /> Git</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Code size={18} stroke-width={1.5} /> Python</span>
-          <span class="tech-pill bg-white dark:bg-background-5 border border-stroke-3 dark:border-stroke-7 text-secondary dark:text-accent"><Database size={18} stroke-width={1.5} /> MongoDB</span>
-        </div>
+     
+
+
+
+      
+
+<div class="logos-marquee-container">
+        {tecnologias.map((tech, i) => (
+          <div data-ns-animate data-delay={0.3 + i * 0.08}>
+            <div class="flex items-center justify-center rounded-2xl p-4 border border-stroke-1 bg-white dark:bg-background-5 dark:border-stroke-7">
+              <StackIcon name={tech.name} variant="light" className="icon-dark h-10 w-10" />
+              <StackIcon name={tech.name} variant="dark" className="icon-light h-10 w-10" />
+            </div>
+          </div>
+        ))}
       </div>
+      <div class="logos-right-marquee-container mt-10">
+        {tecnologias.map((tech, i) => (
+          <div data-ns-animate data-delay={0.3 + i * 0.08}>
+            <div class="flex items-center justify-center rounded-2xl p-4 border border-stroke-1 bg-white dark:bg-background-5 dark:border-stroke-7">
+              <StackIcon name={tech.name} variant="light" className="icon-dark h-10 w-10" />
+              <StackIcon name={tech.name} variant="dark" className="icon-light h-10 w-10" />
+            </div>
+          </div>
+        ))}
+      </div>
+
+
+
     </div>
   </div>
 </section>
 
-
-
-  <!-- CTA — Nexsas pricing.htm centered pattern -->
-  <section class="relative xl:py-[200px] py-24 overflow-hidden">
-    <div class="main-container space-y-[70px]">
-      <div class="flex flex-col items-center text-center">
-        <span data-ns-animate data-delay="0.1" class="badge badge-yellow-v2 mb-5">¿Listo para empezar?</span>
-        <h2 data-ns-animate data-delay="0.2" class="max-w-[650px] mx-auto mb-8">
-          ¿Listo para levantar tu proceso?
-        </h2>
-        <p data-ns-animate data-delay="0.3" class="max-w-[500px] mx-auto mb-8">
-          El primer paso es una reunión de diagnóstico. Sin compromiso, sin letra chica.
+  <!-- Stack tecnológico categorizado — patron "technology stack" de
+       trionn.com/services: mismo stack que el marquee de logos de
+       arriba, pero organizado por categoria en texto — complementa,
+       no reemplaza, el marquee (mas "credencial tecnica" para quien
+       lee en detalle). -->
+  <section class="py-24 lg:py-[120px] bg-background-2 dark:bg-background-8">
+    <div class="main-container">
+      <div class="max-w-[700px] mb-16 md:mb-20">
+        <span data-ns-animate data-delay="0.1" class="badge badge-section mb-5">Detalle técnico</span>
+        <h2 data-ns-animate data-delay="0.2" class="font-light mb-3">Construido con arquitectura escalable</h2>
+        <p data-ns-animate data-delay="0.3">
+          Elegimos la herramienta correcta para cada capa, no la que está de moda.
         </p>
-        <div data-ns-animate data-delay="0.4">
-          <a href="/contacto" class="btn btn-primary btn-lg md:btn-xl hover:btn-secondary dark:hover:btn-accent">
-            <span>Agendar Diagnóstico</span>
-          </a>
-        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-14">
+        {stackCategorias.map((cat, i) => (
+          <div data-ns-animate data-delay={0.2 + i * 0.1} class="border-t border-stroke-1 dark:border-stroke-7 pt-6">
+            <div class="flex items-baseline gap-3 mb-4">
+              <span class="text-accent-400 text-tagline-2 font-medium">{String(i + 1).padStart(2, '0')}</span>
+              <h5 class="text-heading-6 font-light">{cat.titulo}</h5>
+            </div>
+            <p class="text-secondary/60 dark:text-accent/50">{cat.items.join(' · ')}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
-  
+  <ContactoFooter />
+  <Footer />
 
+<style is:inline>
+  /* StackIcon variant toggle — default is dark theme, .light class overrides */
+  /* !important needed because StackIcon sets inline display styles */
+  .icon-light { display: none !important; }
+  .icon-dark { display: inline-block !important; }
 
-
-
-
-
-<style>
-  /* Marquee animations */
-  .logos-marquee-container,
-  .logos-right-marquee-container,
-  .cards-marquee-container,
-  .cards-right-marquee-container {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  .logos-marquee-container .marquee-track,
-  .cards-marquee-container .marquee-track {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: max-content;
-    gap: 1rem;
-    animation: marquee-left 35s linear infinite;
-  }
-
-  .logos-right-marquee-container .marquee-track,
-  .cards-right-marquee-container .marquee-track {
-    display: flex;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: max-content;
-    gap: 1rem;
-    animation: marquee-right 35s linear infinite;
-  }
-
-  .logos-marquee-container:hover .marquee-track,
-  .logos-right-marquee-container:hover .marquee-track,
-  .cards-marquee-container:hover .marquee-track,
-  .cards-right-marquee-container:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
-:global(.tech-pill) {
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 0.5rem !important;
-    padding: 0.625rem 1.25rem !important;
-    border-radius: 9999px !important;
-    font-weight: 500 !important;
-    font-size: 0.875rem !important;
-    line-height: 1.25rem !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-    transition: transform 0.2s, box-shadow 0.2s !important;
-  }
-
-  :global(.dark) .tech-pill {
-    background: #161b26 !important;
-    color: #e2e8f0 !important;
-    border-color: #1e293b !important;
-  }
-
-  :global(.tech-pill:hover) {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
-  }
-
-  @keyframes marquee-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  @keyframes marquee-right {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-  }
+  .light .icon-light { display: inline-block !important; }
+  .light .icon-dark { display: none !important; }
 </style>
 
 <script>
-  // Duplicate marquee track for seamless infinite loop
-  document.querySelectorAll('.marquee-track').forEach(track => {
-    if (track.parentElement.querySelectorAll('.marquee-track').length < 2) {
-      const clone = track.cloneNode(true);
-      clone.setAttribute('aria-hidden', 'true');
-      track.parentElement.appendChild(clone);
+import InfiniteMarquee from 'vanilla-infinite-marquee';
+import '/node_modules/vanilla-infinite-marquee/infinite-marquee.css';
+
+function initMarquees() {
+
+
+  if (typeof InfiniteMarquee === 'undefined') return;
+
+  const configs = [
+    {
+      selector: '.disciplines-marquee-container',
+      speed: 90000,
+      direction: 'left',
+      spaceBetween: '0px',
+      duplicateCount: 1,
+      smoothEdges: true,
+      mobileSettings: { direction: 'left', speed: 40000 },
+    },
+    {
+      selector: '.logos-marquee-container',
+      speed: 140000,
+      direction: 'left',
+      spaceBetween:"20px",
+      duplicateCount: 1,
+      smoothEdges: true,
+      mobileSettings: { direction: 'left', speed: 50000 },
+    },
+    {
+      selector: '.logos-right-marquee-container',
+      speed: 140000,
+      direction: 'right',
+      spaceBetween:"20px",
+      duplicateCount: 1,
+      smoothEdges: true,
+      mobileSettings: { direction: 'right', speed: 50000 },
     }
-  });
-  // Re-clone on Astro view transitions
-  document.addEventListener('astro:after-swap', () => {
-    document.querySelectorAll('.marquee-track').forEach(track => {
-      if (track.parentElement.querySelectorAll('.marquee-track').length < 2) {
-        const clone = track.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        track.parentElement.appendChild(clone);
-      }
+    
+  ];
+
+  configs.forEach(({ selector, ...options }) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+
+    // Evitar reinicializar si InfiniteMarquee ya procesó el elemento
+    if (el.dataset.marqueeInit === 'true') return;
+
+    new InfiniteMarquee({
+      element: selector,
+      on: { beforeInit: () => {}, afterInit: () => {} },
+      ...options,
     });
+
+    el.dataset.marqueeInit = 'true';
   });
+}
+
+
+document.addEventListener('DOMContentLoaded', initMarquees);
+
+
+document.addEventListener('astro:after-swap', () => {
+  initMarquees();
+});
+
 </script>
 
+<!-- Modal de contacto inmediato disparado desde los CTAs del Hero (ver
+     data-open-demo-modal / initDemoModalTriggers en animations.ts).
+     Mismas props de fallback que el DemoModal del home (index.astro);
+     los botones del Hero ya mandan su propio detail por click. -->
+<DemoModal
+  modalTitle="Conversemos"
+  modalDescription="Cuéntanos sobre tu proyecto y te contactamos a la brevedad."
+  ctaLabel="Enviar mensaje"
+  solucionTitle="Consulta general"
+  successTitle="¡Mensaje enviado!"
+  successMessage="Te contactaremos en las próximas 24 horas hábiles."
+/>
+
 </Layout>
+
+

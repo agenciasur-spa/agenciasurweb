@@ -1,97 +1,99 @@
 ---
 // ── Sistemas Core Section (features pattern) ─────────────────────────────────
 // Nexsas Time-Tracking adapted for Agencia Sur
-// Grid de 3 cards: imagen (light/dark) + heading + tagline
+// Grid de 3 cards: icono + heading + tagline, dentro de la tarjeta oscura grande.
 
-
-import { ShoppingBag, UsersRound, Headset } from '@lucide/astro';
-
+import { ShoppingBag, UsersRound, Headset, ArrowRight } from "@lucide/astro";
+import BadgeSection  from '../components/blocks/BadgeSection.astro';
 const sistemas = [
   {
     icon: ShoppingBag,
-    title: 'Sistema de Compras',
+    title: "Sistema de Compras",
     description:
-      'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento. Control total desde la solicitud hasta la entrega.',
-    link: '#'
+      "Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento. Control total desde la solicitud hasta la entrega.",
+    link: "/soluciones/sistema-de-compras",
   },
   {
     icon: UsersRound,
-    title: 'Gestión de Personal Transitorio',
+    title: "Gestión de Personal Transitorio",
     description:
-      'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma centralizada.',
-    link: '#'
+      "Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma centralizada.",
+    link: "/soluciones/gestion-personal-transitorio",
   },
   {
     icon: Headset,
-    title: 'Mesa de Ayuda',
+    title: "Mesa de Ayuda",
     description:
-      'Omnicanalidad y base de conocimientos para una autoatención inteligente con SLA automatizado.',
-    link: '#'
+      "Omnicanalidad y base de conocimientos para una autoatención inteligente con SLA automatizado.",
+    link: "/soluciones/mesa-de-ayuda",
   },
-  
 ];
-
 ---
-<section
-  class="pt-14 md:pt-16 lg:pt-[88px] xl:pt-[100px] pb-14 md:pb-16 lg:pb-[88px] xl:pb-[100px]"
->
+
+<section>
   <div
     data-ns-animate
     data-delay="0.1"
-    class="2xl:max-w-[1440px] max-w-[1290px] mx-5 text-center xl:mx-auto rounded-4xl py-4 lg:py-8 -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
+    class="w-full py-10 md:py-14 lg:py-16 text-center -z-0 bg-secondary dark:bg-background-8 overflow-hidden relative"
   >
-    <!-- background image  -->
-    <div
-      data-ns-animate
-      data-delay="0.3"
-      data-duration="2"
-      data-spring
-      data-direction="right"
-      data-offset="50"
-      class="absolute max-[400px]:-right-[32%] max-[400px]:-top-[20%] -top-[31%] -right-[40%] sm:-right-[20%] md:-right-[28%] lg:-right-[20%] xl:-right-[12%] max-w-[530px] rotate-90 md:rotate-[108deg] select-none pointer-events-none"
-    >
-      <img
-        src="./images/ns-img-508.png"
-        alt="how-to-work"
-        class="w-full h-full object-cover"
-      />
-    </div>
-    
+    <!-- Fondo animado "mesh drift" (WebGL, ver src/lib/meshDriftShader.ts).
+         Reemplaza la imagen decorativa estática (ns-img-508.png), que ya no
+         se ajustaba bien en distintos anchos. Opacidad reducida para que
+         los "blobs" no compitan en brillo con el texto. -->
+    <canvas
+      data-mesh-drift
+      aria-hidden="true"
+      class="absolute inset-0 -z-10 h-full w-full opacity-[0.55]"
+    ></canvas>
 
-<span data-ns-animate data-delay="0.4" class="badge badge-green-v2">Sistemas Core</span>
+    <!-- main-container (el mismo que usa #servicios) en vez de paddings
+         ad-hoc, para que el heading y el grid queden alineados con el
+         resto del sitio pese a que el contenedor exterior es full-bleed. -->
+    <div class="relative z-10 main-container">
+      <BadgeSection text="Sistemas Core" delay={0.4} />
 
+      <h2
+        data-ns-animate
+        data-delay="0.4"
+        class="mt-4 font-light text-white"
+      >
+        Plataformas modulares diseñadas para <span
+          class="text-accent-400 block">optimizar</span
+        > la gestión empresarial
+      </h2>
 
-<h4 data-ns-animate data-delay="0.4" class="mt-4 px-10 fw-300 text-white">Plataformas modulares diseñadas para <span class="hero-text-gradient hero-text-color-1 block">optimizar</span> la gestión empresarial</h4>
+      <!-- Content -->
+      <div
+        class="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 mt-10"
+      >
+        {
+          sistemas.map(({ icon: Icon, title, description, link }, index) => (
+            <div
+              data-ns-animate
+              data-direction="up"
+              data-offset="40"
+              data-delay={0.5 + 0.15 * index}
+              class="rounded-[20px] border border-white/10 bg-white/[0.03] p-6 text-left transition-colors duration-300 hover:border-accent-400/40"
+            >
+              <div class="flex size-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                <Icon color="currentColor" size={28} stroke-width={1} class="text-accent-400" />
+              </div>
 
-    
-    <!-- Content -->
-    <div
-      class="flex mx-auto max-md:flex-wrap max-md:items-center max-md:justify-center items-start md:items-center justify-start md:justify-center gap-y-10 gap-x-8 max-xl:px-8 max-[400px]:px-6 mt-10"
-    >
-    
-    {sistemas.map(({ icon: Icon, title, description, link }) => (
-    <div class="text-left" data-ns-animate data-duration="0.5" data-delay="0.5">
-        <span class="ns-shape-3 text-[52px] text-white"></span>
-        <Icon color="#22ff88" size={32} stroke-width={1}  />
-
-        <h5 class="md:text-heading-5 fw-300 mt-4 mb-2 text-white">
-          {title}
-        </h5>
-        <p class="text-tagline-2 max-w-[375px]">
-          {description}
-        </p>
-        <div class="flex items-center justify-start mt-5">
+              <h3 class="text-heading-5 font-light mt-4 mb-2 text-white">
+                {title}
+              </h3>
+              <p class="text-white/70">{description}</p>
               <a
                 href={link}
-                class="btn btn-md btn-accent block md:inline-block dark:btn-white-dark w-full md:w-auto dark:hover:btn-accent hover:btn-secondary"
+                class="group mt-5 inline-flex items-center gap-2 text-tagline-1 font-medium text-accent-400 transition-colors hover:text-white"
               >
-                <span>ver más</span>
+                <span>Ver más</span>
+                <ArrowRight class="size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
             </div>
+          ))
+        }
       </div>
-))}
-
-  
-
-</div>
+    </div>
+  </div>
 </section>

@@ -5,36 +5,38 @@ interface Props {
 const { Uii } = Astro.props;
 
 import { ShoppingCart, Users, LifeBuoy, Sparkles } from '@lucide/astro';
+import { sanityClient } from '../lib/sanity';
 
-const solutions = [
-  {
-    title: 'Sistema de Compras',
-    icon: ShoppingCart,
-    href: '/soluciones/sistema-de-compras',
-    description: 'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento.',
-  },
-  {
-    title: 'Personal Transitorio',
-    icon: Users,
-    href: '/soluciones/gestion-personal-transitorio',
-    description: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.',
-  },
-  {
-    title: 'Mesa de Ayuda',
-    icon: LifeBuoy,
-    href: '/soluciones/mesa-de-ayuda',
-    description: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.',
-  },
-  {
-    title: 'Próximamente',
-    icon: Sparkles,
-    href: '#',
-    description: 'Nuevas soluciones en desarrollo.',
-  },
+// Slug → icon mapping (hardcoded Lucide components — can't be dynamic)
+const iconMap: Record<string, typeof ShoppingCart> = {
+  'sistema-de-compras': ShoppingCart,
+  'gestion-personal-transitorio': Users,
+  'mesa-de-ayuda': LifeBuoy,
+};
+
+const fallbackSolutions = [
+  { title: 'Sistema de Compras', slug: 'sistema-de-compras', tagline: 'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento.' },
+  { title: 'Personal Transitorio', slug: 'gestion-personal-transitorio', tagline: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.' },
+  { title: 'Mesa de Ayuda', slug: 'mesa-de-ayuda', tagline: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.' },
 ];
 
-const col1 = solutions.slice(0, 2);
-const col2 = solutions.slice(2);
+let solutions: { title: string; slug: string; tagline: string }[] = fallbackSolutions;
+
+if (sanityClient) {
+  try {
+    const sanitySolutions = await sanityClient.fetch(
+      `*[_type == "solucion"] | order(order asc) { title, "slug": slug.current, tagline }`
+    );
+    if (sanitySolutions && sanitySolutions.length > 0) {
+      solutions = sanitySolutions;
+    }
+  } catch {
+    // Sanity failed — use fallbacks
+  }
+}
+
+const col1 = solutions.slice(0, Math.ceil(solutions.length / 2));
+const col2 = solutions.slice(Math.ceil(solutions.length / 2));
 ---
 
 <div>
@@ -46,61 +48,67 @@ const col2 = solutions.slice(2);
   <!-- Dropdown -->
   <div
     id={Uii}
-    class="dropdown-menu fixed left-1/2 -translate-x-1/2 top-full mt-2 pointer-events-none transition-all duration-300 opacity-0 md:w-[952px] w-full bg-background-6 z-50 rounded-[20px] p-4 border border-stroke-1 dark:border-background-7 "
+    class="dropdown-menu fixed left-1/2 -translate-x-1/2 top-full mt-2 pointer-events-none transition-all duration-300 opacity-0 md:w-[952px] w-full bg-background-6 z-50 rounded-[20px] p-4 border border-stroke-1 dark:border-stroke-7"
   >
     <div class="flex items-start md:gap-x-6 gap-y-6">
       <!-- Col 1 -->
       <ul class="space-y-2 flex-1">
-        {col1.map((item) => (
+        {col1.map((item) => {
+          const Icon = iconMap[item.slug] || Sparkles;
+          return (
           <li>
             <a
-              href={item.href}
+              href={`/soluciones/${item.slug}`}
               class="p-3 rounded-[10px] flex items-start gap-3 transition-all duration-300 relative group"
             >
               <div
-                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-background-3 dark:bg-background-7 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
+                class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/5 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
               ></div>
               <div class="mt-1.5 relative z-10">
                 <div
-                  class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-white/10"
+                  class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border p-1 dark:border-stroke-7"
                 >
-                  <item.icon  color="#22ff88" size={48} stroke-width={1} />
+                  <Icon color="currentColor" size={48} stroke-width={1} class="text-accent-400" />
                 </div>
               </div>
               <div class="relative z-10 space-y-0.5">
                 <span class="text-accent text-tagline-1 font-normal block">{item.title}</span>
-                <span class="text-accent/60 text-tagline-3 font-normal block">{item.description}</span>
+                <span class="text-accent/60 text-tagline-3 font-normal block">{item.tagline}</span>
               </div>
             </a>
           </li>
-        ))}
+          );
+        })}
       </ul>
 
       <!-- Col 2 -->
       <ul class="space-y-2 flex-1">
-        {col2.map((item) => (
+        {col2.map((item) => {
+          const Icon = iconMap[item.slug] || Sparkles;
+          return (
           <li>
             <a
-              href={item.href}
+              href={`/soluciones/${item.slug}`}
               class="p-3 rounded-[10px] flex items-start gap-3 transition-all duration-300 relative group"
             >
               <div
-            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-background-3 dark:bg-background-7 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-white/5 opacity-0 group-hover:opacity-100 rounded-[10px] z-0 transition-all duration-400"
               ></div>
               <div class="mt-1.5 relative z-10">
                 <div
                   class="border-stroke-1 relative z-10 mt-1 flex size-7 shrink-0 items-center justify-center rounded-lg border border-white/50 p-1 dark:border-white/10"
                 >
-                  <item.icon color="#22ff88" size={48} stroke-width={1} />
+                  <Icon color="currentColor" size={48} stroke-width={1} class="text-accent-400" />
                 </div>
               </div>
               <div class="relative z-10 space-y-0.5">
                 <span class="text-accent text-tagline-1 font-normal block">{item.title}</span>
-                <span class="text-accent/60 text-tagline-3 font-normal block">{item.description}</span>
+                <span class="text-accent/60 text-tagline-3 font-normal block">{item.tagline}</span>
               </div>
             </a>
           </li>
-        ))}
+          );
+        })}
       </ul>
 
       <!-- Col 3 — Video + CTA -->

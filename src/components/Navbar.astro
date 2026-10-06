@@ -1,39 +1,38 @@
 ---
-// Minimal, pill, backdrop-blur, dropdown menu  
-import ServiceMenu from '../components/ServiceMenu.astro';
-import SolutionsMenu from '../components/SolutionsMenu.astro';
-import CasosExitoMenu from '../components/CasosExitoMenu.astro';
-import MobileMenu from '../components/MobileMenu.astro';
+// Minimal, pill, backdrop-blur, dropdown menu
+import ServiceMenu from "../components/ServiceMenu.astro";
+import SolutionsMenu from "../components/SolutionsMenu.astro";
+import CasosExitoMenu from "../components/CasosExitoMenu.astro";
+import MobileMenu from "../components/MobileMenu.astro";
 ---
+
 <header>
-  <div
-    data-ns-animate
-    data-direction="up"
-    data-offset="20"
-    class="header-two lp:!max-w-[1290px] dark:bg-background-7 bg-background-7 fixed top-14 left-1/2 z-50 mx-auto flex w-full max-w-[350px] -translate-x-1/2 items-center justify-between rounded-full px-2.5 py-2.5 backdrop-blur-[25px] max-md:!top-8 min-[425px]:max-w-[380px] min-[500px]:max-w-[450px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[960px] xl:max-w-[1140px] xl:py-0"
-  >
+ <div
+  data-ns-animate
+  data-direction="up"
+  data-offset="20"
+  class="header-two bg-secondary/50 dark:bg-background-8/50 fixed top-14 left-1/2 z-50 mx-auto flex w-full max-w-[350px] -translate-x-1/2 items-center justify-between rounded-full px-5 py-2.5 backdrop-blur-[25px] max-md:!top-8 min-[425px]:max-w-[380px] min-[500px]:max-w-[450px] sm:max-w-[540px] md:max-w-[720px] lg:max-w-[1290px] xl:py-0"
+>
     <div>
       <a href="/">
         <span class="sr-only">Home</span>
-        <!--figure class="hidden lg:block lg:max-w-[198px]">
-          <img src="./images/shared/dark-logo.svg" alt="AgenciaSur" />
-        </figure>
-        <figure class="block max-w-[44px] lg:hidden">
-          <img src="./images/shared/logo.svg" alt="AgenciaSur" class="block w-full dark:hidden" />
-          <img src="./images/shared/logo-dark.svg" alt="AgenciaSur" class="hidden w-full dark:block" />
-        </figure-->
-<img src="/logo.svg" alt="AgenciaSur" class="ml-4 h-8 w-auto" />
+        <img src="/logo.svg" alt="AgenciaSur" class="h-8 w-auto" />
       </a>
     </div>
     <nav class="hidden items-center xl:flex">
       <ul class="flex items-center">
-        <li class="nav-item relative cursor-pointer py-2.5" data-menu="company-mega-menu-v2">
+        <li
+          class="nav-item relative cursor-pointer py-2.5"
+          data-menu="company-mega-menu-v2"
+        >
           <a
             href="#"
             class="hover:text-accent hover:border-accent light:hover:border-stroke-7 dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
           >
             <span>Servicios</span>
-            <span class="nav-arrow block origin-center translate-y-px transition-all duration-300">
+            <span
+              class="nav-arrow block origin-center translate-y-px transition-all duration-300"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -45,28 +44,27 @@ import MobileMenu from '../components/MobileMenu.astro';
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
               </svg>
             </span>
           </a>
 
-        <div>
-
-        <ServiceMenu Uii="company-mega-menu-v2" />      
-     
-        </div>
-
-
-
+          <div>
+            <ServiceMenu Uii="company-mega-menu-v2" />
+          </div>
         </li>
-        <li class="nav-item relative cursor-pointer py-2.5" data-menu="product-mega-menu">
+        <li
+          class="nav-item relative cursor-pointer py-2.5"
+          data-menu="product-mega-menu"
+        >
           <a
             href="#"
-            class="hover:text-accent hover:border-accent light:hover:border-stroke-7 dark:hover:border-stroke-7  text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
+            class="hover:text-accent hover:border-accent light:hover:border-stroke-7 dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
           >
             <span>Soluciones</span>
-            <span class="nav-arrow block origin-center translate-y-px transition-all duration-300">
+            <span
+              class="nav-arrow block origin-center translate-y-px transition-all duration-300"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -78,30 +76,34 @@ import MobileMenu from '../components/MobileMenu.astro';
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
               </svg>
             </span>
           </a>
-          <SolutionsMenu Uii="product-mega-menu" />      
+          <SolutionsMenu Uii="product-mega-menu" />
         </li>
-        
+
         <li class="nav-item relative cursor-pointer py-2.5">
           <a
             href="/nosotros"
-            class="hover:text-accent hover:border-accent light:hover:border-stroke-7 dark:hover:border-stroke-7  text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
+            class="hover:text-accent hover:border-accent light:hover:border-stroke-7 dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
           >
             <span>Nosotros</span>
           </a>
         </li>
 
-        <li class="nav-item relative cursor-pointer py-2.5" data-menu="casos-exito-dropdown">
+        <li
+          class="nav-item relative cursor-pointer py-2.5"
+          data-menu="casos-exito-dropdown"
+        >
           <a
             href="#"
-            class="hover:text-accent hover:border-accent light:hover:border-stroke-7 dark:hover:border-stroke-7  text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
+            class="hover:text-accent hover:border-accent light:hover:border-stroke-7 dark:hover:border-stroke-7 text-tagline-1 text-accent/60 dark:text-accent/60 dark:hover:text-accent group flex items-center gap-1 rounded-full border border-transparent px-4 py-2 font-normal transition-all duration-200"
           >
             <span>Casos de Éxito</span>
-            <span class="nav-arrow block origin-center translate-y-px transition-all duration-300">
+            <span
+              class="nav-arrow block origin-center translate-y-px transition-all duration-300"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -113,25 +115,20 @@ import MobileMenu from '../components/MobileMenu.astro';
                 <path
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
+                  d="m19.5 8.25-7.5 7.5-7.5-7.5"></path>
               </svg>
             </span>
           </a>
           <CasosExitoMenu Uii="casos-exito-dropdown" />
         </li>
-        
-
-
-
       </ul>
     </nav>
-   
+
     <div class="flex items-center gap-2">
       <div class="hidden items-center justify-center xl:flex">
         <a
           href="/contacto"
-          class="btn btn-md hover:btn-white dark:hover:btn-white-dark btn-white-dark dark:btn-white dark:text-[#1a1a1c]"
+          class="btn btn-md hover:btn-white dark:hover:btn-white-dark btn-white-dark dark:btn-white dark:text-secondary"
         >
           <span>Contacto</span>
         </a>
@@ -148,7 +145,5 @@ import MobileMenu from '../components/MobileMenu.astro';
       </div>
     </div>
   </div>
-<MobileMenu />
+  <MobileMenu />
 </header>
-
-

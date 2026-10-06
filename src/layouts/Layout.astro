@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
 
 interface Props {
   title: string;
@@ -26,28 +25,14 @@ const { title, description = 'Transformación digital para empresas. Automatizam
     />
     <title>{title}</title>
 
-    <!-- Dark mode init — default: dark -->
-    <script is:inline>
-      (function() {
-        const saved = localStorage.getItem('theme');
-        const html = document.documentElement;
-        if (saved === 'light') {
-          html.classList.remove('dark');
-          html.classList.add('light');
-        }
-      })();
-    </script>
   </head>
-  <body class="bg-background-2 dark:bg-background-6">
+  <body class="bg-[rgb(19,22,27)] dark:bg-background-6">
     <Navbar />
 
     <main>
       <slot />
     </main>
 
-    <ThemeToggle />
-    <!-- Stack cards animation -->
-    <script is:inline src="/vendor/stack-card.min.js"></script>
     <!-- Animations bundle -->
     <script>
       import { initNexsasAnimations } from '../lib/animations';

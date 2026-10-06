@@ -11,15 +11,15 @@ export default function PortableText({ value }: Props) {
       value={value}
       components={{
         block: {
-          h2: ({ children }) => <h2 class="text-2xl font-bold mt-8 mb-4">{children}</h2>,
-          h3: ({ children }) => <h3 class="text-xl font-bold mt-6 mb-3">{children}</h3>,
-          normal: ({ children }) => <p class="text-slate-600 leading-relaxed mb-4">{children}</p>,
+          h2: ({ children }) => <h2 className="text-2xl font-bold mt-8 mb-4 text-white">{children}</h2>,
+          h3: ({ children }) => <h3 className="text-xl font-bold mt-6 mb-3 text-white">{children}</h3>,
+          normal: ({ children }) => <p className="mb-4 text-white/60">{children}</p>,
         },
         list: {
-          bullet: ({ children }) => <ul class="list-disc pl-6 mb-4 space-y-2">{children}</ul>,
+          bullet: ({ children }) => <ul className="list-disc pl-6 mb-4 space-y-2 text-white/60">{children}</ul>,
         },
         listItem: {
-          bullet: ({ children }) => <li class="text-slate-600">{children}</li>,
+          bullet: ({ children }) => <li className="">{children}</li>,
         },
       }}
     />

@@ -1,156 +1,418 @@
 ---
-import { UserCog, Workflow, Code, Cloud } from '@lucide/astro';
+import BadgeSection from '../components/blocks/BadgeSection.astro';
 
 const servicios = [
   {
-    icon: UserCog,
     title: 'Levantamiento de Procesos',
     description:
       'No programamos sin entender. Analizamos y definimos la metodología óptima antes de digitalizar.',
+    tag: 'Discovery & mapeo',
+    visual: 'discovery',
   },
   {
-    icon: Code,
-    gradient: 'gradient-2',
     title: 'Desarrollo Web & Mobile High-End',
     description:
       'Construimos sistemas robustos sobre arquitecturas modernas o evolucionamos tu infraestructura actual en WordPress/Prestashop hacia el alto rendimiento.',
+    tag: 'Arquitecturas modernas',
+    visual: 'dev',
   },
   {
-    icon: Workflow,
-    gradient: 'gradient-violet',
     title: 'Integración & Soporte Continuo',
     description:
       'Conectamos tus sistemas existentes con APIs y middleware. Soporte post-entrega para asegurar la operación sin interrupciones.',
+    tag: 'APIs & middleware',
+    visual: 'integration',
   },
   {
-    icon: Cloud,
-    gradient: 'gradient-amber',
     title: 'Infraestructura Cloud',
     description:
       'Despliegue, monitoreo y escalabilidad en la nube. Tu operación, siempre disponible.',
+    tag: 'Monitoreo 24/7',
+    visual: 'cloud',
   },
 ];
 ---
 
+<!-- Sentinel para ScrollTrigger -->
+<div id="servicios-trigger" aria-hidden="true" class="h-0 w-full"></div>
+
 <section
-  class="pt-16 md:pt-20 lg:pt-[90px] xl:pt-[100px] pb-16 md:pb-20 lg:pb-[90px] xl:pb-[100px]"
+  id="servicios"
+  class="relative z-10 -mt-8 rounded-t-[28px] bg-background-2 pt-16 md:-mt-12 md:rounded-t-[36px] md:pt-20 lg:pt-[90px] xl:pt-[100px] pb-16 md:pb-20 lg:pb-[90px] xl:pb-[100px] dark:bg-background-6"
 >
   <div class="main-container">
-    <div
-      class="flex flex-col items-start justify-center max-md:gap-y-18 md:flex-row md:justify-between md:gap-x-[120px]"
-    >
-      <!-- Left: Sticky heading -->
-      <div class="lg:sticky lg:top-28 w-full md:max-w-[460px]">
-        <span data-ns-animate data-delay="0.1" class="badge badge-green-v2">Servicios</span>
-        <div class="mb-14 space-y-2 md:max-w-[595px]">
-          <h2 data-ns-animate data-delay="0.2" class="fw-300">
-            <span class="hero-text-gradient hero-text-color-1 block">Soluciones</span> para la era digital
-          </h2>
-          <p data-ns-animate data-delay="0.3" class="max-w-[512px]">
-            Transformamos procesos complejos en soluciones simples, eficientes y escalables.
-          </p>
-        </div>
+    <div class="mx-auto max-w-[640px] text-center">
+      <div class="flex justify-center">
+        <BadgeSection text="Servicios" delay={0.1} />
       </div>
+      <div class="mt-4 space-y-2">
+        <h2 data-ns-animate data-delay="0.2" class="font-light">
+          <span class="text-accent-400 block">Soluciones</span>
+          para la era digital
+        </h2>
+        <p data-ns-animate data-delay="0.3" class="mx-auto max-w-[512px]">
+          Transformamos procesos complejos en soluciones simples, eficientes y escalables.
+        </p>
+      </div>
+    </div>
 
-      <!-- Right: Stack cards -->
-      <div class="stack-cards js-stack-cards w-full max-w-xl">
-        {servicios.map(({ icon: Icon, title, description }) => (
-          <div class="stack-cards__item js-stack-cards__item max-sm:min-h-[433px]">
-            <div class={`border border-stroke-1 border-black/10 dark:border-white/10 rounded-[20px] relative z-10 overflow-hidden`}>
-              <!-- Card content -->
-              <div class="relative p-8 bg-white dark:bg-background-5 rounded-xl space-y-6 z-10">
-                <div class="bg-black flex size-17 items-center justify-center rounded-2xl p-4 shadow-lg border border-stroke-1 dark:border-white/25 dark:bg-background-5">                
-                  <Icon color="#22ff88" size={48} stroke-width={1}  />
-                </div>
-                <div class="space-y-2">
-                  <h3 class="text-heading-5 fw-300">{title}</h3>
-                  <p class="text-secondary/70 dark:text-accent/70">{description}</p>
-                </div>
-              </div>
+    <div class="mt-14 grid grid-cols-1 gap-6 md:mt-16 md:grid-cols-2 md:gap-8">
+      {servicios.map(({ title, description, tag, visual }, index) => (
+        <div
+          data-ns-animate
+          data-delay={0.15 * index}
+          data-direction="up"
+          data-offset="40"
+          class="group overflow-hidden rounded-[20px] border border-stroke-1 bg-white transition-colors duration-300 hover:border-accent-400/50 dark:border-stroke-7 dark:bg-background-5"
+        >
+          <!-- Illustration area -->
+          <div class="relative h-52 w-full overflow-hidden" style="background-color: #0b0d10;">
+
+            {visual === 'discovery' && (
+              <svg viewBox="0 0 400 208" xmlns="http://www.w3.org/2000/svg" fill="none" class="h-full w-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Subtle background lines -->
+                <line x1="0" y1="52" x2="400" y2="52" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+                <line x1="0" y1="156" x2="400" y2="156" stroke="rgba(255,255,255,0.03)" stroke-width="1"/>
+
+                <!-- Progress bar top -->
+                <text x="24" y="30" fill="rgba(255,255,255,0.3)" font-size="9" font-family="system-ui, sans-serif" letter-spacing="0.5">FASE 2 DE 4</text>
+                <rect x="24" y="36" width="200" height="3" rx="1.5" fill="rgba(255,255,255,0.06)"/>
+                <rect x="24" y="36" height="3" rx="1.5" fill="rgba(143,209,79,0.55)" width="95">
+                  <animate attributeName="width" from="0" to="95" dur="1.8s" fill="freeze"/>
+                </rect>
+
+                <!-- Step 1: Entrevista -->
+                <rect x="24" y="76" width="78" height="40" rx="8" fill="rgba(143,209,79,0.05)" stroke="rgba(143,209,79,0.2)" stroke-width="1"/>
+                <text x="63" y="100" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-size="10" font-family="system-ui, sans-serif">Entrevista</text>
+                <circle cx="36" cy="84" r="2.5" fill="rgba(143,209,79,0.3)"/>
+
+                <!-- Arrow -->
+                <path d="M103 96 L121 96" stroke="rgba(143,209,79,0.3)" stroke-width="1.5" stroke-dasharray="4 3">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.4s" repeatCount="indefinite"/>
+                </path>
+                <path d="M118 92 L123 96 L118 100" stroke="rgba(143,209,79,0.3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 2: Análisis (active) -->
+                <rect x="123" y="68" width="88" height="56" rx="8" fill="rgba(143,209,79,0.11)" stroke="#8FD14F" stroke-width="1.5"/>
+                <circle cx="136" cy="80" r="6" fill="none" stroke="#8FD14F" stroke-width="1">
+                  <animate attributeName="r" from="4" to="10" dur="2s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" from="0.6" to="0" dur="2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="136" cy="80" r="3" fill="#8FD14F"/>
+                <text x="167" y="92" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-size="10" font-weight="500" font-family="system-ui, sans-serif">Análisis</text>
+                <text x="167" y="107" text-anchor="middle" fill="rgba(143,209,79,0.65)" font-size="8" font-family="system-ui, sans-serif">● activo</text>
+
+                <!-- Arrow -->
+                <path d="M212 96 L230 96" stroke="rgba(143,209,79,0.22)" stroke-width="1.5" stroke-dasharray="4 3">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.4s" repeatCount="indefinite" begin="0.35s"/>
+                </path>
+                <path d="M227 92 L232 96 L227 100" stroke="rgba(143,209,79,0.22)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 3: Mapeo -->
+                <rect x="232" y="76" width="72" height="40" rx="8" fill="rgba(143,209,79,0.03)" stroke="rgba(143,209,79,0.14)" stroke-width="1"/>
+                <text x="268" y="100" text-anchor="middle" fill="rgba(255,255,255,0.32)" font-size="10" font-family="system-ui, sans-serif">Mapeo</text>
+
+                <!-- Arrow -->
+                <path d="M305 96 L322 96" stroke="rgba(143,209,79,0.12)" stroke-width="1.5" stroke-dasharray="4 3">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="1.4s" repeatCount="indefinite" begin="0.7s"/>
+                </path>
+                <path d="M319 92 L324 96 L319 100" stroke="rgba(143,209,79,0.12)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <!-- Step 4: Definir (future) -->
+                <rect x="325" y="76" width="55" height="40" rx="8" fill="transparent" stroke="rgba(143,209,79,0.08)" stroke-width="1" stroke-dasharray="3 2"/>
+                <text x="352" y="100" text-anchor="middle" fill="rgba(255,255,255,0.18)" font-size="9" font-family="system-ui, sans-serif">Definir</text>
+
+                <!-- Step numbers below -->
+                <text x="63" y="135" text-anchor="middle" fill="rgba(143,209,79,0.3)" font-size="8" font-family="system-ui, sans-serif">01</text>
+                <text x="167" y="135" text-anchor="middle" fill="#8FD14F" font-size="8" font-weight="600" font-family="system-ui, sans-serif">02</text>
+                <text x="268" y="135" text-anchor="middle" fill="rgba(143,209,79,0.2)" font-size="8" font-family="system-ui, sans-serif">03</text>
+                <text x="352" y="135" text-anchor="middle" fill="rgba(143,209,79,0.12)" font-size="8" font-family="system-ui, sans-serif">04</text>
+
+                <!-- Meta info top-right -->
+                <text x="376" y="30" text-anchor="end" fill="rgba(255,255,255,0.18)" font-size="8" font-family="system-ui, sans-serif">4 etapas · 2 semanas</text>
+
+                <!-- Decorative dots bottom-right -->
+                <circle cx="368" cy="174" r="1.5" fill="rgba(143,209,79,0.12)"/>
+                <circle cx="380" cy="174" r="1.5" fill="rgba(143,209,79,0.07)"/>
+                <circle cx="356" cy="174" r="1.5" fill="rgba(143,209,79,0.07)"/>
+                <circle cx="368" cy="186" r="1.5" fill="rgba(143,209,79,0.07)"/>
+                <circle cx="368" cy="162" r="1.5" fill="rgba(143,209,79,0.07)"/>
+              </svg>
+            )}
+
+            {visual === 'dev' && (
+              <svg viewBox="0 0 400 208" xmlns="http://www.w3.org/2000/svg" fill="none" class="h-full w-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Browser window -->
+                <rect x="20" y="18" width="178" height="174" rx="10" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+                <!-- Chrome bar -->
+                <rect x="20" y="18" width="178" height="30" rx="10" fill="rgba(255,255,255,0.05)"/>
+                <rect x="20" y="36" width="178" height="12" fill="rgba(255,255,255,0.05)"/>
+                <!-- Traffic lights -->
+                <circle cx="36" cy="33" r="4" fill="rgba(255,80,80,0.45)"/>
+                <circle cx="50" cy="33" r="4" fill="rgba(255,200,60,0.38)"/>
+                <circle cx="64" cy="33" r="7" fill="none" stroke="rgba(143,209,79,0.4)" stroke-width="1">
+                  <animate attributeName="r" from="5" to="10" dur="2.5s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" from="0.5" to="0" dur="2.5s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="64" cy="33" r="4" fill="rgba(143,209,79,0.45)"/>
+                <!-- URL bar -->
+                <rect x="78" y="27" width="106" height="12" rx="6" fill="rgba(255,255,255,0.05)"/>
+                <text x="86" y="37" fill="rgba(255,255,255,0.28)" font-size="7" font-family="monospace">agenciasur.cl/api</text>
+                <!-- Code lines -->
+                <rect x="32" y="60" width="38" height="5" rx="2" fill="rgba(143,209,79,0.55)"/>
+                <rect x="76" y="60" width="72" height="5" rx="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="32" y="73" width="20" height="5" rx="2" fill="rgba(180,232,107,0.38)"/>
+                <rect x="58" y="73" width="52" height="5" rx="2" fill="rgba(255,255,255,0.11)"/>
+                <rect x="32" y="86" width="28" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
+                <rect x="66" y="86" width="82" height="5" rx="2" fill="rgba(143,209,79,0.3)"/>
+                <rect x="32" y="99" width="58" height="5" rx="2" fill="rgba(255,255,255,0.07)"/>
+                <rect x="32" y="112" width="18" height="5" rx="2" fill="rgba(180,232,107,0.38)"/>
+                <rect x="56" y="112" width="44" height="5" rx="2" fill="rgba(255,255,255,0.14)"/>
+                <rect x="32" y="125" width="88" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+                <rect x="32" y="138" width="42" height="5" rx="2" fill="rgba(143,209,79,0.45)"/>
+                <rect x="80" y="138" width="26" height="5" rx="2" fill="rgba(255,255,255,0.18)"/>
+                <rect x="32" y="151" width="68" height="5" rx="2" fill="rgba(255,255,255,0.07)"/>
+                <rect x="32" y="164" width="32" height="5" rx="2" fill="rgba(143,209,79,0.2)"/>
+
+                <!-- Mobile frame -->
+                <rect x="218" y="26" width="92" height="160" rx="14" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+                <!-- Notch area -->
+                <rect x="244" y="26" width="40" height="10" rx="0 0 8 8" fill="rgba(255,255,255,0.05)"/>
+                <circle cx="264" cy="32" r="3" fill="rgba(255,255,255,0.07)"/>
+                <!-- Mobile content -->
+                <rect x="228" y="48" width="72" height="9" rx="4.5" fill="rgba(143,209,79,0.38)"/>
+                <rect x="228" y="64" width="56" height="5" rx="2" fill="rgba(255,255,255,0.14)"/>
+                <rect x="228" y="75" width="66" height="5" rx="2" fill="rgba(255,255,255,0.09)"/>
+                <rect x="228" y="86" width="44" height="5" rx="2" fill="rgba(255,255,255,0.07)"/>
+                <!-- Mobile card component -->
+                <rect x="228" y="104" width="72" height="54" rx="7" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.2)" stroke-width="0.75"/>
+                <rect x="234" y="113" width="32" height="4" rx="2" fill="rgba(143,209,79,0.48)"/>
+                <rect x="234" y="121" width="52" height="3" rx="1.5" fill="rgba(255,255,255,0.14)"/>
+                <rect x="234" y="128" width="42" height="3" rx="1.5" fill="rgba(255,255,255,0.09)"/>
+                <rect x="234" y="138" width="58" height="12" rx="6" fill="rgba(143,209,79,0.28)"/>
+                <text x="263" y="148" text-anchor="middle" fill="rgba(255,255,255,0.65)" font-size="7" font-family="system-ui, sans-serif">Ver sistema</text>
+                <!-- Bottom dots nav -->
+                <circle cx="249" cy="176" r="2.5" fill="rgba(143,209,79,0.5)"/>
+                <circle cx="264" cy="176" r="2.5" fill="rgba(255,255,255,0.14)"/>
+                <circle cx="279" cy="176" r="2.5" fill="rgba(255,255,255,0.14)"/>
+
+                <!-- Sync line between devices -->
+                <path d="M198 104 L218 104" stroke="rgba(143,209,79,0.25)" stroke-width="1" stroke-dasharray="3 2">
+                  <animate attributeName="stroke-dashoffset" from="0" to="-10" dur="1.2s" repeatCount="indefinite"/>
+                </path>
+                <circle cx="198" cy="104" r="3" fill="rgba(143,209,79,0.28)"/>
+                <circle cx="218" cy="104" r="3" fill="rgba(143,209,79,0.28)"/>
+                <!-- Sync packet -->
+                <path id="sg-dev-sync" d="M198 104 L218 104" fill="none" stroke="none"/>
+                <circle r="2.5" fill="#8FD14F">
+                  <animateMotion dur="1.6s" repeatCount="indefinite">
+                    <mpath href="#sg-dev-sync"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.8;1" dur="1.6s" repeatCount="indefinite"/>
+                </circle>
+                <text x="208" y="118" text-anchor="middle" fill="rgba(143,209,79,0.38)" font-size="7" font-family="system-ui, sans-serif">sync</text>
+              </svg>
+            )}
+
+            {visual === 'integration' && (
+              <svg viewBox="0 0 400 208" xmlns="http://www.w3.org/2000/svg" fill="none" class="h-full w-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Central hub rings -->
+                <circle cx="200" cy="104" r="38" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.2)" stroke-width="1" stroke-dasharray="4 3">
+                  <animateTransform attributeName="transform" type="rotate" from="0 200 104" to="360 200 104" dur="18s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="200" cy="104" r="38" fill="none" stroke="rgba(143,209,79,0.18)" stroke-width="1">
+                  <animate attributeName="r" from="28" to="46" dur="3s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" from="0.35" to="0" dur="3s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="200" cy="104" r="26" fill="rgba(143,209,79,0.1)" stroke="#8FD14F" stroke-width="1.5"/>
+                <circle cx="200" cy="104" r="16" fill="rgba(143,209,79,0.15)"/>
+                <text x="200" y="100" text-anchor="middle" fill="rgba(255,255,255,0.88)" font-size="8" font-weight="600" font-family="system-ui, sans-serif">AgSur</text>
+                <text x="200" y="111" text-anchor="middle" fill="rgba(143,209,79,0.65)" font-size="7" font-family="system-ui, sans-serif">hub</text>
+
+                <!-- Node: CRM (top-left) -->
+                <line x1="174" y1="81" x2="106" y2="46" stroke="rgba(143,209,79,0.28)" stroke-width="1" stroke-dasharray="5 4"/>
+                <circle cx="94" cy="40" r="22" fill="rgba(255,255,255,0.03)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="94" y="44" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9" font-family="system-ui, sans-serif">CRM</text>
+                <!-- data packet -->
+                <circle cx="142" cy="62" r="3.5" fill="#8FD14F" opacity="0.68"/>
+
+                <!-- Node: ERP (left) -->
+                <line x1="162" y1="104" x2="64" y2="104" stroke="rgba(143,209,79,0.28)" stroke-width="1" stroke-dasharray="5 4"/>
+                <circle cx="50" cy="104" r="22" fill="rgba(255,255,255,0.03)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="50" y="108" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9" font-family="system-ui, sans-serif">ERP</text>
+                <circle cx="112" cy="104" r="3.5" fill="#8FD14F" opacity="0.68"/>
+
+                <!-- Node: DB (bottom-left) -->
+                <line x1="176" y1="128" x2="106" y2="163" stroke="rgba(143,209,79,0.28)" stroke-width="1" stroke-dasharray="5 4"/>
+                <circle cx="94" cy="169" r="22" fill="rgba(255,255,255,0.03)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="94" y="173" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9" font-family="system-ui, sans-serif">DB</text>
+                <circle cx="138" cy="149" r="3.5" fill="#8FD14F" opacity="0.5"/>
+
+                <!-- Node: Cloud (top-right) -->
+                <line x1="226" y1="81" x2="294" y2="46" stroke="rgba(143,209,79,0.28)" stroke-width="1" stroke-dasharray="5 4"/>
+                <circle cx="306" cy="40" r="22" fill="rgba(255,255,255,0.03)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="306" y="44" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9" font-family="system-ui, sans-serif">Cloud</text>
+                <circle cx="260" cy="62" r="3.5" fill="#8FD14F" opacity="0.6"/>
+
+                <!-- Node: SMS (right) -->
+                <line x1="238" y1="104" x2="336" y2="104" stroke="rgba(143,209,79,0.28)" stroke-width="1" stroke-dasharray="5 4"/>
+                <circle cx="350" cy="104" r="22" fill="rgba(255,255,255,0.03)" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="350" y="101" text-anchor="middle" fill="rgba(255,255,255,0.55)" font-size="9" font-family="system-ui, sans-serif">SMS</text>
+                <text x="350" y="112" text-anchor="middle" fill="rgba(143,209,79,0.4)" font-size="7" font-family="system-ui, sans-serif">notify</text>
+                <circle cx="296" cy="104" r="3.5" fill="#8FD14F" opacity="0.68"/>
+
+                <!-- Motion paths for data packets -->
+                <path id="sg-int-crm" d="M94 40 L200 104" fill="none" stroke="none"/>
+                <path id="sg-int-erp" d="M50 104 L200 104" fill="none" stroke="none"/>
+                <path id="sg-int-sms" d="M350 104 L200 104" fill="none" stroke="none"/>
+                <path id="sg-int-cloud" d="M306 40 L200 104" fill="none" stroke="none"/>
+                <!-- Animated packets -->
+                <circle r="3.5" fill="#8FD14F">
+                  <animateMotion dur="3s" repeatCount="indefinite" begin="0s">
+                    <mpath href="#sg-int-erp"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3s" repeatCount="indefinite" begin="0s"/>
+                </circle>
+                <circle r="3.5" fill="#8FD14F">
+                  <animateMotion dur="3.5s" repeatCount="indefinite" begin="0.8s">
+                    <mpath href="#sg-int-crm"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3.5s" repeatCount="indefinite" begin="0.8s"/>
+                </circle>
+                <circle r="3.5" fill="rgba(143,209,79,0.7)">
+                  <animateMotion dur="3s" repeatCount="indefinite" begin="1.6s">
+                    <mpath href="#sg-int-sms"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3s" repeatCount="indefinite" begin="1.6s"/>
+                </circle>
+                <circle r="3" fill="rgba(143,209,79,0.6)">
+                  <animateMotion dur="3.8s" repeatCount="indefinite" begin="2.4s">
+                    <mpath href="#sg-int-cloud"/>
+                  </animateMotion>
+                  <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3.8s" repeatCount="indefinite" begin="2.4s"/>
+                </circle>
+                <!-- Status pulse on center -->
+                <circle cx="200" cy="78" r="4" fill="rgba(143,209,79,0.18)" stroke="rgba(143,209,79,0.5)" stroke-width="1"/>
+                <circle cx="200" cy="78" r="2" fill="#8FD14F"/>
+              </svg>
+            )}
+
+            {visual === 'cloud' && (
+              <svg viewBox="0 0 400 208" xmlns="http://www.w3.org/2000/svg" fill="none" class="h-full w-full" preserveAspectRatio="xMidYMid meet">
+                <!-- Metrics panel left -->
+                <rect x="20" y="20" width="202" height="168" rx="10" fill="rgba(255,255,255,0.025)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+                <!-- Metric: Uptime -->
+                <text x="34" y="46" fill="rgba(255,255,255,0.42)" font-size="9" font-family="system-ui, sans-serif">Uptime</text>
+                <text x="206" y="46" text-anchor="end" fill="#8FD14F" font-size="9" font-weight="600" font-family="system-ui, sans-serif">99.9%</text>
+                <rect x="34" y="52" width="154" height="5" rx="2.5" fill="rgba(255,255,255,0.05)"/>
+                <rect x="34" y="52" height="5" rx="2.5" fill="rgba(143,209,79,0.65)" width="153">
+                  <animate attributeName="width" from="0" to="153" dur="2s" fill="freeze"/>
+                </rect>
+
+                <!-- Metric: Latencia -->
+                <text x="34" y="78" fill="rgba(255,255,255,0.42)" font-size="9" font-family="system-ui, sans-serif">Latencia</text>
+                <text x="206" y="78" text-anchor="end" fill="rgba(255,255,255,0.68)" font-size="9" font-family="system-ui, sans-serif">42 ms</text>
+                <rect x="34" y="84" width="154" height="5" rx="2.5" fill="rgba(255,255,255,0.05)"/>
+                <rect x="34" y="84" width="46" height="5" rx="2.5" fill="rgba(143,209,79,0.48)"/>
+
+                <!-- Metric: Deploy -->
+                <text x="34" y="110" fill="rgba(255,255,255,0.42)" font-size="9" font-family="system-ui, sans-serif">Último deploy</text>
+                <text x="206" y="110" text-anchor="end" fill="rgba(255,255,255,0.35)" font-size="9" font-family="system-ui, sans-serif">2h atrás</text>
+                <rect x="34" y="116" width="154" height="5" rx="2.5" fill="rgba(255,255,255,0.05)"/>
+                <rect x="34" y="116" width="102" height="5" rx="2.5" fill="rgba(143,209,79,0.32)"/>
+
+                <!-- Metric: Alertas -->
+                <text x="34" y="142" fill="rgba(255,255,255,0.42)" font-size="9" font-family="system-ui, sans-serif">Alertas activas</text>
+                <rect x="140" y="132" width="48" height="15" rx="7.5" fill="rgba(143,209,79,0.12)" stroke="rgba(143,209,79,0.28)" stroke-width="1"/>
+                <circle cx="152" cy="139.5" r="6" fill="none" stroke="#8FD14F" stroke-width="1">
+                  <animate attributeName="r" from="4" to="10" dur="2.2s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" from="0.5" to="0" dur="2.2s" repeatCount="indefinite"/>
+                </circle>
+                <circle cx="152" cy="139.5" r="3" fill="#8FD14F"/>
+                <text x="172" y="143" text-anchor="middle" fill="rgba(143,209,79,0.85)" font-size="8" font-family="system-ui, sans-serif">0</text>
+
+                <!-- Divider + status -->
+                <line x1="34" y1="158" x2="202" y2="158" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+                <circle cx="172" cy="168" r="3" fill="rgba(143,209,79,0.5)"/>
+                <circle cx="172" cy="168" r="5.5" fill="transparent" stroke="rgba(143,209,79,0.22)" stroke-width="1"/>
+                <text x="34" y="172" fill="rgba(255,255,255,0.18)" font-size="7" font-family="system-ui, sans-serif">Monitoreo 24 / 7</text>
+
+                <!-- Server nodes right -->
+                <text x="310" y="36" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="8" font-family="system-ui, sans-serif" letter-spacing="0.5">NODOS</text>
+
+                <!-- Server 1 -->
+                <rect x="232" y="46" width="52" height="36" rx="6" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <rect x="238" y="54" width="30" height="3" rx="1.5" fill="rgba(255,255,255,0.14)"/>
+                <rect x="238" y="61" width="20" height="3" rx="1.5" fill="rgba(255,255,255,0.09)"/>
+                <rect x="238" y="68" width="24" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+                <circle cx="274" cy="54" r="3" fill="#8FD14F" opacity="0.75)"/>
+
+                <!-- Server 2 -->
+                <rect x="292" y="46" width="52" height="36" rx="6" fill="rgba(143,209,79,0.07)" stroke="rgba(143,209,79,0.25)" stroke-width="1"/>
+                <rect x="298" y="54" width="30" height="3" rx="1.5" fill="rgba(255,255,255,0.14)"/>
+                <rect x="298" y="61" width="20" height="3" rx="1.5" fill="rgba(255,255,255,0.09)"/>
+                <rect x="298" y="68" width="24" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+                <circle cx="334" cy="54" r="3" fill="#8FD14F" opacity="0.75"/>
+
+                <!-- Server 3 -->
+                <rect x="352" y="46" width="32" height="36" rx="6" fill="rgba(143,209,79,0.04)" stroke="rgba(143,209,79,0.15)" stroke-width="1" stroke-dasharray="3 2"/>
+                <rect x="358" y="54" width="18" height="3" rx="1.5" fill="rgba(255,255,255,0.07)"/>
+                <rect x="358" y="61" width="14" height="3" rx="1.5" fill="rgba(255,255,255,0.05)"/>
+                <circle cx="376" cy="54" r="3" fill="rgba(255,255,255,0.15)"/>
+
+                <!-- Connections -->
+                <path d="M258 82 L258 102" stroke="rgba(143,209,79,0.18)" stroke-width="1" stroke-dasharray="3 2"/>
+                <path d="M318 82 L318 102" stroke="rgba(143,209,79,0.18)" stroke-width="1" stroke-dasharray="3 2"/>
+                <path d="M258 102 L318 102" stroke="rgba(143,209,79,0.18)" stroke-width="1"/>
+                <circle cx="258" cy="102" r="2.5" fill="rgba(143,209,79,0.38)"/>
+                <circle cx="318" cy="102" r="2.5" fill="rgba(143,209,79,0.38)"/>
+
+                <!-- Load balancer -->
+                <rect x="265" y="107" width="66" height="14" rx="7" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+                <text x="298" y="118" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="7" font-family="system-ui, sans-serif">load balancer</text>
+
+                <!-- Down to prod -->
+                <path d="M298 121 L298 142" stroke="rgba(143,209,79,0.15)" stroke-width="1.5" stroke-dasharray="3 2"/>
+                <rect x="268" y="142" width="60" height="20" rx="6" fill="rgba(143,209,79,0.08)" stroke="rgba(143,209,79,0.2)" stroke-width="1"/>
+                <text x="298" y="156" text-anchor="middle" fill="rgba(143,209,79,0.6)" font-size="8" font-family="system-ui, sans-serif">prod ✓</text>
+
+                <!-- Mini traffic line -->
+                <path d="M234 176 L246 170 L258 173 L270 166 L282 169 L294 163 L306 166 L318 160 L330 163 L342 157 L354 160 L366 155 L378 158 L390 152" stroke="rgba(143,209,79,0.35)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="234" y1="154" x2="234" y2="182" stroke="rgba(143,209,79,0.7)" stroke-width="1.5">
+                  <animate attributeName="x1" from="234" to="390" dur="4s" repeatCount="indefinite"/>
+                  <animate attributeName="x2" from="234" to="390" dur="4s" repeatCount="indefinite"/>
+                  <animate attributeName="opacity" values="0;0.8;0.8;0" keyTimes="0;0.05;0.88;1" dur="4s" repeatCount="indefinite"/>
+                </line>
+                <text x="234" y="190" fill="rgba(255,255,255,0.18)" font-size="7" font-family="system-ui, sans-serif">Tráfico — 7 días</text>
+              </svg>
+            )}
+
+            <!-- Tag badge over illustration -->
+            <span class="absolute bottom-4 right-4 rounded-full border border-accent-400/30 bg-black/50 px-3 py-1 text-tagline-2 font-medium text-accent-400 backdrop-blur-sm">
+              {tag}
+            </span>
+          </div>
+
+          <!-- Text content -->
+          <div class="p-8">
+            <div class="space-y-2">
+              <h3 class="text-heading-5 font-light">{title}</h3>
+              <p class="text-secondary/70 dark:text-accent/70">{description}</p>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
-<style>
-  /* === Gradient definitions === */
-  .gradient-blue { --card-from: #3b82f6; --card-via: #a855f7; --card-to: #ec4899; }
-  .gradient-emerald { --card-from: #10b981; --card-via: #2dd4bf; --card-to: #06b6d4; }
-  .gradient-violet { --card-from: #8b5cf6; --card-via: #a855f7; --card-to: #d946ef; }
-  .gradient-amber { --card-from: #f59e0b; --card-via: #f97316; --card-to: #ef4444; }
-
-  /* === Card wrapper with gradient border === */
-  .card-wrapper {
-    background: linear-gradient(135deg, var(--card-from), var(--card-via), var(--card-to));
-    animation: glow-pulse 4s ease-in-out infinite alternate;
-  }
-
-  /* === Icon gradient background === */
-  .icon-gradient {
-    background: linear-gradient(135deg, var(--card-from), var(--card-via), var(--card-to));
-  }
-
-  .gradient-1 {
-  background-image: linear-gradient(45deg, #60a5fa, #22ff88);
-}
-
-
-  /* === Glow animation === */
-  @keyframes glow-pulse {
-    0% {
-      filter: brightness(1) saturate(1);
-      box-shadow: 0 0 20px 0 color-mix(in srgb, var(--card-from) 30%, transparent);
-    }
-    100% {
-      filter: brightness(1.1) saturate(1.2);
-      box-shadow: 0 0 40px 0 color-mix(in srgb, var(--card-from) 45%, transparent);
-    }
-  }
-
-  /* === Stacked card blur === */
-  .stack-cards__item {
-    transition: filter 0.15s ease-out, opacity 0.15s ease-out;
+<style is:global>
+  /* Dot-grid background fijo (parallax) sobre la sección de servicios.
+     background-color lo siguen manejando las clases Tailwind del elemento. */
+  #servicios {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ccircle cx='0.5' cy='0.5' r='1' fill='rgba(143%2C209%2C79%2C0.09)'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: 32px 32px;
   }
 </style>
-
-<script>
-  function initStackBlur() {
-    const container = document.querySelector('.js-stack-cards');
-    if (!container) return;
-
-    const items = Array.from(container.querySelectorAll('.js-stack-cards__item'));
-
-    function updateBlur() {
-      items.forEach((item, i) => {
-        // Read the scale computed by stack-card.min.js from the transform
-        const transform = item.style.transform || '';
-        const scaleMatch = transform.match(/scale\(([^)]+)\)/);
-        const scale = scaleMatch ? parseFloat(scaleMatch[1]) : 1;
-
-        if (scale < 1) {
-          // Cards behind the top one: blur proportional to how much they're scaled down
-          const blurAmount = Math.min((1 - scale) * 35, 50); // max 4px
-          const opacityVal = Math.min(Math.max(scale + 0.1, 0.6), 1); // clamp 0.6–1
-          item.style.filter = `blur(${blurAmount}px)`;
-          item.style.opacity = String(opacityVal);
-        } else {
-          item.style.filter = 'blur(0px)';
-          item.style.opacity = '1';
-        }
-      });
-    }
-
-    window.addEventListener('scroll', updateBlur, { passive: true });
-    updateBlur();
-  }
-
-  // Run after stack-card.min.js initializes
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => setTimeout(initStackBlur, 100));
-  } else {
-    setTimeout(initStackBlur, 100);
-  }
-</script>

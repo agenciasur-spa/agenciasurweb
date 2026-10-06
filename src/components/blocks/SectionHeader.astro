@@ -1,0 +1,39 @@
+---
+import BadgeSection  from '../../components/blocks/BadgeSection.astro';
+
+interface Props {
+  badgeText: string;
+  titleHighlight: string;
+  titleRest: string;
+  description: string;
+  badgeDelay?: string;
+  titleDelay?: string;
+  descriptionDelay?: string;
+}
+
+const {
+  badgeText,
+  titleHighlight,
+  titleRest,
+  description,
+  badgeDelay = "0.1",
+  titleDelay = "0.2",
+  descriptionDelay = "0.3"
+} = Astro.props;
+---
+
+<div class="md:sticky md:top-28 w-full md:max-w-[460px]">
+  
+<BadgeSection text={badgeText} delay={badgeDelay} />
+
+
+  <div class="mb-14 space-y-2 md:max-w-[595px]">
+    <h2 data-ns-animate data-delay={titleDelay} class="font-light text-white">
+      <span class="text-accent-400 block">{titleHighlight}</span>
+      {titleRest}
+    </h2>
+    <p data-ns-animate data-delay={descriptionDelay} class="max-w-[512px] text-white/60">
+      {description}
+    </p>
+  </div>
+</div>

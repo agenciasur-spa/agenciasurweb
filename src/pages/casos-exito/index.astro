@@ -4,6 +4,8 @@ import ContactoFooter from '../../components/ContactoFooter.astro';
 import { sanityClient } from '../../lib/sanity';
 import type { CasoExito } from '../../types/sanity';
 
+const calendlyUrl = import.meta.env.PUBLIC_CALENDLY_URL ?? '#';
+
 let casos: CasoExito[] = [];
 if (sanityClient) {
   try {
@@ -49,32 +51,71 @@ const rest = displayCasos.slice(1);
   <section class="overflow-hidden pt-32 pb-[20px] sm:pt-36 md:pt-42 lg:pb-[100px] xl:pt-[180px]">
     <div class="main-container">
       <div class="space-y-[70px]">
-        <div class="max-w-[800px] space-y-3">
-          <h1 data-ns-animate data-delay="0.2" class="text-heading-3 md:text-heading-2 font-normal">
-            Problemas reales. Resultados medibles.
-          </h1>
-          <p data-ns-animate data-delay="0.3">
-            Desde startups en crecimiento hasta empresas consolidadas, organizaciones de todo tipo usan
-            nuestras soluciones para optimizar operaciones, aumentar visibilidad y acelerar su transformación digital.
-          </p>
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div class="max-w-[800px] lg:max-w-[540px] space-y-3">
+            <h1 data-ns-animate data-delay="0.2" class="text-heading-3 md:text-heading-2 font-light text-white">
+              Problemas reales. Resultados <span class="text-accent-400">medibles</span>.
+            </h1>
+            <p data-ns-animate data-delay="0.3" class="text-white/60">
+              Desde startups en crecimiento hasta empresas consolidadas, organizaciones de todo tipo usan
+              nuestras soluciones para optimizar operaciones, aumentar visibilidad y acelerar su transformación digital.
+            </p>
+          </div>
+          <div class="hidden lg:flex justify-center items-center" aria-hidden="true">
+            <svg viewBox="0 0 400 280" class="w-full max-w-[380px]" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="40" y1="240" x2="380" y2="240" stroke="rgba(143,209,79,0.08)" stroke-width="1"/>
+              <line x1="40" y1="180" x2="380" y2="180" stroke="rgba(143,209,79,0.06)" stroke-width="1"/>
+              <line x1="40" y1="120" x2="380" y2="120" stroke="rgba(143,209,79,0.06)" stroke-width="1"/>
+              <line x1="40" y1="60" x2="380" y2="60" stroke="rgba(143,209,79,0.04)" stroke-width="1"/>
+              <rect x="70" y="144" width="48" height="96" rx="6" fill="rgba(143,209,79,0.12)" stroke="rgba(143,209,79,0.3)" stroke-width="1">
+                <animate attributeName="height" from="0" to="96" dur="1s" fill="freeze" begin="0.2s"/>
+                <animate attributeName="y" from="240" to="144" dur="1s" fill="freeze" begin="0.2s"/>
+              </rect>
+              <rect x="148" y="96" width="48" height="144" rx="6" fill="rgba(143,209,79,0.16)" stroke="rgba(143,209,79,0.4)" stroke-width="1">
+                <animate attributeName="height" from="0" to="144" dur="1s" fill="freeze" begin="0.4s"/>
+                <animate attributeName="y" from="240" to="96" dur="1s" fill="freeze" begin="0.4s"/>
+              </rect>
+              <rect x="226" y="48" width="48" height="192" rx="6" fill="rgba(143,209,79,0.22)" stroke="rgba(143,209,79,0.55)" stroke-width="1">
+                <animate attributeName="height" from="0" to="192" dur="1s" fill="freeze" begin="0.6s"/>
+                <animate attributeName="y" from="240" to="48" dur="1s" fill="freeze" begin="0.6s"/>
+              </rect>
+              <polyline points="94,144 172,96 250,48" stroke="rgba(143,209,79,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-dasharray="200" stroke-dashoffset="200">
+                <animate attributeName="stroke-dashoffset" from="200" to="0" dur="1.2s" fill="freeze" begin="0.8s"/>
+              </polyline>
+              <circle cx="94" cy="144" r="5" fill="rgba(143,209,79,0.9)">
+                <animate attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" begin="0.9s"/>
+              </circle>
+              <circle cx="172" cy="96" r="5" fill="rgba(143,209,79,0.9)">
+                <animate attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" begin="1.0s"/>
+              </circle>
+              <circle cx="250" cy="48" r="6" fill="#8FD14F">
+                <animate attributeName="r" values="6;9;6" dur="2s" repeatCount="indefinite" begin="1.2s"/>
+                <animate attributeName="opacity" from="0" to="1" dur="0.3s" fill="freeze" begin="1.1s"/>
+              </circle>
+              <text x="250" y="36" text-anchor="middle" fill="rgba(143,209,79,0.9)" font-size="11" font-family="system-ui">100%</text>
+              <rect x="40" y="258" width="100" height="18" rx="4" fill="rgba(143,209,79,0.06)" stroke="rgba(143,209,79,0.15)" stroke-width="1"/>
+              <rect x="155" y="258" width="100" height="18" rx="4" fill="rgba(143,209,79,0.06)" stroke="rgba(143,209,79,0.15)" stroke-width="1"/>
+              <rect x="270" y="258" width="100" height="18" rx="4" fill="rgba(143,209,79,0.06)" stroke="rgba(143,209,79,0.15)" stroke-width="1"/>
+            </svg>
+          </div>
         </div>
 
         <!-- Featured case study -->
         {featured && (
           <div class="space-y-4">
-            <h2 data-ns-animate data-delay="0.4" class="text-heading-4">Caso destacado</h2>
+            <span data-ns-animate data-delay="0.4" class="badge badge-section">Caso destacado</span>
             <ul class="max-w-[435px] space-y-2">
-              <li data-ns-animate data-delay="0.5" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
+              <li data-ns-animate data-delay="0.5" data-instant class="text-white text-lg leading-[150%] font-medium">
                 Cliente:
-                <span class="text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal">{featured.client}</span>
+                <span class="text-tagline-1 text-white/60 font-normal">{featured.client}</span>
               </li>
-              <li data-ns-animate data-delay="0.6" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
+              <li data-ns-animate data-delay="0.6" data-instant class="text-white text-lg leading-[150%] font-medium">
                 Sector:
-                <span class="text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal">{featured.industry}</span>
+                <span class="text-tagline-1 text-white/60 font-normal">{featured.industry}</span>
               </li>
-              <li data-ns-animate data-delay="0.7" data-instant class="text-secondary dark:text-accent text-lg leading-[150%] font-medium">
+              <li data-ns-animate data-delay="0.7" data-instant class="text-white text-lg leading-[150%] font-medium">
                 Resultados:
-                <span class="text-tagline-1 text-secondary/60 dark:text-accent/60 font-normal">{featured.results?.slice(0, 2).join(' · ')}</span>
+                <span class="text-tagline-1 text-white/60 font-normal">{featured.results?.slice(0, 2).join(' · ')}</span>
               </li>
             </ul>
           </div>
@@ -86,8 +127,8 @@ const rest = displayCasos.slice(1);
 
         {featured && (
           <div class="space-y-1">
-            <h3 data-ns-animate data-delay="0.1" class="text-heading-4">El desafío</h3>
-            <p data-ns-animate data-delay="0.2" class="max-w-[705px]">
+            <h3 data-ns-animate data-delay="0.1" class="text-heading-4 text-white">El desafío</h3>
+            <p data-ns-animate data-delay="0.2" class="max-w-[705px] text-white/60">
               {featured.title}. {featured.client} necesitaba una solución que permitiera {featured.results?.[0]?.toLowerCase()} sin interrumpir la operación diaria.
             </p>
           </div>
@@ -97,14 +138,14 @@ const rest = displayCasos.slice(1);
         <div class="flex flex-col items-center justify-between gap-16 md:flex-row">
           <div class="space-y-6">
             <div>
-              <h4 data-ns-animate data-delay="0.3" class="text-heading-4">La Solución</h4>
-              <p data-ns-animate data-delay="0.4">Agencia Sur trabajó en:</p>
+              <h4 data-ns-animate data-delay="0.3" class="text-heading-4 text-white">La Solución</h4>
+              <p data-ns-animate data-delay="0.4" class="text-white/60">Agencia Sur trabajó en:</p>
             </div>
             <ul class="space-y-2">
               {featured.results?.slice(0, 3).map((result, idx) => (
                 <li data-ns-animate data-delay={0.3 + idx * 0.1}>
                   <p
-                    class="before:bg-secondary dark:before:bg-accent before:mr-3 before:inline-block before:size-2 before:rounded-full before:content-['']"
+                    class="text-white/70 before:bg-white before:mr-3 before:inline-block before:size-2 before:rounded-full before:content-['']"
                   >
                     {result}
                   </p>
@@ -115,20 +156,22 @@ const rest = displayCasos.slice(1);
 
           <div class="space-y-6">
             <div>
-              <h4 data-ns-animate data-delay="0.3" class="text-heading-4">Los Resultados</h4>
-              <p data-ns-animate data-delay="0.4">Logramos:</p>
+              <h4 data-ns-animate data-delay="0.3" class="text-heading-4 text-white">Los Resultados</h4>
+              <p data-ns-animate data-delay="0.4" class="text-white/60">Logramos:</p>
             </div>
-            <ul class="space-y-2">
-              {featured.results?.slice(0, 3).map((result, idx) => (
-                <li data-ns-animate data-delay={0.3 + idx * 0.1}>
-                  <p
-                    class="before:bg-secondary dark:before:bg-accent before:mr-3 before:inline-block before:size-2 before:rounded-full before:content-['']"
-                  >
-                    {result}
-                  </p>
-                </li>
-              ))}
-            </ul>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {featured.results?.slice(0, 4).map((result, idx) => {
+                const match = result.match(/^(\d+%|\d+x)/);
+                const metric = match ? match[0] : null;
+                const label = match ? result.replace(match[0], '').trim() : result;
+                return (
+                  <div data-ns-animate data-delay={0.3 + idx * 0.1} class="border-l-2 border-accent-400 border border-white/[0.07] rounded-xl pl-4 pr-3 py-3" style="background-color: rgba(255,255,255,0.04);">
+                    {metric && <p class="text-2xl font-bold text-accent-400">{metric}</p>}
+                    <p class="text-white/70 text-sm">{label}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -140,8 +183,8 @@ const rest = displayCasos.slice(1);
     <div class="main-container">
       <div class="space-y-[70px]">
         <div class="space-y-3 text-center">
-          <h2 data-ns-animate data-delay="0.1" class="text-heading-3">Más casos de éxito</h2>
-          <p data-ns-animate data-delay="0.2" class="max-w-[738px] mx-auto">
+          <h2 data-ns-animate data-delay="0.1" class="text-heading-3 font-light text-white">Más casos de éxito</h2>
+          <p data-ns-animate data-delay="0.2" class="max-w-[738px] mx-auto text-white/60">
             Cada proyecto representa un problema real resuelto con software a medida. Estos son algunos de los resultados.
           </p>
         </div>
@@ -150,30 +193,30 @@ const rest = displayCasos.slice(1);
           <div class="grid grid-cols-12 items-start justify-center gap-8">
             {displayCasos.map((caso, i) => (
               <article data-ns-animate data-delay={0.2 + i * 0.1} class="group max-w-[409px] col-span-12 md:col-span-6 lg:col-span-4" itemscope itemtype="http://schema.org/Article">
-                <div class="bg-background-1 dark:bg-background-6 rounded-[20px] scale-100 hover:scale-[102%] transition-transform duration-500">
+                <div class="rounded-[20px] scale-100 hover:scale-[102%] transition-transform duration-500 border border-white/[0.07]" style="background-color: #0b0d10;">
                   <figure class="max-w-[409px] h-[260px] overflow-hidden rounded-t-[20px]">
                     <img src={`https://picsum.photos/409/260?random=${caso.slug.length + 601 + i}`} alt={caso.title} class="size-full object-cover" itemprop="image" loading="lazy" />
                   </figure>
-                  <div class="p-6 space-y-6">
+                  <div class="p-6 space-y-6 rounded-b-[20px]">
                     <div class="space-y-2">
                       <div class="flex items-center justify-between">
-                        <span class="badge badge-primary text-tagline-3">{caso.client}</span>
+                        <span class="text-tagline-3 font-medium px-3 py-1 rounded-full border border-white/[0.12] text-accent-400" style="background: rgba(143,209,79,0.08);">{caso.client}</span>
                         {caso.industry && (
-                          <span class="text-tagline-3 text-secondary/60 dark:text-accent/60">{caso.industry}</span>
+                          <span class="text-tagline-3 text-white/40">{caso.industry}</span>
                         )}
                       </div>
-                      <h3 class="text-heading-5" itemprop="headline">{caso.title}</h3>
+                      <h3 class="text-heading-5 text-white" itemprop="headline">{caso.title}</h3>
                       <div class="space-y-2">
                         {caso.results && caso.results.length > 0 && (
-                          <p class="xl:line-clamp-1 2xl:line-clamp-none">
-                            <span class="text-secondary dark:text-accent font-medium">Resultados:</span>
+                          <p class="xl:line-clamp-1 2xl:line-clamp-none text-white/50 text-sm">
+                            <span class="text-accent-400 font-medium">Resultados:</span>{' '}
                             {caso.results.slice(0, 2).join(' · ')}
                           </p>
                         )}
                       </div>
                     </div>
                     <div>
-                      <a href={`/casos-exito/${caso.slug}`} class="btn btn-md btn-white dark:btn-transparent hover:btn-primary" itemprop="url">
+                      <a href={`/casos-exito/${caso.slug}`} class="btn btn-md btn-transparent border border-white/[0.15] text-white hover:border-accent-400 hover:text-accent-400 transition-colors" itemprop="url">
                         <span>Leer caso completo</span>
                       </a>
                     </div>
@@ -190,102 +233,82 @@ const rest = displayCasos.slice(1);
   <!-- Feature dark card — estilo case-study/feature.htm -->
   <section class="pt-[80px] lg:pt-[100px] pb-24 md:pb-28 lg:pb-32 xl:pb-[200px]">
     <div class="main-container">
-      <div data-ns-animate data-delay="0.1" class="relative z-10">
-        <div class="absolute top-0 left-0 right-0 bottom-0 -z-10 rounded-[20px] overflow-hidden">
-          <img src="https://picsum.photos/1290/500?random=699" alt="Fondo casos de éxito" class="w-full h-full object-cover opacity-60" />
-        </div>
-        <div class="py-14 px-6 md:px-11 grid max-sm:grid-cols-1 grid-cols-2 max-sm:gap-10 gap-5">
-          <div class="max-w-[500px]">
-            <h2 id="feature-heading" class="text-accent text-heading-5 mb-8">
-              Estos son algunos de los casos de uso que hemos resuelto con éxito.
+      <div data-ns-animate data-delay="0.1" class="relative rounded-[24px] p-8 md:p-11 grid max-sm:grid-cols-1 grid-cols-2 max-sm:gap-10 gap-5 border border-white/[0.07] overflow-hidden" style="background-color: #0b0d10;">
+
+        <!-- Background SVG: network grid decoration -->
+        <svg class="pointer-events-none absolute inset-0 w-full h-full" viewBox="0 0 900 360" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+          <defs>
+            <pattern id="ce-grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+              <circle cx="0.5" cy="0.5" r="0.8" fill="rgba(143,209,79,0.07)"/>
+            </pattern>
+          </defs>
+          <rect width="900" height="360" fill="url(#ce-grid)"/>
+          <!-- diagonal accent lines -->
+          <line x1="0" y1="360" x2="360" y2="0" stroke="rgba(143,209,79,0.04)" stroke-width="1"/>
+          <line x1="180" y1="360" x2="540" y2="0" stroke="rgba(143,209,79,0.04)" stroke-width="1"/>
+          <line x1="360" y1="360" x2="720" y2="0" stroke="rgba(143,209,79,0.03)" stroke-width="1"/>
+          <!-- glow blob bottom-right -->
+          <ellipse cx="820" cy="300" rx="260" ry="160" fill="rgba(143,209,79,0.04)"/>
+          <!-- marching path from left to right -->
+          <path id="ce-path" d="M-40 180 Q 220 60 450 180 Q 680 300 940 180" stroke="rgba(143,209,79,0.12)" stroke-width="1.2" stroke-dasharray="8 16">
+            <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="3s" repeatCount="indefinite"/>
+          </path>
+          <circle r="4" fill="rgba(143,209,79,0.7)">
+            <animateMotion dur="4s" repeatCount="indefinite" begin="0s"><mpath href="#ce-path"/></animateMotion>
+          </circle>
+          <circle r="2.5" fill="rgba(143,209,79,0.5)">
+            <animateMotion dur="4s" repeatCount="indefinite" begin="2s"><mpath href="#ce-path"/></animateMotion>
+          </circle>
+        </svg>
+
+          <div class="relative max-w-[500px]">
+            <h2 id="feature-heading" class="text-white text-heading-5 mb-8 font-light">
+              Estos son algunos de los casos de uso que hemos <span class="text-accent-400">resuelto con éxito</span>.
             </h2>
-            <a href="/contacto" class="btn btn-md dark:btn-dark dark:hover:btn-white hover:btn-primary border-0 btn-white">
-              <span>Hablemos de tu proyecto</span>
+            <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="btn btn-md btn-green hover:btn-white border-0">
+              <span>Agenda una llamada</span>
             </a>
           </div>
-          <div>
+          <div class="relative">
             <ul class="space-y-4">
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Automatización de procesos de compras y aprobaciones</span>
+                <span class="text-white/70">Automatización de procesos de compras y aprobaciones</span>
               </li>
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Gestión centralizada de personal transitorio y documentación</span>
+                <span class="text-white/70">Gestión centralizada de personal transitorio y documentación</span>
               </li>
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Mesas de ayuda omnicanal con base de conocimientos IA</span>
+                <span class="text-white/70">Mesas de ayuda omnicanal con base de conocimientos IA</span>
               </li>
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Integración de sistemas legados con plataformas modernas</span>
+                <span class="text-white/70">Integración de sistemas legados con plataformas modernas</span>
               </li>
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Reportes de atribución y ROI para marketing y ventas</span>
+                <span class="text-white/70">Reportes de atribución y ROI para marketing y ventas</span>
               </li>
             </ul>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA v1 — estilo shared/cta/cta-v1.htm -->
-  <section class="py-[50px] md:py-20 lg:py-28 bg-background-3 dark:bg-background-7" aria-label="CTA Casos de Éxito">
-    <div class="main-container">
-      <div class="flex items-center flex-col lg:flex-row justify-between">
-        <div class="xl:max-w-[650px] lg:max-w-[476px] max-[400px]:max-w-[300px] w-full space-y-5 text-center lg:text-left">
-          <span data-ns-animate data-delay="0.3" class="badge badge-green">Contacto</span>
-          <div class="space-y-3">
-            <h2 data-ns-animate data-delay="0.4" class="text-secondary dark:text-accent text-heading-5 sm:text-heading-4 lg:text-heading-2">
-              ¿Tu empresa tiene un <span class="text-primary-500">desafío similar?</span>
-            </h2>
-            <p data-ns-animate data-delay="0.5">Hablemos sobre cómo podemos ayudarte a lograr resultados como estos.</p>
-          </div>
-        </div>
-        <div class="lg:basis-[466px] space-y-6 md:ml-0 xl:ml-[100px] pt-[40px] lg:pt-[67px] w-full sm:w-[80%] md:w-[60%]">
-          <div data-ns-animate data-delay="0.6" class="flex items-center flex-col gap-5 sm:flex-row justify-start lg:gap-3">
-            <a href="/contacto" class="btn btn-md btn-primary h-12 w-full sm:w-[28%] lg:w-auto hover:btn-secondary dark:hover:btn-accent">
-              <span>Contactar</span>
-            </a>
-          </div>
-          <ul class="flex flex-row items-center justify-center gap-x-4 sm:gap-x-6 sm:gap-y-0 gap-y-5 lg:justify-start">
-            <li data-ns-animate data-delay="0.7" class="flex items-center justify-center gap-2">
-              <span class="size-[18px] bg-secondary dark:bg-accent rounded-full flex items-center justify-center shrink-0">
-                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" class="fill-white dark:fill-secondary">
-                  <path d="M4.31661 6.75605L9.74905 1.42144C10.0836 1.0959 10.0836 0.569702 9.74905 0.244158C9.41446 -0.081386 8.87363 -0.081386 8.53904 0.244158L3.7116 4.99012L1.46096 2.78807C1.12636 2.46253 0.585538 2.46253 0.250945 2.78807C-0.0836483 3.11362 -0.0836483 3.63982 0.250945 3.96536L3.1066 6.75605C3.27347 6.91841 3.49253 7 3.7116 7C3.93067 7 4.14974 6.91841 4.31661 6.75605Z"/>
-                </svg>
-              </span>
-              <p class="text-tagline-3 sm:text-tagline-2">Sin compromiso</p>
-            </li>
-            <li data-ns-animate data-delay="0.8" class="flex items-center justify-center gap-2">
-              <span class="size-[18px] bg-secondary dark:bg-accent rounded-full flex items-center justify-center shrink-0">
-                <svg width="10" height="7" viewBox="0 0 10 7" fill="none" class="fill-white dark:fill-secondary">
-                  <path d="M4.31661 6.75605L9.74905 1.42144C10.0836 1.0959 10.0836 0.569702 9.74905 0.244158C9.41446 -0.081386 8.87363 -0.081386 8.53904 0.244158L3.7116 4.99012L1.46096 2.78807C1.12636 2.46253 0.585538 2.46253 0.250945 2.78807C-0.0836483 3.11362 -0.0836483 3.63982 0.250945 3.96536L3.1066 6.75605C3.27347 6.91841 3.49253 7 3.7116 7C3.93067 7 4.14974 6.91841 4.31661 6.75605Z"/>
-                </svg>
-              </span>
-              <p class="text-tagline-3 sm:text-tagline-2">Diagnóstico gratuito</p>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
   </section>
 

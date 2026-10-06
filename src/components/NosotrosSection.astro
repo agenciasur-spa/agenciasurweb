@@ -1,20 +1,21 @@
 ---
-const clientes = ['BancoEstado', 'ServiEstado', 'Procesos Digitalizados'];
+const clientes = ['BancoEstado', 'ServiEstado', 'Laboratorios Saval'];
 import StatsBar from '../components/StatsBar.astro';
+import BadgeSection from '../components/blocks/BadgeSection.astro';
 ---
 
 <section
   id="nosotros"
-  class="pb-20 pt-14 md:pb-28 md:pt-16 lg:pb-44 lg:pt-[88px] xl:pb-[200px] xl:pt-[100px] dark:bg-background-8"
+  class="section-light bg-background-2 pb-20 pt-14 md:pb-28 md:pt-16 lg:pb-44 lg:pt-[88px] xl:pb-[200px] xl:pt-[100px]"
 >
   <div class="main-container">
     <div class="grid grid-cols-12 gap-y-14 xl:gap-x-28 items-center">
       <!-- Left: Texto -->
       <div class="col-span-12 lg:col-span-6 mx-4 xl:mx-0">
         <div class="space-y-3">
-          <span data-ns-animate data-delay="0.1" class="badge badge-green-v2 mb-5">Sobre Agencia Sur</span>
-          <h2 data-ns-animate data-delay="0.2" class="text-heading-2 fw-300">
-            Transformamos complejidad operativa en <span class="hero-text-gradient hero-text-color-1 block fw-300">flujos simples</span>.
+          <span data-ns-animate data-delay="0.1" class="badge badge-green mb-5">Sobre Agencia Sur</span>
+          <h2 data-ns-animate data-delay="0.2" class="font-light tracking-[-0.02em]">
+            Transformamos complejidad operativa en <span class="text-accent-400 block font-light" data-hero-rotate data-words='["flujos simples.","procesos claros.","resultados medibles."]'>flujos simples.</span>
           </h2>
           <p data-ns-animate data-delay="0.3">
             Desde 2016, combinamos 18 años de trayectoria técnica para diseñar la infraestructura
@@ -23,57 +24,44 @@ import StatsBar from '../components/StatsBar.astro';
           </p>
         </div>
 
-        <!-- Clientes -->
-        <div
-          data-ns-animate
-          data-delay="0.4"
-          class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4"
-        >
-          {clientes.map((cliente) => (
-            <span class="text-black/40 dark:text-accent/40 text-tagline-1 font-bold uppercase tracking-widest">
-              {cliente}
-            </span>
-          ))}
+        <!-- Clientes: antes texto plano suelto, ahora chips con el mismo
+             lenguaje visual (borde sutil) que el resto del sitio, con un
+             label que les da contexto. -->
+        <div data-ns-animate data-delay="0.4" class="mt-10">
+          <p class="text-secondary/50 text-tagline-2 font-medium uppercase tracking-widest mb-3">
+            Empresas que confían en nosotros
+          </p>
+          <div class="flex flex-wrap items-center gap-3">
+            {clientes.map((cliente) => (
+              <span class="rounded-full border border-stroke-1 px-4 py-1.5 text-tagline-2 font-medium text-secondary/70">
+                {cliente}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 
-      <!-- Right: Visual card -->
+      <!-- Right: Visual card. Antes tenía min-h-[380px] fijo con contenido
+           que no lo llenaba, dejando un vacío enorme; ahora la altura la
+           da el contenido (badge + stats con íconos). -->
       <div class="col-span-12 lg:col-span-6 relative mx-4 xl:mx-0">
         <div
           data-ns-animate
           data-delay="0.5"
-          class="p-[26px] shadow-2 min-h-[380px] rounded-[20px] h-full overflow-hidden relative z-10 flex"
+          class="p-8 md:p-10 shadow-2 rounded-[20px] h-full bg-white flex flex-col justify-center gap-6 border border-stroke-1"
         >
-          <!-- Gradient bg -->
-          <div
-            class="absolute select-none pointer-events-none bottom-[-54%] md:bottom-[-112%] lg:bottom-[-80%] right-[-33%] md:right-[-30%] xl:bottom-[-90%] xl:right-[-32%] max-w-[500px] md:max-w-[700px] w-full -z-10 rotate-180"
-          >
-            <img
-              src="/bg-hero.png"
-              alt=""
-              class="size-full object-cover opacity-30"
-              aria-hidden="true"
-            />
-          </div>
-
-
-
-
-          <div class="text-center mt-4 flex flex-col justify-center items-center gap-2">
-            
-            <div class="space-y-1">
-              <h6 class="text-secondary dark:text-accent text-xl font-normal">
-                Trayectoria comprobada
-              </h6>
-              <p class="text-secondary/60 dark:text-accent/60">
-                Desde consultoría TI hasta desarrollo a medida
-              </p>
+          <div class="space-y-1 text-center">
+            <div class="flex justify-center">
+              <BadgeSection text="Resultados" delay={0.5} />
             </div>
-        
-              <StatsBar />
+            <h6 class="text-secondary text-xl font-normal mt-3">
+              Trayectoria comprobada
+            </h6>
+            <p class="text-secondary/60">
+              Desde consultoría TI hasta desarrollo a medida
+            </p>
           </div>
-
-          
+          <StatsBar />
         </div>
       </div>
     </div>
