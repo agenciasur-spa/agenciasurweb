@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactoFooter from '../../components/ContactoFooter.astro';
+import Footer from '../../components/Footer.astro';
 import { sanityClient } from '../../lib/sanity';
 import type { CasoExito } from '../../types/sanity';
 
@@ -313,4 +314,5 @@ const rest = displayCasos.slice(1);
   </section>
 
   <ContactoFooter />
+  <Footer />
 </Layout>
