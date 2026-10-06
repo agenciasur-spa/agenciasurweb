@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactoFooter from '../../components/ContactoFooter.astro';
+import Footer from '../../components/Footer.astro';
 import { sanityClient } from '../../lib/sanity';
 import type { Solucion } from '../../types/sanity';
 import { ShoppingCart, Users, LifeBuoy } from '@lucide/astro';
@@ -77,27 +78,38 @@ const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSolucione
       <div class="grid grid-cols-12 xl:gap-8 md:gap-8 gap-y-5">
         {displaySoluciones.map((sol, i) => (
           <div class="col-span-12 md:col-span-6 lg:col-span-4" data-ns-animate data-delay={0.4 + i * 0.1}>
-            <a href={`/soluciones/${sol.slug}`} class="group block">
-              <div class="bg-white dark:bg-background-8 flex min-h-[340px] flex-col justify-between space-y-4 rounded-[20px] p-7 md:p-10 transition-all duration-300 hover:translate-y-[-8px] hover:shadow-[0_0_40px_rgba(143,209,79,0.12)] border border-stroke-1 dark:border-stroke-7 group-hover:border-accent-400/30">
+            <a href={`/soluciones/${sol.slug}`} class="group block h-full">
+              <div class="flex min-h-[340px] h-full flex-col justify-between space-y-4 rounded-[20px] p-7 md:p-10 transition-all duration-300 hover:translate-y-[-8px] hover:shadow-[0_0_40px_rgba(143,209,79,0.12)] border border-white/[0.07] group-hover:border-accent-400/30" style="background-color: #0b0d10;">
 
-                <div class="bg-gradient-to-br from-background-8 to-background-6 dark:from-accent/10 dark:to-accent/5 flex size-16 items-center justify-center rounded-2xl ring-1 ring-accent-400/20">
+                <div class="flex size-14 items-center justify-center rounded-2xl border border-white/[0.07]" style="background: rgba(143,209,79,0.08);">
                   {(() => {
                     const Icon = iconMap[sol.slug];
-                    return Icon ? <Icon color="currentColor" size={36} stroke-width={1} class="text-accent-400" /> : <span class="text-2xl text-secondary dark:text-accent">⚡</span>;
+                    return Icon ? <Icon color="currentColor" size={28} stroke-width={1} class="text-accent-400" /> : <span class="text-2xl text-accent-400">⚡</span>;
                   })()}
                 </div>
 
                 <div class="space-y-3">
-                  <h3 class="text-xl font-light text-secondary dark:text-accent group-hover:text-accent-600 dark:group-hover:text-accent-400 transition-colors">
+                  <h3 class="text-xl font-light text-white group-hover:text-accent-400 transition-colors">
                     {sol.title}
                   </h3>
-                  <p class="text-secondary/60 dark:text-accent/50 text-sm leading-relaxed">
+                  <p class="text-white/50 text-sm leading-relaxed">
                     {sol.tagline}
                   </p>
                 </div>
 
+                {sol.features && sol.features.length > 0 && (
+                  <ul class="space-y-2">
+                    {sol.features.slice(0, 3).map((f: string) => (
+                      <li class="flex items-center gap-2 text-sm text-white/50">
+                        <span class="size-1.5 rounded-full bg-accent-400 shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
                 <div>
-                  <span class="inline-flex items-center gap-2 text-sm font-medium text-accent-600 dark:text-accent-400 group-hover:gap-3 transition-all">
+                  <span class="inline-flex items-center gap-2 text-sm font-medium text-accent-400 group-hover:gap-3 transition-all">
                     <span>Ver detalle</span>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -114,4 +126,5 @@ const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSolucione
   </section>
 
   <ContactoFooter />
+  <Footer />
 </Layout>
