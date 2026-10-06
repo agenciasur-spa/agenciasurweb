@@ -189,30 +189,30 @@ import Footer from '../components/Footer.astro';
                 </h3>
               </div>
 
-              <form id="cc-form" class="space-y-4">
+              <form id="cc-form" class="space-y-4" novalidate>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div class="space-y-1.5">
                     <label for="cc-nombre" class="text-sm font-medium text-white">Nombre <span class="text-accent-400">*</span></label>
-                    <input type="text" id="cc-nombre" name="nombre" required placeholder="Tu nombre"
-                      class="w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"/>
+                    <input type="text" id="cc-nombre" name="nombre" required aria-required="true" placeholder="Tu nombre"
+                      class="cc-input w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"/>
                   </div>
                   <div class="space-y-1.5">
                     <label for="cc-email" class="text-sm font-medium text-white">Email <span class="text-accent-400">*</span></label>
-                    <input type="email" id="cc-email" name="email" required placeholder="tu@empresa.com"
-                      class="w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"/>
+                    <input type="email" id="cc-email" name="email" required aria-required="true" placeholder="tu@empresa.com"
+                      class="cc-input w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"/>
                   </div>
                 </div>
                 <div class="space-y-1.5">
                   <label for="cc-empresa" class="text-sm font-medium text-white">Empresa</label>
                   <input type="text" id="cc-empresa" name="empresa" placeholder="Nombre de tu empresa"
-                    class="w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"/>
+                    class="cc-input w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors"/>
                 </div>
                 <div class="space-y-1.5">
                   <label for="cc-mensaje" class="text-sm font-medium text-white">Mensaje <span class="text-white/40">(opcional)</span></label>
                   <textarea id="cc-mensaje" name="mensaje" rows="3" placeholder="Cuéntanos brevemente en qué podemos ayudarte…"
-                    class="w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors resize-none"></textarea>
+                    class="cc-input w-full rounded-xl border border-stroke-7 bg-background-6 px-4 py-3 text-white placeholder:text-white/30 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/20 transition-colors resize-none"></textarea>
                 </div>
-                <div id="cc-error" class="hidden text-sm text-red-400"></div>
+                <div id="cc-error" role="alert" class="hidden text-sm text-red-400"></div>
                 <button type="submit" id="cc-submit" class="btn btn-green hover:btn-white btn-lg border-0 w-full">
                   <span>Enviar mensaje</span>
                 </button>
@@ -236,44 +236,58 @@ import Footer from '../components/Footer.astro';
               const submitBtn = document.getElementById('cc-submit') as HTMLButtonElement | null;
               const errorDiv = document.getElementById('cc-error') as HTMLDivElement | null;
               const successDiv = document.getElementById('cc-success') as HTMLDivElement | null;
-              if (!form) return;
+              if (!form || !errorDiv || !submitBtn || !successDiv) return;
+
+              function validateForm(): boolean {
+                const fields = form!.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]');
+                let firstInvalid: HTMLElement | null = null;
+                fields.forEach(field => {
+                  const valid = field.checkValidity();
+                  field.setAttribute('aria-invalid', valid ? 'false' : 'true');
+                  if (!valid && !firstInvalid) firstInvalid = field;
+                });
+                if (firstInvalid) {
+                  (firstInvalid as HTMLElement).focus();
+                  return false;
+                }
+                return true;
+              }
 
               form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                if (!errorDiv || !submitBtn || !successDiv) return;
 
-                const nombre = (document.getElementById('cc-nombre') as HTMLInputElement).value.trim();
-                const email = (document.getElementById('cc-email') as HTMLInputElement).value.trim();
-
-                if (!nombre || !email) {
-                  errorDiv.textContent = 'Nombre y email son obligatorios.';
-                  errorDiv.classList.remove('hidden');
-                  return;
-                }
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                  errorDiv.textContent = 'Ingresá un email válido.';
-                  errorDiv.classList.remove('hidden');
+                if (!validateForm()) {
+                  errorDiv!.textContent = 'Completá los campos obligatorios.';
+                  errorDiv!.classList.remove('hidden');
                   return;
                 }
 
-                errorDiv.classList.add('hidden');
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span>Enviando…</span>';
+                errorDiv!.classList.add('hidden');
+                submitBtn!.disabled = true;
+                submitBtn!.innerHTML = '<svg class="animate-spin size-4 mr-2 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg><span>Enviando…</span>';
 
                 try {
-                  const res = await fetch('/api/demo', { method: 'POST', body: new FormData(form) });
+                  const res = await fetch('/api/demo', { method: 'POST', body: new FormData(form!) });
                   if (!res.ok) throw new Error();
-                  form.classList.add('hidden');
-                  successDiv.classList.remove('hidden');
+                  form!.classList.add('hidden');
+                  successDiv!.classList.remove('hidden');
                 } catch {
-                  errorDiv.textContent = 'Hubo un error. Intentá nuevamente.';
-                  errorDiv.classList.remove('hidden');
-                  submitBtn.disabled = false;
-                  submitBtn.innerHTML = '<span>Enviar mensaje</span>';
+                  errorDiv!.textContent = 'Hubo un error. Intentá nuevamente.';
+                  errorDiv!.classList.remove('hidden');
+                  submitBtn!.disabled = false;
+                  submitBtn!.innerHTML = '<span>Enviar mensaje</span>';
                 }
               });
             })();
           </script>
+
+          <style>
+            .cc-input:user-invalid,
+            .cc-input[aria-invalid="true"] {
+              border-color: #f87171;
+              box-shadow: 0 0 0 2px rgba(248, 113, 113, 0.15);
+            }
+          </style>
         </div>
       </div>
     </div>
