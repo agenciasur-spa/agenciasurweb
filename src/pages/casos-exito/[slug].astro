@@ -125,11 +125,28 @@ if (!caso) {
           />
         </figure>
 
+        <div class="flex gap-4 flex-wrap">
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-accent-400 border border-white/[0.07]" style="background: rgba(143,209,79,0.06);">
+            <span class="size-2 rounded-full bg-accent-400 inline-block"></span>
+            Proyecto completado
+          </span>
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-accent-400 border border-white/[0.07]" style="background: rgba(143,209,79,0.06);">
+            <span class="size-2 rounded-full bg-accent-400 inline-block"></span>
+            Resultados medibles
+          </span>
+          {caso.industry && (
+            <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-accent-400 border border-white/[0.07]" style="background: rgba(143,209,79,0.06);">
+              <span class="size-2 rounded-full bg-accent-400 inline-block"></span>
+              {caso.industry}
+            </span>
+          )}
+        </div>
+
         <!-- Company info list -->
         <div class="mx-auto max-w-[950px]">
           <div class="space-y-14">
             <div
-              class="max-w-full min-w-full rounded-2xl bg-white p-6 md:max-w-[288px] md:min-w-[288px] dark:bg-black"
+              class="max-w-full min-w-full rounded-2xl p-6 md:max-w-[288px] md:min-w-[288px] border border-white/[0.07]" style="background: rgba(255,255,255,0.025); backdrop-filter: blur(16px);"
             >
               <ul
                 aria-label="Información del Cliente"
@@ -256,11 +273,11 @@ if (!caso) {
                       class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
                     >
                       {caso.results.map((result, idx) => (
-                        <div class="border-stroke-1 dark:border-stroke-7 bg-background-1 dark:bg-background-6 rounded-2xl border p-6 space-y-2">
+                        <div class="rounded-2xl border border-white/[0.07] p-6 space-y-2" style="background-color: rgba(255,255,255,0.04);">
                           <p class="text-2xl font-bold text-accent-400">
                             {result.split(/(\d+%|\d+x)/)[1] || "✓"}
                           </p>
-                          <p class="font-medium text-secondary dark:text-accent">
+                          <p class="font-medium text-white/70">
                             {result}
                           </p>
                         </div>
@@ -298,7 +315,8 @@ if (!caso) {
                     <article
                       data-ns-animate
                       data-delay="0.3"
-                      class="bg-secondary dark:bg-background-6 max-w-[950px] space-y-6 rounded-[20px] p-8"
+                      class="max-w-[950px] space-y-6 rounded-[20px] p-8 border border-white/[0.07]"
+                      style="background-color: rgba(255,255,255,0.03);"
                     >
                       <figure class="size-14 overflow-hidden rounded-full bg-(image:--color-gradient-7)">
                         <img
@@ -308,7 +326,7 @@ if (!caso) {
                         />
                       </figure>
                       <blockquote>
-                        <p class="dark:text-accent/60 text-white">
+                        <p class="text-white/80">
                           "{caso.testimonial}"
                         </p>
                       </blockquote>
@@ -359,10 +377,21 @@ if (!caso) {
                 >
                   Características implementadas
                 </h5>
-                <p class="text-white/60">
-                  Próximamente compartiremos las características técnicas
-                  implementadas en este proyecto.
-                </p>
+                {caso.results && caso.results.length > 0 ? (
+                  <ul class="space-y-4">
+                    {caso.results.map((result) => (
+                      <li class="text-white/60 flex items-center justify-start gap-x-3">
+                        <span class="bg-accent-400 size-2 rounded-full shrink-0" />
+                        {result}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="text-white/60">
+                    Próximamente compartiremos las características técnicas
+                    implementadas en este proyecto.
+                  </p>
+                )}
               </div>
             </div>
           </div>
