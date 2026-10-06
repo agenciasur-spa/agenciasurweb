@@ -198,23 +198,23 @@ const rest = displayCasos.slice(1);
                   <div class="p-6 space-y-6 rounded-b-[20px]">
                     <div class="space-y-2">
                       <div class="flex items-center justify-between">
-                        <span class="badge badge-primary text-tagline-3">{caso.client}</span>
+                        <span class="text-tagline-3 font-medium px-3 py-1 rounded-full border border-white/[0.12] text-accent-400" style="background: rgba(143,209,79,0.08);">{caso.client}</span>
                         {caso.industry && (
-                          <span class="text-tagline-3 text-secondary/60 dark:text-accent/60">{caso.industry}</span>
+                          <span class="text-tagline-3 text-white/40">{caso.industry}</span>
                         )}
                       </div>
-                      <h3 class="text-heading-5" itemprop="headline">{caso.title}</h3>
+                      <h3 class="text-heading-5 text-white" itemprop="headline">{caso.title}</h3>
                       <div class="space-y-2">
                         {caso.results && caso.results.length > 0 && (
-                          <p class="xl:line-clamp-1 2xl:line-clamp-none">
-                            <span class="text-secondary dark:text-accent font-medium">Resultados:</span>
+                          <p class="xl:line-clamp-1 2xl:line-clamp-none text-white/50 text-sm">
+                            <span class="text-accent-400 font-medium">Resultados:</span>{' '}
                             {caso.results.slice(0, 2).join(' · ')}
                           </p>
                         )}
                       </div>
                     </div>
                     <div>
-                      <a href={`/casos-exito/${caso.slug}`} class="btn btn-md btn-white dark:btn-transparent hover:btn-primary" itemprop="url">
+                      <a href={`/casos-exito/${caso.slug}`} class="btn btn-md btn-transparent border border-white/[0.15] text-white hover:border-accent-400 hover:text-accent-400 transition-colors" itemprop="url">
                         <span>Leer caso completo</span>
                       </a>
                     </div>
