@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/Navbar.astro';
-import ThemeToggle from '../components/ThemeToggle.astro';
 
 interface Props {
   title: string;
@@ -12,7 +11,7 @@ const { title, description = 'Transformación digital para empresas. Automatizam
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" class="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,17 +25,6 @@ const { title, description = 'Transformación digital para empresas. Automatizam
     />
     <title>{title}</title>
 
-    <!-- Dark mode init — default: dark -->
-    <script is:inline>
-      (function() {
-        const saved = localStorage.getItem('theme');
-        const html = document.documentElement;
-        if (saved === 'light') {
-          html.classList.remove('dark');
-          html.classList.add('light');
-        }
-      })();
-    </script>
   </head>
   <body class="bg-[rgb(19,22,27)] dark:bg-background-6">
     <Navbar />
