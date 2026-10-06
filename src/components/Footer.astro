@@ -60,9 +60,9 @@ const calendlyUrl = import.meta.env.PUBLIC_CALENDLY_URL ?? '#';
             <svg class="w-5 h-5 text-accent-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
-            <span class="text-tagline-1 text-white/60">
-              Lun - Vie: 9:00 - 18:00 ·
-              <span id="footer-local-time" data-footer-clock>--:--</span> en Santiago
+            <span class="text-tagline-1 text-white/60 flex flex-col gap-0.5">
+              <span>Lun - Vie: 9:00 - 18:00</span>
+              <span class="text-accent-400"><span id="footer-local-time" data-footer-clock>--:--</span> en Santiago</span>
             </span>
           </li>
           <li class="flex items-start gap-2">
