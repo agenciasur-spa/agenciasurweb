@@ -90,7 +90,7 @@ if (!caso) {
           <span data-ns-animate data-delay="0.1" class="badge badge-section"
             >{caso.client}</span
           >
-          <div class="space-y-3">
+          <div class="space-y-4">
             <h1
               data-ns-animate
               data-delay="0.2"
@@ -98,17 +98,18 @@ if (!caso) {
             >
               {caso.title}
             </h1>
-            {
-              caso.industry && (
-                <p
-                  data-ns-animate
-                  data-delay="0.3"
-                  class="text-white/60"
-                >
-                  Sector: {caso.industry}
-                </p>
-              )
-            }
+            <dl data-ns-animate data-delay="0.3" class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/60">
+              <div class="flex items-center gap-1.5">
+                <dt class="text-white/40">Empresa</dt>
+                <dd class="text-white/80 font-medium">{caso.client}</dd>
+              </div>
+              {caso.industry && (
+                <div class="flex items-center gap-1.5">
+                  <dt class="text-white/40">Sector</dt>
+                  <dd class="text-white/80 font-medium">{caso.industry}</dd>
+                </div>
+              )}
+            </dl>
           </div>
         </div>
 
@@ -142,34 +143,8 @@ if (!caso) {
           )}
         </div>
 
-        <!-- Company info list -->
         <div class="mx-auto max-w-[950px]">
           <div class="space-y-14">
-            <div
-              class="max-w-full min-w-full rounded-2xl p-6 md:max-w-[288px] md:min-w-[288px] border border-white/[0.07]" style="background: rgba(255,255,255,0.025); backdrop-filter: blur(16px);"
-            >
-              <ul
-                aria-label="Información del Cliente"
-                class="space-y-2"
-                data-ns-animate
-                data-delay="0.4"
-              >
-                <li class="case-item">
-                  <p class="case-label">Empresa:</p>
-                  {caso.client}
-                </li>
-
-                <li class="case-item">
-                  <p class="case-label">Sector:</p>
-                  {caso.industry || "No especificado"}
-                </li>
-
-                <li class="case-item">
-                  <p class="case-label">Proyecto:</p>
-                  {caso.title}
-                </li>
-              </ul>
-            </div>
 
             <!-- Desafío — side-label pattern from customer-details-info.htm -->
             <div
