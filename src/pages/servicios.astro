@@ -402,7 +402,7 @@ const diferenciadores = [
     {servicios.map(({ title, detalle, capacidades, slug }, index) => {
       const reversed = index % 2 === 1;
       return (
-      <div class={`main-container py-20 md:py-24 lg:py-28 ${index !== 0 ? 'border-t border-stroke-1 dark:border-stroke-7' : ''}`}>
+      <div id={`servicio-${slug}`} class={`main-container py-20 md:py-24 lg:py-28 ${index !== 0 ? 'border-t border-stroke-1 dark:border-stroke-7' : ''}`}>
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-x-8 items-center">
           <div class={`lg:col-span-5 lg:row-start-1 ${reversed ? 'lg:col-start-8' : ''}`}>
             <div data-ns-animate data-delay="0.1" class="mb-16 lg:mb-20">
