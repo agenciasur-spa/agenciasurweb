@@ -3,6 +3,7 @@ import { CircleCheck } from '@lucide/astro';
 import BadgeSection  from '../components/blocks/BadgeSection.astro';
 import FeatureListItem  from '../components/blocks/FeatureListItem.astro';
 
+const calendlyUrl = import.meta.env.PUBLIC_CALENDLY_URL ?? '#';
 ---
 
 
@@ -60,9 +61,9 @@ import FeatureListItem  from '../components/blocks/FeatureListItem.astro';
               </button>
             </li>
             <li data-ns-animate data-delay="0.9" data-direction="left" data-offset="50" class="w-full sm:w-auto">
-              <button type="button" data-open-demo-modal data-modal-title="Agenda una llamada" data-cta-label="Solicitar llamada" data-solucion="Llamada agendada" data-description="Déjanos tus datos y coordinamos un horario que te acomode." class="btn btn-lg md:btn-xl dark:btn-transparent dark:border btn-dark bg-accent/20 mx-auto block w-[90%] sm:mx-0 sm:w-auto md:inline-block hover:btn-accent">
+              <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="btn btn-lg md:btn-xl dark:btn-transparent dark:border btn-dark bg-accent/20 mx-auto block w-[90%] sm:mx-0 sm:w-auto md:inline-block hover:btn-accent">
                 <span>Agenda una llamada</span>
-              </button>
+              </a>
             </li>
           </ul>
         </div>
