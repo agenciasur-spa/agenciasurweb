@@ -4,6 +4,8 @@ import ContactoFooter from '../../components/ContactoFooter.astro';
 import { sanityClient } from '../../lib/sanity';
 import type { CasoExito } from '../../types/sanity';
 
+const calendlyUrl = import.meta.env.PUBLIC_CALENDLY_URL ?? '#';
+
 let casos: CasoExito[] = [];
 if (sanityClient) {
   try {
@@ -231,51 +233,78 @@ const rest = displayCasos.slice(1);
   <!-- Feature dark card — estilo case-study/feature.htm -->
   <section class="pt-[80px] lg:pt-[100px] pb-24 md:pb-28 lg:pb-32 xl:pb-[200px]">
     <div class="main-container">
-      <div data-ns-animate data-delay="0.1" class="rounded-[24px] p-8 md:p-11 grid max-sm:grid-cols-1 grid-cols-2 max-sm:gap-10 gap-5 border border-white/[0.07]" style="background-color: #0b0d10;">
-          <div class="max-w-[500px]">
-            <h2 id="feature-heading" class="text-accent text-heading-5 mb-8 font-light">
-              Estos son algunos de los casos de uso que hemos resuelto con éxito.
+      <div data-ns-animate data-delay="0.1" class="relative rounded-[24px] p-8 md:p-11 grid max-sm:grid-cols-1 grid-cols-2 max-sm:gap-10 gap-5 border border-white/[0.07] overflow-hidden" style="background-color: #0b0d10;">
+
+        <!-- Background SVG: network grid decoration -->
+        <svg class="pointer-events-none absolute inset-0 w-full h-full" viewBox="0 0 900 360" preserveAspectRatio="xMidYMid slice" fill="none" aria-hidden="true">
+          <defs>
+            <pattern id="ce-grid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+              <circle cx="0.5" cy="0.5" r="0.8" fill="rgba(143,209,79,0.07)"/>
+            </pattern>
+          </defs>
+          <rect width="900" height="360" fill="url(#ce-grid)"/>
+          <!-- diagonal accent lines -->
+          <line x1="0" y1="360" x2="360" y2="0" stroke="rgba(143,209,79,0.04)" stroke-width="1"/>
+          <line x1="180" y1="360" x2="540" y2="0" stroke="rgba(143,209,79,0.04)" stroke-width="1"/>
+          <line x1="360" y1="360" x2="720" y2="0" stroke="rgba(143,209,79,0.03)" stroke-width="1"/>
+          <!-- glow blob bottom-right -->
+          <ellipse cx="820" cy="300" rx="260" ry="160" fill="rgba(143,209,79,0.04)"/>
+          <!-- marching path from left to right -->
+          <path id="ce-path" d="M-40 180 Q 220 60 450 180 Q 680 300 940 180" stroke="rgba(143,209,79,0.12)" stroke-width="1.2" stroke-dasharray="8 16">
+            <animate attributeName="stroke-dashoffset" from="0" to="-48" dur="3s" repeatCount="indefinite"/>
+          </path>
+          <circle r="4" fill="rgba(143,209,79,0.7)">
+            <animateMotion dur="4s" repeatCount="indefinite" begin="0s"><mpath href="#ce-path"/></animateMotion>
+          </circle>
+          <circle r="2.5" fill="rgba(143,209,79,0.5)">
+            <animateMotion dur="4s" repeatCount="indefinite" begin="2s"><mpath href="#ce-path"/></animateMotion>
+          </circle>
+        </svg>
+
+          <div class="relative max-w-[500px]">
+            <h2 id="feature-heading" class="text-white text-heading-5 mb-8 font-light">
+              Estos son algunos de los casos de uso que hemos <span class="text-accent-400">resuelto con éxito</span>.
             </h2>
-            <a href="#contact-form-panel" class="btn btn-md dark:btn-dark dark:hover:btn-white hover:btn-primary border-0 btn-white">
-              <span>Hablemos de tu proyecto</span>
+            <a href={calendlyUrl} target="_blank" rel="noopener noreferrer" class="btn btn-md btn-green hover:btn-white border-0">
+              <span>Agenda una llamada</span>
             </a>
           </div>
-          <div>
+          <div class="relative">
             <ul class="space-y-4">
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Automatización de procesos de compras y aprobaciones</span>
+                <span class="text-white/70">Automatización de procesos de compras y aprobaciones</span>
               </li>
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Gestión centralizada de personal transitorio y documentación</span>
+                <span class="text-white/70">Gestión centralizada de personal transitorio y documentación</span>
               </li>
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Mesas de ayuda omnicanal con base de conocimientos IA</span>
+                <span class="text-white/70">Mesas de ayuda omnicanal con base de conocimientos IA</span>
               </li>
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Integración de sistemas legados con plataformas modernas</span>
+                <span class="text-white/70">Integración de sistemas legados con plataformas modernas</span>
               </li>
               <li class="flex items-center gap-3">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" class="shrink-0">
                   <path d="M0 10.0002C0 4.47729 4.47717 0 10 0C15.5229 0 20.0001 4.47729 20.0001 10.0002C20.0001 15.523 15.5229 20.0003 10 20.0003C4.47717 20.0003 0 15.523 0 10.0002Z" fill="#FCFCFC" fill-opacity="0.17"/>
                   <path d="M14.125 7.375L8.875 12.6248L6.25 10" stroke="" stroke-linecap="round" stroke-linejoin="round" class="stroke-accent"/>
                 </svg>
-                <span class="text-accent dark:text-accent/60">Reportes de atribución y ROI para marketing y ventas</span>
+                <span class="text-white/70">Reportes de atribución y ROI para marketing y ventas</span>
               </li>
             </ul>
           </div>
