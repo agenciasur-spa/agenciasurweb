@@ -8,45 +8,6 @@ import type { Solucion } from '../../types/sanity';
 import SolucionIllustrations from '../../components/SolucionIllustrations.astro';
 
 const fallbackData: Record<string, Solucion> = {
-  'sistema-de-compras': {
-    title: 'Sistema de Compras',
-    slug: 'sistema-de-compras',
-    tagline: 'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento.',
-    bajada: 'Digitaliza el proceso de adquisiciones y reduce tiempos operativos con un sistema completo de gestión de compras.',
-    features: ['Control de cumplimiento SLA', 'Reducción 100% papel', 'Tracking en tiempo real', 'Aprobaciones multinivel', 'Integración con ERP'],
-    featuresDescription: 'Cada módulo está pensado para resolver un problema específico de operación, no para agregar complejidad innecesaria.',
-    benefits: [
-      { metric: '60%', label: 'Reducción en tiempos operativos' },
-      { metric: '100%', label: 'Eliminación de papel' },
-      { metric: '3x', label: 'Más rápido en aprobaciones', description: 'Flujo de aprobación multinivel automatizado' },
-    ],
-  },
-  'gestion-personal-transitorio': {
-    title: 'Gestión de Personal Transitorio',
-    slug: 'gestion-personal-transitorio',
-    tagline: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.',
-    bajada: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.',
-    features: ['Solicitudes estandarizadas', 'Evaluación centralizada', 'Validación de documentación', 'Dashboard de seguimiento'],
-    featuresDescription: 'Cada módulo está pensado para resolver un problema específico de operación, no para agregar complejidad innecesaria.',
-    benefits: [
-      { metric: '80%', label: 'Menos tiempo en gestión manual' },
-      { metric: '100%', label: 'Documentación validada', description: 'Verificación automática de antecedentes y certificaciones' },
-      { metric: '2x', label: 'Más rápido en contratación' },
-    ],
-  },
-  'mesa-de-ayuda': {
-    title: 'Mesa de Ayuda',
-    slug: 'mesa-de-ayuda',
-    tagline: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.',
-    bajada: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.',
-    features: ['Canales unificados', 'Base de conocimiento IA', 'SLA automatizado', 'Reportes de satisfacción'],
-    featuresDescription: 'Cada módulo está pensado para resolver un problema específico de operación, no para agregar complejidad innecesaria.',
-    benefits: [
-      { metric: '90%', label: 'Resolución en primer contacto' },
-      { metric: '50%', label: 'Reducción de tickets repetitivos', description: 'Base de conocimiento con IA integrada' },
-      { metric: '24/7', label: 'Disponibilidad continua' },
-    ],
-  },
   'workflow-generico': {
     title: 'FlowCore',
     slug: 'workflow-generico',
@@ -108,9 +69,6 @@ const fallbackData: Record<string, Solucion> = {
 
 export async function getStaticPaths() {
   const fallbackData: Record<string, { slug: string }> = {
-    'sistema-de-compras': { slug: 'sistema-de-compras' },
-    'gestion-personal-transitorio': { slug: 'gestion-personal-transitorio' },
-    'mesa-de-ayuda': { slug: 'mesa-de-ayuda' },
     'workflow-generico': { slug: 'workflow-generico' },
     'guard-hub': { slug: 'guard-hub' },
     'electivoia': { slug: 'electivoia' },

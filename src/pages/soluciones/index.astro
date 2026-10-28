@@ -4,7 +4,7 @@ import ContactoFooter from '../../components/ContactoFooter.astro';
 import Footer from '../../components/Footer.astro';
 import { sanityClient } from '../../lib/sanity';
 import type { Solucion } from '../../types/sanity';
-import { ShoppingCart, Users, LifeBuoy, Workflow, ShieldCheck, GraduationCap } from '@lucide/astro';
+import { Workflow, ShieldCheck, GraduationCap } from '@lucide/astro';
 
 let soluciones: Solucion[] = [];
 if (sanityClient) {
@@ -24,27 +24,6 @@ if (sanityClient) {
 }
 
 const fallbackSoluciones = [
-  {
-    title: 'Sistema de Compras',
-    slug: 'sistema-de-compras',
-    tagline: 'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento.',
-    features: ['Control de cumplimiento SLA', 'Reducción 100% papel', 'Tracking en tiempo real'],
-    icon: '🛒',
-  },
-  {
-    title: 'Personal Transitorio',
-    slug: 'gestion-personal-transitorio',
-    tagline: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.',
-    features: ['Solicitudes estandarizadas', 'Evaluación centralizada', 'Validación de documentación'],
-    icon: '👥',
-  },
-  {
-    title: 'Mesa de Ayuda',
-    slug: 'mesa-de-ayuda',
-    tagline: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.',
-    features: ['Canales unificados', 'Base de conocimiento IA', 'SLA automatizado'],
-    icon: '🛟',
-  },
   {
     title: 'FlowCore',
     slug: 'workflow-generico',
@@ -68,10 +47,7 @@ const fallbackSoluciones = [
   },
 ];
 
-const iconMap: Record<string, typeof ShoppingCart> = {
-  'sistema-de-compras': ShoppingCart,
-  'gestion-personal-transitorio': Users,
-  'mesa-de-ayuda': LifeBuoy,
+const iconMap: Record<string, typeof Workflow> = {
   'workflow-generico': Workflow,
   'guard-hub': ShieldCheck,
   'electivoia': GraduationCap,
