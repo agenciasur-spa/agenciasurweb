@@ -12,7 +12,7 @@ export const sanityClient = isSanityConfigured
       projectId,
       dataset,
       apiVersion: '2024-01-01',
-      useCdn: true,
+      useCdn: import.meta.env.PROD,
     })
   : null;
 

@@ -4,7 +4,7 @@ import ContactoFooter from '../../components/ContactoFooter.astro';
 import Footer from '../../components/Footer.astro';
 import { sanityClient } from '../../lib/sanity';
 import type { Solucion } from '../../types/sanity';
-import { ShoppingCart, Users, LifeBuoy } from '@lucide/astro';
+import { ShoppingCart, Users, LifeBuoy, Workflow, ShieldCheck, GraduationCap } from '@lucide/astro';
 
 let soluciones: Solucion[] = [];
 if (sanityClient) {
@@ -45,12 +45,36 @@ const fallbackSoluciones = [
     features: ['Canales unificados', 'Base de conocimiento IA', 'SLA automatizado'],
     icon: '🛟',
   },
+  {
+    title: 'Workflow Genérico',
+    slug: 'workflow-generico',
+    tagline: 'Automatiza cualquier proceso operativo con un motor de flujo configurable.',
+    features: ['Motor de flujo configurable', 'Aprobaciones multinivel', 'SLA automatizado'],
+    icon: '⚙️',
+  },
+  {
+    title: 'Guard Hub',
+    slug: 'guard-hub',
+    tagline: 'Plataforma integral para empresas de seguridad: guardias, turnos y facturación.',
+    features: ['Gestión de turnos en tiempo real', 'Facturación automatizada', 'App offline para guardias'],
+    icon: '🛡️',
+  },
+  {
+    title: 'ElectivoIA',
+    slug: 'electivoia',
+    tagline: 'Gestión de electivos escolares con IA: inscripciones y recomendaciones personalizadas.',
+    features: ['Motor de priorización por promedio', 'Chatbot con Gemini AI', 'Gestión multi-colegio'],
+    icon: '🎓',
+  },
 ];
 
 const iconMap: Record<string, typeof ShoppingCart> = {
   'sistema-de-compras': ShoppingCart,
   'gestion-personal-transitorio': Users,
   'mesa-de-ayuda': LifeBuoy,
+  'workflow-generico': Workflow,
+  'guard-hub': ShieldCheck,
+  'electivoia': GraduationCap,
 };
 
 const displaySoluciones = soluciones.length > 0 ? soluciones : fallbackSoluciones;

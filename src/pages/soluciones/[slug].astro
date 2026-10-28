@@ -47,6 +47,63 @@ const fallbackData: Record<string, Solucion> = {
       { metric: '24/7', label: 'Disponibilidad continua' },
     ],
   },
+  'workflow-generico': {
+    title: 'Workflow Genérico',
+    slug: 'workflow-generico',
+    tagline: 'Automatiza cualquier proceso operativo con un motor de flujo configurable.',
+    bajada: 'Plataforma BPM flexible que adapta el motor de flujo de trabajo a los procesos específicos de tu negocio: compras, servicios profesionales, mesa de ayuda o cualquier dominio operativo.',
+    features: [
+      'Motor de flujo configurable sin código',
+      'Aprobaciones multinivel con roles',
+      'SLA automatizado y alertas',
+      'Trazabilidad completa de cada instancia',
+      'Base de conocimiento integrada',
+    ],
+    featuresDescription: 'Un solo motor probado en 7+ dominios de negocio distintos — adaptable a cualquier proceso sin reescribir lógica central.',
+    benefits: [
+      { metric: '100%', label: 'Procesos digitalizados', description: 'Eliminación total de flujos en papel o correo' },
+      { metric: '70%', label: 'Reducción de tareas manuales', description: 'Automatización de aprobaciones y notificaciones' },
+      { metric: '7+', label: 'Dominios de negocio soportados', description: 'Compras, RRHH, helpdesk, facturación y más sobre el mismo motor' },
+    ],
+  },
+  'guard-hub': {
+    title: 'Guard Hub',
+    slug: 'guard-hub',
+    tagline: 'Plataforma integral para empresas de seguridad: guardias, turnos y facturación en un solo lugar.',
+    bajada: 'Sistema SaaS multi-tenant para gestionar guardias, clientes y proveedores con flujos de turno, control de asistencia, facturación automatizada y portal para cada actor del negocio.',
+    features: [
+      'Gestión de turnos en tiempo real',
+      'Facturación automatizada por turno',
+      'App offline para guardias en terreno',
+      'Portal para holding y proveedor',
+      'Reportes y analytics de operación',
+    ],
+    featuresDescription: 'Diseñado para la realidad operativa de empresas de seguridad: conectividad intermitente, múltiples clientes y trazabilidad absoluta.',
+    benefits: [
+      { metric: '4', label: 'Actores integrados en una sola plataforma', description: 'Holdings, proveedores, guardias e integradores' },
+      { metric: '100%', label: 'Trazabilidad de turnos', description: 'Registro digital de cada entrada, salida e incidencia' },
+      { metric: '24/7', label: 'Disponibilidad con soporte offline', description: 'La app de guardias funciona sin conexión y sincroniza al reconectar' },
+    ],
+  },
+  'electivoia': {
+    title: 'ElectivoIA',
+    slug: 'electivoia',
+    tagline: 'Gestión de electivos escolares con IA: inscripciones, meritocracia y recomendaciones personalizadas.',
+    bajada: 'Plataforma educativa para colegios chilenos que digitaliza el proceso de inscripción a cursos electivos con priorización meritocrática y recomendaciones de IA para cada estudiante.',
+    features: [
+      'Inscripción digital en menos de 3 minutos',
+      'Motor de priorización por promedio de notas',
+      'Chatbot con Gemini AI para recomendaciones',
+      'Reportes para profesores y apoderados',
+      'Gestión multi-colegio (multitenencia)',
+    ],
+    featuresDescription: 'El diferenciador clave: cuando un curso está lleno, un estudiante con mayor promedio puede desplazar automáticamente al inscrito con menor rendimiento.',
+    benefits: [
+      { metric: '< 3 min', label: 'Por inscripción por alumno', description: 'Proceso completamente digital y guiado' },
+      { metric: '> 70%', label: 'Aceptación de recomendaciones IA', description: 'Chatbot Gemini que orienta a cada estudiante' },
+      { metric: '5 roles', label: 'Estudiante, profesor, apoderado, admin y más', description: 'Cada actor tiene su propio panel y funcionalidades' },
+    ],
+  },
 };
 
 export async function getStaticPaths() {
@@ -54,6 +111,9 @@ export async function getStaticPaths() {
     'sistema-de-compras': { slug: 'sistema-de-compras' },
     'gestion-personal-transitorio': { slug: 'gestion-personal-transitorio' },
     'mesa-de-ayuda': { slug: 'mesa-de-ayuda' },
+    'workflow-generico': { slug: 'workflow-generico' },
+    'guard-hub': { slug: 'guard-hub' },
+    'electivoia': { slug: 'electivoia' },
   };
   const fallbackSlugs = Object.keys(fallbackData);
   const paths = fallbackSlugs.map((slug) => ({ params: { slug } }));
@@ -150,7 +210,7 @@ if (!solucion) {
             </ul>
 
 
-            <h2 data-ns-animate data-delay="0.2" id="beneficios" class="font-light text-white">Beneficios medibles</h2>
+            <h2 data-ns-animate data-delay="0.2" id="beneficios" class="font-light text-white mt-10">Beneficios medibles</h2>
             <p data-ns-animate data-delay="0.3" class="text-white/60">
               Resultados concretos que nuestros clientes constatan tras implementar el sistema.
             </p>
