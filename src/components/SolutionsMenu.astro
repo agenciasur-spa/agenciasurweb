@@ -4,20 +4,20 @@ interface Props {
 }
 const { Uii } = Astro.props;
 
-import { ShoppingCart, Users, LifeBuoy, Sparkles } from '@lucide/astro';
+import { Workflow, ShieldCheck, GraduationCap, Sparkles } from '@lucide/astro';
 import { sanityClient } from '../lib/sanity';
 
 // Slug → icon mapping (hardcoded Lucide components — can't be dynamic)
-const iconMap: Record<string, typeof ShoppingCart> = {
-  'sistema-de-compras': ShoppingCart,
-  'gestion-personal-transitorio': Users,
-  'mesa-de-ayuda': LifeBuoy,
+const iconMap: Record<string, typeof Workflow> = {
+  'workflow-generico': Workflow,
+  'guard-hub': ShieldCheck,
+  'electivoia': GraduationCap,
 };
 
 const fallbackSolutions = [
-  { title: 'Sistema de Compras', slug: 'sistema-de-compras', tagline: 'Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento.' },
-  { title: 'Personal Transitorio', slug: 'gestion-personal-transitorio', tagline: 'Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma.' },
-  { title: 'Mesa de Ayuda', slug: 'mesa-de-ayuda', tagline: 'Omnicanalidad y base de conocimientos para una autoatención inteligente.' },
+  { title: 'FlowCore', slug: 'workflow-generico', tagline: 'Motor BPM que automatiza flujos de trabajo complejos sin código.' },
+  { title: 'ShiftHub', slug: 'guard-hub', tagline: 'Gestión operativa, turnos y facturación para empresas de servicios.' },
+  { title: 'Selectia', slug: 'electivoia', tagline: 'Plataforma con IA para optimizar la gestión de electivos escolares.' },
 ];
 
 let solutions: { title: string; slug: string; tagline: string }[] = fallbackSolutions;

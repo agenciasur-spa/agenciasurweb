@@ -3,29 +3,29 @@
 // Nexsas Time-Tracking adapted for Agencia Sur
 // Grid de 3 cards: icono + heading + tagline, dentro de la tarjeta oscura grande.
 
-import { ShoppingBag, UsersRound, Headset, ArrowRight } from "@lucide/astro";
+import { Workflow, ShieldCheck, GraduationCap, ArrowRight } from "@lucide/astro";
 import BadgeSection  from '../components/blocks/BadgeSection.astro';
 const sistemas = [
   {
-    icon: ShoppingBag,
-    title: "Sistema de Compras",
+    icon: Workflow,
+    title: "FlowCore",
     description:
-      "Digitaliza el proceso de adquisiciones y haz eficiente tu abastecimiento. Control total desde la solicitud hasta la entrega.",
-    link: "/soluciones/sistema-de-compras",
+      "Motor BPM que automatiza flujos de trabajo complejos. Adapta procesos empresariales sin código y escala con tu operación.",
+    link: "/soluciones/workflow-generico",
   },
   {
-    icon: UsersRound,
-    title: "Gestión de Personal Transitorio",
+    icon: ShieldCheck,
+    title: "ShiftHub",
     description:
-      "Estandariza solicitudes, evalúa y valida personal externo en una sola plataforma centralizada.",
-    link: "/soluciones/gestion-personal-transitorio",
+      "Plataforma SaaS para gestión operativa, turnos y facturación en empresas de servicios y seguridad.",
+    link: "/soluciones/guard-hub",
   },
   {
-    icon: Headset,
-    title: "Mesa de Ayuda",
+    icon: GraduationCap,
+    title: "Selectia",
     description:
-      "Omnicanalidad y base de conocimientos para una autoatención inteligente con SLA automatizado.",
-    link: "/soluciones/mesa-de-ayuda",
+      "Digitaliza y optimiza la gestión de electivos escolares con inteligencia artificial. Solución SaaS para colegios.",
+    link: "/soluciones/electivoia",
   },
 ];
 ---
