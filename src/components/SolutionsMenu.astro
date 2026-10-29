@@ -4,14 +4,14 @@ interface Props {
 }
 const { Uii } = Astro.props;
 
-import { Workflow, ShieldCheck, GraduationCap, Sparkles } from '@lucide/astro';
+import { GitBranch, CalendarClock, BookOpen, Sparkles } from '@lucide/astro';
 import { sanityClient } from '../lib/sanity';
 
 // Slug → icon mapping (hardcoded Lucide components — can't be dynamic)
-const iconMap: Record<string, typeof Workflow> = {
-  'workflow-generico': Workflow,
-  'guard-hub': ShieldCheck,
-  'electivoia': GraduationCap,
+const iconMap: Record<string, typeof GitBranch> = {
+  'workflow-generico': GitBranch,
+  'guard-hub': CalendarClock,
+  'electivoia': BookOpen,
 };
 
 const fallbackSolutions = [
